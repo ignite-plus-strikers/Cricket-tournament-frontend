@@ -1,38 +1,311 @@
-.App {
+.container{
+  margin-left: 30px;
+  display: inline;
+}
+.headerStyle, .footerStyle{
+  width: 100%;
+  position: fixed;        
+  background:rgb(0, 0, 0);
+  padding: 10px 0;
+  color: #fff;
+  
+}
+.headerStyle{
+  top: 0;
+}
+.footerStyle{
+  bottom: 0;
+  background-color: rgb(2, 2, 92);
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.headerButton{
+  background-color: black;
+  color: white;
+  border-color: black;
+  font-size: medium;
+  margin-right: 70px;
   }
+  .headerButton:hover{
+    color:#FFC0CB;
+  }
+  #root{
+    margin-top: 50px;
+    
+  }
+  .box_head{
+    background-color:	#d89585;
+    width:100%;
+    height:50px;
+    padding-top: 15px;
+    color: black;
+    
+  }
+  .box_body{
+    width:100%;
+    height:160px;
+    background-color: rgb(255, 255, 255);
+    
+  }
+  .box{
+    border: 1px solid black;
+    width:35%;
+    margin-bottom: 40px;
+    margin-left: 50px;
+    padding: 0px;
+  }
+  .box_button{
+    background-color:#c9c9c9; 
+    height:50px;
+  }
+  .toss_section{
+    margin-top: 50px;
+  }
+  .order_form{
+    background-color:#EEE8AA ;
+    width:25%;
+    height:600px;
+  }
+  .matchDetails{
+    background-color: #FFDAB9;
+  }
+ .option{
+   text-decoration: none;
+   color: #fff;
+ }
+
+ .Prematch_button,.newbutton{
+  
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1d4bd4;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 7px #999;
+  
+ }
+ .Prematch_button{
+  margin-left: 75px;
+  margin-top: 5px;
+  margin-right: 80px;
+ }
+ .Prematch_button:hover,.newbutton:hover {background-color:#1414aa}
+
+.Prematch_button:active,.newbutton:active {
+  background-color: #1414aa;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+.Scoring_button{
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #e24c4c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 7px #999;
+}
+.Scoring_button:hover {background-color:#b91818}
+
+.Scoring_button:active {
+  background-color: #b91818;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.playerform{
+  margin-left: 500px;
+  width:500px;
+  background-color: #FFFAF0;
+  padding-left: 100px;
+  height: 580px;
+  margin-bottom: 100px;
+}
+label {
+  width:180px;
+  clear:left;
+  text-align:left;
+  padding-right:10px;
+}
+
+.i , label {
+  float:left;
+}
+
+
+.PSbutton {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #00A5FF;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 9px #999;
+  height: 40px;
+  width: 150px;
+  margin-left: 100px;
+}
+
+.PSbutton:hover {background-color: #0087FF}
+
+.PSbutton:active {
+  background-color: #0078FF;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.playerdetails{
+  margin-top:70px;
+  margin-left:180px;
+  
+}
+
+#playerTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+#playerTable td, #playerTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#playerTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#playerTable tr:hover {background-color: #ddd;}
+
+#playerTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:#072664;
+  color:aliceblue;
+}
+.newbutton{
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.container2{
+  width: 90%;
+  margin: 50px auto;
+}
+.heading{
+  margin-left: 200px;
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 50px;
+}
+.row{
+  margin-left: 200px;
+}
+ 
+.card{
+  
+  width: 20%;
+  background: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+ 
+}
+#card-header1 {
+  text-align: center;
+  padding: 30px 10px;
+  background: rgb(109, 109, 218);
+}
+#card-header2 {
+  text-align: center;
+  padding: 30px 10px;
+  background: rgb(93, 223, 93);
+}
+#card-header3 {
+  text-align: center;
+  padding: 30px 10px;
+  background: rgb(204, 204, 94);
+}
+#card-header4 {
+  text-align: center;
+  padding: 30px 10px;
+  background:rgb(241, 78, 78);
+}
+.card-body .btn{
+  display: block;
+  color: black;
+  text-align: center;
+  background-color: white;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 10px 5px;
+}
+.row{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+ 
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+ 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+ 
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+#lefttable{
+  margin-left: 200px;
+  width: 45%;
+  float: left;
+}
+#righttable{
+  width: 40%;
+  float: right;
+}
+.sidenav {
+  height: 85.3%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(113, 113, 153);
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-top: 45px;
+  margin-bottom: 50px;
+}
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+}
+ 
+.sidenav a:hover {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Selected_color{
+  color:white;
 }
