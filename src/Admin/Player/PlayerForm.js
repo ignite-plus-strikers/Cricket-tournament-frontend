@@ -52,6 +52,14 @@ class PlayerForm extends React.Component{
     render(){
     return(
         <div>
+            <div class="sidenav">
+                
+                <a href="#about">Dashboard</a><hr></hr>
+                <a href="#services">Fixtures</a><hr></hr>
+                <a href="#clients">Series Mastar</a><hr></hr>
+                <a href="#contact">Team Master</a><hr></hr>
+                <a href="#contact"><div className="Selected_color">Player Master</div></a><hr></hr>
+              </div>
         <div className = 'playerform'>
             <p>The following details must be filled to add a player : </p>
             <form className='alignLabel' onSubmit={this.handleSubmit}>

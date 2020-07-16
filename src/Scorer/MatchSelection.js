@@ -7,11 +7,6 @@ import PreMatch from './PreMatch';
 
 class MatchSelection extends Component {
    
-
-     /*prematch=()=>{
-          ReactDOM.render(<PreMatch/>, document.getElementById('root'));
-        }*/
-
        render () {
            return (
               <div>

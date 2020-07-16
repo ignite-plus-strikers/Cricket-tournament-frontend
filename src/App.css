@@ -1,3 +1,39 @@
+
+.btn {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.newBtn{
+  background-color:#00A5FF ;
+  margin-bottom: 10px;
+}
+.newBtn:hover{
+  background:#038ed8;
+}
+.updateBtn{
+  background-color:#a044bd ;
+}
+.updateBtn:hover{
+  background:#8425a1;
+}
+.warning {background-color: #ff9800;} /* Orange */
+.warning:hover {background: #e68a00;}
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  width:95%;
+}
+
+.alert.success {background-color: #7bdb7e;}
+
+
 .container{
   margin-left: 30px;
   display: inline;
@@ -72,8 +108,9 @@
    text-decoration: none;
    color: #fff;
  }
+ 
 
- .Prematch_button,.newbutton{
+ .Prematch_button{
   
   padding: 10px 20px;
   font-size: 14px;
@@ -93,9 +130,9 @@
   margin-top: 5px;
   margin-right: 80px;
  }
- .Prematch_button:hover,.newbutton:hover {background-color:#1414aa}
+ .Prematch_button:hover{background-color:#1414aa}
 
-.Prematch_button:active,.newbutton:active {
+.Prematch_button:active{
   background-color: #1414aa;
   box-shadow: 0 3px #666;
   transform: translateY(4px);
@@ -141,7 +178,7 @@ label {
 }
 
 
-.PSbutton {
+.PSbutton,.newbutton{
   display: inline-block;
   padding: 10px 20px;
   font-size: 18px;
@@ -156,12 +193,18 @@ label {
   box-shadow: 0 9px #999;
   height: 40px;
   width: 150px;
+  
+}
+.PSbutton{
   margin-left: 100px;
 }
+.newbutton{
+  margin-left: 0px;
+}
 
-.PSbutton:hover {background-color: #0087FF}
+.PSbutton:hover,.newbutton:hover {background-color: #0087FF}
 
-.PSbutton:active {
+.PSbutton:active,.newbutton:active {
   background-color: #0078FF;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
@@ -197,6 +240,7 @@ label {
 .newbutton{
   margin-top: 10px;
   margin-bottom: 20px;
+  background-color: #00A5FF;
 }
 
 .container2{
@@ -204,10 +248,11 @@ label {
   margin: 50px auto;
 }
 .heading{
-  margin-left: 200px;
+  margin-left: 120px;
   text-align: left;
   font-size: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+  margin-top: 67px;
 }
 .row{
   margin-left: 200px;

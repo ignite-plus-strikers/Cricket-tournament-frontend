@@ -7,7 +7,9 @@ import MatchSelection from './Scorer/MatchSelection';
 import PreMatch from './Scorer/PreMatch';
 import AdminDashboard from './Admin/AdminDashboard';
 import PlayerForm from './Admin/Player/PlayerForm';
-import Display from './Admin/Player/Display'; 
+import Display from './Admin/Player/Display';
+import ListPlayersComponent from './Admin/Player/ListPlayersComponent'; 
+import PlayerAddnUpdate from './Admin/Player/PlayerAddnUpdate';
 
 function App() {
   return (
@@ -18,7 +20,8 @@ function App() {
         <Route exact path="/scorer/matchSelection/prematch" component={PreMatch} />
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/admin/dashboard/Player/PlayerForm" component={PlayerForm} />
-        <Route exact path="/admin/dashboard/Player/Display" component={Display} />
+        <Route exact path="/admin/dashboard/Player/Display" component={ListPlayersComponent} />
+        <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />
         </Router>
         <Footer/>
 

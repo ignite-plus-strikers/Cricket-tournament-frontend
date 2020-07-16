@@ -1,5 +1,7 @@
 import React from 'react';
 import '../../App.css';
+
+
 function Display () {
     return(
         <div>
@@ -13,8 +15,8 @@ function Display () {
         </div>
         <div className = "playerdetails">
         
-            <div>
-                <button type="button" className="newbutton">New</button>
+            <div className="newLink">
+                <p><a href="/admin/dashboard/Player/PlayerForm" className="option">New</a></p>
             </div>
                 <table id="playerTable">
                     <tr>

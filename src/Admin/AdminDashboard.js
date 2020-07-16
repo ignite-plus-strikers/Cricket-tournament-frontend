@@ -11,10 +11,10 @@ function AdminDashboard() {
           <a href="#services">Fixtures</a><hr></hr>
           <a href="#clients">Series Mastar</a><hr></hr>
           <a href="#contact">Team Master</a><hr></hr>
-          <a href="#contact">Player Master</a><hr></hr>
+          <a href="/admin/dashboard/Player/Display">Player Master</a><hr></hr>
         </div>
         <div class = "heading">
-          <p>Backbone </p>
+          Backbone
           <hr></hr>
         </div>
         <div class="row">
