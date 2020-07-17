@@ -16,6 +16,14 @@ class PlayerDataService {
     retrievePlayer(id) {
         return axios.get(`${PLAYER_API_URL}/player/${id}`);
     }
+    
+        updatePlayer(id, player) {
+            return axios.put(`${PLAYER_API_URL}/player/${id}`, player);
+        }
+      
+        createPlayer(player) {
+            return axios.post(`${PLAYER_API_URL}/player`,player);
+        }
 }
 
 export default new PlayerDataService()

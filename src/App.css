@@ -354,3 +354,23 @@ tr:nth-child(even) {
 .Selected_color{
   color:white;
 }
+a{
+  text-decoration: none;
+}
+
+.loginpage{
+  align-content: center;
+   margin-left: 500px; 
+   margin-right: 500px;
+  text-align: center;
+  background-color: lightblue;
+  height: 400px;
+
+}
+.loginbtn{
+  margin-left: 50px;
+  margin-top: 20px;
+}
+.marginsave{
+  margin-left: 150px;
+}
