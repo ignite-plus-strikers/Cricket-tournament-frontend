@@ -7,10 +7,10 @@ function AdminDashboard() {
     <div>
       <div class = "container2">
         <div class="sidenav">
-        <a href="#about"><div className="Selected_color">Dashboard</div></a><hr></hr>
-          <a href="#services">Fixtures</a><hr></hr>
-          <a href="#clients">Series Mastar</a><hr></hr>
-          <a href="#contact">Team Master</a><hr></hr>
+        <a href="/admin/dashboard"><div className="Selected_color">Dashboard</div></a><hr></hr>
+          <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
+          <a href="/admin/dashboard/SeriesDisplay">Series Mastar</a><hr></hr>
+          <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
           <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
         </div>
         <div class = "heading">

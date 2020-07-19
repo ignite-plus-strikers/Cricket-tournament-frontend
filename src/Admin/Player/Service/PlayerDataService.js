@@ -22,7 +22,7 @@ class PlayerDataService {
         }
       
         createPlayer(player) {
-            return axios.post(`${PLAYER_API_URL}/player`,player);
+            return axios.post(`${PLAYER_API_URL}/player`,player);    
         }
 }
 

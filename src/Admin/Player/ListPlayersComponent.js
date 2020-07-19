@@ -31,11 +31,11 @@ class ListPlayersComponent extends Component {
             )
     }
 
-    deletePlayerClicked(id) {
+    deletePlayerClicked(id,firstname) {
         PlayerDataService.deletePlayer(id)
             .then(
                 response => {
-                    this.setState({ message: `Delete of player with player ID ${id} Successful` })
+                    this.setState({ message: `Delete of player  ${firstname} is Successful` })
                     this.refreshPlayers()
                 }
             )
@@ -48,13 +48,13 @@ class ListPlayersComponent extends Component {
     }
 
     addPlayerClicked() {
-        this.props.history.push(`/admin/dashboard/Player/-1`)
+        this.props.history.push(`/admin/dashboard/PlayerAddForm`)
     }
 
     render() {
         return (
             <div>
-                <div class="sidenav">
+                <div className="sidenav">
                 <a href="#about">Dashboard</a><hr></hr>
                 <a href="#services">Fixtures</a><hr></hr>
                 <a href="#clients">Series Mastar</a><hr></hr>
@@ -64,11 +64,12 @@ class ListPlayersComponent extends Component {
                 <div className = "playerdetails">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
-                        <button class="btn newBtn" onClick={this.addPlayerClicked}>New</button>
+                        <button className="btn newBtn" onClick={this.addPlayerClicked}>New</button>
                      </div>
                     <table id="playerTable">
+                        <thead>
                         <tr>
-                            <th>Player ID</th>
+                            
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Gender</th>
@@ -83,12 +84,12 @@ class ListPlayersComponent extends Component {
                             <th>Update</th>
                     
                         </tr>
+                        </thead>
                         <tbody>
                             {
                                 this.state.players.map(
                                     player =>
                                         <tr key={player.player_id}>
-                                            <td>{player.player_id}</td>
                                             <td>{player.p_firstname}</td>
                                             <td>{player.p_lastname}</td>
                                             <td>{player.p_gender}</td>
@@ -99,7 +100,7 @@ class ListPlayersComponent extends Component {
                                             <td>{player.p_bowling_style}</td>
                                             <td>{player.player_role}</td>
                                             <td>{player.retired_or_playing}</td>
-                                            <td><button className="btn warning" onClick={() => this.deletePlayerClicked(player.player_id)}>Delete</button></td>
+                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the player '+player.p_firstname+'?'))this.deletePlayerClicked(player.player_id,player.p_firstname)}}>Delete</button></td>
                                             <td><button className="btn updateBtn" onClick={() => this.updatePlayerClicked(player.player_id)}>Update</button></td>
                                         </tr>
                                 )

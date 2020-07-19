@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PlayerDataService from './Service/PlayerDataService';
-
 import DatePicker from "react-datepicker";
  
 import "react-datepicker/dist/react-datepicker.css";
@@ -11,58 +10,31 @@ import "react-datepicker/dist/react-datepicker.css";
 import convertDateFormat from './ConvertDateFormat';
 
 
-
-
-class PlayerAddnUpdate extends Component {
+class AddForm extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            player_id: this.props.match.params.id,
             p_firstname:'',
             p_lastname:'',
-            p_gender:'',
+            p_gender:'M',
             p_dob:'',
-            p_category:'',
+            p_category:'B1',
             p_nationality:'',
-            p_batting_style:'',
-            p_bowling_style:'',
+            p_batting_style:'right-handed-batsman',
+            p_bowling_style:'left-handed-bowler',
             player_role:'',
-            retired_or_playing:'',
-            properDate:"",
+            retired_or_playing:'retired',
+            properDate:"2000-07-05",
             startDate:new Date("2000-07-05")
-
-            
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
-
     }
-    componentDidMount() {
-        PlayerDataService.retrievePlayer(this.state.player_id)
-            .then(response => this.setState({
-                p_firstname: response.data.p_firstname,
-                p_lastname:response.data.p_lastname,
-                p_gender:response.data.p_gender,
-                p_dob :response.data.p_dob,
-                p_category:response.data.p_category,
-                p_nationality:response.data.p_nationality,
-                p_batting_style:response.data.p_batting_style,
-                p_bowling_style :response.data.p_bowling_style,
-                player_role :response.data.player_role,
-                retired_or_playing :response.data.retired_or_playing,
-                startDate:new Date(response.data.p_dob)
+    /*componentDidMount() {
 
-            }))
-    }
-    handleChange = date => {
-        var p=convertDateFormat(date)
-         this.setState({
-           startDate: date,
-           properDate:p,
-           p_dob:p
-         });
-       };
+
+    }*/
     validate(values) {
         let errors = {};
         if (!values.p_firstname) {
@@ -80,17 +52,20 @@ class PlayerAddnUpdate extends Component {
         return errors
 
     }
-
-
+    handleChange = date => {
+        var p=convertDateFormat(date)
+         this.setState({
+           startDate: date,
+           properDate:p
+         });
+       };
     onSubmit(values) {
         
 
-        var player = {
-            player_id: this.state.player_id,
-            p_firstname: values.p_firstname,
+        var player = {p_firstname: values.p_firstname,
             p_lastname: values.p_lastname,
             p_gender:values.p_gender,
-            p_dob:this.state.p_dob,
+            p_dob: this.state.properDate,
             p_category:values.p_category,
             p_nationality:values.p_nationality,
             p_batting_style:values.p_batting_style,
@@ -100,16 +75,16 @@ class PlayerAddnUpdate extends Component {
         }
        
         console.log(player);
-       
-            PlayerDataService.updatePlayer(this.state.player_id, player)
+            PlayerDataService.createPlayer(player)
                 .then(() => this.props.history.push('/admin/dashboard/PlayerDisplay'))
-        
+                  
 
         
+
+        console.log(values);
         
     }
     render() {
-
         let p_firstname = this.state.p_firstname
         let p_lastname = this.state.p_lastname
         let p_gender = this.state.p_gender
@@ -120,7 +95,7 @@ class PlayerAddnUpdate extends Component {
         let p_bowling_style= this.state.p_bowling_style
         let player_role = this.state.player_role
         let retired_or_playing = this.state.retired_or_playing
-        
+    
         return (
             <div>
                  <div className="sidenav">
@@ -141,22 +116,20 @@ class PlayerAddnUpdate extends Component {
                     {
                         (props) => (
                             <Form>     
-                                    <ErrorMessage name="p_firstname" component="div"
+                                     <ErrorMessage name="p_firstname" component="div"
                                         className=" errormsg alert warning" />  
                                     <ErrorMessage name="p_lastname" component="div"
                                         className=" errormsg alert warning" /> 
                                     <ErrorMessage name="p_nationality" component="div"
                                         className=" errormsg alert warning" /> 
                                     <ErrorMessage name="player_role" component="div"
-                                        className=" errormsg alert warning" />  
-                                                      
+                                        className=" errormsg alert warning" />   
+
                                     <label>First Name</label>
                                     <Field className="form-control" type="text" name="p_firstname" /><br></br><br></br>
-                                       
 
                                     <label>Last Name</label>
                                     <Field className="form-control" type="text" name="p_lastname" /><br></br><br></br>
-                                    
 
                                     <label>Gender</label>
                                     <Field as="select" name="p_gender">
@@ -176,7 +149,6 @@ class PlayerAddnUpdate extends Component {
                                         onChange={this.handleChange}
                                     ></DatePicker>
                                     <br></br><br></br>
-
 
                                     <label>Visual Classification</label>
                                     <Field as="select" name="p_category">
@@ -220,4 +192,4 @@ class PlayerAddnUpdate extends Component {
 
 }
 
-export default PlayerAddnUpdate
+export default AddForm

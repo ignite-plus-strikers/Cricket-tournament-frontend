@@ -374,3 +374,9 @@ a{
 .marginsave{
   margin-left: 150px;
 }
+.errormsg{
+  width: 315px;
+  height:20px;
+  background-color: rgb(245, 110, 110);
+}
+
