@@ -375,8 +375,17 @@ a{
   margin-left: 150px;
 }
 .errormsg{
-  width: 315px;
+  width: 335px;
   height:20px;
   background-color: rgb(245, 110, 110);
 }
 
+.bordering{
+  clear:none;
+  border:1px 1px 1px 1px black;
+  background-color:rgba(221, 218, 215, 0.863);
+  
+}
+.width_inc{
+  width:180px;
+}

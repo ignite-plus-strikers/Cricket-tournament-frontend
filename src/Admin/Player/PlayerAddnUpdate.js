@@ -3,6 +3,8 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import PlayerDataService from './Service/PlayerDataService';
 
 import DatePicker from "react-datepicker";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
  
 import "react-datepicker/dist/react-datepicker.css";
  
@@ -151,11 +153,11 @@ class PlayerAddnUpdate extends Component {
                                         className=" errormsg alert warning" />  
                                                       
                                     <label>First Name</label>
-                                    <Field className="form-control" type="text" name="p_firstname" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="p_firstname" /><br></br><br></br>
                                        
 
                                     <label>Last Name</label>
-                                    <Field className="form-control" type="text" name="p_lastname" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="p_lastname" /><br></br><br></br>
                                     
 
                                     <label>Gender</label>
@@ -165,6 +167,7 @@ class PlayerAddnUpdate extends Component {
                                     </Field><br></br><br></br>
 
                                     <label>Date of Birth</label>
+                                    <label className="bordering">
                                     <DatePicker 
                                         selected={this.state.startDate}
                                         showMonthDropdown
@@ -174,7 +177,7 @@ class PlayerAddnUpdate extends Component {
                                         maxDate={(new Date("2009-12-31"))}
                                         dropdownMode="select"
                                         onChange={this.handleChange}
-                                    ></DatePicker>
+                                    ></DatePicker><FontAwesomeIcon icon={faCalendarAlt} className="bordering" /></label>
                                     <br></br><br></br>
 
 
@@ -186,7 +189,7 @@ class PlayerAddnUpdate extends Component {
                                     </Field><br></br><br></br>
 
                                     <label>Nationality</label>
-                                    <Field className="form-control" type="text" name="p_nationality" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="p_nationality" /><br></br><br></br>
 
                                     <label>Batting style</label>
                                     <Field as="select" name="p_batting_style">
@@ -201,7 +204,7 @@ class PlayerAddnUpdate extends Component {
                                     </Field><br></br><br></br>
 
                                     <label>Player role</label>
-                                    <Field className="form-control" type="text" name="player_role" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="player_role" /><br></br><br></br>
 
                                     <label>Retired or Playing</label>
                                     <Field as="select" name="retired_or_playing">
