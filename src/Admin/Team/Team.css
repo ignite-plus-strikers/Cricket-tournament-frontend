@@ -1,0 +1,38 @@
+
+#teamTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+    margin-top: 100px;
+    margin-left: 500px;
+  }
+  #teamTable td, #teamTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #teamTable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #teamTable tr:hover {background-color: #ddd;}
+  
+  #teamTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color:#072664;
+    color:aliceblue;
+    
+  }
+  .teamdetails{
+      text-align: center;
+  }
+  .addPlayerForm{
+    margin-left: 500px;
+    width:500px;
+    background-color: #FFFAF0;
+    padding-left: 100px;
+    height: 180px;
+    margin-bottom: 100px;
+    margin-top: 100px;
+  }

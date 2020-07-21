@@ -53,7 +53,7 @@ class TeamForm extends Component {
                     {
                         (props) => (
                             <Form>     
-                                      
+                                    <br/><br/><br/><br/><br/><br/><br/><br/>  
                                     <label>Team Name</label>
                                     <Field className="form-control" type="text" name="teamname" /><br></br><br></br>
 

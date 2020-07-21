@@ -69,14 +69,23 @@ class PlayerAddnUpdate extends Component {
         let errors = {};
         if (!values.p_firstname) {
             errors.p_firstname = 'Enter FirstName'
-        } else if (values.p_firstname.length < 3) {
+        } else if(!(values.p_firstname).match(/^[a-zA-Z]+$/)){ 
+            errors.p_firstname = 'Invalid FirstName'
+        }
+        else if (values.p_firstname.length < 3) {
             errors.p_firstname = 'Enter atleast 3 Characters in FirstName'
         }else if(!values.p_lastname){
             errors.p_lastname='Enter LastName'
+        } else if(!(values.p_lastname).match(/^[a-zA-Z]+$/)){ 
+            errors.p_lastname = 'Invalid LastName'
         }else if(!values.p_nationality){
             errors.p_nationality='Enter Nationality'
+        } else if(!(values.p_nationality).match(/^[a-zA-Z]+$/)){ 
+            errors.p_nationality = 'Invalid Nationality'
         }else if(!values.player_role){
             errors.player_role='Enter player role'
+        }else if(!(values.player_role).match(/^[a-zA-Z]+$/)){ 
+            errors.player_role = 'Invalid player role'
         }
 
         return errors

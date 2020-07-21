@@ -12,6 +12,8 @@ import AddForm from './Admin/Player/AddForm';
 import FixturesForm from './Admin/Fixtures/FixturesForm';
 import TeamForm from './Admin/Team/TeamForm';
 import SeriesForm from './Admin/Series/SeriesForm';
+import ShowPlayer from './Admin/Team/ShowPlayer';
+import AddPlayer from './Admin/Team/AddPlayer';
 
 
 
@@ -28,6 +30,8 @@ function App() {
         <Route path="/admin/dashboard/PlayerAddForm" component={AddForm} />
         <Route path="/admin/dashboard/FixtureAddForm" component={FixturesForm} />
         <Route path="/admin/dashboard/TeamAddForm" component={TeamForm} />
+        <Route path="/admin/dashboard/TeamShowPlayer" component={ShowPlayer} />
+        <Route path="/admin/dashboard/TeamAddPlayer" component={AddPlayer} />
         <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
         
        
