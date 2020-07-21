@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-
+import './Team.css';
 
 
 
@@ -11,28 +11,42 @@ class TeamForm extends Component {
 
         this.state = {
             teamname:'',
-            state:'',
-            country:'',
+            State:'',
+            country:''
        
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
     }
-    /*componentDidMount() {
-
-
-    }*/
+    
     validate(values) {
-        
+        let errors = {};
+        if (!values.teamname) {
+            errors.teamname = 'Enter Team Name'
+        } else if(!(values.teamname).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.teamname = 'Invalid Team Name'
+        }else if (!values.State) {
+            errors.teamname = 'Enter State'
+        } else if(!(values.State).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.teamname = 'Invalid State'
+        }else if (!values.country) {
+            errors.teamname = 'Enter Country'
+        } else if(!(values.country).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.teamname = 'Invalid Country'
+        }
+
+        return errors
 
     }
     
     onSubmit(values) {
-        console.log(values);
-        
+     this.setState({teamname:values.teamname,State:values.State,country:values.country});
+     console.log(values);   
     }
     render() {
-        
+        let teamname = this.state.teamname
+        let State = this.state.State
+        let country = this.state.country
         return (
             <div>
                  <div className="sidenav">
@@ -42,9 +56,9 @@ class TeamForm extends Component {
                 <a href="#contact"><div className="Selected_color">Team Master</div></a><hr></hr>
                 <a href="#contact">Player Master</a><hr></hr>
                 </div>
-                <div className="playerform">
-            <Formik
-                    
+                <div className="teamform">
+                <Formik
+                    initialValues={{ teamname,State,country}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -52,13 +66,17 @@ class TeamForm extends Component {
                     enableReinitialize={true}>
                     {
                         (props) => (
-                            <Form>     
-                                    <br/><br/><br/><br/><br/><br/><br/><br/>  
+                            <Form> 
+                                <br/>
+                                    <ErrorMessage name="teamname" component="div"
+                                        className=" errormsg alert warning" />  
+                                         
+                                    <br/>
                                     <label>Team Name</label>
                                     <Field className="form-control" type="text" name="teamname" /><br></br><br></br>
 
                                     <label>State</label>
-                                    <Field className="form-control" type="text" name="state" /><br></br><br></br>
+                                    <Field className="form-control" type="text" name="State" /><br></br><br></br>
 
                                     <label>Country</label>
                                     <Field className="form-control" type="text" name="country" /><br></br><br></br>

@@ -23,7 +23,8 @@ class FixturesForm extends Component {
            matchdesc:"",
            matchDateTime:"",
            GMToffset:"",
-           livecoverage:""
+           livecoverage:"",
+           scorer:""
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
@@ -121,12 +122,19 @@ class FixturesForm extends Component {
                                     <label>GMT Offset</label>
                                     <Field className="form-control" type="text" name="GMToffset" /><br></br><br></br>
 
+                                    <label>Scorer</label>
+                                    <Field as="select" name="scorer">
+                                        <option value="Scorer 1">Scorer 1</option>
+                                        <option value="Scorer 2">Scorer 2</option>
+                                    </Field><br></br><br></br>
+
 
                                     <label>Live coverage</label>
                                     <Field as="select" name="livecoverage">
                                         <option value="Yes">Yes</option>
                                         <option value="No">No</option>
                                     </Field><br></br><br></br>
+
 
                                 <button className="btn warning marginsave" type="submit">Save</button>
                             </Form>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import DatePicker from "react-datepicker";
+import './Series.css';
  
 import "react-datepicker/dist/react-datepicker.css";
  
@@ -43,7 +44,7 @@ class SeriesForm extends Component {
                 <a href="#contact">Team Master</a><hr></hr>
                 <a href="#contact">Player Master</a><hr></hr>
                 </div>
-                <div className="playerform">
+                <div className="seriesform">
             <Formik                  
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
@@ -53,7 +54,7 @@ class SeriesForm extends Component {
                     {
                         (props) => (
                             <Form>     
-                                    
+                                    <br/><br/>
                                     <label>Series Name</label>
                                     <Field className="form-control" type="text" name="seriesName" /><br></br><br></br>
 
