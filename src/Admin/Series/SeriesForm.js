@@ -2,11 +2,7 @@ import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import DatePicker from "react-datepicker";
 import './Series.css';
- 
-import "react-datepicker/dist/react-datepicker.css";
- 
-// CSS Modules, react-datepicker-cssmodules.css
- import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+
 
 
 
@@ -15,17 +11,38 @@ class SeriesForm extends Component {
         super(props)
 
         this.state = {
-           
+           seriesName:"",
+           seriesShort:"",
+           seriesStart:"",
+           seriesEnd:"",
+           tournament:"A-Limited Overs International",
+           seriesType:"First Class",
+           host1:"India",
+           host2:"Argentina",
+           host3:"Mexico",
+           host4:"New Zealand",
+           pointsTable:"",
+           seriesPoints:"",
+           seriesDesc:""
+
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
     }
-    /*componentDidMount() {
-
-
-    }*/
+    
     validate(values) {
-       
+        let errors = {};
+        if (!values.seriesName) {
+            errors.seriesName = 'Enter Series Name'
+        } else if (!values.seriesShort) {
+            errors.seriesName = 'Enter Series Short Name'
+        }else if (!values.seriesPoints) {
+            errors.seriesName = 'Enter Series Points'
+        }else if (!values.seriesDesc) {
+            errors.seriesName = 'Enter Series Description'
+        } 
+
+        return errors
 
     }
    
@@ -34,18 +51,31 @@ class SeriesForm extends Component {
         
     }
     render() {
-    
+        let seriesName = this.state.seriesName
+        let seriesShort= this.state.seriesShort
+        let seriesStart= this.state.seriesStart
+        let seriesEnd= this.state.seriesEnd
+        let tournament = this.state.tournament
+        let seriesType= this.state.seriesType
+        let host1= this.state.host1
+        let host2= this.state.host2
+        let host3= this.state.host3
+        let host4= this.state.host4
+        let pointsTable= this.state.pointsTable
+        let seriesPoints= this.state.seriesPoints
+        let seriesDesc= this.state.seriesDesc
         return (
             <div>
-                 <div className="sidenav">
-                <a href="#about">Dashboard</a><hr></hr>
-                <a href="#services">Fixtures</a><hr></hr>
-                <a href="#clients"><div className="Selected_color">Series Mastar</div></a><hr></hr>
-                <a href="#contact">Team Master</a><hr></hr>
-                <a href="#contact">Player Master</a><hr></hr>
+                <div className="sidenav">
+                <a href="/admin/dashboard">Dashboard</a><hr></hr>
+                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay"><div className="Selected_color">Series Mastar</div></a><hr></hr>
+                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
+                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
                 <div className="seriesform">
-            <Formik                  
+            <Formik  
+                    initialValues={{seriesName, seriesShort,seriesStart,seriesEnd,tournament,seriesType,host1,host2,host3,host4,pointsTable,seriesPoints,seriesDesc }}               
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -54,7 +84,11 @@ class SeriesForm extends Component {
                     {
                         (props) => (
                             <Form>     
-                                    <br/><br/>
+                                    <br/>
+                                    <ErrorMessage name="seriesName" component="div"
+                                        className=" errormsg alert warning" />  
+                                         
+                                    <br/>
                                     <label>Series Name</label>
                                     <Field className="form-control" type="text" name="seriesName" /><br></br><br></br>
 
@@ -81,25 +115,25 @@ class SeriesForm extends Component {
                                     </Field><br></br><br></br>
 
                                     <label>Host Country 1</label>
-                                    <Field as="select" name="country1">
+                                    <Field as="select" name="host1">
                                         <option value="India">India</option>
                                         <option value="Austria">Austria</option>
                                     </Field><br></br><br></br>
 
                                     <label>Host Country 2</label>
-                                    <Field as="select" name="country2">
+                                    <Field as="select" name="host2">
                                         <option value="Argentina">Argentina</option>
                                         <option value="Spain">Spain</option>
                                     </Field><br></br><br></br>
 
                                     <label>Host Country 3</label>
-                                    <Field as="select" name="country3">
+                                    <Field as="select" name="host3">
                                         <option value="Mexico">Mexico</option>
                                         <option value="South Africa">South Africa</option>
                                     </Field><br></br><br></br>
 
                                     <label>Host Country 4</label>
-                                    <Field as="select" name="country4">
+                                    <Field as="select" name="host4">
                                         <option value="New Zealand">New Zealand</option>
                                         <option value="Brazil">Brazil</option>
                                     </Field><br></br><br></br>

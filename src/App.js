@@ -14,6 +14,11 @@ import TeamForm from './Admin/Team/TeamForm';
 import SeriesForm from './Admin/Series/SeriesForm';
 import ShowPlayer from './Admin/Team/ShowPlayer';
 import AddPlayer from './Admin/Team/AddPlayer';
+import AddTeams from './Admin/Series/AddTeams';
+import SeriesComponent from './Admin/Series/SeriesComponent';
+import ShowTeams from './Admin/Series/ShowTeams';
+import FixtureComponent from './Admin/Fixtures/FixtureComponent';
+import TeamComponent from './Admin/Team/TeamComponent';
 
 
 
@@ -29,11 +34,15 @@ function App() {
         <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />
         <Route path="/admin/dashboard/PlayerAddForm" component={AddForm} />
         <Route path="/admin/dashboard/FixtureAddForm" component={FixturesForm} />
+        <Route path="/admin/dashboard/FixtureDisplay" component={FixtureComponent} />
         <Route path="/admin/dashboard/TeamAddForm" component={TeamForm} />
+        <Route path="/admin/dashboard/TeamDisplay" component={TeamComponent} />
         <Route path="/admin/dashboard/TeamShowPlayer" component={ShowPlayer} />
         <Route path="/admin/dashboard/TeamAddPlayer" component={AddPlayer} />
+        <Route path="/admin/dashboard/SeriesAddTeam" component={AddTeams} />
+        <Route path="/admin/dashboard/SeriesShowTeam" component={ShowTeams} />
         <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
-        
+        <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
        
         </Router>
         <Footer/>

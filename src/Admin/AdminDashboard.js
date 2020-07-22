@@ -24,7 +24,7 @@ function AdminDashboard() {
             </div>
             <div>
               <div class="card-body">
-              <a href="#" class="btn">View Details</a>
+              <a href="/admin/dashboard/PlayerDisplay" class="btn">View Details</a>
               </div>
             </div>
           </div>
@@ -34,7 +34,7 @@ function AdminDashboard() {
             </div>
             <div>
               <div class="card-body">
-              <a href="#" class="btn">View Details</a>
+              <a href="/admin/dashboard/TeamDisplay" class="btn">View Details</a>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@ function AdminDashboard() {
             </div>
             <div>
               <div class="card-body">
-                <a href="#" class="btn">View Details</a>
+                <a href="/admin/dashboard/SeriesDisplay" class="btn">View Details</a>
               </div>
             </div>
           </div>
@@ -54,7 +54,7 @@ function AdminDashboard() {
             </div>
             <div>
               <div class="card-body">
-              <a href="#" class="btn">View Details</a>
+              <a href="/admin/dashboard/FixtureDisplay" class="btn">View Details</a>
               </div>
             </div>
           </div>          
@@ -121,13 +121,13 @@ function AdminDashboard() {
       <td>John Lilki</td>
       <td>Delete</td>
       <td>24th July 2019 09:38 AM</td>
-      <td>has been deleted from</td>
+      <td>Player Anand has been deleted from team India</td>
     </tr>
     <tr>
       <td>Jamie Harington</td>
       <td>Create</td>
       <td>24th July 2019 09:37 AM</td>
-      <td>Pkayers has been added to india</td>
+      <td>Player Rajesh been added to team India</td>
     </tr>
   </tbody>
 </table>

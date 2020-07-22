@@ -134,12 +134,12 @@ class PlayerAddnUpdate extends Component {
         
         return (
             <div>
-                 <div className="sidenav">
-                <a href="#about">Dashboard</a><hr></hr>
-                <a href="#services">Fixtures</a><hr></hr>
-                <a href="#clients">Series Mastar</a><hr></hr>
-                <a href="#contact">Team Master</a><hr></hr>
-                <a href="#contact"><div className="Selected_color">Player Master</div></a><hr></hr>
+                <div className="sidenav">
+                <a href="/admin/dashboard">Dashboard</a><hr></hr>
+                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay">Series Mastar</a><hr></hr>
+                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
+                <a href="/admin/dashboard/PlayerDisplay"><div className="Selected_color">Player Master</div></a><hr></hr>
                 </div>
                 <div className="playerform">
             <Formik
