@@ -20,17 +20,18 @@ class PlayerAddnUpdate extends Component {
         super(props)
 
         this.state = {
-            player_id: this.props.match.params.id,
-            p_firstname:'',
-            p_lastname:'',
-            p_gender:'',
-            p_dob:'',
-            p_category:'',
-            p_nationality:'',
-            p_batting_style:'',
-            p_bowling_style:'',
-            player_role:'',
-            retired_or_playing:'',
+            playerId: this.props.match.params.id,
+            firstName:'',
+            lastName:'',
+            nickName:'',
+            gender:'',
+            playerDOB:'',
+            category:'',
+            nationality:'',
+            playerBattingStyle:'',
+            playerBowlingStyle:'',
+            playerRole:'',
+            playerStatus:'',
             properDate:"",
             startDate:new Date("2000-07-05")
 
@@ -41,19 +42,20 @@ class PlayerAddnUpdate extends Component {
 
     }
     componentDidMount() {
-        PlayerDataService.retrievePlayer(this.state.player_id)
+        PlayerDataService.retrievePlayer(this.state.playerId)
             .then(response => this.setState({
-                p_firstname: response.data.p_firstname,
-                p_lastname:response.data.p_lastname,
-                p_gender:response.data.p_gender,
-                p_dob :response.data.p_dob,
-                p_category:response.data.p_category,
-                p_nationality:response.data.p_nationality,
-                p_batting_style:response.data.p_batting_style,
-                p_bowling_style :response.data.p_bowling_style,
-                player_role :response.data.player_role,
-                retired_or_playing :response.data.retired_or_playing,
-                startDate:new Date(response.data.p_dob)
+                firstName: response.data.firstName,
+                lastName:response.data.lastName,
+                nickName:response.data.nickName,
+                gender:response.data.gender,
+                playerDOB :response.data.playerDOB,
+                category:response.data.category,
+                nationality:response.data.nationality,
+                playerBattingStyle:response.data.playerBattingStyle,
+                playerBowlingStyle :response.data.playerBowlingStyle,
+                playerRole :response.data.playerRole,
+                playerStatus :response.data.playerStatus,
+                startDate:new Date(response.data.playerDOB)
 
             }))
     }
@@ -62,30 +64,34 @@ class PlayerAddnUpdate extends Component {
          this.setState({
            startDate: date,
            properDate:p,
-           p_dob:p
+           playerDOB:p
          });
        };
     validate(values) {
         let errors = {};
-        if (!values.p_firstname) {
-            errors.p_firstname = 'Enter FirstName'
-        } else if(!(values.p_firstname).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
-            errors.p_firstname = 'Invalid FirstName'
+        if (!values.firstName) {
+            errors.firstName = 'Enter FirstName'
+        } else if(!(values.firstName).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.firstName = 'Invalid FirstName'
         }
-        else if (values.p_firstname.length < 3) {
-            errors.p_firstname = 'Enter atleast 3 Characters in FirstName'
-        }else if(!values.p_lastname){
-            errors.p_lastname='Enter LastName'
-        } else if(!(values.p_lastname).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
-            errors.p_lastname = 'Invalid LastName'
-        }else if(!values.p_nationality){
-            errors.p_nationality='Enter Nationality'
-        } else if(!(values.p_nationality).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
-            errors.p_nationality = 'Invalid Nationality'
-        }else if(!values.player_role){
-            errors.player_role='Enter player role'
-        }else if(!(values.player_role).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
-            errors.player_role = 'Invalid player role'
+        else if (values.firstName.length < 3) {
+            errors.firstName = 'Enter atleast 3 Characters in FirstName'
+        }else if(!values.lastName){
+            errors.firstName='Enter LastName'
+        } else if(!(values.lastName).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.firstName = 'Invalid LastName'
+        }else if(!values.nickName){
+            errors.firstName='Enter NickName'
+        } else if(!(values.nickName).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.firstName = 'Invalid NickName'
+        }else if(!values.nationality){
+            errors.firstName='Enter Nationality'
+        } else if(!(values.nationality).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.firstName= 'Invalid Nationality'
+        }else if(!values.playerRole){
+            errors.firstName='Enter player role'
+        }else if(!(values.playerRole).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
+            errors.firstName= 'Invalid player role'
         }
 
         return errors
@@ -97,22 +103,23 @@ class PlayerAddnUpdate extends Component {
         
 
         var player = {
-            player_id: this.state.player_id,
-            p_firstname: values.p_firstname,
-            p_lastname: values.p_lastname,
-            p_gender:values.p_gender,
-            p_dob:this.state.p_dob,
-            p_category:values.p_category,
-            p_nationality:values.p_nationality,
-            p_batting_style:values.p_batting_style,
-            p_bowling_style:values.p_bowling_style,
-            player_role:values.player_role,
-            retired_or_playing:values.retired_or_playing
+            playerId:this.state.playerId,
+            firstName: values.firstName,
+            lastName: values.lastName,
+            nickName:values.nickName,
+            gender:values.gender,
+            playerDOB: this.state.playerDOB,
+            category:values.category,
+            nationality:values.nationality,
+            playerBattingStyle:values.playerBattingStyle,
+            playerBowlingStyle:values.playerBowlingStyle,
+            playerRole:values.playerRole,
+            playerStatus:values.playerStatus
         }
        
         console.log(player);
        
-            PlayerDataService.updatePlayer(this.state.player_id, player)
+            PlayerDataService.updatePlayer(this.state.playerId, player)
                 .then(() => this.props.history.push('/admin/dashboard/PlayerDisplay'))
         
 
@@ -121,16 +128,17 @@ class PlayerAddnUpdate extends Component {
     }
     render() {
 
-        let p_firstname = this.state.p_firstname
-        let p_lastname = this.state.p_lastname
-        let p_gender = this.state.p_gender
-        let p_dob= this.state.p_dob
-        let p_category = this.state.p_category
-        let p_nationality= this.state.p_nationality
-        let p_batting_style = this.state.p_batting_style
-        let p_bowling_style= this.state.p_bowling_style
-        let player_role = this.state.player_role
-        let retired_or_playing = this.state.retired_or_playing
+        let firstName = this.state.firstName
+        let lastName = this.state.lastName
+        let nickName = this.state.nickName
+        let gender = this.state.gender
+        let playerDOB= this.state.playerDOB
+        let category = this.state.category
+        let nationality= this.state.nationality
+        let playerBattingStyle = this.state.playerBattingStyle
+        let playerBowlingStyle = this.state.playerBowlingStyle
+        let playerStatus = this.state.playerStatus
+        let playerRole = this.state.playerRole
         
         return (
             <div>
@@ -143,7 +151,7 @@ class PlayerAddnUpdate extends Component {
                 </div>
                 <div className="playerform">
             <Formik
-                    initialValues={{ p_firstname,p_lastname,p_gender,p_dob, p_category,p_nationality, p_batting_style,p_bowling_style,player_role ,retired_or_playing}}
+                    initialValues={{firstName,lastName,nickName,gender,playerDOB,category,nationality,playerBattingStyle,playerBowlingStyle,playerRole ,playerStatus}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -151,26 +159,25 @@ class PlayerAddnUpdate extends Component {
                     enableReinitialize={true}>
                     {
                         (props) => (
-                            <Form>     
-                                    <ErrorMessage name="p_firstname" component="div"
+                            <Form>   
+                                <br/>
+                                    <ErrorMessage name="firstName" component="div"
                                         className=" errormsg alert warning" />  
-                                    <ErrorMessage name="p_lastname" component="div"
-                                        className=" errormsg alert warning" /> 
-                                    <ErrorMessage name="p_nationality" component="div"
-                                        className=" errormsg alert warning" /> 
-                                    <ErrorMessage name="player_role" component="div"
-                                        className=" errormsg alert warning" />  
+                                   
                                                       
                                     <label>First Name</label>
-                                    <Field className="form-control width_inc" type="text" name="p_firstname" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="firstName" /><br></br><br></br>
                                        
 
                                     <label>Last Name</label>
-                                    <Field className="form-control width_inc" type="text" name="p_lastname" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="lastName" /><br></br><br></br>
+
+                                    <label>Nick Name</label>
+                                    <Field className="form-control width_inc" type="text" name="nickName" /><br></br><br></br>
                                     
 
                                     <label>Gender</label>
-                                    <Field as="select" name="p_gender">
+                                    <Field as="select" name="gender">
                                         <option value="M">M</option>
                                         <option value="F">F</option>
                                     </Field><br></br><br></br>
@@ -181,7 +188,7 @@ class PlayerAddnUpdate extends Component {
                                         selected={this.state.startDate}
                                         showMonthDropdown
                                         showYearDropdown
-                                        name="p_dob"
+                                        name="playerDOB"
                                         minDate={new Date("1940-01-01")}
                                         maxDate={(new Date("2009-12-31"))}
                                         dropdownMode="select"
@@ -191,32 +198,32 @@ class PlayerAddnUpdate extends Component {
 
 
                                     <label>Visual Classification</label>
-                                    <Field as="select" name="p_category">
+                                    <Field as="select" name="category">
                                         <option value="B1">B1</option>
                                         <option value="B2">B2</option>
                                         <option value="B3">B3</option>
                                     </Field><br></br><br></br>
 
                                     <label>Nationality</label>
-                                    <Field className="form-control width_inc" type="text" name="p_nationality" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="nationality" /><br></br><br></br>
 
                                     <label>Batting style</label>
-                                    <Field as="select" name="p_batting_style">
+                                    <Field as="select" name="playerBattingStyle">
                                         <option value="right-handed-batsman">right-handed-batsman</option>
                                         <option value="left-handed-batsman">left-handed-batsman</option>
                                     </Field><br></br><br></br>
 
                                     <label>Bowling style</label>
-                                    <Field as="select" name="p_bowling_style">
+                                    <Field as="select" name="playerBowlingStyle">
                                         <option value="left-handed-bowler">left-handed-bowler</option>
                                         <option value="right-handed-bowler">right-handed-bowler</option>
                                     </Field><br></br><br></br>
 
                                     <label>Player role</label>
-                                    <Field className="form-control width_inc" type="text" name="player_role" /><br></br><br></br>
+                                    <Field className="form-control width_inc" type="text" name="playerRole" /><br></br><br></br>
 
                                     <label>Retired or Playing</label>
-                                    <Field as="select" name="retired_or_playing">
+                                    <Field as="select" name="playerStatus">
                                         <option value="retired">retired</option>
                                         <option value="playing">playing</option>
                                     </Field><br></br><br></br>
