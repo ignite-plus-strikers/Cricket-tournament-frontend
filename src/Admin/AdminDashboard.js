@@ -9,7 +9,7 @@ function AdminDashboard() {
         <div class="sidenav">
         <a href="/admin/dashboard"><div className="Selected_color">Dashboard</div></a><hr></hr>
           <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-          <a href="/admin/dashboard/SeriesDisplay">Series Mastar</a><hr></hr>
+          <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
           <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
           <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
         </div>

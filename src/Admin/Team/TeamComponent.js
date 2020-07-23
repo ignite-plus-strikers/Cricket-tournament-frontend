@@ -14,7 +14,8 @@ class TeamComponent extends Component {
         this.deleteTeamClicked = this.deleteTeamClicked.bind(this)
         this.refreshTeams = this.refreshTeams.bind(this)
         this.updateTeamClicked = this.updateTeamClicked.bind(this)
-        this.addTeamClicked = this.addTeamClicked.bind(this)   
+        this.addTeamClicked = this.addTeamClicked.bind(this)  
+         
     }
  
     componentDidMount() {
@@ -51,6 +52,7 @@ class TeamComponent extends Component {
     addTeamClicked() {
         this.props.history.push(`/admin/dashboard/TeamAddForm`)
     }
+    
 
     render() {
         return (
@@ -58,7 +60,7 @@ class TeamComponent extends Component {
                 <div class="sidenav">
                 <a href="/admin/dashboard">Dashboard</a><hr></hr>
                 <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Mastar</a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
                 <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
@@ -87,7 +89,7 @@ class TeamComponent extends Component {
                                             <td>{team.tname}</td>
                                             <td>{team.tstate}</td>
                                             <td>{team.tcountry}</td>
-                                            <td><button className="btn warning" >Add Player</button></td>
+                                            <td><button className="btn warning">Add Player</button></td>
                                             <td><button className="btn updateBtn" >Show Player</button></td>
                                             <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the team '+team.tname+'?'))this.deleteTeamClicked(team.teamId,team.tname)}}>Delete</button></td>
                                             <td><button className="btn updateBtn" onClick={() => this.updateTeamClicked(team.teamId)}>Update</button></td>

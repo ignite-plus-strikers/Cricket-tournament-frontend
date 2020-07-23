@@ -49,7 +49,7 @@ class FixturesForm extends Component {
                  <div className="sidenav">
                 <a href="#about">Dashboard</a><hr></hr>
                 <a href="#services"><div className="Selected_color">Fixtures</div></a><hr></hr>
-                <a href="#clients">Series Mastar</a><hr></hr>
+                <a href="#clients">Series Master</a><hr></hr>
                 <a href="#contact">Team Master</a><hr></hr>
                 <a href="#contact">Player Master</a><hr></hr>
                 </div>

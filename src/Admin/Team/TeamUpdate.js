@@ -75,7 +75,7 @@ class TeamUpdate extends Component {
                 <div className="sidenav">
                 <a href="/admin/dashboard">Dashboard</a><hr></hr>
                 <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Mastar</a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
                 <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
