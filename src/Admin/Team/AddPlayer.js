@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './Team.css';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import '../../App.css';
+import PlayerDataService from '../../Admin/Player/Service/PlayerDataService';
+
 
 
 class AddPlayer extends Component {
@@ -10,14 +12,43 @@ class AddPlayer extends Component {
         super(props)
         this.state = {
             players: [],
-            message: null
+            message: null,
+            selected:'',
+            playerid:''
         }
-       
-       
+        this.refreshPlayers = this.refreshPlayers.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
+    componentDidMount() {
+        this.refreshPlayers();
+    }
+
+    refreshPlayers() {
+        PlayerDataService.retrieveAllPlayers()
+            .then(
+                response => {
+                    console.log(response);
+                    this.setState({ players: response.data })
+                }
+            )
+    }
+    onSubmit(values){
+        this.setState({playerid:values.selected})
+        console.log(values);
+    }
+
+    
+  handleChange = inputvalue=> {
+    
+    this.setState({
+      selected:inputvalue
+    });
+  };
+
 
 
     render() {
+        let selected=this.state.selected
         return (
             <div>
                 <div className="sidenav">
@@ -31,14 +62,25 @@ class AddPlayer extends Component {
                     <h2>Team Name</h2>
                 </center>
                <div className="addPlayerForm">
-                   <Formik>
+                   <Formik
+                   initialValues={{selected}}
+                   onSubmit={this.onSubmit}
+                    >
                        <Form>
                            <br/><br/>
                                 <label>Select Player : </label>
-                                <Field as="select">
-                                    <option value="M">Type to search dropdown</option>
-                                </Field><br/><br/><br/>
+                                <Field as="select" name="selected">
+                                {
+                                this.state.players.map(
+                                    player =>
+                                    <option value={player.playerId}>{player.playerId}</option>
+                                            
+                                )
+                            }
+                                    
+                                </Field><br/><br/><br/>  
                                 <button className="btn warning marginsave" type="submit">Add</button>
+                            
                        </Form>
                    </Formik>
                </div>

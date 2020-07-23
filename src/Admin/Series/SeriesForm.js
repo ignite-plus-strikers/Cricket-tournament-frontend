@@ -144,7 +144,7 @@ class SeriesForm extends Component {
                                     <br></br><br></br>
                             
                                     <label>Series Points</label>
-                                    <Field className="form-control" type="text" name="seriesPoints" /><br></br><br></br>
+                                    <Field className="form-control" type="number" name="seriesPoints" /><br></br><br></br>
 
                                    
                                     <label>Series Description</label>

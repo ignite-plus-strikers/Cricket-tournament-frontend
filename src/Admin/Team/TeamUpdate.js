@@ -1,24 +1,32 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import './Team.css';
-
 import TeamDataService from './Service/TeamDataService';
 
-
-class TeamForm extends Component {
+class TeamUpdate extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            tname:'',
-            tstate:'',
-            tcountry:''
-       
+            teamId: this.props.match.params.id,
+           tname:"",
+           tstate:"",
+           tcountry:""
+            
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
+
     }
-    
+    componentDidMount() {
+        TeamDataService.retrieveTeam(this.state.teamId)
+            .then(response => this.setState({
+                tname: response.data.tname,
+                tstate:response.data.tstate,
+                tcountry:response.data.tcountry
+               
+            }))
+    }
+   
     validate(values) {
         let errors = {};
         if (!values.tname) {
@@ -34,17 +42,34 @@ class TeamForm extends Component {
         return errors
 
     }
-    
+
+
     onSubmit(values) {
-     var team={tname:values.tname,tstate:values.tstate,tcountry:values.tcountry};
-     console.log(values); 
-     TeamDataService.createTeam(team)
-     .then(() => this.props.history.push('/admin/dashboard/TeamDisplay'))  
+        
+
+        var team = {
+            teamId:this.state.teamId,
+            tname: values.tname,
+            tstate: values.tstate,
+            tcountry:values.tcountry
+           
+        }
+       
+        console.log(team);
+       
+            TeamDataService.updateTeam(this.state.teamId,team)
+                .then(() => this.props.history.push('/admin/dashboard/TeamDisplay'))
+        
+
+        
+        
     }
     render() {
+
         let tname = this.state.tname
         let tstate = this.state.tstate
         let tcountry = this.state.tcountry
+        
         return (
             <div>
                 <div className="sidenav">
@@ -55,14 +80,14 @@ class TeamForm extends Component {
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
                 <div className="teamform">
-                <Formik
+            <Formik
                     initialValues={{ tname,tstate,tcountry}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
                     validate={this.validate}
                     enableReinitialize={true}>
-                    {
+             {
                         (props) => (
                             <Form> 
                                 <br/>
@@ -91,4 +116,4 @@ class TeamForm extends Component {
 
 }
 
-export default TeamForm
+export default TeamUpdate

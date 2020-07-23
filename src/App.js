@@ -19,6 +19,8 @@ import SeriesComponent from './Admin/Series/SeriesComponent';
 import ShowTeams from './Admin/Series/ShowTeams';
 import FixtureComponent from './Admin/Fixtures/FixtureComponent';
 import TeamComponent from './Admin/Team/TeamComponent';
+import TeamUpdate from './Admin/Team/TeamUpdate';
+import BodyData from './Admin/Series/SearchTeam';
 
 
 
@@ -35,6 +37,7 @@ function App() {
         <Route path="/admin/dashboard/PlayerAddForm" component={AddForm} />
         <Route path="/admin/dashboard/FixtureAddForm" component={FixturesForm} />
         <Route path="/admin/dashboard/FixtureDisplay" component={FixtureComponent} />
+        <Route path="/admin/dashboard/Team/:id" component={TeamUpdate} />
         <Route path="/admin/dashboard/TeamAddForm" component={TeamForm} />
         <Route path="/admin/dashboard/TeamDisplay" component={TeamComponent} />
         <Route path="/admin/dashboard/TeamShowPlayer" component={ShowPlayer} />
@@ -43,6 +46,7 @@ function App() {
         <Route path="/admin/dashboard/SeriesShowTeam" component={ShowTeams} />
         <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
         <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
+        <Route path="/searchTeam" component={BodyData} />
        
         </Router>
         <Footer/>
