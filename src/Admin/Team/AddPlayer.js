@@ -73,13 +73,14 @@ class AddPlayer extends Component {
                                 {
                                 this.state.players.map(
                                     player =>
-                                    <option value={player.playerId}>{player.playerId}</option>
+                                    <option value={player.playerId}>{player.firstName} {player.lastName}</option>
                                             
                                 )
                             }
                                     
                                 </Field><br/><br/><br/>  
                                 <button className="btn warning marginsave" type="submit">Add</button>
+                                <div>{this.state.playerid}</div>
                             
                        </Form>
                    </Formik>

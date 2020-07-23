@@ -23,7 +23,7 @@ class PlayerAddnUpdate extends Component {
             playerId: this.props.match.params.id,
             firstName:'',
             lastName:'',
-            nickName:'',
+            pinitials:'',
             gender:'',
             playerDOB:'',
             category:'',
@@ -46,7 +46,7 @@ class PlayerAddnUpdate extends Component {
             .then(response => this.setState({
                 firstName: response.data.firstName,
                 lastName:response.data.lastName,
-                nickName:response.data.nickName,
+                pinitials:response.data.pinitials,
                 gender:response.data.gender,
                 playerDOB :response.data.playerDOB,
                 category:response.data.category,
@@ -80,11 +80,9 @@ class PlayerAddnUpdate extends Component {
             errors.firstName='Enter LastName'
         } else if(!(values.lastName).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
             errors.firstName = 'Invalid LastName'
-        }else if(!values.nickName){
-            errors.firstName='Enter NickName'
-        } else if(!(values.nickName).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
-            errors.firstName = 'Invalid NickName'
-        }else if(!values.nationality){
+        }else if(!values.pinitials){
+            errors.firstName='Enter Player Initials'
+        } else if(!values.nationality){
             errors.firstName='Enter Nationality'
         } else if(!(values.nationality).match(/^[a-zA-Z][a-zA-Z ]+$/)){ 
             errors.firstName= 'Invalid Nationality'
@@ -106,7 +104,7 @@ class PlayerAddnUpdate extends Component {
             playerId:this.state.playerId,
             firstName: values.firstName,
             lastName: values.lastName,
-            nickName:values.nickName,
+            pinitials:values.pinitials,
             gender:values.gender,
             playerDOB: this.state.playerDOB,
             category:values.category,
@@ -130,7 +128,7 @@ class PlayerAddnUpdate extends Component {
 
         let firstName = this.state.firstName
         let lastName = this.state.lastName
-        let nickName = this.state.nickName
+        let pinitials = this.state.pinitials
         let gender = this.state.gender
         let playerDOB= this.state.playerDOB
         let category = this.state.category
@@ -151,7 +149,7 @@ class PlayerAddnUpdate extends Component {
                 </div>
                 <div className="playerform">
             <Formik
-                    initialValues={{firstName,lastName,nickName,gender,playerDOB,category,nationality,playerBattingStyle,playerBowlingStyle,playerRole ,playerStatus}}
+                    initialValues={{firstName,lastName,pinitials,gender,playerDOB,category,nationality,playerBattingStyle,playerBowlingStyle,playerRole ,playerStatus}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
@@ -172,14 +170,14 @@ class PlayerAddnUpdate extends Component {
                                     <label>Last Name</label>
                                     <Field className="form-control width_inc" type="text" name="lastName" /><br></br><br></br>
 
-                                    <label>Nick Name</label>
-                                    <Field className="form-control width_inc" type="text" name="nickName" /><br></br><br></br>
+                                    <label>Player Initials</label>
+                                    <Field className="form-control width_inc" type="text" name="pinitials" /><br></br><br></br>
                                     
 
                                     <label>Gender</label>
                                     <Field as="select" name="gender">
-                                        <option value="M">M</option>
-                                        <option value="F">F</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </Field><br></br><br></br>
 
                                     <label>Date of Birth</label>

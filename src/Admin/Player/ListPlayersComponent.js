@@ -72,7 +72,7 @@ class ListPlayersComponent extends Component {
                             
                             <th>First Name</th>
                             <th>Last Name</th>
-                            <th>Nick Name</th>
+                            <th>Player Initials</th>
                             <th>Gender</th>
                             <th>Date of Birth </th>
                             <th>Visual Classification</th>
@@ -93,7 +93,7 @@ class ListPlayersComponent extends Component {
                                         <tr key={player.playerId}>
                                             <td>{player.firstName}</td>
                                             <td>{player.lastName}</td>
-                                            <td>{player.nickName}</td>
+                                            <td>{player.pinitials}</td>
                                             <td>{player.gender}</td>
                                             <td>{player.playerDOB}</td>
                                             <td>{player.category}</td>
