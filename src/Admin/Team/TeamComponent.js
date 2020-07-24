@@ -15,7 +15,8 @@ class TeamComponent extends Component {
         this.refreshTeams = this.refreshTeams.bind(this)
         this.updateTeamClicked = this.updateTeamClicked.bind(this)
         this.addTeamClicked = this.addTeamClicked.bind(this)  
-         
+        this.addPlayerClicked=this.addPlayerClicked.bind(this)
+        this.showPlayerClicked=this.showPlayerClicked.bind(this)
     }
  
     componentDidMount() {
@@ -51,6 +52,12 @@ class TeamComponent extends Component {
  
     addTeamClicked() {
         this.props.history.push(`/admin/dashboard/TeamAddForm`)
+    }
+    addPlayerClicked(id) {
+        this.props.history.push(`/admin/dashboard/TeamAddPlayer/${id}`)
+    }
+    showPlayerClicked(id) {
+        this.props.history.push(`/admin/dashboard/TeamShowPlayer/${id}`)
     }
     
 
@@ -89,8 +96,8 @@ class TeamComponent extends Component {
                                             <td>{team.tname}</td>
                                             <td>{team.tstate}</td>
                                             <td>{team.tcountry}</td>
-                                            <td><button className="btn warning">Add Player</button></td>
-                                            <td><button className="btn updateBtn" >Show Player</button></td>
+                                            <td><button className="btn warning"onClick={() => this.addPlayerClicked(team.teamId)}>Add Player</button></td>
+                                            <td><button className="btn updateBtn"onClick={() => this.showPlayerClicked(team.teamId)} >Show Player</button></td>
                                             <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the team '+team.tname+'?'))this.deleteTeamClicked(team.teamId,team.tname)}}>Delete</button></td>
                                             <td><button className="btn updateBtn" onClick={() => this.updateTeamClicked(team.teamId)}>Update</button></td>
                                         </tr>

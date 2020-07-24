@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PlayerDataService from '../Player/Service/PlayerDataService';
 import './Team.css';
+import TeamDataService from './Service/TeamDataService';
 
 
 class ShowPlayer extends Component {
@@ -8,34 +9,50 @@ class ShowPlayer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            players: [],
-            message: null
+            teamId: this.props.match.params.id,
+            teamplayers: [],
+            teams:[],
+            message: null,
+            tname:""
         }
         this.deletePlayerClicked = this.deletePlayerClicked.bind(this)
-        this.refreshPlayers = this.refreshPlayers.bind(this)
+        this.refreshTeamPlayers = this.refreshTeamPlayers.bind(this)
+        this.getTeamName=this.getTeamName.bind(this)
        
     }
 
     componentDidMount() {
-        this.refreshPlayers();
+        this.refreshTeamPlayers();
+        this.getTeamName();
+    }
+    getTeamName(){
+        TeamDataService.retrieveAllTeams()
+        .then(
+            response => {
+                console.log(response);
+                this.setState({ teams : response.data })
+            }
+        )
+        
+
     }
 
-    refreshPlayers() {
-        PlayerDataService.retrieveAllPlayers()
+    refreshTeamPlayers() {
+        TeamDataService.retrieveAllTeamPlayers()
             .then(
                 response => {
                     console.log(response);
-                    this.setState({ players: response.data })
+                    this.setState({ teamplayers: response.data })
                 }
             )
     }
 
-    deletePlayerClicked(id,firstname) {
-        PlayerDataService.deletePlayer(id)
+    deletePlayerClicked(teamid,playerid,firstname) {
+        TeamDataService.deletePlayer(teamid,playerid)
             .then(
                 response => {
                     this.setState({ message: `Delete of player  ${firstname} is Successful` })
-                    this.refreshPlayers()
+                    this.refreshTeamPlayers()
                 }
             )
     
@@ -44,6 +61,8 @@ class ShowPlayer extends Component {
 
 
     render() {
+        let teamID=this.state.teamId
+        let teamname=this.state.tname
         return (
             <div>
                 <div className="sidenav">
@@ -53,10 +72,19 @@ class ShowPlayer extends Component {
                 <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
+                {this.state.teams.map(team =>{
+                    if(team.teamId==teamID){
+                        teamname=team.tname
+                        }
+                }
+                   
+                )
+                }
+                <center>
+                    <h2>{teamname}</h2>
+                </center>
                 <div className = "teamdetails">
-                    <center>
-                    <h2>Team Name</h2>
-                    </center>
+                    
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                     <table id="teamTable">
                         <thead>
@@ -67,10 +95,17 @@ class ShowPlayer extends Component {
                         </thead>
                         <tbody>
                           
-                                        <tr>
-                                            <td>Arun Vignesh</td>
-                                            <td><button className="btn warning">Delete</button></td> 
-                                        </tr>
+                        {this.state.teamplayers.map(tp =>
+                    
+                    <tr>
+                        <td>{tp.player_first_name} {tp.player_last_name} {tp.player_initials}</td>
+                        <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the player '+tp.player_first_name+'?'))this.deletePlayerClicked(tp.team_id,tp.player_id,tp.player_first_name)}}>Delete</button></td>
+                    </tr>    
+                        
+                
+                         
+                )
+                }
                                 
                             
                         </tbody>

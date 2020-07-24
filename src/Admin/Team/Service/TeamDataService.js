@@ -24,6 +24,15 @@ class TeamDataService {
         createTeam(team) {
             return axios.post(`${TEAM_API_URL}/team`,team);    
         }
+        createPlayer(teamid,teamplayer){
+            return axios.post(`${TEAM_API_URL}/teamplayer`,teamplayer);
+        }
+        deletePlayer(teamid,playerid){
+            return axios.delete(`${TEAM_API_URL}/teamplayer/${teamid}/${playerid}`);
+        }
+        retrieveAllTeamPlayers() {
+            return axios.get(`${TEAM_API_URL}/teamplayers`);
+        }
 }
 
 export default new TeamDataService()

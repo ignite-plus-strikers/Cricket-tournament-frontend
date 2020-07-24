@@ -40,8 +40,8 @@ function App() {
         <Route path="/admin/dashboard/Team/:id" component={TeamUpdate} />
         <Route path="/admin/dashboard/TeamAddForm" component={TeamForm} />
         <Route path="/admin/dashboard/TeamDisplay" component={TeamComponent} />
-        <Route path="/admin/dashboard/TeamShowPlayer" component={ShowPlayer} />
-        <Route path="/admin/dashboard/TeamAddPlayer" component={AddPlayer} />
+        <Route path="/admin/dashboard/TeamShowPlayer/:id" component={ShowPlayer} />
+        <Route path="/admin/dashboard/TeamAddPlayer/:id" component={AddPlayer} />
         <Route path="/admin/dashboard/SeriesAddTeam" component={AddTeams} />
         <Route path="/admin/dashboard/SeriesShowTeam" component={ShowTeams} />
         <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
