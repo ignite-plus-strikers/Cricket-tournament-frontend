@@ -90,20 +90,20 @@ class ListPlayersComponent extends Component {
                             {
                                 this.state.players.map(
                                     player =>
-                                        <tr key={player.playerId}>
-                                            <td>{player.firstName}</td>
-                                            <td>{player.lastName}</td>
-                                            <td>{player.pinitials}</td>
+                                        <tr key={player.player_id}>
+                                            <td>{player.first_name}</td>
+                                            <td>{player.last_name}</td>
+                                            <td>{player.player_initials}</td>
                                             <td>{player.gender}</td>
-                                            <td>{player.playerDOB}</td>
+                                            <td>{player.player_dob}</td>
                                             <td>{player.category}</td>
                                             <td>{player.nationality}</td>
-                                            <td>{player.playerBattingStyle}</td>
-                                            <td>{player.playerBowlingStyle}</td>
-                                            <td>{player.playerRole}</td>
-                                            <td>{player.playerStatus}</td>
-                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the player '+player.firstName+'?'))this.deletePlayerClicked(player.playerId,player.firstName)}}>Delete</button></td>
-                                            <td><button className="btn updateBtn" onClick={() => this.updatePlayerClicked(player.playerId)}>Update</button></td>
+                                            <td>{player.player_batting_style}</td>
+                                            <td>{player.player_bowling_style}</td>
+                                            <td>{player.player_role}</td>
+                                            <td>{player.player_status}</td>
+                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the player '+player.first_name+'?'))this.deletePlayerClicked(player.player_id,player.first_name)}}>Delete</button></td>
+                                            <td><button className="btn updateBtn" onClick={() => this.updatePlayerClicked(player.player_id)}>Update</button></td>
                                         </tr>
                                 )
                             }
