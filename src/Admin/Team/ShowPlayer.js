@@ -9,7 +9,7 @@ class ShowPlayer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            teamId: this.props.match.params.id,
+            team_id: this.props.match.params.id,
             teamplayers: [],
             teams:[],
             message: null,
@@ -38,7 +38,7 @@ class ShowPlayer extends Component {
     }
 
     refreshTeamPlayers() {
-        TeamDataService.retrieveAllTeamPlayers()
+        TeamDataService.retrieveAllTeamPlayers(this.state.team_id)
             .then(
                 response => {
                     console.log(response);
@@ -51,6 +51,7 @@ class ShowPlayer extends Component {
         TeamDataService.deletePlayer(teamid,playerid)
             .then(
                 response => {
+                    console.log(response);
                     this.setState({ message: `Delete of player  ${firstname} is Successful` })
                     this.refreshTeamPlayers()
                 }
@@ -61,7 +62,7 @@ class ShowPlayer extends Component {
 
 
     render() {
-        let teamID=this.state.teamId
+        let teamID=this.state.team_id
         let teamname=this.state.tname
         return (
             <div>
@@ -73,7 +74,7 @@ class ShowPlayer extends Component {
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
                 {this.state.teams.map(team =>{
-                    if(team.teamId==teamID){
+                    if(team.team_id==teamID){
                         teamname=team.tname
                         }
                 }
@@ -82,10 +83,12 @@ class ShowPlayer extends Component {
                 }
                 <center>
                     <h2>{teamname}</h2>
+                    <br/><br/>
+                    {this.state.message && <div class="alert success">{this.state.message}</div>}
                 </center>
                 <div className = "teamdetails">
                     
-                {this.state.message && <div class="alert success">{this.state.message}</div>}
+                
                     <table id="teamTable">
                         <thead>
                         <tr> 

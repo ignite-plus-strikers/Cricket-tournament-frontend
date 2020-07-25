@@ -92,14 +92,14 @@ class TeamComponent extends Component {
                         {
                                 this.state.teams.map(
                                     team =>
-                                        <tr key={team.teamId}>
+                                        <tr key={team.team_id}>
                                             <td>{team.tname}</td>
                                             <td>{team.tstate}</td>
                                             <td>{team.tcountry}</td>
-                                            <td><button className="btn warning"onClick={() => this.addPlayerClicked(team.teamId)}>Add Player</button></td>
-                                            <td><button className="btn updateBtn"onClick={() => this.showPlayerClicked(team.teamId)} >Show Player</button></td>
-                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the team '+team.tname+'?'))this.deleteTeamClicked(team.teamId,team.tname)}}>Delete</button></td>
-                                            <td><button className="btn updateBtn" onClick={() => this.updateTeamClicked(team.teamId)}>Update</button></td>
+                                            <td><button className="btn warning"onClick={() => this.addPlayerClicked(team.team_id)}>Add Player</button></td>
+                                            <td><button className="btn updateBtn"onClick={() => this.showPlayerClicked(team.team_id)} >Show Player</button></td>
+                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the team '+team.tname+'?'))this.deleteTeamClicked(team.team_id,team.tname)}}>Delete</button></td>
+                                            <td><button className="btn updateBtn" onClick={() => this.updateTeamClicked(team.team_id)}>Update</button></td>
                                         </tr>
                                 )
                             }

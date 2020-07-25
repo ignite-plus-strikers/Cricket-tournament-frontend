@@ -7,7 +7,7 @@ class TeamUpdate extends Component {
         super(props)
 
         this.state = {
-            teamId: this.props.match.params.id,
+           team_id: this.props.match.params.id,
            tname:"",
            tstate:"",
            tcountry:""
@@ -18,7 +18,7 @@ class TeamUpdate extends Component {
 
     }
     componentDidMount() {
-        TeamDataService.retrieveTeam(this.state.teamId)
+        TeamDataService.retrieveTeam(this.state.team_id)
             .then(response => this.setState({
                 tname: response.data.tname,
                 tstate:response.data.tstate,
@@ -48,7 +48,7 @@ class TeamUpdate extends Component {
         
 
         var team = {
-            teamId:this.state.teamId,
+            team_id:this.state.team_id,
             tname: values.tname,
             tstate: values.tstate,
             tcountry:values.tcountry
@@ -57,7 +57,7 @@ class TeamUpdate extends Component {
        
         console.log(team);
        
-            TeamDataService.updateTeam(this.state.teamId,team)
+            TeamDataService.updateTeam(this.state.team_id,team)
                 .then(() => this.props.history.push('/admin/dashboard/TeamDisplay'))
         
 

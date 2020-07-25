@@ -11,17 +11,18 @@ class AddPlayer extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            teamId: this.props.match.params.id,
+            team_id: this.props.match.params.id,
             players: [],
             teams:[],
             message: null,
             selected:'',
-            playerid:'',
+            player_id:'',
             tname:""
             
         }
         this.refreshPlayers = this.refreshPlayers.bind(this)
         this.getTeamName=this.getTeamName.bind(this)
+        this.validate = this.validate.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
     componentDidMount() {
@@ -54,12 +55,12 @@ class AddPlayer extends Component {
         let player_first_name
         let player_last_name
         let player_initials
-        this.setState({playerid:values.selected})
+        this.setState({player_id:values.selected})
         this.state.players.map(p =>{
-            if(p.playerId==this.state.playerid){
-                player_first_name=p.firstName;
-                player_last_name=p.lastName;
-                player_initials=p.pinitials;
+            if(p.player_id===this.state.player_id){
+                player_first_name=p.first_name;
+                player_last_name=p.last_name;
+                player_initials=p.player_initials;
                 }
         }
            
@@ -67,32 +68,35 @@ class AddPlayer extends Component {
         
         
         var teamplayer = {
-            team_id:this.state.teamId,
+            team_id:this.state.team_id,
             player_id:values.selected,
             player_first_name: player_first_name,
             player_last_name:player_last_name,
             player_initials: player_initials
         }
        
-        let teamid=this.state.teamId
+        let teamid=this.state.team_id
             TeamDataService.createPlayer(teamid,teamplayer)
                 .then(() => this.props.history.push(`/admin/dashboard/TeamShowPlayer/${teamid}`))
         console.log(values);
     }
 
     
-/*  handleChange = inputvalue=> {
-    
-    this.setState({
-      selected:inputvalue
-    });
-  };*/
+    validate(values) {
+        let errors = {};
+        if (!values.selected) {
+            errors.selected = 'Select Player'
+        } 
+
+        return errors
+
+    }
 
 
 
     render() {
         let selected=this.state.selected
-        let teamID=this.state.teamId
+        let teamID=this.state.team_id
         let teamname=this.state.tname
         return (
             <div>
@@ -105,7 +109,7 @@ class AddPlayer extends Component {
                 </div>
                 
                 {this.state.teams.map(team =>{
-                    if(team.teamId==teamID){
+                    if(team.team_id===teamID){
                         teamname=team.tname
                         }
                 }
@@ -119,15 +123,22 @@ class AddPlayer extends Component {
                    <Formik
                    initialValues={{selected}}
                    onSubmit={this.onSubmit}
+                   validateOnChange={false}
+                   validateOnBlur={false}
+                   validate={this.validate}
+                  
                     >
                        <Form>
-                           <br/><br/>
+                                <ErrorMessage name="selected" component="div"
+                                        className=" errormsg alert warning" /> 
+                                <br/><br/>
                                 <label>Select Player : </label>
                                 <Field as="select" name="selected">
+                                <option value="">-----Select Player-----</option>
                                 {
                                 this.state.players.map(
                                     player =>
-                                    <option value={player.playerId}>{player.firstName} {player.lastName}</option>
+                                    <option value={player.player_id}>{player.first_name} {player.last_name} {player.player_initials}</option>
                                             
                                 )
                             }

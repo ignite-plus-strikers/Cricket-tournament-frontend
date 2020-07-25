@@ -30,8 +30,8 @@ class TeamDataService {
         deletePlayer(teamid,playerid){
             return axios.delete(`${TEAM_API_URL}/teamplayer/${teamid}/${playerid}`);
         }
-        retrieveAllTeamPlayers() {
-            return axios.get(`${TEAM_API_URL}/teamplayers`);
+        retrieveAllTeamPlayers(teamid) {
+            return axios.get(`${TEAM_API_URL}/teamplayer/${teamid}`);
         }
 }
 
