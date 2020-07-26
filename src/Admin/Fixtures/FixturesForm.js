@@ -46,12 +46,12 @@ class FixturesForm extends Component {
 
         return (
             <div>
-                 <div className="sidenav">
-                <a href="#about">Dashboard</a><hr></hr>
-                <a href="#services"><div className="Selected_color">Fixtures</div></a><hr></hr>
-                <a href="#clients">Series Master</a><hr></hr>
-                <a href="#contact">Team Master</a><hr></hr>
-                <a href="#contact">Player Master</a><hr></hr>
+                <div className="sidenav">
+                <a href="/admin/dashboard">Dashboard</a><hr></hr>
+                <a href="/admin/dashboard/FixtureDisplay"><div className="Selected_color">Fixtures</div></a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
+                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
+                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
                 <div className="playerform">
             <Formik

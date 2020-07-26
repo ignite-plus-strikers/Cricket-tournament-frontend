@@ -56,11 +56,11 @@ class FixtureComponent extends Component {
         return (
             <div>
                 <div class="sidenav">
-                <a href="#about">Dashboard</a><hr></hr>
-                <a href="#services"><div className="Selected_color">Fixtures</div></a><hr></hr>
-                <a href="#clients">Series Master</a><hr></hr>
-                <a href="#contact">Team Master</a><hr></hr>
-                <a href="#contact">Team</a><hr></hr>
+                <a href="/admin/dashboard">Dashboard</a><hr></hr>
+                <a href="/admin/dashboard/FixtureDisplay"><div className="Selected_color">Fixtures</div></a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
+                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
+                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
                 <div className = "playerdetails">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}

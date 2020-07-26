@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
+import SeriesDataService from './Service/SeriesDataService';
 
-
-
+import './Series.css';
 
 class SeriesComponent extends Component {
  
@@ -11,47 +11,54 @@ class SeriesComponent extends Component {
             Series: [],
             message: null
         }
-      /*  this.deletePlayerClicked = this.deletePlayerClicked.bind(this)
-        this.refreshPlayers = this.refreshPlayers.bind(this)
-        this.updatePlayerClicked = this.updatePlayerClicked.bind(this)
-        this.addPlayerClicked = this.addPlayerClicked.bind(this)   */
+        this.deleteSeriesClicked = this.deleteSeriesClicked.bind(this)
+        this.refreshSeries = this.refreshSeries.bind(this)
+        this.updateSeriesClicked = this.updateSeriesClicked.bind(this)
+        this.addSeriesClicked = this.addSeriesClicked.bind(this)  
+        this.addTeamClicked=this.addTeamClicked.bind(this)
+        this.showTeamClicked=this.showTeamClicked.bind(this)
     }
  
-   /* componentDidMount() {
-        this.refreshPlayers();   
+    componentDidMount() {
+        this.refreshSeries();   
     }
-    */
- 
-   /* refreshPlayers() {
-        PlayerDataService.retrieveAllPlayers()
+    
+    refreshSeries() {
+        SeriesDataService.retrieveAllSeries()
             .then(
                 response => {
                     console.log(response);
-                    this.setState({ players: response.data })
+                    this.setState({ Series: response.data })
                 }
             )
     }
  
-    deletePlayerClicked(id) {
-        PlayerDataService.deletePlayer(id)
+    deleteSeriesClicked(id,series_short_name) {
+        SeriesDataService.deleteSeries(id)
             .then(
                 response => {
-                    this.setState({ message: `Delete of player with player ID ${id} Successful` })
-                    this.refreshPlayers()
+                    this.setState({ message: `Delete of series ${series_short_name} is Successful` })
+                    this.refreshSeries()
                 }
             )
     
-    } */
+    } 
  
-  /*  updatePlayerClicked(id) {
+    updateSeriesClicked(id) {
         console.log('update ' + id)
-        this.props.history.push(`/admin/dashboard/Team/${id}`)
+        this.props.history.push(`/admin/dashboard/Series/${id}`)
     }
  
-    addPlayerClicked() {
-        this.props.history.push(`/admin/dashboard/Team/-1`)
+    addSeriesClicked() {
+        this.props.history.push(`/admin/dashboard/SeriesAddForm`)
     }
-*/
+    addTeamClicked(id) {
+        this.props.history.push(`/admin/dashboard/SeriesAddTeam/${id}`)
+    }
+    showTeamClicked(id) {
+        this.props.history.push(`/admin/dashboard/SeriesShowTeam/${id}`)
+    }
+    
     render() {
         return (
             <div>
@@ -65,22 +72,23 @@ class SeriesComponent extends Component {
                 <div className = "playerdetails">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
-                        <button class="btn newBtn">New</button>
+                        <button class="btn newBtn" onClick={this.addSeriesClicked}>New</button>
                      </div>
                     <table id="playerTable">
                         <tr>
                             
-                            <th>NAME</th>
+                            <th>SERIES NAME</th>
                             <th>SERIES SHORT NAME</th>
                             <th>SERIES TYPE</th>
                             <th>START DATE</th>
                             <th>END DATE</th>
+                            <th>TOURNAMENT</th>
                             <th>HOST1</th>
                             <th>HOST2</th>
                             <th>HOST3</th>
                             <th>HOST4</th>
-                            <th>POINT TABLE</th>
-                            <th>SERIES POINT</th>
+                            <th>POINTS TABLE</th>
+                            <th>SERIES POINTS</th>
                             
                             <th>ADD TEAM</th>
                             <th>SHOW TEAM</th>
@@ -88,29 +96,29 @@ class SeriesComponent extends Component {
                             <th>DELETE</th>
                         </tr>
                         <tbody>
-                           
-                                        <tr>
-                                            
-                                            
-                                            <td>West Indies tour of Pakistan T20I series 2020</td>
-                                            <td>PakWIT20ls18</td>
-                                            <td>T20I</td>
-                                            <td>2020-04-01</td>
-                                            <td>2020-04-03</td>
-                                            
-                                            <td>PK</td>
-                                            
-                                            <td>UNKWN</td>
-                                            <td>UNKWN</td>
-                                            <td>UNKWN</td>
-                                            <td>check box</td>
-                                            <td>0</td>
-                                           
-                                            <td><button className="btn warning" >Add Team</button></td>
-                                            <td><button className="btn warning" >Show Team</button></td>
-                                            <td><button className="btn warning" >Update</button></td>
-                                            <td><button className="btn warning" >Delete</button></td>
+                        {
+                                this.state.Series.map(
+                                    series =>
+                                        <tr key={series.series_id}>
+                                            <td>{series.series_name}</td>
+                                            <td>{series.series_short_name}</td>
+                                            <td>{series.series_type}</td>
+                                            <td>{series.series_start_date}</td>
+                                            <td>{series.series_end_date}</td>
+                                            <td>{series.tournament}</td>
+                                            <td>{series.host_country[0]}</td>
+                                            <td>{series.host_country[1]}</td>
+                                            <td>{series.host_country[2]}</td>
+                                            <td>{series.host_country[3]}</td>
+                                            <td>{series.points_table_active.toString()}</td>
+                                            <td>{series.series_points}</td>
+                                            <td><button className="btn warning"onClick={() => this.addTeamClicked(series.series_id)}>Add</button></td>
+                                            <td><button className="btn updateBtn"onClick={() => this.showTeamClicked(series.series_id)} >Show</button></td>
+                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the series '+series.series_short_name+'?'))this.deleteSeriesClicked(series.series_id,series.series_short_name)}}>Delete</button></td>
+                                            <td><button className="btn updateBtn" onClick={() => this.updateSeriesClicked(series.series_id)}>Update</button></td>
                                         </tr>
+                                )
+                            }
                                 
                             
                         </tbody>

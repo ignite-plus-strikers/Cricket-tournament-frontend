@@ -1,34 +1,50 @@
 import React, { Component } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import './Series.css';
-
 import SeriesDataService from './Service/SeriesDataService';
 
-
-class SeriesForm extends Component {
+class SeriesUpdate extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+           series_id: this.props.match.params.id,
            series_name:"",
            series_short_name:"",
            series_start_date:"",
            series_end_date:"",
-           tournament:"A-Limited Overs International",
-           series_type:"First Class",
-           host1:"India",
-           host2:"Argentina",
-           host3:"Mexico",
-           host4:"New Zealand",
+           tournament:"",
+           series_type:"",
+           host1:"",
+           host2:"",
+           host3:"",
+           host4:"",
            points_table_active:false,
            series_points:""
-          
-
+            
         }
         this.onSubmit = this.onSubmit.bind(this)
         this.validate = this.validate.bind(this)
+
     }
-    
+    componentDidMount() {
+        SeriesDataService.retrieveSeries(this.state.series_id)
+            .then(response => this.setState({
+                series_name:response.data.series_name,
+                series_short_name:response.data.series_short_name,
+                series_start_date:response.data.series_start_date,
+                series_end_date:response.data.series_end_date,
+                tournament:response.data.tournament,
+                series_type:response.data.series_type,
+                host1:response.data.host_country[0],
+                host2:response.data.host_country[1],
+                host3:response.data.host_country[2],
+                host4:response.data.host_country[3],
+                points_table_active:response.data.points_table_active,
+                series_points:response.data.series_points
+               
+            }))
+    }
+   
     validate(values) {
         let errors = {};
         if (!values.series_name) {
@@ -40,10 +56,12 @@ class SeriesForm extends Component {
         }
 
         return errors
-
     }
-   
+
+
     onSubmit(values) {
+        
+
         var series={
             series_name:values.series_name,
             series_short_name:values.series_short_name,
@@ -55,11 +73,18 @@ class SeriesForm extends Component {
             series_points:values.series_points,
             host_country:[values.host1,values.host2,values.host3,values.host4]
         };
-        console.log(values); 
-        SeriesDataService.createSeries(series)
-        .then(() => this.props.history.push('/admin/dashboard/SeriesDisplay'))  
-       }
+       
+        console.log(series);
+       
+            SeriesDataService.updateSeries(this.state.series_id,series)
+                .then(() => this.props.history.push('/admin/dashboard/SeriesDisplay'))
+        
+
+        
+        
+    }
     render() {
+
         let series_name = this.state.series_name
         let series_short_name= this.state.series_short_name
         let series_start_date= this.state.series_start_date
@@ -78,23 +103,23 @@ class SeriesForm extends Component {
                 <div className="sidenav">
                 <a href="/admin/dashboard">Dashboard</a><hr></hr>
                 <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay"><div className="Selected_color">Series Master</div></a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
+                <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
                 <div className="seriesform">
-            <Formik  
-                    initialValues={{series_name, series_short_name,series_start_date,series_end_date,tournament,series_type,host1,host2,host3,host4,points_table_active,series_points }}               
+            <Formik
+                    initialValues={{ series_name, series_short_name,series_start_date,series_end_date,tournament,series_type,host1,host2,host3,host4,points_table_active,series_points}}
                     onSubmit={this.onSubmit}
                     validateOnChange={false}
                     validateOnBlur={false}
                     validate={this.validate}
                     enableReinitialize={true}>
-                    {
+             {
                         (props) => (
-                            <Form>     
-                                    <br/>
-                                    <ErrorMessage name="series_name" component="div"
+                            <Form> 
+                                <br/>
+                                <ErrorMessage name="series_name" component="div"
                                         className=" errormsg alert warning" />  
                                          
                                     <br/>
@@ -169,4 +194,4 @@ class SeriesForm extends Component {
 
 }
 
-export default SeriesForm
+export default SeriesUpdate
