@@ -4,9 +4,11 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import '../../App.css';
 import PlayerDataService from '../../Admin/Player/Service/PlayerDataService';
 import TeamDataService from './Service/TeamDataService';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
 
 
-class AddPlayer extends Component {
+class AddPlayerr extends Component {
 
     constructor(props) {
         super(props)
@@ -18,21 +20,26 @@ class AddPlayer extends Component {
             selected:'',
             player_id:'',
             tname:"",
-            teamplayers:[],
-            players_count:0
+            selected_player:""
             
         }
         this.refreshPlayers = this.refreshPlayers.bind(this)
         this.getTeamName=this.getTeamName.bind(this)
-        this.getTeamPlayers=this.getTeamPlayers.bind(this)
         this.validate = this.validate.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+
+        this.onSelectChange = this.onSelectChange.bind(this);
     }
     componentDidMount() {
         this.refreshPlayers();
         this.getTeamName();
-        this.getTeamPlayers();
     }
+    onSelectChange = (event, values) => {
+        this.setState({
+          selected_player: values
+        
+        });
+      }
 
     getTeamName(){
         TeamDataService.retrieveAllTeams()
@@ -45,16 +52,6 @@ class AddPlayer extends Component {
         
 
     }
-    getTeamPlayers() {
-        TeamDataService.retrieveAllTeamPlayers(this.state.team_id)
-            .then(
-                response => {
-                    console.log(response);
-                    this.setState({ teamplayers: response.data })
-                }
-            )
-        
-    }
 
     refreshPlayers() {
         PlayerDataService.retrieveAllPlayers()
@@ -64,7 +61,6 @@ class AddPlayer extends Component {
                     this.setState({ players: response.data })
                 }
             )
-            
     }
     onSubmit(values){
         let player_first_name
@@ -98,31 +94,29 @@ class AddPlayer extends Component {
 
     
     validate(values) {
-        let count=this.state.teamplayers.length
         let errors = {};
         if (!values.selected) {
             errors.selected = 'Select Player'
-        } else if(count>=15){
-            errors.selected='There are already 15 players in the team !'
-        }
-        this.state.teamplayers.map(tp=>{
-            if(tp.player_id===values.selected){
-                errors.selected='The player '+tp.player_first_name+' already exists in the team !'
-            }
-
-        })
+        } 
 
         return errors
 
     }
-
-
-
+    
     render() {
         let selected=this.state.selected
         let teamID=this.state.team_id
         let teamname=this.state.tname
+        let count
+        
+        const playerNames=[];
+        this.state.players.map(
+            player =>
+            count=playerNames.push(player.first_name+" "+player.last_name+" "+player.player_initials)
+                                
+        )
        
+        
         return (
             <div>
                 <div className="sidenav">
@@ -132,6 +126,7 @@ class AddPlayer extends Component {
                 <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
                 </div>
+               
                 
                 {this.state.teams.map(team =>{
                     if(team.team_id===teamID){
@@ -144,6 +139,7 @@ class AddPlayer extends Component {
                 <center>
                     <h2>{teamname}</h2>
                 </center>
+               
                <div className="addPlayerForm">
                    <Formik
                    initialValues={{selected}}
@@ -158,24 +154,24 @@ class AddPlayer extends Component {
                                 <ErrorMessage name="selected" component="div"
                                         className=" errormsg alert warning" /> 
                                 <br/><br/>
-                                <label>Select Player : </label>
-                                <Field as="select" name="selected">
-                                <option value="">-----Select Player-----</option>
-                                {
-                                this.state.players.map(
-                                    player =>
-                                    <option value={player.player_id}>{player.first_name} {player.last_name} {player.player_initials}</option>
-                                            
-                                )
-                            }
-                                    
-                                </Field><br/><br/><br/>  
-                                <button className="btn warning marginsave" type="submit">Add</button>
-                               
+                                
+                                <Autocomplete
+                                id="combo-box-demo"
+                                className="float_left"
+                                options={playerNames}
+                                style={{ width: 300 }}
+                                onChange={this.onSelectChange}
+                                renderInput={(params) => <TextField {...params} label="Search for player" variant="outlined" />}
+                                />
+                                <button className="btn warning float_left" type="submit">Add</button>
                                 
                             
                        </Form>
                    </Formik>
+                  
+                                 
+                            
+                 
                </div>
    
            
@@ -185,4 +181,6 @@ class AddPlayer extends Component {
     
 }
 
-export default AddPlayer
+export default AddPlayerr
+
+
