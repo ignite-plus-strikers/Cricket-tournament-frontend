@@ -129,6 +129,7 @@ class AddPlayer extends Component {
                   
                     >
                        <Form>
+                           <br/>
                                 <ErrorMessage name="selected" component="div"
                                         className=" errormsg alert warning" /> 
                                 <br/><br/>

@@ -25,13 +25,13 @@ class SeriesDataService {
             return axios.post(`${SERIES_API_URL}/series`,series);    
         }
         createTeam(seriesid,team){
-            return axios.post(`${SERIES_API_URL}/series`,team);
+            return axios.post(`${SERIES_API_URL}/series-teams`,team);
         }
         deleteTeam(seriesid,teamid){
-            return axios.delete(`${SERIES_API_URL}/series/${seriesid}/${teamid}`);
+            return axios.delete(`${SERIES_API_URL}/series-teams/${seriesid}/${teamid}`);
         }
         retrieveAllTeamsInASeries(seriesid) {
-            return axios.get(`${SERIES_API_URL}/series/${seriesid}`);
+            return axios.get(`${SERIES_API_URL}/series-teams/${seriesid}`);
         }
 }
 
