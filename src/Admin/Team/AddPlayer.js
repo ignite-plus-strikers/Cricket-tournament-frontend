@@ -17,17 +17,21 @@ class AddPlayer extends Component {
             message: null,
             selected:'',
             player_id:'',
-            tname:""
+            tname:"",
+            teamplayers:[],
+            players_count:0
             
         }
         this.refreshPlayers = this.refreshPlayers.bind(this)
         this.getTeamName=this.getTeamName.bind(this)
+        this.getTeamPlayers=this.getTeamPlayers.bind(this)
         this.validate = this.validate.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
     }
     componentDidMount() {
         this.refreshPlayers();
         this.getTeamName();
+        this.getTeamPlayers();
     }
 
     getTeamName(){
@@ -41,6 +45,16 @@ class AddPlayer extends Component {
         
 
     }
+    getTeamPlayers() {
+        TeamDataService.retrieveAllTeamPlayers(this.state.team_id)
+            .then(
+                response => {
+                    console.log(response);
+                    this.setState({ teamplayers: response.data })
+                }
+            )
+        
+    }
 
     refreshPlayers() {
         PlayerDataService.retrieveAllPlayers()
@@ -50,6 +64,7 @@ class AddPlayer extends Component {
                     this.setState({ players: response.data })
                 }
             )
+            
     }
     onSubmit(values){
         let player_first_name
@@ -83,10 +98,13 @@ class AddPlayer extends Component {
 
     
     validate(values) {
+        let count=this.state.teamplayers.length
         let errors = {};
         if (!values.selected) {
             errors.selected = 'Select Player'
-        } 
+        } else if(count>=15){
+            errors.selected='There are already 15 players in the team !'
+        }
 
         return errors
 
@@ -98,6 +116,7 @@ class AddPlayer extends Component {
         let selected=this.state.selected
         let teamID=this.state.team_id
         let teamname=this.state.tname
+       
         return (
             <div>
                 <div className="sidenav">
@@ -146,6 +165,7 @@ class AddPlayer extends Component {
                                     
                                 </Field><br/><br/><br/>  
                                 <button className="btn warning marginsave" type="submit">Add</button>
+                               
                                 
                             
                        </Form>

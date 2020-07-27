@@ -5,6 +5,7 @@
     width: 40%;
     margin-top: 100px;
     margin-left: 500px;
+    margin-bottom: 100px;
   }
   #teamTable td, #teamTable th {
     border: 1px solid #ddd;
