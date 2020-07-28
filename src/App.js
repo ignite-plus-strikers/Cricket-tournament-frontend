@@ -22,6 +22,7 @@ import TeamComponent from './Admin/Team/TeamComponent';
 import TeamUpdate from './Admin/Team/TeamUpdate';
 import SeriesUpdate from './Admin/Series/SeriesUpdate';
 import AddPlayerr from './Admin/Team/AddPlayerr';
+import BackgroundImage from './background_img/BackgroundImage';
 
 
 
@@ -50,7 +51,7 @@ function App() {
         <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
         <Route path="/admin/dashboard/Series/:id" component={SeriesUpdate} />
         <Route exact path="/admin/dashboard/searchbox" component={AddPlayerr} />
-        
+        <Route exact path="/home" component={BackgroundImage} />
        
        
         </Router>
