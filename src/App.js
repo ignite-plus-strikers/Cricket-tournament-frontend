@@ -23,7 +23,12 @@ import TeamUpdate from './Admin/Team/TeamUpdate';
 import SeriesUpdate from './Admin/Series/SeriesUpdate';
 import AddPlayerr from './Admin/Team/AddPlayerr';
 import BackgroundImage from './background_img/BackgroundImage';
-
+import UmpireComponent from './Admin/Umpire/UmpireComponent';
+import UmpireForm from './Admin/Umpire/UmpireForm';
+import UmpireUpdate from './Admin/Umpire/UmpireUpdate';
+import RefereeComponent from './Admin/Referee/RefereeComponent';
+import RefereeUpdate from './Admin/Referee/RefereeUpdate';
+import RefereeForm from './Admin/Referee/RefereeForm';
 
 
 
@@ -51,6 +56,12 @@ function App() {
         <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
         <Route path="/admin/dashboard/Series/:id" component={SeriesUpdate} />
         <Route exact path="/admin/dashboard/searchbox" component={AddPlayerr} />
+        <Route exact path="/admin/dashboard/UmpireDisplay" component={UmpireComponent} />
+        <Route path="/admin/dashboard/Umpire/:id" component={UmpireUpdate} /> 
+        <Route path="/admin/dashboard/UmpireAddForm" component={UmpireForm} />
+        <Route exact path="/admin/dashboard/RefereeDisplay" component={RefereeComponent} />
+        <Route path="/admin/dashboard/Referee/:id" component={RefereeUpdate} /> 
+        <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
        
        
