@@ -5,11 +5,12 @@ import TeamDataService from '../Team/Service/TeamDataService';
 import SeriesDataService from '../Series/Service/SeriesDataService';
 import ScorerDataService from './Service/ScorerdataService';
 
-class FixturesForm extends Component {
+class FixtureUpdate extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
+           fixture_id: this.props.match.params.id,
            team1:"",
            team2:"",
            home_team:"",
@@ -35,6 +36,22 @@ class FixturesForm extends Component {
         
     }
     componentDidMount() {
+        FixtureDataService.retrieveFixture(this.state.fixture_id)
+        .then(response => this.setState({
+        team1:response.data.team1,
+        team2:response.data.team2,
+        home_team:response.data.home_team,
+        match_type:response.data.match_type,
+        venue:response.data.venue,
+        series_id:response.data.series_id,
+        description:response.data.description,
+        fixture_date_time:response.data.fixture_date_time,
+        gmt_offset:response.data.gmt_offset,
+        scorer_id:response.data.scorer_id,
+        live_coverage:response.data.live_coverage
+
+
+        }))
         this.refreshTeams();
         this.refreshSeries();
         this.refreshScorers();
@@ -99,6 +116,7 @@ class FixturesForm extends Component {
         )
 
         var fixture={
+            fixture_id:this.state.fixture_id,
             team1:values.team1,
             team2:values.team2,
             home_team:values.home_team ,
@@ -113,7 +131,7 @@ class FixturesForm extends Component {
             scorer_name:scorer_name ,
             gmt_offset:values.gmt_offset
         }
-        FixtureDataService.createFixture(fixture)
+        FixtureDataService.updateFixture(this.state.fixture_id, fixture)
         .then(() => this.props.history.push('/admin/dashboard/FixtureDisplay'))
         console.log(fixture);
         
@@ -258,4 +276,4 @@ class FixturesForm extends Component {
 
 }
 
-export default FixturesForm
+export default FixtureUpdate
