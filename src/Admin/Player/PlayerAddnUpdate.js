@@ -146,6 +146,8 @@ class PlayerAddnUpdate extends Component {
                 <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
                 <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay"><div className="Selected_color">Player Master</div></a><hr></hr>
+                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
+                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
                 </div>
                 <div className="playerform">
             <Formik

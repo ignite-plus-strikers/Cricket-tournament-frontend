@@ -81,6 +81,8 @@ class SeriesForm extends Component {
                 <a href="/admin/dashboard/SeriesDisplay"><div className="Selected_color">Series Master</div></a><hr></hr>
                 <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
+                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
+                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
                 </div>
                 <div className="seriesform">
             <Formik  

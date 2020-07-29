@@ -29,6 +29,7 @@ import UmpireUpdate from './Admin/Umpire/UmpireUpdate';
 import RefereeComponent from './Admin/Referee/RefereeComponent';
 import RefereeUpdate from './Admin/Referee/RefereeUpdate';
 import RefereeForm from './Admin/Referee/RefereeForm';
+import FixtureUpdate from './Admin/Fixtures/FixtureUpdate';
 
 
 
@@ -45,6 +46,7 @@ function App() {
         <Route path="/admin/dashboard/PlayerAddForm" component={AddForm} />
         <Route path="/admin/dashboard/FixtureAddForm" component={FixturesForm} />
         <Route path="/admin/dashboard/FixtureDisplay" component={FixtureComponent} />
+        <Route path="/admin/dashboard/Fixture/:id" component={FixtureUpdate} />
         <Route path="/admin/dashboard/Team/:id" component={TeamUpdate} />
         <Route path="/admin/dashboard/TeamAddForm" component={TeamForm} />
         <Route path="/admin/dashboard/TeamDisplay" component={TeamComponent} />

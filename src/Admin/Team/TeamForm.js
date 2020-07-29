@@ -53,6 +53,8 @@ class TeamForm extends Component {
                 <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
                 <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
                 <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
+                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
+                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
                 </div>
                 <div className="teamform">
                 <Formik
