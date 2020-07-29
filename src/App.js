@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Header from './Header/HeaderComponent';
 import Footer from './Footer/FooterComponent';
 import MatchSelection from './Scorer/MatchSelection';
