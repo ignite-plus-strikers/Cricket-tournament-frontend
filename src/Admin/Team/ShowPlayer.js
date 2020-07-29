@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PlayerDataService from '../Player/Service/PlayerDataService';
 import './Team.css';
 import TeamDataService from './Service/TeamDataService';
-
+import ReactTable from "react-table-6"; 
+import 'react-table-6/react-table.css';
 
 class ShowPlayer extends Component {
 
@@ -64,6 +65,63 @@ class ShowPlayer extends Component {
     render() {
         let teamID=this.state.team_id
         let teamname=this.state.tname
+
+        const columns = [{  
+            Header: 'Player first name',
+            accessor: 'player_first_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }
+            },{  
+            Header: 'Last name',  
+            accessor: 'player_last_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              } 
+            },{  
+            Header: 'Initials',  
+            accessor: 'player_initials',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }  
+            },
+                
+           {  
+                Header: 'Delete',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() => this.deletePlayerClicked(props.original.team_id,props.original.player_id,props.original.player_first_name)}>Delete</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+            }
+        ]  
         return (
             <div>
                 <div className="sidenav">
@@ -91,31 +149,12 @@ class ShowPlayer extends Component {
                 <div className = "teamdetails">
                     
                 
-                    <table id="teamTable">
-                        <thead>
-                        <tr> 
-                            <th>Player Name</th>
-                            <th>Delete</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          
-                        {this.state.teamplayers.map(tp =>
-                    
-                    <tr>
-                        <td>{tp.player_first_name} {tp.player_last_name} {tp.player_initials}</td>
-                        <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the player '+tp.player_first_name+'?'))this.deletePlayerClicked(tp.team_id,tp.player_id,tp.player_first_name)}}>Delete</button></td>
-                    </tr>    
-                        
-                
-                         
-                )
-                }
-                                
-                            
-                        </tbody>
-                    </table>
-           
+                <ReactTable
+                     columns={columns}
+                     data={this.state.teamplayers}
+                     filterable
+                     defaultPageSize={5}
+                     ></ReactTable>
 
                 </div>
    

@@ -19,6 +19,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-search-box": "^2.0.2",
+    "react-table-6": "^6.11.0",
     "rsuite": "^4.8.0",
     "semantic-ui-react": "^0.88.2"
   },

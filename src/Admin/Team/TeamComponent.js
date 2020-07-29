@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import TeamDataService from './Service/TeamDataService';
 
-
+import ReactTable from "react-table-6"; 
+import 'react-table-6/react-table.css';
 
 class TeamComponent extends Component {
  
@@ -62,6 +63,101 @@ class TeamComponent extends Component {
     
 
     render() {
+        const columns = [{  
+            Header: 'Team name',
+            accessor: 'tname',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }
+            },{  
+            Header: 'State',  
+            accessor: 'tstate',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              } 
+            },{  
+            Header: 'Country',  
+            accessor: 'tcountry',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }  
+            },
+                
+           {  
+                Header: 'Add player',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() =>  this.addPlayerClicked(props.original.team_id)}>Add</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+            },{  
+            Header: 'Show player',  
+            Cell:props=>{
+                return(
+                    <button  onClick={() =>  this.showPlayerClicked(props.original.team_id)} >Show</button>
+            )
+    
+            } ,
+            sortable:false,
+            filterable:false,
+            width:100,
+            minWidth:100,
+            maxWidth:100
+            },{  
+                Header: 'Delete',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+            },{  
+                Header: 'Update',  
+                Cell:props=>{
+                    return(
+                        <button  onClick={() => this.updateTeamClicked(props.original.team_id)} >Update</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+                }
+        ]  
         return (
             <div>
                 <div class="sidenav">
@@ -78,38 +174,12 @@ class TeamComponent extends Component {
                      <div>
                         <button className="btn newBtn" onClick={this.addTeamClicked}>New</button>
                      </div>
-                    <table id="playerTable">
-                        <tr>
-                            
-                            <th>Team Name</th>
-                            <th>State</th>
-                            <th>Country</th>
-                            <th>Add Player </th>
-                            <th>Show Player</th>
-                            <th>Delete</th>
-                            <th>Update</th>
-                    
-                        </tr>
-                        <tbody>
-                        {
-                                this.state.teams.map(
-                                    team =>
-                                        <tr key={team.team_id}>
-                                            <td>{team.tname}</td>
-                                            <td>{team.tstate}</td>
-                                            <td>{team.tcountry}</td>
-                                            <td><button className="btn warning"onClick={() => this.addPlayerClicked(team.team_id)}>Add Player</button></td>
-                                            <td><button className="btn updateBtn"onClick={() => this.showPlayerClicked(team.team_id)} >Show Player</button></td>
-                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the team '+team.tname+'?'))this.deleteTeamClicked(team.team_id,team.tname)}}>Delete</button></td>
-                                            <td><button className="btn updateBtn" onClick={() => this.updateTeamClicked(team.team_id)}>Update</button></td>
-                                        </tr>
-                                )
-                            }
-                                    
-                        </tbody>
-                    </table>
-           
- 
+                     <ReactTable
+                     columns={columns}
+                     data={this.state.teams}
+                     filterable
+                     defaultPageSize={5}
+                     ></ReactTable>
                 </div>
    
            

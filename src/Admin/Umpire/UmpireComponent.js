@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import UmpireDataService from './Service/UmpireDataService';
 
+import ReactTable from "react-table-6"; 
+import 'react-table-6/react-table.css'
+
+
 
 
 class UmpireComponent extends Component {
@@ -11,7 +15,7 @@ class UmpireComponent extends Component {
             umpires: [],
             message: null
         }
-       // this.deleteUmpireClicked = this.deleteUmpireClicked.bind(this)
+     
         this.refreshUmpires = this.refreshUmpires.bind(this)
         this.updateUmpireClicked = this.updateUmpireClicked.bind(this)
         this.addUmpireClicked = this.addUmpireClicked.bind(this)
@@ -31,16 +35,7 @@ class UmpireComponent extends Component {
             )
     }
 
-   /* deleteUmpireClicked(id,firstname) {
-        UmpireDataService.deleteUmpire(id)
-            .then(
-                response => {
-                    this.setState({ message: `Delete of umpire  ${firstname} is Successful` })
-                    this.refreshUmpires()
-                }
-            )
-    
-    }*/
+   
 
     updateUmpireClicked(id) {
         console.log('update ' + id)
@@ -52,6 +47,75 @@ class UmpireComponent extends Component {
     }
 
     render() {
+        
+    const columns = [{  
+        Header: 'First Name',
+        accessor: 'first_name',
+        filterMethod: (filter, row) => {
+            var v = row[filter.id]
+              .toString()
+              .toUpperCase()
+              .search(filter.value.toUpperCase());
+            // row[filter.id].toString().startsWith(filter.value)
+            if (v >= 0) {
+              return true;
+            } else return false;
+          }
+        },{  
+        Header: 'Middle Name',  
+        accessor: 'middle_name',
+        filterMethod: (filter, row) => {
+            var v = row[filter.id]
+              .toString()
+              .toUpperCase()
+              .search(filter.value.toUpperCase());
+            // row[filter.id].toString().startsWith(filter.value)
+            if (v >= 0) {
+              return true;
+            } else return false;
+          }  
+        },{  
+        Header: 'Last Name',  
+        accessor: 'last_name',
+        filterMethod: (filter, row) => {
+            var v = row[filter.id]
+              .toString()
+              .toUpperCase()
+              .search(filter.value.toUpperCase());
+            // row[filter.id].toString().startsWith(filter.value)
+            if (v >= 0) {
+              return true;
+            } else return false;
+          } 
+        },{  
+        Header: 'City',  
+        accessor: 'city'  
+        },{  
+        Header: 'Nationality',  
+        accessor: 'nationality'  
+        },{  
+        Header: 'Matches Umpired',  
+        accessor: 'matches_umpired'
+     
+        },{  
+        Header: 'Accuracy %',  
+        accessor: 'accuracy_percentage'
+    
+        },{  
+        Header: 'Update',  
+        Cell:props=>{
+            return(
+                <button  onClick={() => this.updateUmpireClicked(props.original.umpire_id)} >Update</button>
+        )
+
+        } ,
+        sortable:false,
+        filterable:false,
+        width:100,
+        minWidth:100,
+        maxWidth:100
+        }
+    ]  
         return (
             <div>
                 <div className="sidenav">
@@ -68,39 +132,14 @@ class UmpireComponent extends Component {
                      <div>
                         <button className="btn newBtn" onClick={this.addUmpireClicked}>New</button>
                      </div>
-                    <table id="playerTable">
-                        <thead>
-                        <tr>
-                            
-                            <th>First Name</th>
-                            <th>Middle Name</th>
-                            <th>Last Name</th>
-                            <th>City</th>
-                            <th>Nationality</th>
-                            <th>Matches Umpired</th>
-                            <th>Accuracy % </th>
-                            <th>Update</th>
-                    
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.umpires.map(
-                                    umpire =>
-                                        <tr key={umpire.umpire_id}>
-                                            <td>{umpire.first_name}</td>
-                                            <td>{umpire.middle_name}</td>
-                                            <td>{umpire.last_name}</td>
-                                            <td>{umpire.city}</td>
-                                            <td>{umpire.nationality}</td>
-                                            <td>{umpire.matches_umpired}</td>
-                                            <td>{umpire.accuracy_percentage}</td>                  
-                                            <td><button className="btn updateBtn" onClick={() => this.updateUmpireClicked(umpire.umpire_id)}>Update</button></td>
-                                        </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
+                    <ReactTable
+                     columns={columns}
+                     data={this.state.umpires}
+                     filterable
+                     defaultPageSize={5}
+                     >
+
+                     </ReactTable>
            
 
                 </div>
