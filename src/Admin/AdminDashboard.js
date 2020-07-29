@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react'
 import '../App.css';
  
-function AdminDashboard() {
+class AdminDashboard extends Component {
+  render(){
   return (
  
     <div>
@@ -135,7 +136,7 @@ function AdminDashboard() {
     </div>
   );
 }
- 
+}
 export default AdminDashboard;
  
 
