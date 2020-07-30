@@ -21,7 +21,6 @@ import FixtureComponent from './Admin/Fixtures/FixtureComponent';
 import TeamComponent from './Admin/Team/TeamComponent';
 import TeamUpdate from './Admin/Team/TeamUpdate';
 import SeriesUpdate from './Admin/Series/SeriesUpdate';
-import AddPlayerr from './Admin/Team/AddPlayerr';
 import BackgroundImage from './background_img/BackgroundImage';
 import UmpireComponent from './Admin/Umpire/UmpireComponent';
 import UmpireForm from './Admin/Umpire/UmpireForm';
@@ -57,7 +56,7 @@ function App() {
         <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
         <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
         <Route path="/admin/dashboard/Series/:id" component={SeriesUpdate} />
-        <Route exact path="/admin/dashboard/searchbox" component={AddPlayerr} />
+        
         <Route exact path="/admin/dashboard/UmpireDisplay" component={UmpireComponent} />
         <Route path="/admin/dashboard/Umpire/:id" component={UmpireUpdate} /> 
         <Route path="/admin/dashboard/UmpireAddForm" component={UmpireForm} />

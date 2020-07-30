@@ -60,7 +60,8 @@ background-color: rgb(245, 110, 110);
         
       }
       .seriesdetails{
-          text-align: center;
+          margin-left: 400px;
+          margin-right: 400px;
       }
       .delTeam{
               width:40%;

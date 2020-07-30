@@ -26,7 +26,8 @@
     
   }
   .teamdetails{
-      text-align: center;
+      margin-left: 200px;
+      margin-right: 200px;
   }
   .addPlayerForm{
     margin-left: 500px;

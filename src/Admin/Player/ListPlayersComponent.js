@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PlayerDataService from './Service/PlayerDataService';
-
+import ReactTable from "react-table-6"; 
+import 'react-table-6/react-table.css';
 
 
 class ListPlayersComponent extends Component {
@@ -52,6 +53,103 @@ class ListPlayersComponent extends Component {
     }
 
     render() {
+        const columns = [{  
+            Header: 'First name',
+            accessor: 'first_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }
+            },{  
+            Header: 'Last name',  
+            accessor: 'last_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              } 
+            },{  
+            Header: 'Player initials',  
+            accessor: 'player_initials',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }  
+            },{  
+            Header: 'Gender',  
+            accessor: 'gender'  
+            },{  
+            Header: 'Date of birth',  
+            accessor: 'player_dob'  
+            },{  
+            Header: 'Category',  
+            accessor: 'category'
+         
+            },{  
+            Header: 'Nationality',  
+            accessor: 'nationality'
+        
+            },{  
+            Header: 'Batting style',  
+            accessor: 'player_batting_style'
+            
+            },{  
+            Header: 'Bowling style',  
+            accessor: 'player_bowling_style'
+                
+            },{  
+            Header: 'Player role',  
+            accessor: 'player_role'
+                    
+            },{  
+            Header: 'Player status',  
+            accessor: 'player_status'
+                        
+            },{  
+                Header: 'Delete',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() => this.deletePlayerClicked(props.original.player_id,props.original.first_name)}>Delete</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+            },{  
+            Header: 'Update',  
+            Cell:props=>{
+                return(
+                    <button  onClick={() => this.updatePlayerClicked(props.original.player_id)} >Update</button>
+            )
+    
+            } ,
+            sortable:false,
+            filterable:false,
+            width:100,
+            minWidth:100,
+            maxWidth:100
+            }
+        ]  
         return (
             <div>
                 <div className="sidenav">
@@ -68,50 +166,14 @@ class ListPlayersComponent extends Component {
                      <div>
                         <button className="btn newBtn" onClick={this.addPlayerClicked}>New</button>
                      </div>
-                    <table id="playerTable">
-                        <thead>
-                        <tr>
-                            
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Player Initials</th>
-                            <th>Gender</th>
-                            <th>Date of Birth </th>
-                            <th>Visual Classification</th>
-                            <th>Nationality</th>
-                            <th>Batting Style</th>
-                            <th>Bowling Style </th>
-                            <th>Player Role </th>
-                            <th>Retired or Playing</th>
-                            <th>Delete</th>
-                            <th>Update</th>
                     
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                this.state.players.map(
-                                    player =>
-                                        <tr key={player.player_id}>
-                                            <td>{player.first_name}</td>
-                                            <td>{player.last_name}</td>
-                                            <td>{player.player_initials}</td>
-                                            <td>{player.gender}</td>
-                                            <td>{player.player_dob}</td>
-                                            <td>{player.category}</td>
-                                            <td>{player.nationality}</td>
-                                            <td>{player.player_batting_style}</td>
-                                            <td>{player.player_bowling_style}</td>
-                                            <td>{player.player_role}</td>
-                                            <td>{player.player_status}</td>
-                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the player '+player.first_name+'?'))this.deletePlayerClicked(player.player_id,player.first_name)}}>Delete</button></td>
-                                            <td><button className="btn updateBtn" onClick={() => this.updatePlayerClicked(player.player_id)}>Update</button></td>
-                                        </tr>
-                                )
-                            }
-                        </tbody>
-                    </table>
-           
+                    <ReactTable
+                     columns={columns}
+                     data={this.state.players}
+                     filterable
+                     defaultPageSize={5}
+                     ></ReactTable>
+ 
 
                 </div>
    

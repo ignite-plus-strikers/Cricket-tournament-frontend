@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import SeriesDataService from './Service/SeriesDataService';
 import './Series.css';
-
+import ReactTable from "react-table-6"; 
+import 'react-table-6/react-table.css';
 
 class ShowTeams extends Component {
  
@@ -61,6 +62,34 @@ class ShowTeams extends Component {
     render() {
         let seriesID=this.state.series_id
         let seriesname=this.state.series_name
+
+        const columns = [{  
+            Header: 'Team name',
+            accessor: 'team_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }
+            },
+           {  
+                Header: 'Delete',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() => this.deletePlayerClicked(props.original.series_id,props.original.team_id,props.original.team_name)}>Delete</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false
+                
+            }
+        ]  
         return (
             <div>
                 <div class="sidenav">
@@ -87,31 +116,13 @@ class ShowTeams extends Component {
                 </center>
                 <div className = "seriesdetails">
                
-                    <table id="seriesTable">
-                        <thead>
-                        <tr>
-                            
-                            <th>TEAM NAME</th>
-                            <th>DELETE</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                          
-                          {this.state.series_teams.map(st=>
-                      
-                      <tr>
-                          <td>{st.team_name}</td>
-                          <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the team '+st.team_name+'?'))this.deleteTeamClicked(st.series_id,st.team_id,st.team_name)}}>Delete</button></td>
-                      </tr>    
-                          
-                  
-                           
-                  )
-                  }
-                                  
-                              
-                          </tbody>
-                    </table>
+                <ReactTable
+                     columns={columns}
+                     data={this.state.series_teams}
+                     filterable
+                     defaultPageSize={5}
+                     ></ReactTable>
+
            
  
                 </div>

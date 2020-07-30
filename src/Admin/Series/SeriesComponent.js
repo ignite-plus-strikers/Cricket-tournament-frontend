@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import SeriesDataService from './Service/SeriesDataService';
 
 import './Series.css';
+import ReactTable from "react-table-6"; 
+import 'react-table-6/react-table.css';
 
 class SeriesComponent extends Component {
  
@@ -60,6 +62,134 @@ class SeriesComponent extends Component {
     }
     
     render() {
+        const columns = [{  
+            Header: 'Series name',
+            accessor: 'series_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }
+            },{  
+            Header: 'Series short name',  
+            accessor: 'series_short_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              } 
+            },{  
+            Header: 'Series type',  
+            accessor: 'series_type',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }  
+            },{  
+            Header: 'Start date',  
+            accessor: 'series_start_date'  
+            },{  
+            Header: 'End date',  
+            accessor: 'series_end_date'  
+            },{  
+            Header: 'Tournament',  
+            accessor: 'tournament'
+         
+            },{  
+            Header: 'Host 1',  
+            accessor: 'host_country[0]'
+        
+            },{  
+            Header: 'Host 2 ',  
+            accessor: 'host_country[1]'
+            
+            },{  
+            Header: 'Host 3',  
+            accessor: 'host_country[2]'
+                
+            },{  
+            Header: 'Host 4',  
+            accessor: 'host_country[3]'
+                    
+            },{  
+            Header: 'Points table',  
+            accessor: 'points_table_active'.toString()
+                        
+            },
+            {  
+            Header: 'Series points',  
+            accessor: 'series_points'
+                            
+            },{  
+                Header: 'Add team',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() =>  this.addTeamClicked(props.original.series_id)}>Add</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+            },{  
+            Header: 'Show team',  
+            Cell:props=>{
+                return(
+                    <button  onClick={() =>  this.showTeamClicked(props.original.series_id)} >Show</button>
+            )
+    
+            } ,
+            sortable:false,
+            filterable:false,
+            width:100,
+            minWidth:100,
+            maxWidth:100
+            },{  
+                Header: 'Delete',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() => this.deleteSeriesClicked(props.original.series_id,props.original.series_short_name)}>Delete</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+            },{  
+                Header: 'Update',  
+                Cell:props=>{
+                    return(
+                        <button  onClick={() => this.updateSeriesClicked(props.original.series_id)} >Update</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+                }
+        ]  
         return (
             <div>
                 <div class="sidenav">
@@ -76,56 +206,14 @@ class SeriesComponent extends Component {
                      <div>
                         <button class="btn newBtn" onClick={this.addSeriesClicked}>New</button>
                      </div>
-                    <table id="playerTable">
-                        <tr>
-                            
-                            <th>SERIES NAME</th>
-                            <th>SERIES SHORT NAME</th>
-                            <th>SERIES TYPE</th>
-                            <th>START DATE</th>
-                            <th>END DATE</th>
-                            <th>TOURNAMENT</th>
-                            <th>HOST1</th>
-                            <th>HOST2</th>
-                            <th>HOST3</th>
-                            <th>HOST4</th>
-                            <th>POINTS TABLE</th>
-                            <th>SERIES POINTS</th>
-                            
-                            <th>ADD TEAM</th>
-                            <th>SHOW TEAM</th>
-                            <th>UPDATE</th>
-                            <th>DELETE</th>
-                        </tr>
-                        <tbody>
-                        {
-                                this.state.Series.map(
-                                    series =>
-                                        <tr key={series.series_id}>
-                                            <td>{series.series_name}</td>
-                                            <td>{series.series_short_name}</td>
-                                            <td>{series.series_type}</td>
-                                            <td>{series.series_start_date}</td>
-                                            <td>{series.series_end_date}</td>
-                                            <td>{series.tournament}</td>
-                                            <td>{series.host_country[0]}</td>
-                                            <td>{series.host_country[1]}</td>
-                                            <td>{series.host_country[2]}</td>
-                                            <td>{series.host_country[3]}</td>
-                                            <td>{series.points_table_active.toString()}</td>
-                                            <td>{series.series_points}</td>
-                                            <td><button className="btn warning"onClick={() => this.addTeamClicked(series.series_id)}>Add</button></td>
-                                            <td><button className="btn updateBtn"onClick={() => this.showTeamClicked(series.series_id)} >Show</button></td>
-                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the series '+series.series_short_name+'?'))this.deleteSeriesClicked(series.series_id,series.series_short_name)}}>Delete</button></td>
-                                            <td><button className="btn updateBtn" onClick={() => this.updateSeriesClicked(series.series_id)}>Update</button></td>
-                                        </tr>
-                                )
-                            }
-                                
-                            
-                        </tbody>
-                    </table>
-           
+                   
+                     <ReactTable
+                     columns={columns}
+                     data={this.state.Series}
+                     filterable
+                     defaultPageSize={5}
+                     ></ReactTable>
+ 
  
                 </div>
    

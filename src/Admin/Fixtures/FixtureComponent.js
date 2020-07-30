@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import FixtureDataService from './Service/FixtureDataService';
-
+import ReactTable from "react-table-6"; 
+import 'react-table-6/react-table.css';
 
 
 class FixtureComponent extends Component {
@@ -52,6 +53,103 @@ class FixtureComponent extends Component {
         this.props.history.push(`/admin/dashboard/FixtureAddForm`)
     }
     render() {
+        const columns = [{  
+            Header: 'Team 1',
+            accessor: 'team1',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }
+            },{  
+            Header: 'Team 2',  
+            accessor: 'team2',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              } 
+            },{  
+            Header: 'Home town',  
+            accessor: 'home_team',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }  
+            },{  
+            Header: 'Series',  
+            accessor: 'series_name'  
+            },{  
+            Header: 'Match type',  
+            accessor: 'match_type'  
+            },{  
+            Header: 'Description',  
+            accessor: 'description'
+         
+            },{  
+            Header: 'Match date & time',  
+            accessor: 'fixture_date_time'
+        
+            },{  
+            Header: 'GMT offset',  
+            accessor: 'gmt_offset'
+            
+            },{  
+            Header: 'Venue',  
+            accessor: 'venue'
+                
+            },{  
+            Header: 'Live coverage',  
+            accessor: 'live_coverage'
+                    
+            },{  
+            Header: 'Scorer',  
+            accessor: 'scorer_name'
+                        
+            },{  
+                Header: 'Delete',  
+                Cell:props=>{
+                    return(
+                        <button onClick={() => this.deleteFixtureClicked(props.original.fixture_id)}>Delete</button>
+                )
+        
+                } ,
+                sortable:false,
+                filterable:false,
+                width:100,
+                minWidth:100,
+                maxWidth:100
+            },{  
+            Header: 'Update',  
+            Cell:props=>{
+                return(
+                    <button  onClick={() => this.updateFixtureClicked(props.original.fixture_id)} >Update</button>
+            )
+    
+            } ,
+            sortable:false,
+            filterable:false,
+            width:100,
+            minWidth:100,
+            maxWidth:100
+            }
+        ]  
         return (
             <div>
                 <div class="sidenav">
@@ -68,51 +166,13 @@ class FixtureComponent extends Component {
                      <div>
                         <button class="btn newBtn" onClick={this.addFixtureClicked}>New</button>
                      </div>
-                    <table id="playerTable">
-                        <tr>
-                            
-                            <th>TEAM 1</th>
-                            <th>TEAM 2</th>
-                            <th>HOME TOWN</th>
-                            <th>SERIES</th>
-                            <th>MATCH TYPE</th>
-                            <th>DESCRIPTION</th>
-                            <th>MATCH DATE/TIME</th>
-                            <th>GMT OFFSET</th>
-                            <th>VENUE</th>
-                            <th>LIVE COVERAGE</th>
-                            <th>SCORER</th>
-                            <th>DELETE</th>
-                            <th>UPDATE</th>
-                        
-                        </tr>
-                        <tbody>
-                        {
-                                this.state.fixtures.map(
-                                    fixture =>
-                                        <tr key={fixture.fixture_id}>
-                                            <td>{fixture.team1}</td>
-                                            <td>{fixture.team2}</td>
-                                            <td>{fixture.home_team}</td>
-                                            <td>{fixture.series_name}</td>
-                                            <td>{fixture.match_type}</td>
-                                            <td>{fixture.description}</td>
-                                            <td>{fixture.fixture_date_time}</td>
-                                            <td>{fixture.gmt_offset}</td>
-                                            <td>{fixture.venue}</td>
-                                            <td>{fixture.live_coverage}</td>
-                                            <td>{fixture.scorer_name}</td>
-                                            <td><button className="btn warning" onClick={() => {if(window.confirm('Delete the fixture?'))this.deleteFixtureClicked(fixture.fixture_id)}}>Delete</button></td>
-                                            <td><button className="btn updateBtn" onClick={() => this.updateFixtureClicked(fixture.fixture_id)}>Update</button></td>
-                                        </tr>
-                                )
-                            }
-                                       
-                                
-                            
-                        </tbody>
-                    </table>
-           
+                    
+                     <ReactTable
+                     columns={columns}
+                     data={this.state.fixtures}
+                     filterable
+                     defaultPageSize={5}
+                     ></ReactTable>
  
                 </div>
    
