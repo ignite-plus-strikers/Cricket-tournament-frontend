@@ -3,6 +3,23 @@ import FixtureDataService from './Service/FixtureDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
 
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
+import AddIcon from "@material-ui/icons/AddCircle";
+import classNames from "classnames";
+import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
+import Loader from "react-loader";
+import PropTypes from "prop-types";
+
+function Transition(props) {
+    return <Slide direction="up" {...props} />;
+  }
 
 
 class FixtureComponent extends Component {
@@ -11,7 +28,13 @@ class FixtureComponent extends Component {
         super(props)
         this.state = {
             fixtures: [],
-            message: null
+            message: null,
+            open1:false,
+            open2:false,
+            update_id:"",
+            delete_id:"",
+            desc:"",
+            update_desc:""
         }
         this.deleteFixtureClicked = this.deleteFixtureClicked.bind(this)
         this.refreshFixtures = this.refreshFixtures.bind(this)
@@ -34,11 +57,11 @@ class FixtureComponent extends Component {
             )
     }
  
-    deleteFixtureClicked(id) {
+    deleteFixtureClicked(id,description) {
         FixtureDataService.deleteFixture(id)
             .then(
                 response => {
-                    this.setState({ message: `Delete of fixture Successful` })
+                    this.setState({ message: `Delete of fixture ${description} is successful` })
                     this.refreshFixtures()
                 }
             )
@@ -53,6 +76,27 @@ class FixtureComponent extends Component {
     addFixtureClicked() {
         this.props.history.push(`/admin/dashboard/FixtureAddForm`)
     }
+
+
+
+
+    openEditBox = (e,d) => {
+        this.setState({
+          open2: true,
+          update_id:e,
+          update_desc:d
+        });
+      };
+    handleClose = () => {
+        this.setState({ open1: false, open2: false, });
+      };
+      openAlertBox =(e,d) => {
+        this.setState({
+          open1: true,
+          delete_id:e,
+          desc:d
+        });
+      };
     render() {
         
 
@@ -331,7 +375,7 @@ class FixtureComponent extends Component {
                 Cell:props=>{
                     return(
                         <div>
-                       <button onClick={() => this.deleteFixtureClicked(props.original.fixture_id)}>Delete</button>
+                       <button onClick={() => this.openAlertBox(props.original.fixture_id,props.original.description)}>Delete</button>
                         </div>
                 )
         
@@ -345,7 +389,7 @@ class FixtureComponent extends Component {
             Header: 'Update',  
             Cell:props=>{
                 return(
-                    <button  onClick={() => this.updateFixtureClicked(props.original.fixture_id)} >Update</button>
+                    <button  onClick={() => this.openEditBox(props.original.fixture_id,props.original.description)} >Update</button>
             )
     
             } ,
@@ -382,6 +426,95 @@ class FixtureComponent extends Component {
                      ></ReactTable>
  
                 </div>
+        <Dialog
+          open={this.state.open2}
+          TransitionComponent={Transition}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            <span
+              style={{
+                fontFamily: "HelveticaforTargetBold,Arial",
+                color: "#646566",
+                fontWeight: "bolder"
+              }}
+            >
+            Update the fixture {this.state.update_desc}?
+            </span>
+          </DialogTitle>
+
+          <br />
+
+          <DialogContent>
+            
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.setState({ open2:false });
+                this.updateFixtureClicked(this.state.update_id);
+              }}
+              variant="outlined"
+            >
+            Yes
+            </Button>
+            <Button
+             onClick={() => {
+                this.setState({ open2: false});
+              }}
+              variant="outlined"
+            >
+            No
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+
+
+        <Dialog
+          open={this.state.open1}
+          TransitionComponent={Transition}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            <span
+              style={{
+                fontFamily: "HelveticaforTargetBold,Arial",
+                color: "#646566",
+                fontWeight: "bolder"
+              }}
+            >
+            Delete the fixture {this.state.desc}?
+            </span>
+          </DialogTitle>
+
+          <DialogContent>
+          You won’t be able to undo the action.
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.setState({ open1:false });
+                this.deleteFixtureClicked(this.state.delete_id,this.state.desc);
+              }}
+              variant="outlined"
+            >
+            Yes
+            </Button>
+            <Button
+             onClick={() => {
+                this.setState({ open1: false});
+              }}
+              variant="outlined"
+            >
+            No
+            </Button>
+          </DialogActions>
+        </Dialog>
    
            
             </div>
