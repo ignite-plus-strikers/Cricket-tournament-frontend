@@ -1,10 +1,33 @@
 import React, { Component } from 'react'
 import '../App.css';
+import AdminDashboardService from './AdminDashboardService'
  
 class AdminDashboard extends Component {
+ 
+ constructor(props){
+      super(props)
+      this.state = {
+        counterdata : []
+      }
+      this.countCardDisplay = this.countCardDisplay.bind(this)
+ }
+ 
+    componentDidMount(){
+      this.countCardDisplay();
+    }
+
+    countCardDisplay(){
+      AdminDashboardService.retrieveCounters()
+      .then(
+        response => {
+            console.log(response);
+            this.setState({ counterdata : response.data })
+        }
+    )
+    }
+ 
   render(){
   return (
- 
     <div>
       <div class = "container2">
         <div class="sidenav">
@@ -20,10 +43,16 @@ class AdminDashboard extends Component {
           Backbone
           <hr></hr>
         </div>
+        <div>
+       {
+         this.state.counterdata.map(
+           counter =>
         <div class="row">
+        
           <div class="card">
             <div id="card-header1">
-              <p>55794<br></br>Total Players!</p>
+
+              <p>{counter.playersCounter}<br></br>Total Players!</p>
             </div>
             <div>
               <div class="card-body">
@@ -33,7 +62,8 @@ class AdminDashboard extends Component {
           </div>
           <div class="card">
             <div id="card-header2">
-              <p>1474<br></br>Total Teams!</p>
+
+              <p>{counter.teamsCounter}<br></br>Total Teams!</p>
             </div>
             <div>
               <div class="card-body">
@@ -43,7 +73,7 @@ class AdminDashboard extends Component {
           </div>
           <div class="card">
             <div id="card-header3">
-              <p>2306<br></br>Total Series!</p>
+              <p>{counter.seriesCounter}<br></br>Total Series!</p>
             </div>
             <div>
               <div class="card-body">
@@ -53,15 +83,19 @@ class AdminDashboard extends Component {
           </div>
           <div class="card">
             <div id="card-header4">
-              <p>415<br></br>Upcoming Fixtures</p>
+              <p>{counter.fixturesCounter}<br></br>Upcoming Fixtures</p>
             </div>
             <div>
               <div class="card-body">
               <a href="/admin/dashboard/FixtureDisplay" class="btn">View Details</a>
               </div>
             </div>
-          </div>          
+          </div>
+            
         </div>
+         )
+       }
+          </div>
       </div>
       <div id="lefttable">
       <table class="ui single line table">
