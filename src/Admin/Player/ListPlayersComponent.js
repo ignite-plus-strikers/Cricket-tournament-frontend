@@ -65,7 +65,18 @@ class ListPlayersComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }
+              },Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
             },{  
             Header: 'Last name',  
             accessor: 'last_name',
@@ -78,7 +89,18 @@ class ListPlayersComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              } 
+              } , Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
             },{  
             Header: 'Player initials',  
             accessor: 'player_initials',
@@ -91,36 +113,215 @@ class ListPlayersComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }  
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },{  
             Header: 'Gender',  
-            accessor: 'gender'  
+            accessor: 'gender',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },{  
             Header: 'Date of birth',  
-            accessor: 'player_dob'  
+            accessor: 'player_dob',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },{  
             Header: 'Category',  
-            accessor: 'category'
+            accessor: 'category',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
          
             },{  
             Header: 'Nationality',  
-            accessor: 'nationality'
+            accessor: 'nationality',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
         
             },{  
             Header: 'Batting style',  
-            accessor: 'player_batting_style'
+            accessor: 'player_batting_style',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
             
             },{  
             Header: 'Bowling style',  
-            accessor: 'player_bowling_style'
+            accessor: 'player_bowling_style',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
                 
             },{  
             Header: 'Player role',  
-            accessor: 'player_role'
+            accessor: 'player_role',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
                     
             },{  
             Header: 'Player status',  
-            accessor: 'player_status'
+            accessor: 'player_status',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
                         
             },{  
                 Header: 'Delete',  
@@ -168,10 +369,11 @@ class ListPlayersComponent extends Component {
                      </div>
                     
                     <ReactTable
+                    className="MyReactTableClass"
                      columns={columns}
                      data={this.state.players}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      ></ReactTable>
  
 

@@ -117,10 +117,11 @@ class ShowTeams extends Component {
                 <div className = "seriesdetails">
                
                 <ReactTable
+                className="MyReactTableClass"
                      columns={columns}
                      data={this.state.series_teams}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      ></ReactTable>
 
            

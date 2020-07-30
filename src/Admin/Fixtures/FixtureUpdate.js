@@ -213,6 +213,8 @@ class FixtureUpdate extends Component {
                                     <label>Match Type</label>
                                     <Field as="select" name="match_type">
                                     <option value="National">National</option>
+                                    <option value="Regional">Regional</option>
+                                    <option value="Zonal">Zonal</option>
                                     <option value="International">International</option>
                                     <option value="Friendly match">Friendly match</option>
                                     </Field><br></br><br></br>

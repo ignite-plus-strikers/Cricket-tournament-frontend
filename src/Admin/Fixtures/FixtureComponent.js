@@ -4,6 +4,7 @@ import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
 
 
+
 class FixtureComponent extends Component {
  
     constructor(props) {
@@ -53,6 +54,8 @@ class FixtureComponent extends Component {
         this.props.history.push(`/admin/dashboard/FixtureAddForm`)
     }
     render() {
+        
+
         const columns = [{  
             Header: 'Team 1',
             accessor: 'team1',
@@ -65,7 +68,18 @@ class FixtureComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },{  
             Header: 'Team 2',  
             accessor: 'team2',
@@ -78,7 +92,18 @@ class FixtureComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              } 
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )     
             },{  
             Header: 'Home town',  
             accessor: 'home_team',
@@ -91,42 +116,223 @@ class FixtureComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }  
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )     
             },{  
             Header: 'Series',  
-            accessor: 'series_name'  
+            accessor: 'series_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )      
             },{  
             Header: 'Match type',  
-            accessor: 'match_type'  
+            accessor: 'match_type',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )      
             },{  
             Header: 'Description',  
-            accessor: 'description'
+            accessor: 'description',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
          
             },{  
             Header: 'Match date & time',  
-            accessor: 'fixture_date_time'
+            accessor: 'fixture_date_time',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
         
             },{  
             Header: 'GMT offset',  
-            accessor: 'gmt_offset'
+            accessor: 'gmt_offset',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             
             },{  
             Header: 'Venue',  
-            accessor: 'venue'
+            accessor: 'venue',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
                 
             },{  
             Header: 'Live coverage',  
-            accessor: 'live_coverage'
+            accessor: 'live_coverage',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
                     
             },{  
             Header: 'Scorer',  
-            accessor: 'scorer_name'
+            accessor: 'scorer_name',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
                         
             },{  
                 Header: 'Delete',  
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.deleteFixtureClicked(props.original.fixture_id)}>Delete</button>
+                        <div>
+                       <button onClick={() => this.deleteFixtureClicked(props.original.fixture_id)}>Delete</button>
+                        </div>
                 )
         
                 } ,
@@ -168,10 +374,11 @@ class FixtureComponent extends Component {
                      </div>
                     
                      <ReactTable
+                     className="MyReactTableClass"
                      columns={columns}
                      data={this.state.fixtures}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      ></ReactTable>
  
                 </div>

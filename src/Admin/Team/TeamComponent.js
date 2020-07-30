@@ -75,7 +75,19 @@ class TeamComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }
+              },
+              Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )
             },{  
             Header: 'State',  
             accessor: 'tstate',
@@ -88,7 +100,18 @@ class TeamComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              } 
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )
             },{  
             Header: 'Country',  
             accessor: 'tcountry',
@@ -101,7 +124,18 @@ class TeamComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }  
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )  
             },
                 
            {  
@@ -175,10 +209,11 @@ class TeamComponent extends Component {
                         <button className="btn newBtn" onClick={this.addTeamClicked}>New</button>
                      </div>
                      <ReactTable
+                     className="MyReactTableClass"
                      columns={columns}
                      data={this.state.teams}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      ></ReactTable>
                 </div>
    

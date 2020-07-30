@@ -150,10 +150,11 @@ class ShowPlayer extends Component {
                     
                 
                 <ReactTable
+                className="MyReactTableClass"
                      columns={columns}
                      data={this.state.teamplayers}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      ></ReactTable>
 
                 </div>

@@ -56,7 +56,18 @@ class RefereeComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )       
             },{  
             Header: 'Middle Name',  
             accessor: 'middle_name',
@@ -69,7 +80,18 @@ class RefereeComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              } 
+              } , Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )       
             },{  
             Header: 'Last Name',  
             accessor: 'last_name',
@@ -82,20 +104,113 @@ class RefereeComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }  
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )         
             },{  
             Header: 'City',  
-            accessor: 'city'  
+            accessor: 'city',
+            filterMethod: (filter, row) => {
+              var v = row[filter.id]
+                .toString()
+                .toUpperCase()
+                .search(filter.value.toUpperCase());
+              // row[filter.id].toString().startsWith(filter.value)
+              if (v >= 0) {
+                return true;
+              } else return false;
+            }, Filter: ({filter, onChange}) => (
+              <input
+              placeholder="Search"
+                onChange={event => onChange(event.target.value)}
+                value={filter ? filter.value : ''}
+                style={{
+                  width: '100%',
+                  backgroundColor: '#DCDCDC',
+                  color: 'black',
+                }}
+              />
+            )        
             },{  
             Header: 'Nationality',  
-            accessor: 'nationality'  
+            accessor: 'nationality', filterMethod: (filter, row) => {
+              var v = row[filter.id]
+                .toString()
+                .toUpperCase()
+                .search(filter.value.toUpperCase());
+              // row[filter.id].toString().startsWith(filter.value)
+              if (v >= 0) {
+                return true;
+              } else return false;
+            }, Filter: ({filter, onChange}) => (
+              <input
+              placeholder="Search"
+                onChange={event => onChange(event.target.value)}
+                value={filter ? filter.value : ''}
+                style={{
+                  width: '100%',
+                  backgroundColor: '#DCDCDC',
+                  color: 'black',
+                }}
+              />
+            )        
             },{  
             Header: 'Matches Refereed',  
-            accessor: 'matches_refereed'
+            accessor: 'matches_refereed', filterMethod: (filter, row) => {
+              var v = row[filter.id]
+                .toString()
+                .toUpperCase()
+                .search(filter.value.toUpperCase());
+              // row[filter.id].toString().startsWith(filter.value)
+              if (v >= 0) {
+                return true;
+              } else return false;
+            }, Filter: ({filter, onChange}) => (
+              <input
+              placeholder="Search"
+                onChange={event => onChange(event.target.value)}
+                value={filter ? filter.value : ''}
+                style={{
+                  width: '100%',
+                  backgroundColor: '#DCDCDC',
+                  color: 'black',
+                }}
+              />
+            )      
          
             },{  
             Header: 'Experience',  
-            accessor: 'experience'
+            accessor: 'experience',
+            filterMethod: (filter, row) => {
+              var v = row[filter.id]
+                .toString()
+                .toUpperCase()
+                .search(filter.value.toUpperCase());
+              // row[filter.id].toString().startsWith(filter.value)
+              if (v >= 0) {
+                return true;
+              } else return false;
+            }, Filter: ({filter, onChange}) => (
+              <input
+              placeholder="Search"
+                onChange={event => onChange(event.target.value)}
+                value={filter ? filter.value : ''}
+                style={{
+                  width: '100%',
+                  backgroundColor: '#DCDCDC',
+                  color: 'black',
+                }}
+              />
+            )      
         
             },{  
             Header: 'Update',  
@@ -129,10 +244,11 @@ class RefereeComponent extends Component {
                         <button className="btn newBtn" onClick={this.addRefereeClicked}>New</button>
                      </div>
                      <ReactTable
+                     className="MyReactTableClass"
                      columns={columns}
                      data={this.state.referees}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      ></ReactTable>
 
                 </div>

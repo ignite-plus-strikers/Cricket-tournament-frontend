@@ -129,24 +129,28 @@ class SeriesForm extends Component {
                                     <Field as="select" name="host1">
                                         <option value="India">India</option>
                                         <option value="Austria">Austria</option>
+                                        <option value="UNKWN">UNKWN</option>
                                     </Field><br></br><br></br>
 
                                     <label>Host Country 2</label>
                                     <Field as="select" name="host2">
                                         <option value="Argentina">Argentina</option>
                                         <option value="Spain">Spain</option>
+                                        <option value="UNKWN">UNKWN</option>
                                     </Field><br></br><br></br>
 
                                     <label>Host Country 3</label>
                                     <Field as="select" name="host3">
                                         <option value="Mexico">Mexico</option>
                                         <option value="South Africa">South Africa</option>
+                                        <option value="UNKWN">UNKWN</option>
                                     </Field><br></br><br></br>
 
                                     <label>Host Country 4</label>
                                     <Field as="select" name="host4">
                                         <option value="New Zealand">New Zealand</option>
                                         <option value="Brazil">Brazil</option>
+                                        <option value="UNKWN">UNKWN</option>
                                     </Field><br></br><br></br>
 
                                     

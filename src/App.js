@@ -29,6 +29,7 @@ import RefereeComponent from './Admin/Referee/RefereeComponent';
 import RefereeUpdate from './Admin/Referee/RefereeUpdate';
 import RefereeForm from './Admin/Referee/RefereeForm';
 import FixtureUpdate from './Admin/Fixtures/FixtureUpdate';
+import Test from './Test';
 
 
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/admin/dashboard/Referee/:id" component={RefereeUpdate} /> 
         <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
+        <Route exact path="/test" component={Test} />
        
        
         </Router>

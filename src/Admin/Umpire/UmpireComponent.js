@@ -60,7 +60,18 @@ class UmpireComponent extends Component {
             if (v >= 0) {
               return true;
             } else return false;
-          }
+          }, Filter: ({filter, onChange}) => (
+            <input
+            placeholder="Search"
+              onChange={event => onChange(event.target.value)}
+              value={filter ? filter.value : ''}
+              style={{
+                width: '100%',
+                backgroundColor: '#DCDCDC',
+                color: 'black',
+              }}
+            />
+          )    
         },{  
         Header: 'Middle Name',  
         accessor: 'middle_name',
@@ -73,7 +84,18 @@ class UmpireComponent extends Component {
             if (v >= 0) {
               return true;
             } else return false;
-          }  
+          } , Filter: ({filter, onChange}) => (
+            <input
+            placeholder="Search"
+              onChange={event => onChange(event.target.value)}
+              value={filter ? filter.value : ''}
+              style={{
+                width: '100%',
+                backgroundColor: '#DCDCDC',
+                color: 'black',
+              }}
+            />
+          )     
         },{  
         Header: 'Last Name',  
         accessor: 'last_name',
@@ -86,20 +108,112 @@ class UmpireComponent extends Component {
             if (v >= 0) {
               return true;
             } else return false;
-          } 
+          }, Filter: ({filter, onChange}) => (
+            <input
+            placeholder="Search"
+              onChange={event => onChange(event.target.value)}
+              value={filter ? filter.value : ''}
+              style={{
+                width: '100%',
+                backgroundColor: '#DCDCDC',
+                color: 'black',
+              }}
+            />
+          )    
         },{  
         Header: 'City',  
-        accessor: 'city'  
+        accessor: 'city',
+        filterMethod: (filter, row) => {
+          var v = row[filter.id]
+            .toString()
+            .toUpperCase()
+            .search(filter.value.toUpperCase());
+          // row[filter.id].toString().startsWith(filter.value)
+          if (v >= 0) {
+            return true;
+          } else return false;
+        }, Filter: ({filter, onChange}) => (
+          <input
+          placeholder="Search"
+            onChange={event => onChange(event.target.value)}
+            value={filter ? filter.value : ''}
+            style={{
+              width: '100%',
+              backgroundColor: '#DCDCDC',
+              color: 'black',
+            }}
+          />
+        )      
         },{  
         Header: 'Nationality',  
-        accessor: 'nationality'  
+        accessor: 'nationality',filterMethod: (filter, row) => {
+          var v = row[filter.id]
+            .toString()
+            .toUpperCase()
+            .search(filter.value.toUpperCase());
+          // row[filter.id].toString().startsWith(filter.value)
+          if (v >= 0) {
+            return true;
+          } else return false;
+        }, Filter: ({filter, onChange}) => (
+          <input
+          placeholder="Search"
+            onChange={event => onChange(event.target.value)}
+            value={filter ? filter.value : ''}
+            style={{
+              width: '100%',
+              backgroundColor: '#DCDCDC',
+              color: 'black',
+            }}
+          />
+        )      
         },{  
         Header: 'Matches Umpired',  
-        accessor: 'matches_umpired'
+        accessor: 'matches_umpired',filterMethod: (filter, row) => {
+          var v = row[filter.id]
+            .toString()
+            .toUpperCase()
+            .search(filter.value.toUpperCase());
+          // row[filter.id].toString().startsWith(filter.value)
+          if (v >= 0) {
+            return true;
+          } else return false;
+        }, Filter: ({filter, onChange}) => (
+          <input
+          placeholder="Search"
+            onChange={event => onChange(event.target.value)}
+            value={filter ? filter.value : ''}
+            style={{
+              width: '100%',
+              backgroundColor: '#DCDCDC',
+              color: 'black',
+            }}
+          />
+        )    
      
         },{  
         Header: 'Accuracy %',  
-        accessor: 'accuracy_percentage'
+        accessor: 'accuracy_percentage',filterMethod: (filter, row) => {
+          var v = row[filter.id]
+            .toString()
+            .toUpperCase()
+            .search(filter.value.toUpperCase());
+          // row[filter.id].toString().startsWith(filter.value)
+          if (v >= 0) {
+            return true;
+          } else return false;
+        }, Filter: ({filter, onChange}) => (
+          <input
+          placeholder="Search"
+            onChange={event => onChange(event.target.value)}
+            value={filter ? filter.value : ''}
+            style={{
+              width: '100%',
+              backgroundColor: '#DCDCDC',
+              color: 'black',
+            }}
+          />
+        )    
     
         },{  
         Header: 'Update',  
@@ -133,10 +247,11 @@ class UmpireComponent extends Component {
                         <button className="btn newBtn" onClick={this.addUmpireClicked}>New</button>
                      </div>
                     <ReactTable
+                    className="MyReactTableClass"
                      columns={columns}
                      data={this.state.umpires}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      >
 
                      </ReactTable>

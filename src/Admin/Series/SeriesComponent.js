@@ -74,7 +74,18 @@ class SeriesComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },{  
             Header: 'Series short name',  
             accessor: 'series_short_name',
@@ -87,7 +98,18 @@ class SeriesComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              } 
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },{  
             Header: 'Series type',  
             accessor: 'series_type',
@@ -100,41 +122,242 @@ class SeriesComponent extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }  
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },{  
             Header: 'Start date',  
-            accessor: 'series_start_date'  
+            accessor: 'series_start_date',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )      
             },{  
             Header: 'End date',  
-            accessor: 'series_end_date'  
+            accessor: 'series_end_date',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )      
             },{  
             Header: 'Tournament',  
-            accessor: 'tournament'
+            accessor: 'tournament',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
          
             },{  
             Header: 'Host 1',  
-            accessor: 'host_country[0]'
+            accessor: 'host_country[0]',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
         
             },{  
             Header: 'Host 2 ',  
-            accessor: 'host_country[1]'
+            accessor: 'host_country[1]',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             
             },{  
             Header: 'Host 3',  
-            accessor: 'host_country[2]'
+            accessor: 'host_country[2]',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
                 
             },{  
             Header: 'Host 4',  
-            accessor: 'host_country[3]'
+            accessor: 'host_country[3]',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
                     
             },{  
+            id:'points_table_active',    
             Header: 'Points table',  
-            accessor: 'points_table_active'.toString()
+            accessor: value=>{return value.points_table_active?'Yes':'No'},
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
                         
             },
             {  
             Header: 'Series points',  
-            accessor: 'series_points'
+            accessor: 'series_points',
+            filterMethod: (filter, row) => {
+                var v = row[filter.id]
+                  .toString()
+                  .toUpperCase()
+                  .search(filter.value.toUpperCase());
+                // row[filter.id].toString().startsWith(filter.value)
+                if (v >= 0) {
+                  return true;
+                } else return false;
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
                             
             },{  
                 Header: 'Add team',  
@@ -201,17 +424,18 @@ class SeriesComponent extends Component {
                 <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
                 <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
                 </div>
-                <div className = "playerdetails">
+                <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button class="btn newBtn" onClick={this.addSeriesClicked}>New</button>
                      </div>
                    
                      <ReactTable
+                     className="MyReactTableClass"
                      columns={columns}
                      data={this.state.Series}
                      filterable
-                     defaultPageSize={5}
+                     defaultPageSize={10}
                      ></ReactTable>
  
  
