@@ -600,8 +600,8 @@ class ListPlayersComponent extends Component {
 
           <DialogContent>
          
-          <Paper  style={{width:"500px",height:"580px",paddingLeft:"2%",paddingRight:"0%",paddingTop:"1%"}}>
-        <center><h3>Add new Player</h3></center>  
+          <Paper  style={{width:"500px",height:"570px",paddingLeft:"2%",paddingRight:"0%",paddingTop:"1%"}}>
+        <center><h3>Player</h3></center>  
         <TextField
         style={{width:"45%"}}
           id="outlined-simple-start-adornment"
@@ -799,7 +799,7 @@ class ListPlayersComponent extends Component {
       <center><Button variant="contained" style={{width:"150px"}} className={classes.button}  onClick={this.handleSubmit}>
         Create
       </Button></center>  
-        <br></br><br></br> <br></br><br></br>
+        
        
         </Paper>
               
@@ -830,8 +830,8 @@ class ListPlayersComponent extends Component {
          
 
           <DialogContent>
-          <Paper  style={{width:"500px",height:"580px",paddingLeft:"2%",paddingRight:"0%",paddingTop:"1%"}}>
-        <center><h3>Add new Player</h3></center>  
+          <Paper  style={{width:"500px",height:"570px",paddingLeft:"2%",paddingRight:"0%",paddingTop:"1%"}}>
+        <center><h3>Player</h3></center>  
         <TextField
         style={{width:"45%"}}
           id="outlined-simple-start-adornment"
@@ -1035,7 +1035,7 @@ class ListPlayersComponent extends Component {
       <center><Button variant="contained" style={{width:"150px"}} className={classes.button}  onClick={this.handleUpdate}>
         Update
       </Button></center>  
-        <br></br><br></br> <br></br><br></br>
+        
        
         </Paper>
 
