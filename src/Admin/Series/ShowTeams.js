@@ -75,7 +75,18 @@ class ShowTeams extends Component {
                 if (v >= 0) {
                   return true;
                 } else return false;
-              }
+              }, Filter: ({filter, onChange}) => (
+                <input
+                placeholder="Search"
+                  onChange={event => onChange(event.target.value)}
+                  value={filter ? filter.value : ''}
+                  style={{
+                    width: '100%',
+                    backgroundColor: '#DCDCDC',
+                    color: 'black',
+                  }}
+                />
+              )    
             },
            {  
                 Header: 'Delete',  

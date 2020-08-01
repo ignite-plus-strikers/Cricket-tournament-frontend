@@ -515,7 +515,10 @@ class FixtureComponent extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-   
+
+
+
+       
            
             </div>
         )
