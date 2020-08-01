@@ -1,23 +1,12 @@
 import React from "react";
- 
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
- 
-import FixtureDataService from './Service/FixtureDataService';
-import TeamDataService from '../Team/Service/TeamDataService';
-import SeriesDataService from '../Series/Service/SeriesDataService';
-import ScorerDataService from './Service/ScorerdataService';
-import Input from "@material-ui/core/Input";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import Divider from "@material-ui/core/Divider";
+import Paper from "@material-ui/core/Paper"
+import Button from '@material-ui/core/Button';
  
 const styles = theme => ({
   root: {
@@ -34,481 +23,311 @@ const styles = theme => ({
     width: "100%",
     maxWidth: "300px",
     position: "fixed"
-  }
+  },
+  toolbar: theme.mixins.toolbar,
+  drawerPaper: {
+  
+    width: "50%",
+    drawerWidth: "50%"
+    },
 });
  
-const Team1 = [
+const Gender = [
   {
-    value: "India",
-    label: "India"
+    value: "Male",
+    label: "Male"
   },
   {
-    value: "England",
-    label: "England"
-  },
-  {
-    value: "Sri Lanka",
-    label: "Sri Lanka"
+    value: "Female",
+    label: "Female"
   }
 ];
-const Team2 = [
+const Visual = [
   {
-    value: "South Africa",
-    label: "South Africa"
+    value: "B1",
+    label: "B1"
   },
   {
-    value: "New Zealand",
-    label: "New Zealand"
+    value: "B2",
+    label: "B2"
   },
   {
-    value: "Austrila",
-    label: "Austrila"
+    value: "B3",
+    label: "B3"
   }
 ];
-const HomeTeam = [
+const Batting = [
   {
-    value: "India",
-    label: "India"
+    value: "Right-Hand Batting",
+    label: "Right-Hand Batting"
   },
   {
-    value: "Austrila",
-    label: "Austrila"
-  }
+    value: "Left-Hand Batting",
+    label: "Left-Hand Batting"
+  },
+ 
 ];
  
-const GameType = [
+const Bowling = [
   {
-    value: "Friendly Match",
-    label: "Friendly Match"
-  }
-];
- 
-const Venue = [
-  {
-    value: "Bangaluru",
-    label: "Bengaluru"
+    value: "Right-Hand Bowling",
+    label: "Right-Hand Bowling"
   },
   {
-    value: "Chenni",
-    label: "Chenni"
-  }
+    value: "Left-Hand Bowling",
+    label: "Left-Hand Bowling"
+  },
+  
 ];
  
-const Series = [
+const State = [
   {
-    value: "Twenty 20",
-    label: "Twenty 20"
+    value: "Retired",
+    label: "Retired"
   },
   {
-    value: "Champion Country Match",
-    label: "Champion Country Match"
+    value: "Playing",
+    label: "Playing"
   }
 ];
- 
-const Scorer = [
-  {
-    value: "Scorer 1",
-    label: "Scorer 1"
-  },
-  {
-    value: "Scorer 2",
-    label: "Scorer 2"
-  }
-];
- 
-const Live = [
-  {
-    value: "Yes",
-    label: "Yes"
-  },
-  {
-    value: "No",
-    label: "No"
-  }
-];
- 
-const formStyle = { width: "100%" };
+const formStyle={width:"100%"}
  
 class OutlinedInputAdornments extends React.Component {
-    constructor(props) {
-        super(props)
- 
-        this.state = {
-           team1:"",
-           team2:"",
-           home_team:"",
-           match_type:"National",
-           venue:"",
-           series_name:"",
-           series_id:"",
-           description:"",
-           fixture_date_time:"",
-           gmt_offset:"",
-           live_coverage:"Yes",
-           scorer_id:"",
-           scorer_name:"",
-           teams:[],
-           series:[],
-           scorers:[]
-        }
-       
-        this.refreshTeams = this.refreshTeams.bind(this)
-        this.refreshSeries = this.refreshSeries.bind(this)
-        this.refreshScorers = this.refreshScorers.bind(this)  
-        
-    }
-    componentDidMount() {
-        this.refreshTeams();
-        this.refreshSeries();
-        this.refreshScorers();
-    }
-    refreshTeams() {
-        TeamDataService.retrieveAllTeams()
-            .then(
-                response => {
-                    console.log(response);
-                    this.setState({ teams: response.data })
-                }
-            )
-            
-    }
-    refreshSeries() {
-        SeriesDataService.retrieveAllSeries()
-            .then(
-                response => {
-                    console.log(response);
-                    this.setState({ series: response.data })
-                }
-            )
-            
-    }
-    refreshScorers() {
-        ScorerDataService.retrieveAllScorers()
-            .then(
-                response => {
-                    console.log(response);
-                    this.setState({ scorers: response.data })
-                }
-            )
-            
-    }
-    
-    
-    
-  /*  onSubmit(values) {
-        let seriesName
-        let scorer_name
-        
- 
-        this.setState({series_id:values.series_id})
-        this.state.series.map(s =>{
-            if(s.series_id===this.state.series_id){
-               seriesName=s.series_short_name
-                }
-        }
-           
-        )
- 
-        this.setState({scorer_id:values.scorer_id})
-        this.state.scorers.map(s =>{
-            if(s.scorer_id===this.state.scorer_id){
-               scorer_name=s.firstname+" "+s.middlename+" "+s.lastname
-                }
-        }  
-           
-        ) 
- 
-        
-        FixtureDataService.createFixture(fixture)
-        .then(() => this.props.history.push('/admin/dashboard/FixtureDisplay'))
-        console.log(fixture);
-        
-    }   */
+  state = {
+    first_name:'',
+            last_name:'',
+            player_initials:'',
+            gender:'Male',
+            player_dob:'',
+            category:'B1',
+            nationality:'',
+            player_batting_style:'right-handed-batsman',
+            player_bowling_style:'left-handed-bowler',
+            player_role:'',
+            player_status:'retired',
+            properDate:"2000-01-01",
+            startDate:new Date("2000-01-01")
+  };
  
   handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value ,
-     
-      
-     });
-    
+    this.setState({ [prop]: event.target.value });
   };
- handleSubmit=() => {
-   /* var fixture={
-      team2:values.team2,
-      
-  }*/
-  alert(this.state.team2 + this.state.team1 + this.state.home_team + this.state.match_type + this.state.description + this.state.scorer_name + this.state.venue + this.state.fixture_date_time + this.state.gmt_offset + this.state.live_coverage)
-  
- 
-  }
-  
- 
  
   render() {
-    
- 
     const { classes } = this.props;
- 
-    
  
     return (
       <div>
-        <div class="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay"><div className="Selected_color">Fixtures</div></a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Team</a><hr></hr>
-                </div>
+        
+        
+      
+        <div className={classes.toolbar} />
+        
+          
+      <div style={{marginLeft:"35%",textAlign:"left",marginTop:"5%"}} >
+        <br></br>
+        <Paper  style={{width:"600px",paddingLeft:"2%",paddingRight:"0%",paddingTop:"1%"}}>
+        <center><h3>Add new Player</h3></center>  
+        <TextField
+        style={{width:"45%"}}
+          id="outlined-simple-start-adornment"
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="First Name"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Name</InputAdornment>
+            )
+          }}
+        />
+      
+        <TextField
+           style={{width:"45%"}}
+          id="outlined-simple-start-adornment"
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Last Name"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Name</InputAdornment>
+            )
+          }}
+        />
  
-          <div
-            style={{ marginLeft: "35%", textAlign: "left", marginTop: "5%" }}
-          >
-            <br />
-            <Paper
-              style={{
-                width: "600px",
-                paddingLeft: "2%",
-                paddingRight: "0%",
-                paddingTop: "1%"
-              }}
-            >
-              <center>
-                <h3>Fixture</h3>
-              </center>
-              
-               
-              
-              <TextField
-                style={{ width: "45%" }}
-                select
-                className={classNames(classes.margin, classes.textField,this.props.textField,this.props.dense)}
-                margin="dense"
-                variant="outlined"
-                label="With Select"
-                value={this.state.team1}
-                onChange={this.handleChange("team1")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Team-1</InputAdornment>
-                  )
-                }}
-              >
-                {Team1.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                style={{ width: "45%" }}
-                select
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="With Select"
-                value={this.state.team2}
-                onChange={this.handleChange("team2")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Team-2</InputAdornment>
-                  )
-                }}
-              >
-                {Team2.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <br />
-              <TextField
-                style={{ width: "45%" }}
-                select
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="With Select"
-                value={this.state.home_team}
-                onChange={this.handleChange("home_team")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Home Team</InputAdornment>
-                  )
-                }}
-              >
-                {HomeTeam.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                style={{ width: "45%" }}
-                select
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="With Select"
-                value={this.state.match_type}
-                onChange={this.handleChange("match_type")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Game Type</InputAdornment>
-                  )
-                }}
-              >
-                {GameType.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <br />
-              <TextField
-                style={{ width: "45%" }}
-                select
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="With Select"
-                value={this.state.venue}
-                onChange={this.handleChange("venue")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Venue</InputAdornment>
-                  )
-                }}
-              >
-                {Venue.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                style={{ width: "45%" }}
-                select
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="With Select"
-                value={this.series_name}
-                onChange={this.handleChange("series_name")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Series</InputAdornment>
-                  )
-                }}
-              >
-                {Series.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <br />
-              <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="Match Description"
-                value={this.description}
-                onChange={this.handleChange("discription")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Match Description
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                onChange={this.handleChange("match_date_team")}
-                variant="outlined"
-                label="Match date and time"
-                type="datetime-local"
-                defaultValue="2017-05-24T10:30"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-              <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="GMT Offset"
-                value= {this.gmt_offset}
-                onChange={this.handleChange("gmt_offset")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">GMT Offset</InputAdornment>
-                  )
-                }}
-              />
-              <TextField
-                style={{ width: "45%" }}
-                select
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="With Select"
-                value={this.state.scorer_name}
-                onChange={this.handleChange("scorer_name")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Scorer</InputAdornment>
-                  )
-                }}
-              >
-                {Scorer.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
-                style={{ width: "93%" }}
-                select
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="With Select"
-                value={this.state.live_coverage}
-                onChange={this.handleChange("live_coverage")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Live Coverage
-                    </InputAdornment>
-                  )
-                }}
-              >
-                {Live.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <br />
-              <br />
-              <center>
-                <Button
-                  variant="contained"
-                  style={{ width: "150px" }}
-                  className={classes.button}
-                  type="submit"
-                  onClick={this.handleSubmit}
-                >
-                  Create
-                  
-                </Button>
-              </center>
-              <br />
-              <br /> <br />
-              <br />
-              
-            </Paper>
-          </div>
-        </div>
+ <br></br>
+        <TextField
+           style={{width:"45%"}}
+          id="outlined-simple-start-adornment"
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Initials"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Initials</InputAdornment>
+            )
+          }}
+        />
+ 
+        <TextField
+            style={{width:"45%"}}
+          select
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Gender"
+          value={this.state.weightRange}
+          onChange={this.handleChange("weightRange")}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Gender</InputAdornment>
+            )
+          }}
+        >
+          {Gender.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+ 
+        <br></br>
+ 
+        <TextField 
+          style={{width:"45%"}}
+          id="outlined-simple-start-adornment"
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Date of Birth"
+          type="date"
+          defaultValue="2009-01-01"
+          InputLabelProps={{
+            shrink: true
+          }}
+        />
+ 
+        <TextField 
+          style={{width:"45%"}} 
+          select
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Visual Classification"
+          value={this.state.weightRange}
+          onChange={this.handleChange("weightRange")}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                Visual Classification
+              </InputAdornment>
+            )
+          }}
+        >
+          {Visual.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br></br>
+        <TextField  
+          style={{width:"45%"}} 
+          id="outlined-simple-start-adornment"
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Nationality"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Nationality</InputAdornment>
+            )
+          }}
+        />
+ 
+        <TextField  
+          style={{width:"45%"}} 
+          select
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Batting style"
+          value={this.state.weightRange}
+          onChange={this.handleChange("weightRange")}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Batting Style</InputAdornment>
+            )
+          }}
+        >
+          {Batting.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br></br>
+        <TextField  
+           style={{width:"45%"}} 
+          select
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Bowling style"
+          value={this.state.weightRange}
+          onChange={this.handleChange("weightRange")}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Bowling Style</InputAdornment>
+            )
+          }}
+        >
+          {Bowling.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+      
+        <TextField  
+           style={{width:"45%"}} 
+          id="outlined-simple-start-adornment"
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Player Role"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Player Role</InputAdornment>
+            )
+          }}
+        />
+ <br></br>
+        <TextField  
+           style={{width:"93%"}} 
+          select
+          className={classNames(classes.margin, classes.textField)}
+          variant="outlined"
+          label="Player status"
+          value={this.state.weightRange}
+          onChange={this.handleChange("weightRange")}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">Player Status</InputAdornment>
+            )
+          }}
+        >
+          {State.map(option => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+        <br></br><br></br>
+      <center><Button variant="contained" style={{width:"150px"}} className={classes.button}>
+        Create
+      </Button></center>  
+        <br></br><br></br> <br></br><br></br>
+       
+        </Paper>
+
+
+
+      </div>
+      
+      </div> 
     );
   }
 }
@@ -518,5 +337,6 @@ OutlinedInputAdornments.propTypes = {
 };
  
 export default withStyles(styles)(OutlinedInputAdornments);
+
  
 
