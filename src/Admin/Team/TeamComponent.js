@@ -330,7 +330,7 @@ class TeamComponent extends Component {
                 <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
                 <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
                 </div>
-                <div className = "playerdetails">
+                <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button className="btn newBtn" onClick={this.openAddForm}>New</button>

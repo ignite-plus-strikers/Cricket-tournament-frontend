@@ -380,7 +380,7 @@ class RefereeComponent extends Component {
                 <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
                 <a href="/admin/dashboard/RefereeDisplay"><div className="Selected_color">Match Referee</div></a><hr></hr>
                 </div>
-                <div className = "playerdetails">
+                <div className = "p_details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button className="btn newBtn" onClick={this.openAddForm}>New</button>
