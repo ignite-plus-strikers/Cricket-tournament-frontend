@@ -1,4 +1,5 @@
-import React from "react";
+/*import React from "react";
+ 
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -7,8 +8,12 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+ 
+import FixtureDataService from './Service/FixtureDataService';
+import TeamDataService from '../Team/Service/TeamDataService';
+import SeriesDataService from '../Series/Service/SeriesDataService';
+import ScorerDataService from './Service/ScorerdataService';
+import Input from "@material-ui/core/Input";
  
 const styles = theme => ({
   root: {
@@ -28,56 +33,142 @@ const styles = theme => ({
   }
 });
  
-const formStyle = { width: "100%" };
+
+
+
  
-const Tournament = [
-  {
-    value: "A-Limited Overs International",
-    label: "A-Limited Overs International"
-  },
+const GameType = [
   {
     value: "National",
     label: "National"
-  }
-];
-const SeriesType = [
-  {
-    value: "First Class",
-    label: "First Class"
   },
   {
-    value: "Second class",
-    label: "Second class"
+    value: "Regional",
+    label: "Regional"
+  },
+  {
+    value: "Zonal",
+    label: "Zonal"
+  },
+  {
+    value: "International",
+    label: "International"
+  },
+  {
+    value: "Friendly match",
+    label: "Friendly match"
   }
 ];
+ 
 
+const Live = [
+  {
+    value: "Yes",
+    label: "Yes"
+  },
+  {
+    value: "No",
+    label: "No"
+  }
+];
+ 
+const formStyle = { width: "100%" };
  
 class OutlinedInputAdornments extends React.Component {
-  state = {
-    series_name: "",
-    series_short_name: "",
-    series_start_date: "",
-    series_end_date: "",
-    tournament: "A-Limited Overs International",
-    series_type: "First Class",
-    host1: "India",
-    host2: "Argentina",
-    host3: "Mexico",
-    host4: "New Zealand",
-    points_table_active: false,
-    series_points: ""
-  };
+    constructor(props) {
+        super(props)
+ 
+        this.state = {
+           team1:"",
+           team2:"",
+           home_team:"",
+           match_type:"National",
+           venue:"",
+           series_name:"",
+           series_id:"",
+           description:"",
+           fixture_date_time:"",
+           gmt_offset:"",
+           live_coverage:"Yes",
+           scorer_id:"",
+           scorer_name:"",
+           teams:[],
+           series:[],
+           scorers:[]
+        }
+       
+        this.refreshTeams = this.refreshTeams.bind(this)
+        this.refreshSeries = this.refreshSeries.bind(this)
+        this.refreshScorers = this.refreshScorers.bind(this)  
+        
+    }
+    componentDidMount() {
+        this.refreshTeams();
+        this.refreshSeries();
+        this.refreshScorers();
+    }
+    refreshTeams() {
+        TeamDataService.retrieveAllTeams()
+            .then(
+                response => {
+                    console.log(response);
+                    this.setState({ teams: response.data })
+                }
+            )
+            
+    }
+    refreshSeries() {
+        SeriesDataService.retrieveAllSeries()
+            .then(
+                response => {
+                    console.log(response);
+                    this.setState({ series: response.data })
+                }
+            )
+            
+    }
+    refreshScorers() {
+        ScorerDataService.retrieveAllScorers()
+            .then(
+                response => {
+                    console.log(response);
+                    this.setState({ scorers: response.data })
+                }
+            )
+            
+    }
+    
+    
+    
+ 
  
   handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
+    this.setState({ [prop]: event.target.value ,
+     
+      
+     });
+    
   };
  
+  
+ 
+ 
   render() {
+    
+ 
     const { classes } = this.props;
+ 
+    
  
     return (
       <div>
-          
+        <div class="sidenav">
+                <a href="/admin/dashboard">Dashboard</a><hr></hr>
+                <a href="/admin/dashboard/FixtureDisplay"><div className="Selected_color">Fixtures</div></a><hr></hr>
+                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
+                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
+                <a href="/admin/dashboard/PlayerDisplay">Team</a><hr></hr>
+                </div>
  
           <div
             style={{ marginLeft: "35%", textAlign: "left", marginTop: "5%" }}
@@ -92,75 +183,27 @@ class OutlinedInputAdornments extends React.Component {
               }}
             >
               <center>
-                <h3>Series</h3>
+                <h3>Fixture</h3>
               </center>
-              <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="Series Name"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                    Series
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="Series Short Name"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Short Name
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <br />
-              <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="Series Start Date"
-                type="date"
-                
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-              <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="Series End Date"
-                type="date"
-                
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
+              
+               
+              
               <TextField
                 style={{ width: "45%" }}
                 select
                 className={classNames(classes.margin, classes.textField)}
+                
                 variant="outlined"
-                label="Tournament"
-                onChange={this.handleChange("tournament")}
+                label="Team-1"
+                value={this.state.team1}
+                onChange={this.handleChange("team1")}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">Tournament</InputAdornment>
+                    <InputAdornment position="start">Team-1</InputAdornment>
                   )
                 }}
               >
-                {Tournament.map(option => (
+                {Team1.map(option => (
                   <MenuItem key={option.value} value={option.value}>
                     {option.label}
                   </MenuItem>
@@ -171,17 +214,98 @@ class OutlinedInputAdornments extends React.Component {
                 select
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="Series Type"
-                onChange={this.handleChange("series_type")}
+                label="Team-2"
+                value={this.state.team2}
+                onChange={this.handleChange("team2")}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">
-                      Series Type
-                    </InputAdornment>
+                    <InputAdornment position="start">Team-2</InputAdornment>
                   )
                 }}
               >
-                {SeriesType.map(option => (
+                {Team2.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <br />
+              <TextField
+                style={{ width: "45%" }}
+                select
+                className={classNames(classes.margin, classes.textField)}
+                variant="outlined"
+                label="Home Team"
+                value={this.state.home_team}
+                onChange={this.handleChange("home_team")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Home Team</InputAdornment>
+                  )
+                }}
+              >
+                {HomeTeam.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                style={{ width: "45%" }}
+                select
+                className={classNames(classes.margin, classes.textField)}
+                variant="outlined"
+                label="Match Type"
+                value={this.state.match_type}
+                onChange={this.handleChange("match_type")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start"> Match Type</InputAdornment>
+                  )
+                }}
+              >
+                {GameType.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <br />
+              <TextField
+                style={{ width: "45%" }}
+                select
+                className={classNames(classes.margin, classes.textField)}
+                variant="outlined"
+                label="Venue"
+                value={this.state.venue}
+                onChange={this.handleChange("venue")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Venue</InputAdornment>
+                  )
+                }}
+              >
+                {Venue.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                style={{ width: "45%" }}
+                select
+                className={classNames(classes.margin, classes.textField)}
+                variant="outlined"
+                label="Series"
+                value={this.series_name}
+                onChange={this.handleChange("series_name")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Series</InputAdornment>
+                  )
+                }}
+              >
+                {Series.map(option => (
                   <MenuItem key={option.value} value={option.value}>
                     {option.label}
                   </MenuItem>
@@ -193,11 +317,13 @@ class OutlinedInputAdornments extends React.Component {
                 id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="Host country 1"
+                label="Match Description"
+                value={this.description}
+                onChange={this.handleChange("description")}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                    Host 1
+                  Description
                     </InputAdornment>
                   )
                 }}
@@ -206,75 +332,87 @@ class OutlinedInputAdornments extends React.Component {
                 style={{ width: "45%" }}
                 id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
+                onChange={this.handleChange("fixture_date")}
                 variant="outlined"
-                label="Host country 2"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Host 2
-                    </InputAdornment>
-                  )
+                label="Match date"
+                type="date"
+               
+                InputLabelProps={{
+                  shrink: true
                 }}
               />
-              <br />
-              <TextField
-                autoComplete='off'
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="Host country 3"
-                
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Host 3
-                    </InputAdornment>
-                  )
-                }}
-              />
-               <TextField
-                style={{ width: "45%" }}
-                id="outlined-simple-start-adornment"
-                className={classNames(classes.margin, classes.textField)}
-                variant="outlined"
-                label="Host country 4"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Host 4
-                    </InputAdornment>
-                  )
-                }}
-              />
-              <br />
+ 
+            <TextField
+            style={{ width: "45%" }}
+            id="outlined-simple-start-adornment"
+            className={classNames(classes.margin, classes.textField)}
+            label="Match time"
+            type="time"
+            defaultValue="00:00"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            inputProps={{
+              step: 300 // 5 min
+            }}
+          />
+ 
               <TextField
                 style={{ width: "45%" }}
                 id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="Series Points"
-                type="number"
+                label="GMT Offset"
+                value= {this.gmt_offset}
+                onChange={this.handleChange("gmt_offset")}
                 InputProps={{
                   startAdornment: (
-                    <InputAdornment position="start">
-                      Series Points
-                    </InputAdornment>
+                    <InputAdornment position="start">GMT Offset</InputAdornment>
                   )
                 }}
               />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    style={{ width: "25%" }}
-                    onChange={this.handleChange}
-                    className={classNames(classes.margin)}
-                    name="checkedB"
-                    color="primary"
-                  />
-                }
-                label="Points Table"
-              />
+              <TextField
+                style={{ width: "45%" }}
+                select
+                className={classNames(classes.margin, classes.textField)}
+                variant="outlined"
+                label="Scorer"
+                value={this.state.scorer_name}
+                onChange={this.handleChange("scorer_name")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Scorer</InputAdornment>
+                  )
+                }}
+              >
+                {Scorer.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+              <TextField
+                style={{ width: "45%" }}
+                select
+                className={classNames(classes.margin, classes.textField)}
+                variant="outlined"
+                label="Live coverage"
+                onChange={this.handleChange("live_coverage")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      Live Coverage
+                    </InputAdornment>
+                  )
+                }}
+              >
+                {Live.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
               <br />
               <br />
               <center>
@@ -282,17 +420,20 @@ class OutlinedInputAdornments extends React.Component {
                   variant="contained"
                   style={{ width: "150px" }}
                   className={classes.button}
+                  type="submit"
+                  onClick={this.handleSubmit}
                 >
                   Create
+                  
                 </Button>
               </center>
               <br />
               <br /> <br />
               <br />
+              
             </Paper>
           </div>
         </div>
-      
     );
   }
 }
@@ -301,7 +442,10 @@ OutlinedInputAdornments.propTypes = {
   classes: PropTypes.object.isRequired
 };
  
-export default withStyles(styles)(OutlinedInputAdornments);
+export default withStyles(styles)(OutlinedInputAdornments);*/
+ 
+
+
 
  
 
