@@ -32,8 +32,8 @@ const formStyle = { width: "100%" };
  
 const Tournament = [
   {
-    value: "A-Limited Overs Internationals",
-    label: "A-Limited Overs Internationals"
+    value: "A-Limited Overs International",
+    label: "A-Limited Overs International"
   },
   {
     value: "National",
@@ -46,53 +46,11 @@ const SeriesType = [
     label: "First Class"
   },
   {
-    value: "Second Class",
-    label: "Second Class"
+    value: "Second class",
+    label: "Second class"
   }
 ];
-const Host1 = [
-  {
-    value: "India",
-    label: "India"
-  },
-  {
-    value: "Austrila",
-    label: "Austrila"
-  }
-];
- 
-const Host2 = [
-  {
-    value: "Argentina",
-    label: "Argentina"
-  },
-  {
-    value: "Spain",
-    label: "Spain"
-  }
-];
- 
-const Host3 = [
-  {
-    value: "Mexico",
-    label: "Mexico"
-  },
-  {
-    value: "South Africa",
-    label: "South Africa"
-  }
-];
- 
-const Host4 = [
-  {
-    value: "New Zealand",
-    label: "New Zealand"
-  },
-  {
-    value: "Brazil",
-    label: "Brazil"
-  }
-];
+
  
 class OutlinedInputAdornments extends React.Component {
   state = {
@@ -134,7 +92,7 @@ class OutlinedInputAdornments extends React.Component {
               }}
             >
               <center>
-                <h3>Add new Series</h3>
+                <h3>Series</h3>
               </center>
               <TextField
                 style={{ width: "45%" }}
@@ -145,7 +103,7 @@ class OutlinedInputAdornments extends React.Component {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      Name of the Series
+                    Series
                     </InputAdornment>
                   )
                 }}
@@ -159,7 +117,7 @@ class OutlinedInputAdornments extends React.Component {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      Short Name of Series
+                      Short Name
                     </InputAdornment>
                   )
                 }}
@@ -172,7 +130,7 @@ class OutlinedInputAdornments extends React.Component {
                 variant="outlined"
                 label="Series Start Date"
                 type="date"
-                defaultValue="2017-05-24"
+                
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -184,7 +142,7 @@ class OutlinedInputAdornments extends React.Component {
                 variant="outlined"
                 label="Series End Date"
                 type="date"
-                defaultValue="2017-05-25"
+                
                 InputLabelProps={{
                   shrink: true
                 }}
@@ -194,8 +152,7 @@ class OutlinedInputAdornments extends React.Component {
                 select
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="With Select"
-                value={this.state.tournament}
+                label="Tournament"
                 onChange={this.handleChange("tournament")}
                 InputProps={{
                   startAdornment: (
@@ -214,8 +171,7 @@ class OutlinedInputAdornments extends React.Component {
                 select
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="With Select"
-                value={this.state.series_type}
+                label="Series Type"
                 onChange={this.handleChange("series_type")}
                 InputProps={{
                   startAdornment: (
@@ -234,100 +190,71 @@ class OutlinedInputAdornments extends React.Component {
               <br />
               <TextField
                 style={{ width: "45%" }}
-                select
+                id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="With Select"
-                value={this.state.host1}
-                onChange={this.handleChange("host1")}
+                label="Host country 1"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      Host Country-1
+                    Host 1
                     </InputAdornment>
                   )
                 }}
-              >
-                {Host1.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+              />
               <TextField
                 style={{ width: "45%" }}
-                select
+                id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="With Select"
-                value={this.state.weightRange}
-                onChange={this.handleChange("host2")}
+                label="Host country 2"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      Host Country-2
+                      Host 2
                     </InputAdornment>
                   )
                 }}
-              >
-                {Host2.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+              />
               <br />
               <TextField
+                autoComplete='off'
                 style={{ width: "45%" }}
-                select
+                id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="With Select"
-                value={this.state.host3}
-                onChange={this.handleChange("host3")}
+                label="Host country 3"
+                
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      Host Country-3
+                      Host 3
                     </InputAdornment>
                   )
                 }}
-              >
-                {Host3.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
-              <TextField
+              />
+               <TextField
                 style={{ width: "45%" }}
-                select
+                id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="With Select"
-                value={this.state.host4}
-                onChange={this.handleChange("host4")}
+                label="Host country 4"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      Host Country-4
+                      Host 4
                     </InputAdornment>
                   )
                 }}
-              >
-                {Host4.map(option => (
-                  <MenuItem key={option.value} value={option.value}>
-                    {option.label}
-                  </MenuItem>
-                ))}
-              </TextField>
+              />
               <br />
               <TextField
                 style={{ width: "45%" }}
                 id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                label="Series Short Name"
+                label="Series Points"
+                type="number"
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
@@ -339,7 +266,7 @@ class OutlinedInputAdornments extends React.Component {
               <FormControlLabel
                 control={
                   <Checkbox
-                    style={{ width: "45%" }}
+                    style={{ width: "25%" }}
                     onChange={this.handleChange}
                     className={classNames(classes.margin)}
                     name="checkedB"
