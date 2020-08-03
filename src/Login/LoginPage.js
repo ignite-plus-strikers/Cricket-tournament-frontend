@@ -1,11 +1,11 @@
 import React from 'react';
 import GoogleLogin from 'react-google-login'
- import ReactDOM from 'react-dom'
-// import Admin from './Admin'
-//import history from 'history'
-//import ReactDOM from 'react-dom'
-import AdminDashboard from '../Admin/AdminDashboard'
-import PreMatch from '../Scorer/PreMatch'
+//  import ReactDOM from 'react-dom'
+// // import Admin from './Admin'
+// //import history from 'history'
+// //import ReactDOM from 'react-dom'
+// import AdminDashboard from '../Admin/AdminDashboard'
+// import PreMatch from '../Scorer/PreMatch'
 import axios from 'axios'
 //import PropTypes from "prop-types";
 
@@ -16,7 +16,6 @@ class LoginPage extends React.Component {
         super(props)
         this.state={
           login : false
-          
         }
             this.userlogin = this.userlogin.bind(this);
             this.handleAdminLogin = this.handleAdminLogin.bind(this);
@@ -35,7 +34,7 @@ class LoginPage extends React.Component {
     userEmail : res.profileObj.email
     }
 
-    console.log(userdetails)
+     //console.log(userdetails)
 
 
      axios.post(`http://localhost:8081/user`,userdetails)
@@ -79,16 +78,9 @@ class LoginPage extends React.Component {
       isSignedIn={true}
       cookiePolicy={'single_host_origin'}
       />
-    
     </div>
   );
 }
 }
-
-// LoginPage.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-//export default withStyles(styles)(LoginPage);
 
 export default LoginPage
