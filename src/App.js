@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import Header from './Header/HeaderComponent';
 import Footer from './Footer/FooterComponent';
 import MatchSelection from './Scorer/MatchSelection';
@@ -30,7 +30,7 @@ import RefereeUpdate from './Admin/Referee/RefereeUpdate';
 import RefereeForm from './Admin/Referee/RefereeForm';
 import FixtureUpdate from './Admin/Fixtures/FixtureUpdate';
 import FixturesFormNew from './Admin/Fixtures/FixturesFormNew';
-
+import LoginPage from './Login/LoginPage'
 
 
 function App() {
@@ -38,6 +38,8 @@ function App() {
     <div>
         <Header/>
         <Router>
+        <Route exact path="/login" component={LoginPage} />
+
         <Route exact path="/scorer/matchSelection" component={MatchSelection} />
         <Route exact path="/scorer/matchSelection/prematch" component={PreMatch} />
         <Route exact path="/admin/dashboard" component={AdminDashboard} />

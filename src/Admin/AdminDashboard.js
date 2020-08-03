@@ -1,143 +1,212 @@
-import React from 'react';
+import React from 'react'
 import '../App.css';
+import PropTypes from "prop-types";
+import { withStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid"
+import player from "./cards_images/player.jpg"
+import fixture from "./cards_images/fixture.jpg"
+import team from "./cards_images/team.jpg"
+import series from "./cards_images/series.jpg"
+import umpire from "./cards_images/umpire.jpg"
+import Container from "@material-ui/core/Container"
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+
+
+const styles = {
+  card: {
+    backgroundColor : "#199FB1",
+    color : "white",
+    width : 300
+  },
+  media: {
+        objectFit: 'cover',
+  },
+};
+
+
+class AdminDashboard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleTeamClick = this.handleTeamClick.bind(this)
+    this.handlePlayerClick = this.handlePlayerClick.bind(this)
+    this.handleSeriesClick = this.handleSeriesClick.bind(this)
+    this.handleFixtureClick = this.handleFixtureClick.bind(this)
+    this.handleUmpireClick = this.handleUmpireClick.bind(this)
+    this.handleRefereeClick = this.handleRefereeClick.bind(this)
+
+
+  }
+    handleTeamClick(){
+      this.props.history.push('/admin/dashboard/TeamDisplay')
+     } 
+
+     handlePlayerClick(){
+      this.props.history.push('/admin/dashboard/PlayerDisplay')
+     } 
+
+     handleSeriesClick(){
+      this.props.history.push('/admin/dashboard/SeriesDisplay')
+     } 
+
+     handleFixtureClick(){
+      this.props.history.push('/admin/dashboard/FixtureDisplay')
+     } 
+
+     handleUmpireClick(){
+      this.props.history.push('/admin/dashboard/UmpireDisplay')
+     } 
+
+     
+     handleRefereeClick(){
+      this.props.history.push('/admin/dashboard/RefereeDisplay')
+     } 
  
-function AdminDashboard() {
-  return (
- 
-    <div>
-      <div class = "container2">
-        <div class="sidenav">
-        <a href="/admin/dashboard"><div className="Selected_color">Dashboard</div></a><hr></hr>
-          <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-          <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-          <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-          <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-          <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-          <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-        </div>
-        <div class = "heading">
-          Backbone
-          <hr></hr>
-        </div>
-        <div class="row">
-          <div class="card">
-            <div id="card-header1">
-              <p>55794<br></br>Total Players!</p>
-            </div>
-            <div>
-              <div class="card-body">
-              <a href="/admin/dashboard/PlayerDisplay" class="btn">View Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div id="card-header2">
-              <p>1474<br></br>Total Teams!</p>
-            </div>
-            <div>
-              <div class="card-body">
-              <a href="/admin/dashboard/TeamDisplay" class="btn">View Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div id="card-header3">
-              <p>2306<br></br>Total Series!</p>
-            </div>
-            <div>
-              <div class="card-body">
-                <a href="/admin/dashboard/SeriesDisplay" class="btn">View Details</a>
-              </div>
-            </div>
-          </div>
-          <div class="card">
-            <div id="card-header4">
-              <p>415<br></br>Upcoming Fixtures</p>
-            </div>
-            <div>
-              <div class="card-body">
-              <a href="/admin/dashboard/FixtureDisplay" class="btn">View Details</a>
-              </div>
-            </div>
-          </div>          
-        </div>
-      </div>
-      <div id="lefttable">
-      <table class="ui single line table">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Logged From</th>
-      <th>Signin Time</th>
-      <th>Signout Time</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Kishore Aditani</td>
-      <td>1::</td>
-      <td>12th August 2019 01:37 PM</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Kishore Aditani</td>
-      <td>1::</td>
-      <td>8th August 2019 09:48 PM</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>Kishore Aditani</td>
-      <td>1::</td>
-      <td>24th July 2019 09:24 AM</td>
-      <td>24th July 2019 10:24 AM</td>
-    </tr>
-    <tr>
-      <td>Kishore Aditani</td>
-      <td>1::</td>
-      <td>23rd July 2019 10:52 PM</td>
-      <td>23rd July 2019 11:11 PM</td>
-    </tr>
-    <tr>
-      <td>Kishore Aditani</td>
-      <td>1::</td>
-      <td>23rd July 2019 10:42 PM</td>
-      <td></td>
-    </tr>
+  render(){
+    const { classes } = this.props;
+   return ( 
+  <Container>
+    <Grid container spacing ={10}>
+        <Grid item >
+            <Card className={classes.card}>
+             <CardActionArea onClick={this.handleTeamClick}>
+              <CardMedia
+              component="img"
+              alt="Teams"
+              className={classes.media}
+              height="200"
+              image={team}
+              title="Teams"
+               />
+               <CardContent>
+               <Typography gutterBottom variant="h5" component="h2">
+                 Teams         
+               </Typography>
+               </CardContent>
+             </CardActionArea>
+          </Card>
+         </Grid>
+
+         <Grid item>
+          <Card className={classes.card}>
+            <CardActionArea onClick={this.handlePlayerClick}>
+            <CardMedia
+              component="img"
+              alt="Players"
+              className={classes.media}
+              height="200"
+              image={player}
+              title="Players"
+              />
+              <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Players
+              </Typography>
+             </CardContent>
+             </CardActionArea>
+           </Card>
+         </Grid>
+
+         <Grid item>
+         <Card className={classes.card}>
+           <CardActionArea onClick={this.handleUmpireClick}>
+           <CardMedia
+             component="img"
+             alt="Umpire"
+             className={classes.media}
+             height="200"
+             image={umpire}
+             title="Umpire"
+             />
+             <CardContent>
+             <Typography gutterBottom variant="h5" component="h2">
+              Umpires
+             </Typography>
+            </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+
+        </Grid>
+
+        <Grid container spacing ={10}>
+        <Grid item>
+        <Card className={classes.card}>
+          <CardActionArea onClick = {this.handleFixtureClick}>
+            <CardMedia
+              component="img"
+              alt="Fixtures"
+              className={classes.media}
+              height="200"
+              image={fixture}
+              title="Fixtures"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                  Fixtures
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+        </Grid>
+
+
+        <Grid item>
+        <Card className={classes.card}>
+          <CardActionArea onClick = {this.handleSeriesClick}>
+          <CardMedia
+          component="img"
+          alt="Series"
+          className={classes.media}
+          height="200"
+          image={series}
+          title="Series"
+        />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                  Series
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+        </Grid>
+
+        <Grid item>
+        <Card className={classes.card}>
+          <CardActionArea onClick={this.handleRefereeClick}>
+          <CardMedia
+            component="img"
+            alt="Referee"
+            className={classes.media}
+            height="200"
+            image={umpire}
+            title="Referee"
+            />
+            <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            Referee
+            </Typography>
+           </CardContent>
+           </CardActionArea>
+         </Card>
+       </Grid>
+
+    </Grid>
+    </Container>
     
-    
-  </tbody>
-</table>
-</div>
-<div id="righttable">
-      <table class="ui single line table">
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Action</th>
-      <th>Date</th>
-      <th>Comments</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>John Lilki</td>
-      <td>Delete</td>
-      <td>24th July 2019 09:38 AM</td>
-      <td>Player Anand has been deleted from team India</td>
-    </tr>
-    <tr>
-      <td>Jamie Harington</td>
-      <td>Create</td>
-      <td>24th July 2019 09:37 AM</td>
-      <td>Player Rajesh been added to team India</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-    </div>
   );
 }
- 
-export default AdminDashboard;
+}
+AdminDashboard.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+//export default withRouter(connect()(withStyles(styles)(AdminDashboard)))
+
+export default withStyles(styles)(AdminDashboard);
  
 

@@ -1,0 +1,3241 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://localhost:3000/admin/dashboard -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link rel="icon" href="http://localhost:3000/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Web site created using create-react-app">
+    <link rel="apple-touch-icon" href="http://localhost:3000/logo192.png">
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="http://localhost:3000/manifest.json">
+    <!--
+      Notice the use of  in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <title>React App</title>
+  <style type="text/css">body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+</style><style type="text/css">
+.btn {
+  border: none;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.newBtn{
+  background-color:#00A5FF ;
+  margin-bottom: 10px;
+}
+.newBtn:hover{
+  background:#038ed8;
+}
+.updateBtn{
+  background-color:#a044bd ;
+}
+.updateBtn:hover{
+  background:#8425a1;
+}
+.warning {background-color: #ff9800;} /* Orange */
+.warning:hover {background: #e68a00;}
+.alert {
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  opacity: 1;
+  transition: opacity 0.6s;
+  margin-bottom: 15px;
+  width:95%;
+}
+
+.alert.success {background-color: #7bdb7e;}
+
+
+.container{
+  margin-left: 30px;
+  display: inline;
+}
+.headerStyle, .footerStyle{
+  width: 100%;
+  position: fixed;        
+  background:rgb(0, 0, 0);
+  padding: 10px 0;
+  color: #fff;
+  
+}
+.headerStyle{
+  top: 0;
+}
+.footerStyle{
+  bottom: 0;
+  background-color: rgb(2, 2, 92);
+  text-align: center;
+}
+.headerButton{
+  background-color: black;
+  color: white;
+  border-color: black;
+  font-size: medium;
+  margin-right: 70px;
+  }
+  .headerButton:hover{
+    color:#FFC0CB;
+  }
+  #root{
+    margin-top: 50px;
+    
+  }
+  .box_head{
+    background-color:	#d89585;
+    width:100%;
+    height:50px;
+    padding-top: 15px;
+    color: black;
+    
+  }
+  .box_body{
+    width:100%;
+    height:160px;
+    background-color: rgb(255, 255, 255);
+    
+  }
+  .box{
+    border: 1px solid black;
+    width:35%;
+    margin-bottom: 40px;
+    margin-left: 50px;
+    padding: 0px;
+  }
+  .box_button{
+    background-color:#c9c9c9; 
+    height:50px;
+  }
+  .toss_section{
+    margin-top: 50px;
+  }
+  .order_form{
+    background-color:#EEE8AA ;
+    width:25%;
+    height:600px;
+  }
+  .matchDetails{
+    background-color: #FFDAB9;
+  }
+ .option{
+   text-decoration: none;
+   color: #fff;
+ }
+ 
+
+ .Prematch_button{
+  
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #1d4bd4;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 7px #999;
+  
+ }
+ .Prematch_button{
+  margin-left: 75px;
+  margin-top: 5px;
+  margin-right: 80px;
+ }
+ .Prematch_button:hover{background-color:#1414aa}
+
+.Prematch_button:active{
+  background-color: #1414aa;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+.Scoring_button{
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #e24c4c;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 7px #999;
+}
+.Scoring_button:hover {background-color:#b91818}
+
+.Scoring_button:active {
+  background-color: #b91818;
+  box-shadow: 0 3px #666;
+  transform: translateY(4px);
+}
+
+.playerform{
+  margin-left: 500px;
+  width:500px;
+  background-color: #FFFAF0;
+  padding-left: 100px;
+  height: 700px;
+  margin-bottom: 100px;
+}
+label {
+  width:180px;
+  clear:left;
+  text-align:left;
+  padding-right:10px;
+}
+
+.i , label {
+  float:left;
+}
+
+
+.PSbutton,.newbutton{
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #00A5FF;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 9px #999;
+  height: 40px;
+  width: 150px;
+  
+}
+.PSbutton{
+  margin-left: 100px;
+}
+.newbutton{
+  margin-left: 0px;
+}
+
+.PSbutton:hover,.newbutton:hover {background-color: #0087FF}
+
+.PSbutton:active,.newbutton:active {
+  background-color: #0078FF;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+.playerdetails{
+  margin-top:70px;
+  margin-left:180px;
+  margin-bottom:100px ;
+  
+}
+
+#playerTable {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+}
+#playerTable td, #playerTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#playerTable tr:nth-child(even){background-color: #f2f2f2;}
+
+#playerTable tr:hover {background-color: #ddd;}
+
+#playerTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color:#072664;
+  color:aliceblue;
+}
+.newbutton{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  background-color: #00A5FF;
+}
+
+.container2{
+  width: 90%;
+  margin: 50px auto;
+}
+.heading{
+  margin-left: 120px;
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 67px;
+}
+.row{
+  margin-left: 200px;
+}
+ 
+.card{
+  
+  width: 20%;
+  background: #fff;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+ 
+}
+#card-header1 {
+  text-align: center;
+  padding: 30px 10px;
+  background: rgb(109, 109, 218);
+}
+#card-header2 {
+  text-align: center;
+  padding: 30px 10px;
+  background: rgb(93, 223, 93);
+}
+#card-header3 {
+  text-align: center;
+  padding: 30px 10px;
+  background: rgb(204, 204, 94);
+}
+#card-header4 {
+  text-align: center;
+  padding: 30px 10px;
+  background:rgb(241, 78, 78);
+}
+.card-body .btn{
+  display: block;
+  color: black;
+  text-align: center;
+  background-color: white;
+  margin-top: 10px;
+  text-decoration: none;
+  padding: 10px 5px;
+}
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+ 
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+ 
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+ 
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+#lefttable{
+  margin-left: 200px;
+  width: 45%;
+  float: left;
+}
+#righttable{
+  width: 40%;
+  float: right;
+}
+.sidenav {
+  height: 85.3%;
+  width: 160px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: rgb(113, 113, 153);
+  overflow-x: hidden;
+  padding-top: 20px;
+  margin-top: 45px;
+  margin-bottom: 50px;
+}
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+  display: block;
+}
+ 
+.sidenav a:hover {
+  color: white;
+}
+
+.Selected_color{
+  color:white;
+}
+a{
+  text-decoration: none;
+}
+
+.loginpage{
+  align-content: center;
+   margin-left: 500px; 
+   margin-right: 500px;
+  text-align: center;
+  background-color: lightblue;
+  height: 400px;
+
+}
+.loginbtn{
+  margin-left: 50px;
+  margin-top: 20px;
+}
+.marginsave{
+  margin-left: 150px;
+}
+.errormsg{
+  width: 335px;
+  height:20px;
+  background-color: rgb(245, 110, 110);
+}
+
+.bordering{
+  clear:none;
+  border:1px 1px 1px 1px black;
+  background-color:rgba(221, 218, 215, 0.863);
+  
+}
+.width_inc{
+  width:180px;
+}
+
+.MyReactTableClass .-sort-desc {
+  box-shadow: none !important;}
+.MyReactTableClass .-sort-desc::before {
+    content: "▼";
+    float: right;
+  }
+
+
+.MyReactTableClass .-sort-asc {
+  box-shadow: none !important;}
+.MyReactTableClass .-sort-asc::before {
+    content: "▲";
+    float: right;
+  }
+
+  .details{
+    margin-top:70px;
+    margin-left:180px;
+        
+  }
+  .p_details{
+    margin-top:60px;
+    margin-left:180px;
+        
+  }</style><style type="text/css">.ReactTable{position:relative;display:flex;flex-direction:column;border:1px solid rgba(0,0,0,0.1);}.ReactTable *{box-sizing:border-box}.ReactTable .rt-table{flex:auto 1;display:flex;flex-direction:column;align-items:stretch;width:100%;border-collapse:collapse;overflow:auto}.ReactTable .rt-thead{flex:1 0 auto;display:flex;flex-direction:column;-webkit-user-select:none;user-select:none;}.ReactTable .rt-thead.-headerGroups{background:rgba(0,0,0,0.03);border-bottom:1px solid rgba(0,0,0,0.05)}.ReactTable .rt-thead.-filters{border-bottom:1px solid rgba(0,0,0,0.05);}.ReactTable .rt-thead.-filters input,.ReactTable .rt-thead.-filters select{border:1px solid rgba(0,0,0,0.1);background:#fff;padding:5px 7px;font-size:inherit;border-radius:3px;font-weight:normal;outline-width:0}.ReactTable .rt-thead.-filters .rt-th{border-right:1px solid rgba(0,0,0,0.02)}.ReactTable .rt-thead.-header{box-shadow:0 2px 15px 0 rgba(0,0,0,0.15)}.ReactTable .rt-thead .rt-tr{text-align:center}.ReactTable .rt-thead .rt-th,.ReactTable .rt-thead .rt-td{padding:5px 5px;line-height:normal;position:relative;border-right:1px solid rgba(0,0,0,0.05);transition:box-shadow .3s cubic-bezier(.175,.885,.32,1.275);box-shadow:inset 0 0 0 0 transparent;}.ReactTable .rt-thead .rt-th.-sort-asc,.ReactTable .rt-thead .rt-td.-sort-asc{box-shadow:inset 0 3px 0 0 rgba(0,0,0,0.6)}.ReactTable .rt-thead .rt-th.-sort-desc,.ReactTable .rt-thead .rt-td.-sort-desc{box-shadow:inset 0 -3px 0 0 rgba(0,0,0,0.6)}.ReactTable .rt-thead .rt-th.-cursor-pointer,.ReactTable .rt-thead .rt-td.-cursor-pointer{cursor:pointer}.ReactTable .rt-thead .rt-th:last-child,.ReactTable .rt-thead .rt-td:last-child{border-right:0}.ReactTable .rt-thead .rt-th:focus{outline-width:0}.ReactTable .rt-thead .rt-resizable-header{overflow:visible;}.ReactTable .rt-thead .rt-resizable-header:last-child{overflow:hidden}.ReactTable .rt-thead .rt-resizable-header-content{overflow:hidden;text-overflow:ellipsis}.ReactTable .rt-thead .rt-header-pivot{border-right-color:#f7f7f7}.ReactTable .rt-thead .rt-header-pivot:after,.ReactTable .rt-thead .rt-header-pivot:before{left:100%;top:50%;border:solid transparent;content:" ";height:0;width:0;position:absolute;pointer-events:none}.ReactTable .rt-thead .rt-header-pivot:after{border-color:rgba(255,255,255,0);border-left-color:#fff;border-width:8px;margin-top:-8px}.ReactTable .rt-thead .rt-header-pivot:before{border-color:rgba(102,102,102,0);border-left-color:#f7f7f7;border-width:10px;margin-top:-10px}.ReactTable .rt-tbody{flex:99999 1 auto;display:flex;flex-direction:column;overflow:auto;}.ReactTable .rt-tbody .rt-tr-group{border-bottom:solid 1px rgba(0,0,0,0.05);}.ReactTable .rt-tbody .rt-tr-group:last-child{border-bottom:0}.ReactTable .rt-tbody .rt-td{border-right:1px solid rgba(0,0,0,0.02);}.ReactTable .rt-tbody .rt-td:last-child{border-right:0}.ReactTable .rt-tbody .rt-expandable{cursor:pointer;text-overflow:clip}.ReactTable .rt-tr-group{flex:1 0 auto;display:flex;flex-direction:column;align-items:stretch}.ReactTable .rt-tr{flex:1 0 auto;display:inline-flex}.ReactTable .rt-th,.ReactTable .rt-td{flex:1 0;white-space:nowrap;text-overflow:ellipsis;padding:7px 5px;overflow:hidden;transition:.3s ease;transition-property:width,min-width,padding,opacity;}.ReactTable .rt-th.-hidden,.ReactTable .rt-td.-hidden{width:0 !important;min-width:0 !important;padding:0 !important;border:0 !important;opacity:0 !important}.ReactTable .rt-expander{display:inline-block;position:relative;margin:0;color:transparent;margin:0 10px;}.ReactTable .rt-expander:after{content:'';position:absolute;width:0;height:0;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-90deg);border-left:5.04px solid transparent;border-right:5.04px solid transparent;border-top:7px solid rgba(0,0,0,0.8);transition:all .3s cubic-bezier(.175,.885,.32,1.275);cursor:pointer}.ReactTable .rt-expander.-open:after{transform:translate(-50%,-50%) rotate(0)}.ReactTable .rt-resizer{display:inline-block;position:absolute;width:36px;top:0;bottom:0;right:-18px;cursor:col-resize;z-index:10}.ReactTable .rt-tfoot{flex:1 0 auto;display:flex;flex-direction:column;box-shadow:0 0 15px 0 rgba(0,0,0,0.15);}.ReactTable .rt-tfoot .rt-td{border-right:1px solid rgba(0,0,0,0.05);}.ReactTable .rt-tfoot .rt-td:last-child{border-right:0}.ReactTable.-striped .rt-tr.-odd{background:rgba(0,0,0,0.03)}.ReactTable.-highlight .rt-tbody .rt-tr:not(.-padRow):hover{background:rgba(0,0,0,0.05)}.ReactTable .-pagination{z-index:1;display:flex;justify-content:space-between;align-items:stretch;flex-wrap:wrap;padding:3px;box-shadow:0 0 15px 0 rgba(0,0,0,0.1);border-top:2px solid rgba(0,0,0,0.1);}.ReactTable .-pagination input,.ReactTable .-pagination select{border:1px solid rgba(0,0,0,0.1);background:#fff;padding:5px 7px;font-size:inherit;border-radius:3px;font-weight:normal;outline-width:0}.ReactTable .-pagination .-btn{-webkit-appearance:none;-moz-appearance:none;appearance:none;display:block;width:100%;height:100%;border:0;border-radius:3px;padding:6px;font-size:1em;color:rgba(0,0,0,0.6);background:rgba(0,0,0,0.1);transition:all .1s ease;cursor:pointer;outline-width:0;}.ReactTable .-pagination .-btn[disabled]{opacity:.5;cursor:default}.ReactTable .-pagination .-btn:not([disabled]):hover{background:rgba(0,0,0,0.3);color:#fff}.ReactTable .-pagination .-previous,.ReactTable .-pagination .-next{flex:1 1;text-align:center}.ReactTable .-pagination .-center{flex:1.5 1;text-align:center;margin-bottom:0;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;justify-content:space-around}.ReactTable .-pagination .-pageInfo{display:inline-block;margin:3px 10px;white-space:nowrap}.ReactTable .-pagination .-pageJump{display:inline-block;}.ReactTable .-pagination .-pageJump input{width:70px;text-align:center}.ReactTable .-pagination .-pageSizeOptions{margin:3px 10px}.ReactTable .rt-noData{display:block;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.8);transition:all .3s ease;z-index:1;pointer-events:none;padding:20px;color:rgba(0,0,0,0.5)}.ReactTable .-loading{display:block;position:absolute;left:0;right:0;top:0;bottom:0;background:rgba(255,255,255,0.8);transition:all .3s ease;z-index:-1;opacity:0;pointer-events:none;}.ReactTable .-loading > div{position:absolute;display:block;text-align:center;width:100%;top:50%;left:0;font-size:15px;color:rgba(0,0,0,0.6);transform:translateY(-52%);transition:all .3s cubic-bezier(.25,.46,.45,.94)}.ReactTable .-loading.-active{opacity:1;z-index:2;pointer-events:all;}.ReactTable .-loading.-active > div{transform:translateY(50%)}.ReactTable .rt-resizing .rt-th,.ReactTable .rt-resizing .rt-td{transition:none !important;cursor:col-resize;-webkit-user-select:none;user-select:none}</style><style type="text/css">.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow {
+  margin-left: -8px;
+  position: absolute;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow, .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, .react-datepicker__year-read-view--down-arrow::before,
+.react-datepicker__month-read-view--down-arrow::before,
+.react-datepicker__month-year-read-view--down-arrow::before {
+  box-sizing: content-box;
+  position: absolute;
+  border: 8px solid transparent;
+  height: 0;
+  width: 1px;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, .react-datepicker__year-read-view--down-arrow::before,
+.react-datepicker__month-read-view--down-arrow::before,
+.react-datepicker__month-year-read-view--down-arrow::before {
+  content: "";
+  z-index: -1;
+  border-width: 8px;
+  left: -8px;
+  border-bottom-color: #aeaeae;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle {
+  top: 0;
+  margin-top: -8px;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
+  border-top: none;
+  border-bottom-color: #f0f0f0;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
+  top: -1px;
+  border-bottom-color: #aeaeae;
+}
+
+.react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow {
+  bottom: 0;
+  margin-bottom: -8px;
+}
+
+.react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow, .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, .react-datepicker__year-read-view--down-arrow::before,
+.react-datepicker__month-read-view--down-arrow::before,
+.react-datepicker__month-year-read-view--down-arrow::before {
+  border-bottom: none;
+  border-top-color: #fff;
+}
+
+.react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, .react-datepicker__year-read-view--down-arrow::before,
+.react-datepicker__month-read-view--down-arrow::before,
+.react-datepicker__month-year-read-view--down-arrow::before {
+  bottom: -1px;
+  border-top-color: #aeaeae;
+}
+
+.react-datepicker-wrapper {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+}
+
+.react-datepicker {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #aeaeae;
+  border-radius: 0.3rem;
+  display: inline-block;
+  position: relative;
+}
+
+.react-datepicker--time-only .react-datepicker__triangle {
+  left: 35px;
+}
+
+.react-datepicker--time-only .react-datepicker__time-container {
+  border-left: 0;
+}
+
+.react-datepicker--time-only .react-datepicker__time {
+  border-radius: 0.3rem;
+}
+
+.react-datepicker--time-only .react-datepicker__time-box {
+  border-radius: 0.3rem;
+}
+
+.react-datepicker__triangle {
+  position: absolute;
+  left: 50px;
+}
+
+.react-datepicker-popper {
+  z-index: 1;
+}
+
+.react-datepicker-popper[data-placement^="bottom"] {
+  margin-top: 10px;
+}
+
+.react-datepicker-popper[data-placement="bottom-end"] .react-datepicker__triangle, .react-datepicker-popper[data-placement="top-end"] .react-datepicker__triangle {
+  left: auto;
+  right: 50px;
+}
+
+.react-datepicker-popper[data-placement^="top"] {
+  margin-bottom: 10px;
+}
+
+.react-datepicker-popper[data-placement^="right"] {
+  margin-left: 8px;
+}
+
+.react-datepicker-popper[data-placement^="right"] .react-datepicker__triangle {
+  left: auto;
+  right: 42px;
+}
+
+.react-datepicker-popper[data-placement^="left"] {
+  margin-right: 8px;
+}
+
+.react-datepicker-popper[data-placement^="left"] .react-datepicker__triangle {
+  left: 42px;
+  right: auto;
+}
+
+.react-datepicker__header {
+  text-align: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #aeaeae;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  padding-top: 8px;
+  position: relative;
+}
+
+.react-datepicker__header--time {
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.react-datepicker__year-dropdown-container--select,
+.react-datepicker__month-dropdown-container--select,
+.react-datepicker__month-year-dropdown-container--select,
+.react-datepicker__year-dropdown-container--scroll,
+.react-datepicker__month-dropdown-container--scroll,
+.react-datepicker__month-year-dropdown-container--scroll {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  margin-top: 0;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.944rem;
+}
+
+.react-datepicker-time__header {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.react-datepicker__navigation {
+  background: none;
+  line-height: 1.7rem;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  width: 0;
+  padding: 0;
+  border: 0.45rem solid transparent;
+  z-index: 1;
+  height: 10px;
+  width: 10px;
+  text-indent: -999em;
+  overflow: hidden;
+}
+
+.react-datepicker__navigation--previous {
+  left: 10px;
+  border-right-color: #ccc;
+}
+
+.react-datepicker__navigation--previous:hover {
+  border-right-color: #b3b3b3;
+}
+
+.react-datepicker__navigation--previous--disabled, .react-datepicker__navigation--previous--disabled:hover {
+  border-right-color: #e6e6e6;
+  cursor: default;
+}
+
+.react-datepicker__navigation--next {
+  right: 10px;
+  border-left-color: #ccc;
+}
+
+.react-datepicker__navigation--next--with-time:not(.react-datepicker__navigation--next--with-today-button) {
+  right: 80px;
+}
+
+.react-datepicker__navigation--next:hover {
+  border-left-color: #b3b3b3;
+}
+
+.react-datepicker__navigation--next--disabled, .react-datepicker__navigation--next--disabled:hover {
+  border-left-color: #e6e6e6;
+  cursor: default;
+}
+
+.react-datepicker__navigation--years {
+  position: relative;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.react-datepicker__navigation--years-previous {
+  top: 4px;
+  border-top-color: #ccc;
+}
+
+.react-datepicker__navigation--years-previous:hover {
+  border-top-color: #b3b3b3;
+}
+
+.react-datepicker__navigation--years-upcoming {
+  top: -4px;
+  border-bottom-color: #ccc;
+}
+
+.react-datepicker__navigation--years-upcoming:hover {
+  border-bottom-color: #b3b3b3;
+}
+
+.react-datepicker__month-container {
+  float: left;
+}
+
+.react-datepicker__year {
+  margin: 0.4rem;
+  text-align: center;
+}
+
+.react-datepicker__year-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 180px;
+}
+
+.react-datepicker__year .react-datepicker__year-text {
+  display: inline-block;
+  width: 4rem;
+  margin: 2px;
+}
+
+.react-datepicker__month {
+  margin: 0.4rem;
+  text-align: center;
+}
+
+.react-datepicker__month .react-datepicker__month-text,
+.react-datepicker__month .react-datepicker__quarter-text {
+  display: inline-block;
+  width: 4rem;
+  margin: 2px;
+}
+
+.react-datepicker__input-time-container {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin: 5px 0 10px 15px;
+  text-align: left;
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__caption {
+  display: inline-block;
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container {
+  display: inline-block;
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input {
+  width: 85px;
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type="time"]::-webkit-inner-spin-button,
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type="time"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type="time"] {
+  -moz-appearance: textfield;
+}
+
+.react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__delimiter {
+  margin-left: 5px;
+  display: inline-block;
+}
+
+.react-datepicker__time-container {
+  float: right;
+  border-left: 1px solid #aeaeae;
+  width: 85px;
+}
+
+.react-datepicker__time-container--with-today-button {
+  display: inline;
+  border: 1px solid #aeaeae;
+  border-radius: 0.3rem;
+  position: absolute;
+  right: -72px;
+  top: 0;
+}
+
+.react-datepicker__time-container .react-datepicker__time {
+  position: relative;
+  background: white;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+  width: 85px;
+  overflow-x: hidden;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+  list-style: none;
+  margin: 0;
+  height: calc(195px + (1.7rem / 2));
+  overflow-y: scroll;
+  padding-right: 0px;
+  padding-left: 0px;
+  width: 100%;
+  box-sizing: content-box;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  height: 30px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background-color: #216ba5;
+  color: white;
+  font-weight: bold;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected:hover {
+  background-color: #216ba5;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled {
+  color: #ccc;
+}
+
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled:hover {
+  cursor: default;
+  background-color: transparent;
+}
+
+.react-datepicker__week-number {
+  color: #ccc;
+  display: inline-block;
+  width: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
+  margin: 0.166rem;
+}
+
+.react-datepicker__week-number.react-datepicker__week-number--clickable {
+  cursor: pointer;
+}
+
+.react-datepicker__week-number.react-datepicker__week-number--clickable:hover {
+  border-radius: 0.3rem;
+  background-color: #f0f0f0;
+}
+
+.react-datepicker__day-names,
+.react-datepicker__week {
+  white-space: nowrap;
+}
+
+.react-datepicker__day-name,
+.react-datepicker__day,
+.react-datepicker__time-name {
+  color: #000;
+  display: inline-block;
+  width: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
+  margin: 0.166rem;
+}
+
+.react-datepicker__month--selected, .react-datepicker__month--in-selecting-range, .react-datepicker__month--in-range,
+.react-datepicker__quarter--selected,
+.react-datepicker__quarter--in-selecting-range,
+.react-datepicker__quarter--in-range {
+  border-radius: 0.3rem;
+  background-color: #216ba5;
+  color: #fff;
+}
+
+.react-datepicker__month--selected:hover, .react-datepicker__month--in-selecting-range:hover, .react-datepicker__month--in-range:hover,
+.react-datepicker__quarter--selected:hover,
+.react-datepicker__quarter--in-selecting-range:hover,
+.react-datepicker__quarter--in-range:hover {
+  background-color: #1d5d90;
+}
+
+.react-datepicker__month--disabled,
+.react-datepicker__quarter--disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+.react-datepicker__month--disabled:hover,
+.react-datepicker__quarter--disabled:hover {
+  cursor: default;
+  background-color: transparent;
+}
+
+.react-datepicker__day,
+.react-datepicker__month-text,
+.react-datepicker__quarter-text,
+.react-datepicker__year-text {
+  cursor: pointer;
+}
+
+.react-datepicker__day:hover,
+.react-datepicker__month-text:hover,
+.react-datepicker__quarter-text:hover,
+.react-datepicker__year-text:hover {
+  border-radius: 0.3rem;
+  background-color: #f0f0f0;
+}
+
+.react-datepicker__day--today,
+.react-datepicker__month-text--today,
+.react-datepicker__quarter-text--today,
+.react-datepicker__year-text--today {
+  font-weight: bold;
+}
+
+.react-datepicker__day--highlighted,
+.react-datepicker__month-text--highlighted,
+.react-datepicker__quarter-text--highlighted,
+.react-datepicker__year-text--highlighted {
+  border-radius: 0.3rem;
+  background-color: #3dcc4a;
+  color: #fff;
+}
+
+.react-datepicker__day--highlighted:hover,
+.react-datepicker__month-text--highlighted:hover,
+.react-datepicker__quarter-text--highlighted:hover,
+.react-datepicker__year-text--highlighted:hover {
+  background-color: #32be3f;
+}
+
+.react-datepicker__day--highlighted-custom-1,
+.react-datepicker__month-text--highlighted-custom-1,
+.react-datepicker__quarter-text--highlighted-custom-1,
+.react-datepicker__year-text--highlighted-custom-1 {
+  color: magenta;
+}
+
+.react-datepicker__day--highlighted-custom-2,
+.react-datepicker__month-text--highlighted-custom-2,
+.react-datepicker__quarter-text--highlighted-custom-2,
+.react-datepicker__year-text--highlighted-custom-2 {
+  color: green;
+}
+
+.react-datepicker__day--selected, .react-datepicker__day--in-selecting-range, .react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range,
+.react-datepicker__year-text--selected,
+.react-datepicker__year-text--in-selecting-range,
+.react-datepicker__year-text--in-range {
+  border-radius: 0.3rem;
+  background-color: #216ba5;
+  color: #fff;
+}
+
+.react-datepicker__day--selected:hover, .react-datepicker__day--in-selecting-range:hover, .react-datepicker__day--in-range:hover,
+.react-datepicker__month-text--selected:hover,
+.react-datepicker__month-text--in-selecting-range:hover,
+.react-datepicker__month-text--in-range:hover,
+.react-datepicker__quarter-text--selected:hover,
+.react-datepicker__quarter-text--in-selecting-range:hover,
+.react-datepicker__quarter-text--in-range:hover,
+.react-datepicker__year-text--selected:hover,
+.react-datepicker__year-text--in-selecting-range:hover,
+.react-datepicker__year-text--in-range:hover {
+  background-color: #1d5d90;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__month-text--keyboard-selected,
+.react-datepicker__quarter-text--keyboard-selected,
+.react-datepicker__year-text--keyboard-selected {
+  border-radius: 0.3rem;
+  background-color: #2a87d0;
+  color: #fff;
+}
+
+.react-datepicker__day--keyboard-selected:hover,
+.react-datepicker__month-text--keyboard-selected:hover,
+.react-datepicker__quarter-text--keyboard-selected:hover,
+.react-datepicker__year-text--keyboard-selected:hover {
+  background-color: #1d5d90;
+}
+
+.react-datepicker__day--in-selecting-range ,
+.react-datepicker__month-text--in-selecting-range ,
+.react-datepicker__quarter-text--in-selecting-range ,
+.react-datepicker__year-text--in-selecting-range {
+  background-color: rgba(33, 107, 165, 0.5);
+}
+
+.react-datepicker__month--selecting-range .react-datepicker__day--in-range , .react-datepicker__month--selecting-range
+.react-datepicker__month-text--in-range , .react-datepicker__month--selecting-range
+.react-datepicker__quarter-text--in-range , .react-datepicker__month--selecting-range
+.react-datepicker__year-text--in-range {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.react-datepicker__day--disabled,
+.react-datepicker__month-text--disabled,
+.react-datepicker__quarter-text--disabled,
+.react-datepicker__year-text--disabled {
+  cursor: default;
+  color: #ccc;
+}
+
+.react-datepicker__day--disabled:hover,
+.react-datepicker__month-text--disabled:hover,
+.react-datepicker__quarter-text--disabled:hover,
+.react-datepicker__year-text--disabled:hover {
+  background-color: transparent;
+}
+
+.react-datepicker__month-text.react-datepicker__month--selected:hover, .react-datepicker__month-text.react-datepicker__month--in-range:hover, .react-datepicker__month-text.react-datepicker__quarter--selected:hover, .react-datepicker__month-text.react-datepicker__quarter--in-range:hover,
+.react-datepicker__quarter-text.react-datepicker__month--selected:hover,
+.react-datepicker__quarter-text.react-datepicker__month--in-range:hover,
+.react-datepicker__quarter-text.react-datepicker__quarter--selected:hover,
+.react-datepicker__quarter-text.react-datepicker__quarter--in-range:hover {
+  background-color: #216ba5;
+}
+
+.react-datepicker__month-text:hover,
+.react-datepicker__quarter-text:hover {
+  background-color: #f0f0f0;
+}
+
+.react-datepicker__input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.react-datepicker__year-read-view,
+.react-datepicker__month-read-view,
+.react-datepicker__month-year-read-view {
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+}
+
+.react-datepicker__year-read-view:hover,
+.react-datepicker__month-read-view:hover,
+.react-datepicker__month-year-read-view:hover {
+  cursor: pointer;
+}
+
+.react-datepicker__year-read-view:hover .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__year-read-view:hover .react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-read-view:hover .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view:hover .react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-year-read-view:hover .react-datepicker__month-read-view--down-arrow {
+  border-top-color: #b3b3b3;
+}
+
+.react-datepicker__year-read-view--down-arrow,
+.react-datepicker__month-read-view--down-arrow,
+.react-datepicker__month-year-read-view--down-arrow {
+  border-top-color: #ccc;
+  float: right;
+  margin-left: 20px;
+  top: 8px;
+  position: relative;
+  border-width: 0.45rem;
+}
+
+.react-datepicker__year-dropdown,
+.react-datepicker__month-dropdown,
+.react-datepicker__month-year-dropdown {
+  background-color: #f0f0f0;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 30px;
+  z-index: 1;
+  text-align: center;
+  border-radius: 0.3rem;
+  border: 1px solid #aeaeae;
+}
+
+.react-datepicker__year-dropdown:hover,
+.react-datepicker__month-dropdown:hover,
+.react-datepicker__month-year-dropdown:hover {
+  cursor: pointer;
+}
+
+.react-datepicker__year-dropdown--scrollable,
+.react-datepicker__month-dropdown--scrollable,
+.react-datepicker__month-year-dropdown--scrollable {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.react-datepicker__year-option,
+.react-datepicker__month-option,
+.react-datepicker__month-year-option {
+  line-height: 20px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.react-datepicker__year-option:first-of-type,
+.react-datepicker__month-option:first-of-type,
+.react-datepicker__month-year-option:first-of-type {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.react-datepicker__year-option:last-of-type,
+.react-datepicker__month-option:last-of-type,
+.react-datepicker__month-year-option:last-of-type {
+  -webkit-user-select: none;
+  user-select: none;
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+.react-datepicker__year-option:hover,
+.react-datepicker__month-option:hover,
+.react-datepicker__month-year-option:hover {
+  background-color: #ccc;
+}
+
+.react-datepicker__year-option:hover .react-datepicker__navigation--years-upcoming,
+.react-datepicker__month-option:hover .react-datepicker__navigation--years-upcoming,
+.react-datepicker__month-year-option:hover .react-datepicker__navigation--years-upcoming {
+  border-bottom-color: #b3b3b3;
+}
+
+.react-datepicker__year-option:hover .react-datepicker__navigation--years-previous,
+.react-datepicker__month-option:hover .react-datepicker__navigation--years-previous,
+.react-datepicker__month-year-option:hover .react-datepicker__navigation--years-previous {
+  border-top-color: #b3b3b3;
+}
+
+.react-datepicker__year-option--selected,
+.react-datepicker__month-option--selected,
+.react-datepicker__month-year-option--selected {
+  position: absolute;
+  left: 15px;
+}
+
+.react-datepicker__close-icon {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0px 6px 0px 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.react-datepicker__close-icon::after {
+  cursor: pointer;
+  background-color: #216ba5;
+  color: #fff;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  padding: 2px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  content: "\00d7";
+}
+
+.react-datepicker__today-button {
+  background: #f0f0f0;
+  border-top: 1px solid #aeaeae;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 0;
+  clear: left;
+}
+
+.react-datepicker__portal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 2147483647;
+}
+
+.react-datepicker__portal .react-datepicker__day-name,
+.react-datepicker__portal .react-datepicker__day,
+.react-datepicker__portal .react-datepicker__time-name {
+  width: 3rem;
+  line-height: 3rem;
+}
+
+@media (max-width: 400px), (max-height: 550px) {
+  .react-datepicker__portal .react-datepicker__day-name,
+  .react-datepicker__portal .react-datepicker__day,
+  .react-datepicker__portal .react-datepicker__time-name {
+    width: 2rem;
+    line-height: 2rem;
+  }
+}
+
+.react-datepicker__portal .react-datepicker__current-month,
+.react-datepicker__portal .react-datepicker-time__header {
+  font-size: 1.44rem;
+}
+
+.react-datepicker__portal .react-datepicker__navigation {
+  border: 0.81rem solid transparent;
+}
+
+.react-datepicker__portal .react-datepicker__navigation--previous {
+  border-right-color: #ccc;
+}
+
+.react-datepicker__portal .react-datepicker__navigation--previous:hover {
+  border-right-color: #b3b3b3;
+}
+
+.react-datepicker__portal .react-datepicker__navigation--previous--disabled, .react-datepicker__portal .react-datepicker__navigation--previous--disabled:hover {
+  border-right-color: #e6e6e6;
+  cursor: default;
+}
+
+.react-datepicker__portal .react-datepicker__navigation--next {
+  border-left-color: #ccc;
+}
+
+.react-datepicker__portal .react-datepicker__navigation--next:hover {
+  border-left-color: #b3b3b3;
+}
+
+.react-datepicker__portal .react-datepicker__navigation--next--disabled, .react-datepicker__portal .react-datepicker__navigation--next--disabled:hover {
+  border-left-color: #e6e6e6;
+  cursor: default;
+}
+</style><style type="text/css">:global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, :global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, :global .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__month-read-view--down-arrow,
+:global .react-datepicker__month-year-read-view--down-arrow {
+  margin-left: -8px;
+  position: absolute;
+}
+
+:global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, :global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, :global .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__month-read-view--down-arrow,
+:global .react-datepicker__month-year-read-view--down-arrow, :global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before, :global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, :global .react-datepicker__year-read-view--down-arrow::before,
+:global .react-datepicker__month-read-view--down-arrow::before,
+:global .react-datepicker__month-year-read-view--down-arrow::before {
+  box-sizing: content-box;
+  position: absolute;
+  border: 8px solid transparent;
+  height: 0;
+  width: 1px;
+}
+
+:global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before, :global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, :global .react-datepicker__year-read-view--down-arrow::before,
+:global .react-datepicker__month-read-view--down-arrow::before,
+:global .react-datepicker__month-year-read-view--down-arrow::before {
+  content: "";
+  z-index: -1;
+  border-width: 8px;
+  left: -8px;
+  border-bottom-color: #aeaeae;
+}
+
+:global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle {
+  top: 0;
+  margin-top: -8px;
+}
+
+:global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle, :global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
+  border-top: none;
+  border-bottom-color: #f0f0f0;
+}
+
+:global .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle::before {
+  top: -1px;
+  border-bottom-color: #aeaeae;
+}
+
+:global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, :global .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__month-read-view--down-arrow,
+:global .react-datepicker__month-year-read-view--down-arrow {
+  bottom: 0;
+  margin-bottom: -8px;
+}
+
+:global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle, :global .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__month-read-view--down-arrow,
+:global .react-datepicker__month-year-read-view--down-arrow, :global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, :global .react-datepicker__year-read-view--down-arrow::before,
+:global .react-datepicker__month-read-view--down-arrow::before,
+:global .react-datepicker__month-year-read-view--down-arrow::before {
+  border-bottom: none;
+  border-top-color: #fff;
+}
+
+:global .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle::before, :global .react-datepicker__year-read-view--down-arrow::before,
+:global .react-datepicker__month-read-view--down-arrow::before,
+:global .react-datepicker__month-year-read-view--down-arrow::before {
+  bottom: -1px;
+  border-top-color: #aeaeae;
+}
+
+:global .react-datepicker-wrapper {
+  display: inline-block;
+  padding: 0;
+  border: 0;
+}
+
+:global .react-datepicker {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.8rem;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #aeaeae;
+  border-radius: 0.3rem;
+  display: inline-block;
+  position: relative;
+}
+
+:global .react-datepicker--time-only .react-datepicker__triangle {
+  left: 35px;
+}
+
+:global .react-datepicker--time-only .react-datepicker__time-container {
+  border-left: 0;
+}
+
+:global .react-datepicker--time-only .react-datepicker__time {
+  border-radius: 0.3rem;
+}
+
+:global .react-datepicker--time-only .react-datepicker__time-box {
+  border-radius: 0.3rem;
+}
+
+:global .react-datepicker__triangle {
+  position: absolute;
+  left: 50px;
+}
+
+:global .react-datepicker-popper {
+  z-index: 1;
+}
+
+:global .react-datepicker-popper[data-placement^="bottom"] {
+  margin-top: 10px;
+}
+
+:global .react-datepicker-popper[data-placement="bottom-end"] .react-datepicker__triangle, :global .react-datepicker-popper[data-placement="top-end"] .react-datepicker__triangle {
+  left: auto;
+  right: 50px;
+}
+
+:global .react-datepicker-popper[data-placement^="top"] {
+  margin-bottom: 10px;
+}
+
+:global .react-datepicker-popper[data-placement^="right"] {
+  margin-left: 8px;
+}
+
+:global .react-datepicker-popper[data-placement^="right"] .react-datepicker__triangle {
+  left: auto;
+  right: 42px;
+}
+
+:global .react-datepicker-popper[data-placement^="left"] {
+  margin-right: 8px;
+}
+
+:global .react-datepicker-popper[data-placement^="left"] .react-datepicker__triangle {
+  left: 42px;
+  right: auto;
+}
+
+:global .react-datepicker__header {
+  text-align: center;
+  background-color: #f0f0f0;
+  border-bottom: 1px solid #aeaeae;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+  padding-top: 8px;
+  position: relative;
+}
+
+:global .react-datepicker__header--time {
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+:global .react-datepicker__year-dropdown-container--select,
+:global .react-datepicker__month-dropdown-container--select,
+:global .react-datepicker__month-year-dropdown-container--select,
+:global .react-datepicker__year-dropdown-container--scroll,
+:global .react-datepicker__month-dropdown-container--scroll,
+:global .react-datepicker__month-year-dropdown-container--scroll {
+  display: inline-block;
+  margin: 0 2px;
+}
+
+:global .react-datepicker__current-month,
+:global .react-datepicker-time__header,
+:global .react-datepicker-year-header {
+  margin-top: 0;
+  color: #000;
+  font-weight: bold;
+  font-size: 0.944rem;
+}
+
+:global .react-datepicker-time__header {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+:global .react-datepicker__navigation {
+  background: none;
+  line-height: 1.7rem;
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  width: 0;
+  padding: 0;
+  border: 0.45rem solid transparent;
+  z-index: 1;
+  height: 10px;
+  width: 10px;
+  text-indent: -999em;
+  overflow: hidden;
+}
+
+:global .react-datepicker__navigation--previous {
+  left: 10px;
+  border-right-color: #ccc;
+}
+
+:global .react-datepicker__navigation--previous:hover {
+  border-right-color: #b3b3b3;
+}
+
+:global .react-datepicker__navigation--previous--disabled, :global .react-datepicker__navigation--previous--disabled:hover {
+  border-right-color: #e6e6e6;
+  cursor: default;
+}
+
+:global .react-datepicker__navigation--next {
+  right: 10px;
+  border-left-color: #ccc;
+}
+
+:global .react-datepicker__navigation--next--with-time {
+  right: 80px;
+}
+
+:global .react-datepicker__navigation--next:hover {
+  border-left-color: #b3b3b3;
+}
+
+:global .react-datepicker__navigation--next--disabled, :global .react-datepicker__navigation--next--disabled:hover {
+  border-left-color: #e6e6e6;
+  cursor: default;
+}
+
+:global .react-datepicker__navigation--years {
+  position: relative;
+  top: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:global .react-datepicker__navigation--years-previous {
+  top: 4px;
+  border-top-color: #ccc;
+}
+
+:global .react-datepicker__navigation--years-previous:hover {
+  border-top-color: #b3b3b3;
+}
+
+:global .react-datepicker__navigation--years-upcoming {
+  top: -4px;
+  border-bottom-color: #ccc;
+}
+
+:global .react-datepicker__navigation--years-upcoming:hover {
+  border-bottom-color: #b3b3b3;
+}
+
+:global .react-datepicker__month-container {
+  float: left;
+}
+
+:global .react-datepicker__year {
+  margin: 0.4rem;
+  text-align: center;
+}
+
+:global .react-datepicker__year-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 180px;
+}
+
+:global .react-datepicker__year .react-datepicker__year-text {
+  display: inline-block;
+  width: 4rem;
+  margin: 2px;
+}
+
+:global .react-datepicker__month {
+  margin: 0.4rem;
+  text-align: center;
+}
+
+:global .react-datepicker__month .react-datepicker__month-text,
+:global .react-datepicker__month .react-datepicker__quarter-text {
+  display: inline-block;
+  width: 4rem;
+  margin: 2px;
+}
+
+:global .react-datepicker__input-time-container {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin: 5px 0 10px 15px;
+  text-align: left;
+}
+
+:global .react-datepicker__input-time-container .react-datepicker-time__caption {
+  display: inline-block;
+}
+
+:global .react-datepicker__input-time-container .react-datepicker-time__input-container {
+  display: inline-block;
+}
+
+:global .react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+:global .react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input {
+  width: 85px;
+}
+
+:global .react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type="time"]::-webkit-inner-spin-button,
+:global .react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type="time"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+:global .react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__input input[type="time"] {
+  -moz-appearance: textfield;
+}
+
+:global .react-datepicker__input-time-container .react-datepicker-time__input-container .react-datepicker-time__delimiter {
+  margin-left: 5px;
+  display: inline-block;
+}
+
+:global .react-datepicker__time-container {
+  float: right;
+  border-left: 1px solid #aeaeae;
+  width: 85px;
+}
+
+:global .react-datepicker__time-container--with-today-button {
+  display: inline;
+  border: 1px solid #aeaeae;
+  border-radius: 0.3rem;
+  position: absolute;
+  right: -72px;
+  top: 0;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time {
+  position: relative;
+  background: white;
+  border-bottom-right-radius: 0.3rem;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box {
+  width: 85px;
+  overflow-x: hidden;
+  margin: 0 auto;
+  text-align: center;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list {
+  list-style: none;
+  margin: 0;
+  height: calc(195px + (1.7rem / 2));
+  overflow-y: scroll;
+  padding-right: 0px;
+  padding-left: 0px;
+  width: 100%;
+  box-sizing: content-box;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item {
+  height: 30px;
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected {
+  background-color: #216ba5;
+  color: white;
+  font-weight: bold;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected:hover {
+  background-color: #216ba5;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled {
+  color: #ccc;
+}
+
+:global .react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--disabled:hover {
+  cursor: default;
+  background-color: transparent;
+}
+
+:global .react-datepicker__week-number {
+  color: #ccc;
+  display: inline-block;
+  width: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
+  margin: 0.166rem;
+}
+
+:global .react-datepicker__week-number.react-datepicker__week-number--clickable {
+  cursor: pointer;
+}
+
+:global .react-datepicker__week-number.react-datepicker__week-number--clickable:hover {
+  border-radius: 0.3rem;
+  background-color: #f0f0f0;
+}
+
+:global .react-datepicker__day-names,
+:global .react-datepicker__week {
+  white-space: nowrap;
+}
+
+:global .react-datepicker__day-name,
+:global .react-datepicker__day,
+:global .react-datepicker__time-name {
+  color: #000;
+  display: inline-block;
+  width: 1.7rem;
+  line-height: 1.7rem;
+  text-align: center;
+  margin: 0.166rem;
+}
+
+:global .react-datepicker__month--selected, :global .react-datepicker__month--in-selecting-range, :global .react-datepicker__month--in-range,
+:global .react-datepicker__quarter--selected,
+:global .react-datepicker__quarter--in-selecting-range,
+:global .react-datepicker__quarter--in-range {
+  border-radius: 0.3rem;
+  background-color: #216ba5;
+  color: #fff;
+}
+
+:global .react-datepicker__month--selected:hover, :global .react-datepicker__month--in-selecting-range:hover, :global .react-datepicker__month--in-range:hover,
+:global .react-datepicker__quarter--selected:hover,
+:global .react-datepicker__quarter--in-selecting-range:hover,
+:global .react-datepicker__quarter--in-range:hover {
+  background-color: #1d5d90;
+}
+
+:global .react-datepicker__month--disabled,
+:global .react-datepicker__quarter--disabled {
+  color: #ccc;
+  pointer-events: none;
+}
+
+:global .react-datepicker__month--disabled:hover,
+:global .react-datepicker__quarter--disabled:hover {
+  cursor: default;
+  background-color: transparent;
+}
+
+:global .react-datepicker__day,
+:global .react-datepicker__month-text,
+:global .react-datepicker__quarter-text,
+:global .react-datepicker__year-text {
+  cursor: pointer;
+}
+
+:global .react-datepicker__day:hover,
+:global .react-datepicker__month-text:hover,
+:global .react-datepicker__quarter-text:hover,
+:global .react-datepicker__year-text:hover {
+  border-radius: 0.3rem;
+  background-color: #f0f0f0;
+}
+
+:global .react-datepicker__day--today,
+:global .react-datepicker__month-text--today,
+:global .react-datepicker__quarter-text--today,
+:global .react-datepicker__year-text--today {
+  font-weight: bold;
+}
+
+:global .react-datepicker__day--highlighted,
+:global .react-datepicker__month-text--highlighted,
+:global .react-datepicker__quarter-text--highlighted,
+:global .react-datepicker__year-text--highlighted {
+  border-radius: 0.3rem;
+  background-color: #3dcc4a;
+  color: #fff;
+}
+
+:global .react-datepicker__day--highlighted:hover,
+:global .react-datepicker__month-text--highlighted:hover,
+:global .react-datepicker__quarter-text--highlighted:hover,
+:global .react-datepicker__year-text--highlighted:hover {
+  background-color: #32be3f;
+}
+
+:global .react-datepicker__day--highlighted-custom-1,
+:global .react-datepicker__month-text--highlighted-custom-1,
+:global .react-datepicker__quarter-text--highlighted-custom-1,
+:global .react-datepicker__year-text--highlighted-custom-1 {
+  color: magenta;
+}
+
+:global .react-datepicker__day--highlighted-custom-2,
+:global .react-datepicker__month-text--highlighted-custom-2,
+:global .react-datepicker__quarter-text--highlighted-custom-2,
+:global .react-datepicker__year-text--highlighted-custom-2 {
+  color: green;
+}
+
+:global .react-datepicker__day--selected, :global .react-datepicker__day--in-selecting-range, :global .react-datepicker__day--in-range,
+:global .react-datepicker__month-text--selected,
+:global .react-datepicker__month-text--in-selecting-range,
+:global .react-datepicker__month-text--in-range,
+:global .react-datepicker__quarter-text--selected,
+:global .react-datepicker__quarter-text--in-selecting-range,
+:global .react-datepicker__quarter-text--in-range,
+:global .react-datepicker__year-text--selected,
+:global .react-datepicker__year-text--in-selecting-range,
+:global .react-datepicker__year-text--in-range {
+  border-radius: 0.3rem;
+  background-color: #216ba5;
+  color: #fff;
+}
+
+:global .react-datepicker__day--selected:hover, :global .react-datepicker__day--in-selecting-range:hover, :global .react-datepicker__day--in-range:hover,
+:global .react-datepicker__month-text--selected:hover,
+:global .react-datepicker__month-text--in-selecting-range:hover,
+:global .react-datepicker__month-text--in-range:hover,
+:global .react-datepicker__quarter-text--selected:hover,
+:global .react-datepicker__quarter-text--in-selecting-range:hover,
+:global .react-datepicker__quarter-text--in-range:hover,
+:global .react-datepicker__year-text--selected:hover,
+:global .react-datepicker__year-text--in-selecting-range:hover,
+:global .react-datepicker__year-text--in-range:hover {
+  background-color: #1d5d90;
+}
+
+:global .react-datepicker__day--keyboard-selected,
+:global .react-datepicker__month-text--keyboard-selected,
+:global .react-datepicker__quarter-text--keyboard-selected,
+:global .react-datepicker__year-text--keyboard-selected {
+  border-radius: 0.3rem;
+  background-color: #2a87d0;
+  color: #fff;
+}
+
+:global .react-datepicker__day--keyboard-selected:hover,
+:global .react-datepicker__month-text--keyboard-selected:hover,
+:global .react-datepicker__quarter-text--keyboard-selected:hover,
+:global .react-datepicker__year-text--keyboard-selected:hover {
+  background-color: #1d5d90;
+}
+
+:global .react-datepicker__day--in-selecting-range ,
+:global .react-datepicker__month-text--in-selecting-range ,
+:global .react-datepicker__quarter-text--in-selecting-range ,
+:global .react-datepicker__year-text--in-selecting-range {
+  background-color: rgba(33, 107, 165, 0.5);
+}
+
+.react-datepicker__month--selecting-range :global .react-datepicker__day--in-range , .react-datepicker__month--selecting-range
+:global .react-datepicker__month-text--in-range , .react-datepicker__month--selecting-range
+:global .react-datepicker__quarter-text--in-range , .react-datepicker__month--selecting-range
+:global .react-datepicker__year-text--in-range {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+:global .react-datepicker__day--disabled,
+:global .react-datepicker__month-text--disabled,
+:global .react-datepicker__quarter-text--disabled,
+:global .react-datepicker__year-text--disabled {
+  cursor: default;
+  color: #ccc;
+}
+
+:global .react-datepicker__day--disabled:hover,
+:global .react-datepicker__month-text--disabled:hover,
+:global .react-datepicker__quarter-text--disabled:hover,
+:global .react-datepicker__year-text--disabled:hover {
+  background-color: transparent;
+}
+
+:global .react-datepicker__month-text.react-datepicker__month--selected:hover, :global .react-datepicker__month-text.react-datepicker__month--in-range:hover, :global .react-datepicker__month-text.react-datepicker__quarter--selected:hover, :global .react-datepicker__month-text.react-datepicker__quarter--in-range:hover,
+:global .react-datepicker__quarter-text.react-datepicker__month--selected:hover,
+:global .react-datepicker__quarter-text.react-datepicker__month--in-range:hover,
+:global .react-datepicker__quarter-text.react-datepicker__quarter--selected:hover,
+:global .react-datepicker__quarter-text.react-datepicker__quarter--in-range:hover {
+  background-color: #216ba5;
+}
+
+:global .react-datepicker__month-text:hover,
+:global .react-datepicker__quarter-text:hover {
+  background-color: #f0f0f0;
+}
+
+:global .react-datepicker__input-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+:global .react-datepicker__year-read-view,
+:global .react-datepicker__month-read-view,
+:global .react-datepicker__month-year-read-view {
+  border: 1px solid transparent;
+  border-radius: 0.3rem;
+}
+
+:global .react-datepicker__year-read-view:hover,
+:global .react-datepicker__month-read-view:hover,
+:global .react-datepicker__month-year-read-view:hover {
+  cursor: pointer;
+}
+
+:global .react-datepicker__year-read-view:hover .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__year-read-view:hover .react-datepicker__month-read-view--down-arrow,
+:global .react-datepicker__month-read-view:hover .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__month-read-view:hover .react-datepicker__month-read-view--down-arrow,
+:global .react-datepicker__month-year-read-view:hover .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__month-year-read-view:hover .react-datepicker__month-read-view--down-arrow {
+  border-top-color: #b3b3b3;
+}
+
+:global .react-datepicker__year-read-view--down-arrow,
+:global .react-datepicker__month-read-view--down-arrow,
+:global .react-datepicker__month-year-read-view--down-arrow {
+  border-top-color: #ccc;
+  float: right;
+  margin-left: 20px;
+  top: 8px;
+  position: relative;
+  border-width: 0.45rem;
+}
+
+:global .react-datepicker__year-dropdown,
+:global .react-datepicker__month-dropdown,
+:global .react-datepicker__month-year-dropdown {
+  background-color: #f0f0f0;
+  position: absolute;
+  width: 50%;
+  left: 25%;
+  top: 30px;
+  z-index: 1;
+  text-align: center;
+  border-radius: 0.3rem;
+  border: 1px solid #aeaeae;
+}
+
+:global .react-datepicker__year-dropdown:hover,
+:global .react-datepicker__month-dropdown:hover,
+:global .react-datepicker__month-year-dropdown:hover {
+  cursor: pointer;
+}
+
+:global .react-datepicker__year-dropdown--scrollable,
+:global .react-datepicker__month-dropdown--scrollable,
+:global .react-datepicker__month-year-dropdown--scrollable {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+:global .react-datepicker__year-option,
+:global .react-datepicker__month-option,
+:global .react-datepicker__month-year-option {
+  line-height: 20px;
+  width: 100%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+:global .react-datepicker__year-option:first-of-type,
+:global .react-datepicker__month-option:first-of-type,
+:global .react-datepicker__month-year-option:first-of-type {
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+:global .react-datepicker__year-option:last-of-type,
+:global .react-datepicker__month-option:last-of-type,
+:global .react-datepicker__month-year-option:last-of-type {
+  -webkit-user-select: none;
+  user-select: none;
+  border-bottom-left-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
+}
+
+:global .react-datepicker__year-option:hover,
+:global .react-datepicker__month-option:hover,
+:global .react-datepicker__month-year-option:hover {
+  background-color: #ccc;
+}
+
+:global .react-datepicker__year-option:hover .react-datepicker__navigation--years-upcoming,
+:global .react-datepicker__month-option:hover .react-datepicker__navigation--years-upcoming,
+:global .react-datepicker__month-year-option:hover .react-datepicker__navigation--years-upcoming {
+  border-bottom-color: #b3b3b3;
+}
+
+:global .react-datepicker__year-option:hover .react-datepicker__navigation--years-previous,
+:global .react-datepicker__month-option:hover .react-datepicker__navigation--years-previous,
+:global .react-datepicker__month-year-option:hover .react-datepicker__navigation--years-previous {
+  border-top-color: #b3b3b3;
+}
+
+:global .react-datepicker__year-option--selected,
+:global .react-datepicker__month-option--selected,
+:global .react-datepicker__month-year-option--selected {
+  position: absolute;
+  left: 15px;
+}
+
+:global .react-datepicker__close-icon {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0px 6px 0px 0px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: table-cell;
+  vertical-align: middle;
+}
+
+:global .react-datepicker__close-icon::after {
+  cursor: pointer;
+  background-color: #216ba5;
+  color: #fff;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  padding: 2px;
+  font-size: 12px;
+  line-height: 1;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+  content: "\00d7";
+}
+
+:global .react-datepicker__today-button {
+  background: #f0f0f0;
+  border-top: 1px solid #aeaeae;
+  cursor: pointer;
+  text-align: center;
+  font-weight: bold;
+  padding: 5px 0;
+  clear: left;
+}
+
+:global .react-datepicker__portal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 0;
+  top: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  z-index: 2147483647;
+}
+
+:global .react-datepicker__portal .react-datepicker__day-name,
+:global .react-datepicker__portal .react-datepicker__day,
+:global .react-datepicker__portal .react-datepicker__time-name {
+  width: 3rem;
+  line-height: 3rem;
+}
+
+@media (max-width: 400px), (max-height: 550px) {
+  :global .react-datepicker__portal .react-datepicker__day-name,
+  :global .react-datepicker__portal .react-datepicker__day,
+  :global .react-datepicker__portal .react-datepicker__time-name {
+    width: 2rem;
+    line-height: 2rem;
+  }
+}
+
+:global .react-datepicker__portal .react-datepicker__current-month,
+:global .react-datepicker__portal .react-datepicker-time__header {
+  font-size: 1.44rem;
+}
+
+:global .react-datepicker__portal .react-datepicker__navigation {
+  border: 0.81rem solid transparent;
+}
+
+:global .react-datepicker__portal .react-datepicker__navigation--previous {
+  border-right-color: #ccc;
+}
+
+:global .react-datepicker__portal .react-datepicker__navigation--previous:hover {
+  border-right-color: #b3b3b3;
+}
+
+:global .react-datepicker__portal .react-datepicker__navigation--previous--disabled, :global .react-datepicker__portal .react-datepicker__navigation--previous--disabled:hover {
+  border-right-color: #e6e6e6;
+  cursor: default;
+}
+
+:global .react-datepicker__portal .react-datepicker__navigation--next {
+  border-left-color: #ccc;
+}
+
+:global .react-datepicker__portal .react-datepicker__navigation--next:hover {
+  border-left-color: #b3b3b3;
+}
+
+:global .react-datepicker__portal .react-datepicker__navigation--next--disabled, :global .react-datepicker__portal .react-datepicker__navigation--next--disabled:hover {
+  border-left-color: #e6e6e6;
+  cursor: default;
+}
+</style><style type="text/css">
+#teamTable {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 40%;
+    margin-top: 100px;
+    margin-left: 500px;
+    margin-bottom: 100px;
+  }
+  #teamTable td, #teamTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  #teamTable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #teamTable tr:hover {background-color: #ddd;}
+  
+  #teamTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: center;
+    background-color:#072664;
+    color:aliceblue;
+    
+  }
+  .teamdetails{
+      margin-left: 200px;
+      margin-right: 200px;
+  }
+  .addPlayerForm{
+    margin-left: 500px;
+    width:500px;
+    background-color: #FFFAF0;
+    padding-left: 100px;
+    height: 280px;
+    margin-bottom: 100px;
+    margin-top: 100px;
+  }
+  .teamform{
+    margin-left: 500px;
+    margin-top: 100px;
+    width:500px;
+    background-color: #FFFAF0;
+    padding-left: 100px;
+    height: 350px;
+    margin-bottom: 100px;
+  }
+  .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+    opacity: 1;
+    transition: opacity 0.6s;
+    margin-bottom: 15px;
+    width:40%;
+    margin-left:100px;
+  }
+  
+  .alert.success {background-color: #7bdb7e;
+  }
+  .float_left{
+float: left;
+height:55px;
+  }
+
+  .MyReactTableClass .-sort-desc {
+    box-shadow: none !important;}
+.MyReactTableClass .-sort-desc::before {
+      content: "▼";
+      float: right;
+    }
+  
+
+.MyReactTableClass .-sort-asc {
+    box-shadow: none !important;}
+.MyReactTableClass .-sort-asc::before {
+      content: "▲";
+      float: right;
+    }
+
+
+    
+  </style><style type="text/css">.seriesform{
+        margin-left: 500px;
+        width:500px;
+        background-color: #FFFAF0;
+        padding-left: 100px;
+        height: 800px;
+        margin-bottom: 100px;
+}
+.addTeamsForm{
+    margin-left: 500px;
+    width:500px;
+    background-color: #FFFAF0;
+    padding-left: 100px;
+    height: 280px;
+    margin-bottom: 100px;
+    margin-top: 100px;
+  }
+  .alert {
+        padding: 20px;
+        background-color: #f44336;
+        color: white;
+        opacity: 1;
+        transition: opacity 0.6s;
+        margin-bottom: 15px;
+        width:95%;
+        margin-left:0px;
+        
+      }
+      
+      .alert.success {background-color: #7bdb7e;
+      }
+.errormsg{
+width:330px;
+height:20px;
+background-color: rgb(245, 110, 110);
+}
+#seriesTable {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 40%;
+        margin-top: 100px;
+        margin-left: 500px;
+      }
+      #seriesTable td, #seriesTable th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+      
+      #seriesTable tr:nth-child(even){background-color: #f2f2f2;}
+      
+      #seriesTable tr:hover {background-color: #ddd;}
+      
+      #seriesTable th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color:#072664;
+        color:aliceblue;
+        
+      }
+      .seriesdetails{
+          margin-left: 400px;
+          margin-right: 400px;
+      }
+      .delTeam{
+              width:40%;
+              margin-left: 70px;
+      }
+      .details{
+        margin-top:70px;
+        margin-left:180px;
+        
+        
+      }</style><style type="text/css">.bi{
+  height: 636px;
+  width: 1536px;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  margin-top: 45px;
+  margin-bottom: 0px;
+}
+</style><style data-jss="" data-meta="MuiPaper">
+.MuiPaper-root {
+  color: rgba(0, 0, 0, 0.87);
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  background-color: #fff;
+}
+.MuiPaper-rounded {
+  border-radius: 4px;
+}
+.MuiPaper-outlined {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+.MuiPaper-elevation0 {
+  box-shadow: none;
+}
+.MuiPaper-elevation1 {
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation2 {
+  box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2),0px 2px 2px 0px rgba(0,0,0,0.14),0px 1px 5px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation3 {
+  box-shadow: 0px 3px 3px -2px rgba(0,0,0,0.2),0px 3px 4px 0px rgba(0,0,0,0.14),0px 1px 8px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation4 {
+  box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2),0px 4px 5px 0px rgba(0,0,0,0.14),0px 1px 10px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation5 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 5px 8px 0px rgba(0,0,0,0.14),0px 1px 14px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation6 {
+  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2),0px 6px 10px 0px rgba(0,0,0,0.14),0px 1px 18px 0px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation7 {
+  box-shadow: 0px 4px 5px -2px rgba(0,0,0,0.2),0px 7px 10px 1px rgba(0,0,0,0.14),0px 2px 16px 1px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation8 {
+  box-shadow: 0px 5px 5px -3px rgba(0,0,0,0.2),0px 8px 10px 1px rgba(0,0,0,0.14),0px 3px 14px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation9 {
+  box-shadow: 0px 5px 6px -3px rgba(0,0,0,0.2),0px 9px 12px 1px rgba(0,0,0,0.14),0px 3px 16px 2px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation10 {
+  box-shadow: 0px 6px 6px -3px rgba(0,0,0,0.2),0px 10px 14px 1px rgba(0,0,0,0.14),0px 4px 18px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation11 {
+  box-shadow: 0px 6px 7px -4px rgba(0,0,0,0.2),0px 11px 15px 1px rgba(0,0,0,0.14),0px 4px 20px 3px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation12 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 12px 17px 2px rgba(0,0,0,0.14),0px 5px 22px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation13 {
+  box-shadow: 0px 7px 8px -4px rgba(0,0,0,0.2),0px 13px 19px 2px rgba(0,0,0,0.14),0px 5px 24px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation14 {
+  box-shadow: 0px 7px 9px -4px rgba(0,0,0,0.2),0px 14px 21px 2px rgba(0,0,0,0.14),0px 5px 26px 4px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation15 {
+  box-shadow: 0px 8px 9px -5px rgba(0,0,0,0.2),0px 15px 22px 2px rgba(0,0,0,0.14),0px 6px 28px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation16 {
+  box-shadow: 0px 8px 10px -5px rgba(0,0,0,0.2),0px 16px 24px 2px rgba(0,0,0,0.14),0px 6px 30px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation17 {
+  box-shadow: 0px 8px 11px -5px rgba(0,0,0,0.2),0px 17px 26px 2px rgba(0,0,0,0.14),0px 6px 32px 5px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation18 {
+  box-shadow: 0px 9px 11px -5px rgba(0,0,0,0.2),0px 18px 28px 2px rgba(0,0,0,0.14),0px 7px 34px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation19 {
+  box-shadow: 0px 9px 12px -6px rgba(0,0,0,0.2),0px 19px 29px 2px rgba(0,0,0,0.14),0px 7px 36px 6px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation20 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 20px 31px 3px rgba(0,0,0,0.14),0px 8px 38px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation21 {
+  box-shadow: 0px 10px 13px -6px rgba(0,0,0,0.2),0px 21px 33px 3px rgba(0,0,0,0.14),0px 8px 40px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation22 {
+  box-shadow: 0px 10px 14px -6px rgba(0,0,0,0.2),0px 22px 35px 3px rgba(0,0,0,0.14),0px 8px 42px 7px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation23 {
+  box-shadow: 0px 11px 14px -7px rgba(0,0,0,0.2),0px 23px 36px 3px rgba(0,0,0,0.14),0px 9px 44px 8px rgba(0,0,0,0.12);
+}
+.MuiPaper-elevation24 {
+  box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2),0px 24px 38px 3px rgba(0,0,0,0.14),0px 9px 46px 8px rgba(0,0,0,0.12);
+}
+</style><style data-jss="" data-meta="MuiCard">
+.MuiCard-root {
+  overflow: hidden;
+}
+</style><style data-jss="" data-meta="MuiTouchRipple">
+.MuiTouchRipple-root {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 0;
+  overflow: hidden;
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.MuiTouchRipple-ripple {
+  opacity: 0;
+  position: absolute;
+}
+.MuiTouchRipple-rippleVisible {
+  opacity: 0.3;
+  animation: MuiTouchRipple-keyframes-enter 550ms cubic-bezier(0.4, 0, 0.2, 1);
+  transform: scale(1);
+}
+.MuiTouchRipple-ripplePulsate {
+  animation-duration: 200ms;
+}
+.MuiTouchRipple-child {
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 1;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+.MuiTouchRipple-childLeaving {
+  opacity: 0;
+  animation: MuiTouchRipple-keyframes-exit 550ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.MuiTouchRipple-childPulsate {
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: MuiTouchRipple-keyframes-pulsate 2500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms infinite;
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-enter {
+  0% {
+    opacity: 0.1;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-exit {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes MuiTouchRipple-keyframes-pulsate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+</style><style data-jss="" data-meta="MuiButtonBase">
+.MuiButtonBase-root {
+  color: inherit;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  display: inline-flex;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  align-items: center;
+  user-select: none;
+  border-radius: 0;
+  vertical-align: middle;
+  -moz-appearance: none;
+  justify-content: center;
+  text-decoration: none;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.MuiButtonBase-root::-moz-focus-inner {
+  border-style: none;
+}
+.MuiButtonBase-root.Mui-disabled {
+  cursor: default;
+  pointer-events: none;
+}
+@media print {
+  .MuiButtonBase-root {
+    -webkit-print-color-adjust: exact;
+  }
+}
+</style><style data-jss="" data-meta="MuiCardActionArea">
+.MuiCardActionArea-root {
+  width: 100%;
+  display: block;
+  text-align: inherit;
+}
+.MuiCardActionArea-root:hover .MuiCardActionArea-focusHighlight {
+  opacity: 0.04;
+}
+.MuiCardActionArea-root.Mui-focusVisible .MuiCardActionArea-focusHighlight {
+  opacity: 0.12;
+}
+.MuiCardActionArea-focusHighlight {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: inherit;
+  pointer-events: none;
+  background-color: currentcolor;
+}
+</style><style data-jss="" data-meta="MuiCardContent">
+.MuiCardContent-root {
+  padding: 16px;
+}
+.MuiCardContent-root:last-child {
+  padding-bottom: 24px;
+}
+</style><style data-jss="" data-meta="MuiCardMedia">
+.MuiCardMedia-root {
+  display: block;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.MuiCardMedia-media {
+  width: 100%;
+}
+.MuiCardMedia-img {
+  object-fit: cover;
+}
+</style><style data-jss="" data-meta="MuiTypography">
+.MuiTypography-root {
+  margin: 0;
+}
+.MuiTypography-body2 {
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+}
+.MuiTypography-body1 {
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+}
+.MuiTypography-caption {
+  font-size: 0.75rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+}
+.MuiTypography-button {
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+}
+.MuiTypography-h1 {
+  font-size: 6rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  line-height: 1.167;
+  letter-spacing: -0.01562em;
+}
+.MuiTypography-h2 {
+  font-size: 3.75rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.00833em;
+}
+.MuiTypography-h3 {
+  font-size: 3rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.167;
+  letter-spacing: 0em;
+}
+.MuiTypography-h4 {
+  font-size: 2.125rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+}
+.MuiTypography-h5 {
+  font-size: 1.5rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.334;
+  letter-spacing: 0em;
+}
+.MuiTypography-h6 {
+  font-size: 1.25rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}
+.MuiTypography-subtitle1 {
+  font-size: 1rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: 0.00938em;
+}
+.MuiTypography-subtitle2 {
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.57;
+  letter-spacing: 0.00714em;
+}
+.MuiTypography-overline {
+  font-size: 0.75rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 400;
+  line-height: 2.66;
+  letter-spacing: 0.08333em;
+  text-transform: uppercase;
+}
+.MuiTypography-srOnly {
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+}
+.MuiTypography-alignLeft {
+  text-align: left;
+}
+.MuiTypography-alignCenter {
+  text-align: center;
+}
+.MuiTypography-alignRight {
+  text-align: right;
+}
+.MuiTypography-alignJustify {
+  text-align: justify;
+}
+.MuiTypography-noWrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.MuiTypography-gutterBottom {
+  margin-bottom: 0.35em;
+}
+.MuiTypography-paragraph {
+  margin-bottom: 16px;
+}
+.MuiTypography-colorInherit {
+  color: inherit;
+}
+.MuiTypography-colorPrimary {
+  color: #3f51b5;
+}
+.MuiTypography-colorSecondary {
+  color: #f50057;
+}
+.MuiTypography-colorTextPrimary {
+  color: rgba(0, 0, 0, 0.87);
+}
+.MuiTypography-colorTextSecondary {
+  color: rgba(0, 0, 0, 0.54);
+}
+.MuiTypography-colorError {
+  color: #f44336;
+}
+.MuiTypography-displayInline {
+  display: inline;
+}
+.MuiTypography-displayBlock {
+  display: block;
+}
+</style><style data-jss="" data-meta="MuiGrid">
+.MuiGrid-container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.MuiGrid-item {
+  margin: 0;
+  box-sizing: border-box;
+}
+.MuiGrid-zeroMinWidth {
+  min-width: 0;
+}
+.MuiGrid-direction-xs-column {
+  flex-direction: column;
+}
+.MuiGrid-direction-xs-column-reverse {
+  flex-direction: column-reverse;
+}
+.MuiGrid-direction-xs-row-reverse {
+  flex-direction: row-reverse;
+}
+.MuiGrid-wrap-xs-nowrap {
+  flex-wrap: nowrap;
+}
+.MuiGrid-wrap-xs-wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+.MuiGrid-align-items-xs-center {
+  align-items: center;
+}
+.MuiGrid-align-items-xs-flex-start {
+  align-items: flex-start;
+}
+.MuiGrid-align-items-xs-flex-end {
+  align-items: flex-end;
+}
+.MuiGrid-align-items-xs-baseline {
+  align-items: baseline;
+}
+.MuiGrid-align-content-xs-center {
+  align-content: center;
+}
+.MuiGrid-align-content-xs-flex-start {
+  align-content: flex-start;
+}
+.MuiGrid-align-content-xs-flex-end {
+  align-content: flex-end;
+}
+.MuiGrid-align-content-xs-space-between {
+  align-content: space-between;
+}
+.MuiGrid-align-content-xs-space-around {
+  align-content: space-around;
+}
+.MuiGrid-justify-xs-center {
+  justify-content: center;
+}
+.MuiGrid-justify-xs-flex-end {
+  justify-content: flex-end;
+}
+.MuiGrid-justify-xs-space-between {
+  justify-content: space-between;
+}
+.MuiGrid-justify-xs-space-around {
+  justify-content: space-around;
+}
+.MuiGrid-justify-xs-space-evenly {
+  justify-content: space-evenly;
+}
+.MuiGrid-spacing-xs-1 {
+  width: calc(100% + 8px);
+  margin: -4px;
+}
+.MuiGrid-spacing-xs-1 > .MuiGrid-item {
+  padding: 4px;
+}
+.MuiGrid-spacing-xs-2 {
+  width: calc(100% + 16px);
+  margin: -8px;
+}
+.MuiGrid-spacing-xs-2 > .MuiGrid-item {
+  padding: 8px;
+}
+.MuiGrid-spacing-xs-3 {
+  width: calc(100% + 24px);
+  margin: -12px;
+}
+.MuiGrid-spacing-xs-3 > .MuiGrid-item {
+  padding: 12px;
+}
+.MuiGrid-spacing-xs-4 {
+  width: calc(100% + 32px);
+  margin: -16px;
+}
+.MuiGrid-spacing-xs-4 > .MuiGrid-item {
+  padding: 16px;
+}
+.MuiGrid-spacing-xs-5 {
+  width: calc(100% + 40px);
+  margin: -20px;
+}
+.MuiGrid-spacing-xs-5 > .MuiGrid-item {
+  padding: 20px;
+}
+.MuiGrid-spacing-xs-6 {
+  width: calc(100% + 48px);
+  margin: -24px;
+}
+.MuiGrid-spacing-xs-6 > .MuiGrid-item {
+  padding: 24px;
+}
+.MuiGrid-spacing-xs-7 {
+  width: calc(100% + 56px);
+  margin: -28px;
+}
+.MuiGrid-spacing-xs-7 > .MuiGrid-item {
+  padding: 28px;
+}
+.MuiGrid-spacing-xs-8 {
+  width: calc(100% + 64px);
+  margin: -32px;
+}
+.MuiGrid-spacing-xs-8 > .MuiGrid-item {
+  padding: 32px;
+}
+.MuiGrid-spacing-xs-9 {
+  width: calc(100% + 72px);
+  margin: -36px;
+}
+.MuiGrid-spacing-xs-9 > .MuiGrid-item {
+  padding: 36px;
+}
+.MuiGrid-spacing-xs-10 {
+  width: calc(100% + 80px);
+  margin: -40px;
+}
+.MuiGrid-spacing-xs-10 > .MuiGrid-item {
+  padding: 40px;
+}
+.MuiGrid-grid-xs-auto {
+  flex-grow: 0;
+  max-width: none;
+  flex-basis: auto;
+}
+.MuiGrid-grid-xs-true {
+  flex-grow: 1;
+  max-width: 100%;
+  flex-basis: 0;
+}
+.MuiGrid-grid-xs-1 {
+  flex-grow: 0;
+  max-width: 8.333333%;
+  flex-basis: 8.333333%;
+}
+.MuiGrid-grid-xs-2 {
+  flex-grow: 0;
+  max-width: 16.666667%;
+  flex-basis: 16.666667%;
+}
+.MuiGrid-grid-xs-3 {
+  flex-grow: 0;
+  max-width: 25%;
+  flex-basis: 25%;
+}
+.MuiGrid-grid-xs-4 {
+  flex-grow: 0;
+  max-width: 33.333333%;
+  flex-basis: 33.333333%;
+}
+.MuiGrid-grid-xs-5 {
+  flex-grow: 0;
+  max-width: 41.666667%;
+  flex-basis: 41.666667%;
+}
+.MuiGrid-grid-xs-6 {
+  flex-grow: 0;
+  max-width: 50%;
+  flex-basis: 50%;
+}
+.MuiGrid-grid-xs-7 {
+  flex-grow: 0;
+  max-width: 58.333333%;
+  flex-basis: 58.333333%;
+}
+.MuiGrid-grid-xs-8 {
+  flex-grow: 0;
+  max-width: 66.666667%;
+  flex-basis: 66.666667%;
+}
+.MuiGrid-grid-xs-9 {
+  flex-grow: 0;
+  max-width: 75%;
+  flex-basis: 75%;
+}
+.MuiGrid-grid-xs-10 {
+  flex-grow: 0;
+  max-width: 83.333333%;
+  flex-basis: 83.333333%;
+}
+.MuiGrid-grid-xs-11 {
+  flex-grow: 0;
+  max-width: 91.666667%;
+  flex-basis: 91.666667%;
+}
+.MuiGrid-grid-xs-12 {
+  flex-grow: 0;
+  max-width: 100%;
+  flex-basis: 100%;
+}
+@media (min-width:600px) {
+  .MuiGrid-grid-sm-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-sm-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-sm-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-sm-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-sm-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-sm-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-sm-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-sm-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-sm-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-sm-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-sm-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-sm-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-sm-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-sm-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:960px) {
+  .MuiGrid-grid-md-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-md-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-md-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-md-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-md-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-md-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-md-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-md-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-md-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-md-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-md-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-md-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-md-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-md-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:1280px) {
+  .MuiGrid-grid-lg-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-lg-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-lg-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-lg-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-lg-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-lg-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-lg-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-lg-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-lg-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-lg-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-lg-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-lg-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-lg-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-lg-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+@media (min-width:1920px) {
+  .MuiGrid-grid-xl-auto {
+    flex-grow: 0;
+    max-width: none;
+    flex-basis: auto;
+  }
+  .MuiGrid-grid-xl-true {
+    flex-grow: 1;
+    max-width: 100%;
+    flex-basis: 0;
+  }
+  .MuiGrid-grid-xl-1 {
+    flex-grow: 0;
+    max-width: 8.333333%;
+    flex-basis: 8.333333%;
+  }
+  .MuiGrid-grid-xl-2 {
+    flex-grow: 0;
+    max-width: 16.666667%;
+    flex-basis: 16.666667%;
+  }
+  .MuiGrid-grid-xl-3 {
+    flex-grow: 0;
+    max-width: 25%;
+    flex-basis: 25%;
+  }
+  .MuiGrid-grid-xl-4 {
+    flex-grow: 0;
+    max-width: 33.333333%;
+    flex-basis: 33.333333%;
+  }
+  .MuiGrid-grid-xl-5 {
+    flex-grow: 0;
+    max-width: 41.666667%;
+    flex-basis: 41.666667%;
+  }
+  .MuiGrid-grid-xl-6 {
+    flex-grow: 0;
+    max-width: 50%;
+    flex-basis: 50%;
+  }
+  .MuiGrid-grid-xl-7 {
+    flex-grow: 0;
+    max-width: 58.333333%;
+    flex-basis: 58.333333%;
+  }
+  .MuiGrid-grid-xl-8 {
+    flex-grow: 0;
+    max-width: 66.666667%;
+    flex-basis: 66.666667%;
+  }
+  .MuiGrid-grid-xl-9 {
+    flex-grow: 0;
+    max-width: 75%;
+    flex-basis: 75%;
+  }
+  .MuiGrid-grid-xl-10 {
+    flex-grow: 0;
+    max-width: 83.333333%;
+    flex-basis: 83.333333%;
+  }
+  .MuiGrid-grid-xl-11 {
+    flex-grow: 0;
+    max-width: 91.666667%;
+    flex-basis: 91.666667%;
+  }
+  .MuiGrid-grid-xl-12 {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+  }
+}
+</style><style data-jss="" data-meta="MuiContainer">
+.MuiContainer-root {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media (min-width:600px) {
+  .MuiContainer-root {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+.MuiContainer-disableGutters {
+  padding-left: 0;
+  padding-right: 0;
+}
+@media (min-width:600px) {
+  .MuiContainer-fixed {
+    max-width: 600px;
+  }
+}
+@media (min-width:960px) {
+  .MuiContainer-fixed {
+    max-width: 960px;
+  }
+}
+@media (min-width:1280px) {
+  .MuiContainer-fixed {
+    max-width: 1280px;
+  }
+}
+@media (min-width:1920px) {
+  .MuiContainer-fixed {
+    max-width: 1920px;
+  }
+}
+@media (min-width:0px) {
+  .MuiContainer-maxWidthXs {
+    max-width: 444px;
+  }
+}
+@media (min-width:600px) {
+  .MuiContainer-maxWidthSm {
+    max-width: 600px;
+  }
+}
+@media (min-width:960px) {
+  .MuiContainer-maxWidthMd {
+    max-width: 960px;
+  }
+}
+@media (min-width:1280px) {
+  .MuiContainer-maxWidthLg {
+    max-width: 1280px;
+  }
+}
+@media (min-width:1920px) {
+  .MuiContainer-maxWidthXl {
+    max-width: 1920px;
+  }
+}
+</style><style data-jss="" data-meta="AdminDashboard">
+.AdminDashboard-card-1 {
+  color: white;
+  width: 300px;
+  background-color: #199FB1;
+}
+.AdminDashboard-media-2 {
+  object-fit: cover;
+}
+</style></head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"><div><div class="headerStyle"><div class="container"><button type="button" class="headerButton">STRIKERS</button></div></div><div class="MuiContainer-root MuiContainer-maxWidthLg"><div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-10"><div class="MuiGrid-root MuiGrid-item"><div class="MuiPaper-root MuiCard-root AdminDashboard-card-1 MuiPaper-elevation1 MuiPaper-rounded"><button class="MuiButtonBase-root MuiCardActionArea-root" tabindex="0" type="button"><img class="MuiCardMedia-root AdminDashboard-media-2 MuiCardMedia-media MuiCardMedia-img" src="./React App_files/team.44dde877.jpg" alt="Teams" height="200" title="Teams"><div class="MuiCardContent-root"><h2 class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom">Teams</h2></div><span class="MuiCardActionArea-focusHighlight"></span><span class="MuiTouchRipple-root"></span></button></div></div><div class="MuiGrid-root MuiGrid-item"><div class="MuiPaper-root MuiCard-root AdminDashboard-card-1 MuiPaper-elevation1 MuiPaper-rounded"><button class="MuiButtonBase-root MuiCardActionArea-root" tabindex="0" type="button"><img class="MuiCardMedia-root AdminDashboard-media-2 MuiCardMedia-media MuiCardMedia-img" src="data:image/jpeg;base64,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" alt="Players" height="200" title="Players"><div class="MuiCardContent-root"><h2 class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom">Players</h2></div><span class="MuiCardActionArea-focusHighlight"></span><span class="MuiTouchRipple-root"></span></button></div></div><div class="MuiGrid-root MuiGrid-item"><div class="MuiPaper-root MuiCard-root AdminDashboard-card-1 MuiPaper-elevation1 MuiPaper-rounded"><button class="MuiButtonBase-root MuiCardActionArea-root" tabindex="0" type="button"><img class="MuiCardMedia-root AdminDashboard-media-2 MuiCardMedia-media MuiCardMedia-img" src="data:image/jpeg;base64,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" alt="Umpire" height="200" title="Umpire"><div class="MuiCardContent-root"><h2 class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom">Umpires</h2></div><span class="MuiCardActionArea-focusHighlight"></span><span class="MuiTouchRipple-root"></span></button></div></div></div><div class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-10"><div class="MuiGrid-root MuiGrid-item"><div class="MuiPaper-root MuiCard-root AdminDashboard-card-1 MuiPaper-elevation1 MuiPaper-rounded"><button class="MuiButtonBase-root MuiCardActionArea-root" tabindex="0" type="button"><img class="MuiCardMedia-root AdminDashboard-media-2 MuiCardMedia-media MuiCardMedia-img" src="./React App_files/fixture.676b64fa.jpg" alt="Fixtures" height="200" title="Fixtures"><div class="MuiCardContent-root"><h2 class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom">Fixtures</h2></div><span class="MuiCardActionArea-focusHighlight"></span><span class="MuiTouchRipple-root"></span></button></div></div><div class="MuiGrid-root MuiGrid-item"><div class="MuiPaper-root MuiCard-root AdminDashboard-card-1 MuiPaper-elevation1 MuiPaper-rounded"><button class="MuiButtonBase-root MuiCardActionArea-root" tabindex="0" type="button"><img class="MuiCardMedia-root AdminDashboard-media-2 MuiCardMedia-media MuiCardMedia-img" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTExMVFhUWFRcYGBgYGBcXFhgVFRUWFhgWFxgYHSggGBolGxUVITEhJSkrLi4uFx8zODMtNygtLisBCgoKDg0OGxAQGy0lHyUtLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALUBFwMBIgACEQEDEQH/xAAcAAACAwEBAQEAAAAAAAAAAAADBAECBQAGBwj/xABDEAACAQIEAwUFBQUGBgMBAAABAhEAAwQSITEFQVETImFxkQYygaGxQlLB0fAUI5Lh8RVDU2JyggczorLC0mOj4iT/xAAZAQADAQEBAAAAAAAAAAAAAAAAAQIDBAX/xAAtEQACAgEEAgECBQQDAAAAAAAAAQIRAxIhMUEEURMiYQUyUoGhcbHB8BRCkf/aAAwDAQACEQMRAD8A8OCKsVPnQ8vQ0W0CN61s1olVq4FSPGrkTzoGlZAHxrjb6VMRRlMQaTkaRjW7BgdalV604Cp+z86hlEaDzqFN8NG8sa5TFktxrU3HneirpXFZ5VS3ZnJUqQK2SNRRL94tvUdnVhbocVdhCcktIvFDZBTbWqr2VNNdEzjLsBlFd3aKbdDNuqojU0L3DO21VCGn7VmKI66bUnOtkXDFq3bMzLU5TTWSoReVDkOONWLEUG6KcNo9KDesEb1DkrNo45VwLEVQij5KjJTszcEluBAqpWitQ2NUYtewTCoirGqGiyWQaqa4ioinZJFdUxU0xFKg0SqmpsdFK6pNdTJNBLsUzbv6RTB4ZO1CfhrDlXMs8TvfiT6JGu25q9setL9i43BqReZdxVqaZm8Ul0PrrR7dr9b0gl8HWnLDmk/6lwdbUHFvpXFY1FEVv0aMFpLY1e/KFwOZqco3G1NWrPPSiLhOgNLWU8ewiVo9kr9pZHoaKcKdiCPgagWIpuaexMcUou/7l7tlG91Y6fzpN8ORWjatjrUXRymazT0ukzeSU420ZotVHZCnSk61UrW6kcjghBrdDZTWl2dVupVaiNHO5lxXEU01mhXFihtMEmgRU9aXxEzTKLQLttt4NZPaVHSt4WLzXFTVsldFbLdHG9mAa3QHWnXFLkilTByTQuRVCtHYihsaozBEVWrsKoRSTJkWFQaqDXGq1EUcTVatlqCQKAZEV1SDNdVEnqe1IoqYo9awf2tuc/A/WaCt+Duw8vyrg+OXZ6i8mH/VnrVAPIVV7KHdDWRgccdpnyMH0NaAxB5/MfiKxcYrk61km1tucOHITpK1YcPf7JB89DXLiATBX4g6fMVLabMR4GjdcSH9MvzQCpYce8v6+FGtgfrlQFuOOZI8DTNq/p7s+tNTfYPHHpUEURRrWunOhi4J1U+g/pTCFCdQR5flVqZk8dFlM6En8qItpDoefOq6TKn10+cVc3gDr9R+j51LkjSKYT9kHI+tW/Z1MhvUflXDED89ZFWz+IpNplR1J2kK/sCj3ZjxobWB021/rWgt1edWayDzoTrsJfV0YjsOVLtd5RW7dwxiNP18KyrtojSPStPk6M/iXIDIDS2JtHkulOosRzJ8KpiLZJg1WqzNQqzLQQaszT40zcwzchp8/U0ldQiqUkyZQnFbA7i0FjUyfGhaeNaajHQ3yUaaCy0wfChwelGoiUaAFKG0Ct7AcDvXhKW2PkDWdxHhjWzDAg9DRqRjaZnzVCKlxFBL1VktEvQqtNVc0A0QWqAJqs1JNMRBNTQjXUEntMXwgj8xWZewRG4r1F/2zwlz37FxfI23/EGkb3EsI+zsv+pG/wDGRWCm1ycqclyjzvZkU7h+IuNCTHgT9NqYuC03u3VPxA+sUs9jyPlQ9MuToxeROHDH7N20dSZ8wR9KZUJyu6+G3z3rFVPCj2sFm90lT8j8KxlhT4Z6OP8AEepJG2MIxPdKmeZAH1FF7Bo1Uf7W/A15zE/tFgjOCAdjEofI9fnR7XHrv+XX/KKyeCfTO2Pm4n7PQYe2Tyb0j6V6nh3snduWw4H4fWvJcL44xgMPQkV9V4F7TYcWVVmykDbeqhjd/Vsc/k+XFJaHZ4jH4U2SVjUb1nC95j4V6D2k4hYvXGYbk+XzrEa6o0F6PAkx61hOVM7fHeqKbOUK23qI0/KipZIGhHrQlsqdRcE9Z/lNXS3cHulG84n86z+RHToYRkJIHzgTTS3Qu406RBmk87gyQo8ASPwq44oAIK+pBFUsi6JcH2h+1fQ8jNCv20PMA+lJjjEbqpH8J+Qqb3FAw7qa7bTV6zP4yl23GgK/D86xr18jb860f2zLqVMk67j60C++YTB167eoqlkJcPZndpzMz5/lS90AmTrTNy2PGgkdFrWMtzKa2oWdddY+YH86GbYqcQ/VY9aVCE8pHgRPpW0Tlm0UulQdzTHDyCwnSluw8Y89KLbMdD5RVbHNNyfB+hfZO7ZXCWypUAL3joNRuTXyX/ifirb4p2tsCNNRqCYE1hYfjLKGCuwGRh66Vj4vEltzNNHLFNSFLtyl2NFdhQWq0aNkzQWarGqxVEsia6uIqIoERXVMVFAqYqMW3gfhRVx55gGl3tR4iqxUEamPpxBZ1B+X8qZw2Nt8yR5z+E1k9npP9ahVqWkx6r5Po7Nw1ktdlibiOQO1LagH/KDrvyjakLPF7lh5VlYKdM4BnXwyzXjGtldD+p2qVHTeoWOuyaR9k4b/AMRLLp2WK4ejIwhuzMgjqUYRPjmmsni3AcM6NiMDdLWxq1q4IuWwTHvbMJ03nz3r5rZxDKQQxkfH61ucL48yHv8AaZDObs2yllIgiDofLah2lsVF1wa1gFa0bWLYTqdqUfj/AA5dBbxTRsR2QnTTemcLxrhzsgC3rYzKWa4VjJrmHcJ12rP5JdxOqUcf6kDbGNOholvirDQhT/tE+u9ehf8AsmJFxT0/e6aGJIBzCszFcU4chAVEceD3BHxLCs23JflNI+RDG6TF7GKDHWfgW/E1uWLawDmInqwo/B/aLhKlcyC2TMHMbijWO8ROX41tY32uwaj912b6ke+g25gbkeO1cWRTbpRO2H4hCK9mQ2Ena4I8Cn4ihXeHGPtfLrFMt7WLny9haIJ3V1I9Yj6U23tPhI1ZVOYLlJSZkbENBHiDWThlXRtH8Rg+TCbhZO2aqnA3E2zgeB/nRcX7dWJK2xbETq7GPRdPnWOPbcO0HsRPhcX5ltK1jjzNcEP8S8ezTdWO5Ynxg1RsIzASbg025jz5VGG9qMO05mykTqtwRvHOPxppuMIQMhZ8wBEkDckak7ag+lFZFtRuvLwTV6tv9/cyn4WeT3P18aBdwIG7GelNtjWcEwAB1OvpoT8KBxDuKC+QaAjvDY+ZrZa+zL58DdX/AA/8mffwKzuT8V+gms+/hAOZ9K2LBVwHzrBJgjvbb+7WrY4Jauif2pQTyYgfItIreM5I48mXDfP8M8YcL4moGHHjXpuKez72xmz22XXXOqjTf3yB6E1gZx18Kv5GKEcUuHYA2oB8dPnQGs+dNXHEeE/nQDdXr6GrUmSoQti7WaG1qjXb6DcgeZpW5i7epzbeevl1qlJkyUESbVUNuoTG24nNHhzqxxlr7wPr/SqtkfT7RU2qqUqV4hZmIPmdvnU/t9voI6yB8qLYm4FCorqn+0EmIHnoRXUWydURHundx6GuVU5vH+0n8a4Ox2AnwQflR0tXjsrfwhfwqjkB2raD+8PwT/8AVFUjk7/BB/70W3gMQeTeo/OrYjhl8bhjoNpMecfWl+5P7i+RTuXP+wfg1SLKz/eb/dEf91RasspgZs3TUEeEU0MPfMf8wfFxO/j+opb+x0BGHHIXPQUZLH/x3PlVXw9wDvOB/quDr4t+vGoawPtPb9c23kDTCj0fA7lq2h7Rsjd6Fe0GY6Agh5294bcqW9o8Ul0syixmmZUMGaTH+EoG/MmsTs0+zc8YCuNfDugetBuYO4Pen167fWp0R5FpRBX8/wBeoq5w3lqJ3H650WzbcABTtqO6pPWJInrpTdu1eO7x0hV8du7rTbGZ9uxB5fOPlUNYnmOvh51sfst9p776eAEbbgCrDC3wYFy5O25ExPP+VKxmO2B3MiJ67jwqGRsuSTlknmQDp061uJgro0zOZExJnf6mflRn4beUgzyOgcs3eMww1y6AUrHZ5g6aZuXy9Kmd9a9O+DuiJJHgfPQeZ/W1UfC3AAc+2hnYEb/UelGp+g2PNb/a3/XTapYM416aA7b/AKNequNiNG7nwtWYGvIhdaUu4a7lEgCdcwYEmfBR3ZnahN+gPOHCjw+Gv651a0hU6fWK2Xw93lpGh7qmegOm++1AfC3RuVnfVU20HSd6qxGUbZPWuNk78q2FtXY/u9ettfGR7u9Ch/uW9ua66+MjT9eRYnZnKCOum/0/GhNi3nRmA5Cdq1L9tyvuoNdYEz0mSep9ayb9vXSdT8/D5VSpjTaGbMmxdJ5sg+ZpIaU/bIGHdftG6unOAu/rSGU9KECJJJ3JNdlFVympynpTAnKK41WKImFuEZlRiNpAJEjypAVyioWudSPeBHmI+tV0oGXmuqseNRRQj6xwP2edknE2hYPKWUyNOSt9a2LfCsGm7yTyAn8DXgjxrFP3muMcv3oMTHdUbCYG3QU9Y49fUAkIwididJI17MSNudZOLOZwke1W7hFGlsnzMfjSXBclq7euOe0W4V7NdskTIzD3pkb9KysPx5yNcJamftllO2jZcrNB8QKdfG3HEKqWwdDlVQfgTJ28qznKMOWTVcnpbXsdhceq4h0a237xSLbZC8NkHaMveeBbEa6Sa+UY/wBlb1ky6ZtQCUZbyT4lCSPj419BwGNuWrS2bTC3bWTAzMSWYsxJultSxJ060O+mf/mXHePvEkDyB0FYf8yMeNxrLpPB2uCsQIRZ66+ew1HT9GtCz7MOfs6k6nludh3Y5eterUINjVjcHJjWMvPn0gedmDhvZQz3jHiIB/Hx08ulOL7OWhGZi0TGg0nx89QPE9TWkPM+tdtzrF+XlfZm8shROE2hsI1n3RqfSmlwVoATy+B9RryFDvSwgMy+IifmDXYbDkD3i2u7HXy0gVPzTfMmLU/YTs7Y2U+pP41dMMm8Cf1vS44eZntbnlKgeWigx8aMz8qh5Jfqf8it+yHtoNgPlV8PaA70CotwTGUHXqQaew90Luitt706RpprS1v2OxK+B91fOATQVifdQ+YrVuY9Rp2Vv0PL4+Jof9oJ/g2/+r86Wtj2E72HUjULz/X66UvG8+R166fyrcbEqNDZQeBDSD61m4hAdQKanL2xcdi5wqMNqC2GURK7beHkeVEW4Rt+pqbwN0aOynwy7bRBERVrJL9TDU/YAYG0eQ+ME+pFd/ZaTpr4Tp5x6elEGGIWPeOup3+WnypW0jqTLMw6EDTyIANX82RcSHrfsDc4OszC6eH86zj7OR7rA9SfeJJEkmfjH0rfF0ncev51JTw/Crj5eVDWWSPKXeBMBqB8NTpSV3hRX7En4MY1MgL5Hfwr2jqw5UJl6pWsfOl2jRZn2eYwXs5evQtm1r0iGJmDLNoBRrnsgIIi6CCVcqbN4KwuNZIdVdXUdohGx3Fejw9xknszlnQ9D5g6H0oF3DW2bO+Gtl9f3lstZuSwILTbIXNruVmt4eXB87FLMTa/4SMPev5v9KZT/wBRNaeC9iRYXKM5EzJg6nyFMYX2zxdoENFwax2irmiNAWt5ATtrlo2L/wCIZgRhQSRqVuF9RvCZVcjppyNbrIpcMluT7ErnB4OUnWCcpGsCAT8x61nYv2dRpmzbY9con1iux3tzfckK1tI3GQ5gDtpcnXWsu7xy8rSt4ksJYhBAmN86bwqjQHaOVVuCUi9z2RtHex/DmH0NdWPi+I3roym7dieTZVn3vI11Pc0UX7L8NwD3sz5uww6EK19lMs51CIurPdI72QRG5yiK2LNm0BlspkQATcc5rzNp3yw0Rjl91ORMk7jI4djGYJbLA27YKry1LFmPixJknnp0rZw7j3RuYI81nT4yfjFcmfM/yomUn0M4e3bXYfE7/wAqaUr+jWcLvQUZA3OvPlb5MGaKxXCyD/Wk1eOVWNyooQ6LKirSorNa+elVznpSoKNXMK4KKzUk0wulLSKjQt2wN6IXFZuc86XuXydBt9aNIUaN3EA6Dag9pSOejWTJo0jofsGNev0qbt6ASdgJqvaiqG4KVCQF8WrAHMAI5sqneNi00NsQPvJ/Gkbkfe12+nWq37veND7StUo+jT6fQyOIhADnE5olSrEHcHQmBpv4Ux258KTsXQD50wWqZUKVdIXxFwgzyoYxB8KZeKTuaGhE0PWMaDoYmmC4PSsbPR7WK5E0nEKG7o6RQReI6Vbtq43JooVEpfHgKvp4Us12OlcMQOtFDCXbR6D4UqxYf0pgYsdalLqswBaASATOwnU/AU0mBnXLzc/pS7671pX3WSA0iTBncdaWcr1FaJtDM+7ZncBwNgwkjyB1A/0mmFwa3VUYe5lvCItXSsMQ0xYv6ZXLFiFueADGKvcA60pjLUweo18dSJ89Pl411Y87RpHI0JJeFslWDW7ys2ZGtsG5DUBjrEyY5CuqeL4sXBbW80FJXtDmJNuJRXygt3SpAIB0aDoAR1ehGUWrN07EeGYl7DNuFdP3iZghe3uIzA68xprr51rYfGW21VunPXz5QfDlWa9ksjE29M2hVwAhaSQAJBGq6aQF1ik7aXLThrbd9crEBToRDAMp6ab9azyYVIUo2evF0NsQDzGwJ6r08vToLi/Gh36HevLNxlyzNcBkkksNszanTcanx5VoYbH5howZRyOoHhMyvkCK4p4GuTBwaNwYgVHa1nJcB6r/ANQ/AgetFS2590hvLf8AhPe+VYvGTpHVuUe2KzRdI02+tFS+ahxCjUD1Oes/9oPWg3cSx8qjSKh67iJ8qGblJduetd2xqtJVDfaUdGikbDHemM9JioZD12elxcq3aVNBQtdaSfOqTUA1aasZAeDNOi5SJo1o6eVJoGhjtKDd1qDXRSQCpPWoLUe9bFAgfqaspBLN+PKmg4POkcoq6aUmhNDRNAueFGQqa4otIQi101TtaddE6ChdhOyyOsaDzq0AFbtXDCoZFG5XyHePy09TVGvKPdHxME+YGw+dVpAIRG/p1Hj0H68aWu3NZYgA7sQYAGmsDbQCkcVxNV0nM3Qan4nYUjexuIxHZ2CzFc/7u0CSoZzqfMmNT+NdOPA3zwXGFleJcQe8FST2VvMVGkS5BY/Egb1FHu4J1hGUe7OpUKIYr8TIIMnn5V1dqiqN9KQphLDyWLZSJE94SSDoQk5gRJnbrRMLaZ7iQ6ox90s5WO4ftHaNoHwG1Fv8QyqAGYhkMn3JAAyqSDGXnG5M9auVsnvi5IRYUMFBLtC523OUwTr4DqasbDLgJY24QlHyBC6m4SSNO0tgC4o21IAJMTrWbcwcIbpIHeCqFMMxIJYryyqAOf2lHMU7ZuOEvFSiqoByGJZWeTl1GbLliDm5RqaBhb0obbhnP92ASYLEE90aEEa6AGdSdKA5OtYm6mmaREw4y77d4addT0NO2eJMYzW2HiCpXzmYjxpXB4MOGUwtwqYg6EiYGuu3PWhKCBD51InK2YgAwdhG0Rr4edRLFCXRm4o3MLxlWELcB8Ggj4K4j5U6mJXmo/2kg/OR8qxLGFd3CPaDQkkOEVycuacxysAZEDMZ060K9hFRfcdWBOYW7hUCIhv3mbnmETyrCXip8MXxo9CzI3Nh8A3zkfSqG2OVxT/GPqsfOsS2Dk7T9ouIoIEXrS65tRBRyzDQ6hdIPhU2sS5ErdwtweDtbP8A9wUCs34suqF8bNv9mY7Q3+llf/tJqOwf7jfwn8qyrd68QT2GYDc23S6B8UJ/Qo1riIRCz2ryE6IQABIKyWG+XKTBHMeBrN+PNdC0s0e1y6VYX6yF9o1/xXHhL/SjD2gB/vJ89R8xWbwS9MWk0+2qz3dDWZ/bSfft9fct/itXHF1P2rWv+S1/61Pwv0LSMq9WzClV4mOtv+C3+VEXHToMk8u7aH4UfGOgxNXs3daA/EFBIm0SCQRkQMD4rGn66GpuYwqquRbCuWCkpaglCAwEryketDxNOmDixwuK4XBWaeMrza2P9lr/ANaj+3lH94o8go+gpfDL0/8AwWlmkbg60N7c6gE+QJrPve0MRNxhIkRnEjXUdRIPpS7+0i83cz/qP1qlgn6Y9LNjsH/w2jyMVXszzKjzZZ9JmsReKZz3LV1z/lQk/Kri7iOeHNtZgm6y2QNY07QrJ8K0XjTfQ9LNglR/eT/pVv8AyC1LX15BmjckwPiAD9awsPedz3r2GtANlJl7pGgMjswUYfGND0qotyD/AP03WBgHskCAr4l3UxMjUfWtF4sux/H7Ni5xAD7q/AH4y0kfCKQxfGljvMWjxLUg+Ct9mbqoLvfygPdZ3ACZu1KoqrlmdSTEiR1OW7jcrodT3AiJ2cCVdgM4YmIObUP5VqvGiuWP40gdzG3DBFsqDsbhyL8JIn1pfFJdgls8ZRIAhSG0kSB9D51JtdoHdveRdNmBK7Z5E6qCM3+TXcmq4fFZXzl2BBGXRIDRAYrqGAA10Pqa3jjjHhFqCR17CottYaLhBLqO9lAKkEEawQwHmpGzSOsYXVSEZgYLADoADq5ADHLMbid6axapaHvDtGJiLYkgtIJJ0DCJkcn8oXJ1LM6jLn7oYBiXnMO6IJOb4aDTSrXA2K4rEFyqsCcohVBLZd5CsSQOWg6V1aNoIylHOZSQcqBYMAn/AJj7MJE9Y8q6mhWjHW4fdlRufDy+Xzp7As5HcNtRB0MQMpklCZg+NC/dnTRYO+pIA+yMvugzvNHLdmBmIXUkHvrII07uXluDp+NFlcgcCbL3FN5+zUyCVQnfY5SfE+lNPireXM4l2e4UVSFyIFVFLZZyE5ep6jeSjbRZ7zpkPvKGInyLDTXWnDhbZdVLMiBY1CsxM/dB6nwJiaNrAlF5tdJDW9A05R9kqDse6F125cjRGvZQ6g21BEKGz7kQLi/eIAMz3QTttCyISLiIWjYiVytzEExsDMQYJoliziEhkUqwBAIRS0MGBJIknQ/TpRVoRqYXiapdcLcUoqkozauxLLOVistcnURAGXeBNKW+J3Q14rnVLhdbkOCGSRIbxOUaxB13pVLWIDZ+xuZp1bJcAAAyjLk5ZdNqpcsuoVnXRbg3QzlABy94e6e8BPOfOkFIb4O3763GQ5myLnDZZYlQveZQ3vCeUjaKvcshWa3bYEICGZR2eZlYj95LQQI3nnOo3Zw/tVihbNqYtnMQBbQr3mDMoGTLHv7D7R6CE8HeS3bbOItucuZXUh4UM2df+YREaiB34J2qbYVY+nC1ZzatqA6gPcJuDvZhmi0upZ4gwNBzrNt4gADKCq5mkq5z5TllYOgYCVBIOoJ8SlhsWLctYZQWABVkV/taCWkBp1kbda0+LY1C7KXV0hG7ltEUXCqZmKo28lxImYX4UvuG5TiYtgAW7twnQlmctIIM90iZB0nbQ6UvdtOe7KlBsfeykCM0czEAzHu03gxZLFndgYIULrMIxClnOxOUSRA025Dw+IFxsjKg7wGY5gCNioIzDWD3oOpB2osFZm2rQYuWYFiSRkQKJlSQBA07zCBEQPKmrPC07K4z3BbuKVCIUeGBz5mzjbKFA2kmeQrVxn7OhuILDLEZM+rKAo3BKzOUtqJ70QKOeEk2w4NtxlLlVZc6quhzKWGogghZ3HUwxavsYfD+BXridobfdBUaQPe1BkyOY9avZwLK7Wz3Mpgu0OgLLmUORooIBivQ8Ee2Cyh++EkpBUjM5EbnXuKx20dfKq8a4VdNyFcFb5twucAHKQYuEd5VBBI01zaa7xdugv7HnGa/mQsU7pBkAEgtL6qCCx7rb75dKvj+GOt1rDOou5+7bbSM6BycwYopPd0B1HTarKhRlkB1GUkrPdaBnWfvCIkb1PazfPZ2s+WdbveJASM1ye7poZ0E5TV/1KlV7C2B4NcuAvlUoPfKGcokCdfGefyqicLuESAkEAiVOm3gR150RbWfoGU5gTlDEgHWSwnVSJAjY8zWhjuKK7g7s3v6KCHESZygBTtG/d31BpO7E+DNzZYVu6TERkMKJlSApy7zrBp60puntEZEyZbarAts4RpVmH2j38siD7oPWuw37wd1ZMGRCKY2mIOmtTgsU4DM1/src7qk5isgpI5lTOsjUaRsWCdnYIEt2jXLucMCbRnswQxIbUwEBUaEjUxtufi3GUuPcCIEus0EgsSc8doCTKi3mUmZ0zD7s01dxFkhU7S4biosB7Md4XNQxJiMuUgxrsdYNY/EcZcuORcYZtAUZMoysNSCIAEsdANoNL7Ma9g7OHjIuUqLig5rhZFzZ8udZIXICQSTIGvStexhDbtntlftFtkWwUzKCDIJOoykrcWYmee8ZZxLFclxBeYplSWYm2C2YsCGg7xB08N6JicRfsi7auXctxMuZLkm/wB+VZUaDplZS0EZgQd10bTBBRaa4CzNcs2pZrmQNdkqpm5A0mGymSAJnQGhYi+bTm2FVLiDvQxcMCFYDMCVbQIRHU7xolZvSqqBAB6ZZXM3d01b3p68tgK37nDraZEFq6O0tl1LNaTMijvQzajQr3dzPLegRkY606Fgx7NiqvlM99TDKyzEjKeXMedMYO0rMXxLNlKtFyzkLdrAgMACCOoMHX40PHXgezdbYREVUUsxuZ1HeAOYQsa6QPe250nY4hlebI7PQllnPmiCRqNDp0G8dKF9h71QXiWNDi22Z2ItqGVydHAGZ1aPdPSZ0PhS13ZSwyux96QTlACbcogGtDEXlIQ3AGzhWDJlYpbAjIQxJBVliDqRzGlC4bxDLmQW0ZcrAq69opzEarI7rGN9PpTTsHsVv4q2q5GOuYy6H92VHu5AFHjJMnbrA6ouOGVlWwyMcuV1zRA94EbQe74yN4MV1AWhCwveIOoj8qnEHMwkbaAco6V1dS7Eg3D7QLBIEM4+AJANUW5lYxPrr1mRHSurqOxjuOw/ZOpnMWUOZEDvAGI6a9aNi+4O2hS85pyqADqdgPAf00rq6lF2rIlyBxd8lUUKilnBLBACZBWJWDGpMTuaUwt1muZWOYK3OTIH00G9dXU+UVwWfFMGlSVAJUAEiAoU6HcEydqOeI3+zzdvdARlWBcfUMGYySTrsK6uoQMi7xq4/eVnVTspbOQNozEa6idudcvErsdozZwHC5SBBAGaOsGIjxNdXUDQtdx2dnaCoclsgaEGm2UCCIAHkKYR9V0XvGTKJpuNNP8AL866uoANwk53ZSEj3TCiTuR/20J8c0DRYkQI2iCDp009BXV1CW5HZo4G8197l24SXOTvSZ1A3PPQD0FZ/GcUO2dCinIYkzLCJ73X+ldXVNfUNcjHB8OtyxiLp7ps5CoBMGXG+szMEEdPRWxjWXMFET3TBcSBG/eqa6qaLa2A4hgLcRoWJgE7qIBMzPv/AKmmBZyWhemRMZduSnVvj8qiuqbJfCLriSBcUAAKNYLgtOXQnNsI08z1pW1iANkA8mceHJq6uqglskaFuyrWTdKyQG0lvswdyaJiLGa2GkgsFad2BCyO8fE8orq6pi9iWZz4pZBe32jAalmYg+Y+FaIwy3LBxJUT2qpBNxpnSS2eTGUaV1dVMGZ2JxAQsvZocpPO7vvoM+m9A4hfzZZmQPvMdP8AcTHwrq6qkqaKiEXHlEgKGVuTEsND02rQ4ldVBbuLat99dRlXQjYzHl6VFdWL2kiqtbguGsXuKjHutoQoVdwegruKW1t3ItrljoSd4bmfGK6uqyH+agNrDFkzFiR2mTnPuZ5mfhEV1dXVbRDk7P/Z" alt="Series" height="200" title="Series"><div class="MuiCardContent-root"><h2 class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom">Series</h2></div><span class="MuiCardActionArea-focusHighlight"></span><span class="MuiTouchRipple-root"></span></button></div></div><div class="MuiGrid-root MuiGrid-item"><div class="MuiPaper-root MuiCard-root AdminDashboard-card-1 MuiPaper-elevation1 MuiPaper-rounded"><button class="MuiButtonBase-root MuiCardActionArea-root" tabindex="0" type="button"><img class="MuiCardMedia-root AdminDashboard-media-2 MuiCardMedia-media MuiCardMedia-img" src="data:image/jpeg;base64,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" alt="Referee" height="200" title="Referee"><div class="MuiCardContent-root"><h2 class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom">Referee</h2></div><span class="MuiCardActionArea-focusHighlight"></span><span class="MuiTouchRipple-root"></span></button></div></div></div></div><div class="footerStyle"><div class="container">Copyright © 2020-2021 All Rights Reserved.</div></div></div></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  <script src="./React App_files/bundle.js.download"></script><script src="./React App_files/1.chunk.js.download"></script><script src="./React App_files/main.chunk.js.download"></script><script src="./React App_files/main.62e47d696d8453ba67fb.hot-update.js.download"></script>
+
+</body></html>
