@@ -84,8 +84,7 @@ class AdminDashboard extends React.Component {
                />
                <CardContent>
                <Typography gutterBottom variant="h5" component="h2">
-                 Total Teams - 15         
-                  <ArrowForwardIosIcon style={{ bottom: 3, right: 3 }}/>
+                 Teams         
                </Typography>
                </CardContent>
              </CardActionArea>
