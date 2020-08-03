@@ -21,6 +21,8 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -40,7 +42,19 @@ function Transition(props) {
       width: "100%",
       maxWidth: "300px",
       position: "fixed"
-    }
+    },
+    button: {
+      margin: theme.spacing.unit,
+    },
+    leftIcon: {
+      marginRight: theme.spacing.unit,
+    },
+    rightIcon: {
+      marginLeft: theme.spacing.unit,
+    },
+    iconSmall: {
+      fontSize: 20,
+    },
   });
    
   
@@ -669,7 +683,7 @@ class FixtureComponent extends Component {
                 Cell:props=>{
                     return(
                         <div>
-                       <button onClick={() => this.openAlertBox(props.original.fixture_id,props.original.description)}>Delete</button>
+                       <Button variant="contained" color="secondary" size="small" className={classes.button} onClick={() => this.openAlertBox(props.original.fixture_id,props.original.description)}>Delete<DeleteIcon className={classes.rightIcon} /></Button>
                         </div>
                 )
         
@@ -683,7 +697,7 @@ class FixtureComponent extends Component {
             Header: 'Update',  
             Cell:props=>{
                 return(
-                    <button  onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update</button>
+                    <Button variant="contained" color="primary" size="small" className={classes.button} onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update<EditIcon className={classes.rightIcon} /> </Button>
             )
     
             } ,
