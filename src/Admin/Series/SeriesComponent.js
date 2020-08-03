@@ -8,6 +8,7 @@ import 'react-table-6/react-table.css';
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
 
 import classNames from "classnames";
 import PropTypes from "prop-types";
@@ -87,7 +88,10 @@ class SeriesComponent extends Component {
             points_table_active:false,
             series_points:"",
             open:false,
-            open_u:false
+            open_u:false,
+            delete_id:"",
+            open1:false,
+            desc:""
         }
         this.deleteSeriesClicked = this.deleteSeriesClicked.bind(this)
         this.refreshSeries = this.refreshSeries.bind(this)
@@ -234,6 +238,13 @@ class SeriesComponent extends Component {
     
      }
      
+     openAlertBox =(e,d) => {
+      this.setState({
+        open1: true,
+        delete_id:e,
+        desc:d
+      });
+    };
     
 
     
@@ -567,7 +578,7 @@ class SeriesComponent extends Component {
                 Header: 'Delete',  
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.deleteSeriesClicked(props.original.series_id,props.original.series_short_name)}>Delete</button>
+                        <button onClick={() => this.openAlertBox(props.original.series_id,props.original.series_short_name)}>Delete</button>
                 )
         
                 } ,
@@ -1104,6 +1115,52 @@ class SeriesComponent extends Component {
            
           </DialogActions>
         </Dialog>
+
+        <Dialog
+          open={this.state.open1}
+          TransitionComponent={Transition}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            <span
+              style={{
+                fontFamily: "HelveticaforTargetBold,Arial",
+                color: "#646566",
+                fontWeight: "bolder"
+              }}
+            >
+            Delete the series {this.state.desc}?
+            </span>
+          </DialogTitle>
+
+          <DialogContent>
+          You won’t be able to undo the action.
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.setState({ open1:false });
+                this.deleteSeriesClicked(this.state.delete_id,this.state.desc);
+              }}
+              variant="outlined"
+            >
+            Yes
+            </Button>
+            <Button
+             onClick={() => {
+                this.setState({ open1: false});
+              }}
+              variant="outlined"
+            >
+            No
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+
+   
 
            
             </div>

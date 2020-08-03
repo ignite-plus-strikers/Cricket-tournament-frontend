@@ -66,7 +66,10 @@ class TeamComponent extends Component {
             tname:"",
             tstate:"",
             tcountry:"",
-            update_id:""
+            update_id:"",
+            delete_id:"",
+            open1:false,
+            desc:""
         }
         this.deleteTeamClicked = this.deleteTeamClicked.bind(this)
         this.refreshTeams = this.refreshTeams.bind(this)
@@ -183,6 +186,14 @@ class TeamComponent extends Component {
     )  
     
      }
+
+     openAlertBox =(e,d) => {
+      this.setState({
+        open1: true,
+        delete_id:e,
+        desc:d
+      });
+    };
      
     
 
@@ -295,7 +306,7 @@ class TeamComponent extends Component {
                 Header: 'Delete',  
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</button>
+                        <button onClick={() => this.openAlertBox(props.original.team_id,props.original.tname)}>Delete</button>
                 )
         
                 } ,
@@ -544,6 +555,50 @@ class TeamComponent extends Component {
            
           </DialogActions>
         </Dialog>
+
+        <Dialog
+          open={this.state.open1}
+          TransitionComponent={Transition}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            <span
+              style={{
+                fontFamily: "HelveticaforTargetBold,Arial",
+                color: "#646566",
+                fontWeight: "bolder"
+              }}
+            >
+            Delete the team {this.state.desc}?
+            </span>
+          </DialogTitle>
+
+          <DialogContent>
+          You won’t be able to undo the action.
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.setState({ open1:false });
+                this.deleteTeamClicked(this.state.delete_id,this.state.desc);
+              }}
+              variant="outlined"
+            >
+            Yes
+            </Button>
+            <Button
+             onClick={() => {
+                this.setState({ open1: false});
+              }}
+              variant="outlined"
+            >
+            No
+            </Button>
+          </DialogActions>
+        </Dialog>
+
 
    
            
