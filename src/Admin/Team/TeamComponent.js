@@ -370,6 +370,7 @@ class TeamComponent extends Component {
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Team Name"
+                
                 onChange={this.handleChange("tname")}
                 InputProps={{
                   startAdornment: (
