@@ -390,3 +390,29 @@ a{
 .width_inc{
   width:180px;
 }
+
+.MyReactTableClass .-sort-desc {
+  box-shadow: none !important;}
+.MyReactTableClass .-sort-desc::before {
+    content: "▼";
+    float: right;
+  }
+
+
+.MyReactTableClass .-sort-asc {
+  box-shadow: none !important;}
+.MyReactTableClass .-sort-asc::before {
+    content: "▲";
+    float: right;
+  }
+
+  .details{
+    margin-top:70px;
+    margin-left:180px;
+        
+  }
+  .p_details{
+    margin-top:60px;
+    margin-left:180px;
+        
+  }
