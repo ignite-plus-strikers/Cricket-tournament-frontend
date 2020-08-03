@@ -18,14 +18,7 @@ class LoginPage extends React.Component {
           login : false
         }
             this.userlogin = this.userlogin.bind(this);
-            this.handleAdminLogin = this.handleAdminLogin.bind(this);
     }
-
-    handleAdminLogin(){
-      this.props.history.push('/admin/dashboard/')
-
-    }
-
 
    userlogin(res){
      const userdetails  = {
