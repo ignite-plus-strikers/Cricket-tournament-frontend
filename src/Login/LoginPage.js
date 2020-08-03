@@ -7,14 +7,24 @@ import GoogleLogin from 'react-google-login'
 import AdminDashboard from '../Admin/AdminDashboard'
 import PreMatch from '../Scorer/PreMatch'
 import axios from 'axios'
+//import PropTypes from "prop-types";
 
 
 
 class LoginPage extends React.Component {
     constructor(props){
         super(props)
+        this.state={
+          login : false
+          
+        }
             this.userlogin = this.userlogin.bind(this);
-           // this.directPage = this.directPage.bind(this);
+            this.handleAdminLogin = this.handleAdminLogin.bind(this);
+    }
+
+    handleAdminLogin(){
+      this.props.history.push('/admin/dashboard/')
+
     }
 
 
@@ -23,8 +33,10 @@ class LoginPage extends React.Component {
     userId : res.profileObj.googleId,
     userName : res.profileObj.name,
     userEmail : res.profileObj.email
-     }
-    // let fetchId = res.profileObj.googleId;
+    }
+
+    console.log(userdetails)
+
 
      axios.post(`http://localhost:8081/user`,userdetails)
      
@@ -36,20 +48,27 @@ class LoginPage extends React.Component {
           const role = res.data;
           console.log(role)
           if(role === 'admin')
-          {return ReactDOM.render(<AdminDashboard/>,document.getElementById('root'))
-        // return this.props.history.push('/admin/dashboard')
+          {
+            //this.setState({login : true})
+          //return ReactDOM.render(<AdminDashboard/>,document.getElementById('root'))
+          this.props.history.push(`/admin/dashboard`)
+          //return this.handleAdminLogin;
         }
           else
             if(role === 'scorer'){
-                return ReactDOM.render(<PreMatch/>,document.getElementById('root'))
-                //this.props.history.push('/scorer/dashboard')
+                //return ReactDOM.render(<PreMatch/>,document.getElementById('root'))
+                this.props.history.push(`/scorer/matchSelection`)
             }
       })
    }
 
 
   render(){
+    // if(this.state.login){
+    //   return <AdminDashboard history = {this.props.history}/>
+    // }
   return (
+
     <div className="App">
      <p>Login</p>
      <GoogleLogin
@@ -66,4 +85,10 @@ class LoginPage extends React.Component {
 }
 }
 
-export default LoginPage;
+// LoginPage.propTypes = {
+//   classes: PropTypes.object.isRequired,
+// };
+
+//export default withStyles(styles)(LoginPage);
+
+export default LoginPage

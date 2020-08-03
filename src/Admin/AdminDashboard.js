@@ -12,11 +12,9 @@ import player from "./cards_images/player.jpg"
 import fixture from "./cards_images/fixture.jpg"
 import team from "./cards_images/team.jpg"
 import series from "./cards_images/series.jpg"
+import umpire from "./cards_images/umpire.jpg"
 import Container from "@material-ui/core/Container"
-//import { withRouter } from "react-router-dom";
-import history from "history"
-
-
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 
 const styles = {
@@ -31,20 +29,51 @@ const styles = {
 };
 
 
-function handleTeamClick(){
- // history.push('/admin/dashboard/TeamDisplay')
- this.props.history.push('/admin/dashboard/TeamDisplay')
-} 
+class AdminDashboard extends React.Component {
+  constructor(props) {
+    super(props)
+    this.handleTeamClick = this.handleTeamClick.bind(this)
+    this.handlePlayerClick = this.handlePlayerClick.bind(this)
+    this.handleSeriesClick = this.handleSeriesClick.bind(this)
+    this.handleFixtureClick = this.handleFixtureClick.bind(this)
+    this.handleUmpireClick = this.handleUmpireClick.bind(this)
+    this.handleRefereeClick = this.handleRefereeClick.bind(this)
 
-function AdminDashboard(props) {
-  const { classes } = props;
-   return (
+
+  }
+    handleTeamClick(){
+      this.props.history.push('/admin/dashboard/TeamDisplay')
+     } 
+
+     handlePlayerClick(){
+      this.props.history.push('/admin/dashboard/PlayerDisplay')
+     } 
+
+     handleSeriesClick(){
+      this.props.history.push('/admin/dashboard/SeriesDisplay')
+     } 
+
+     handleFixtureClick(){
+      this.props.history.push('/admin/dashboard/FixtureDisplay')
+     } 
+
+     handleUmpireClick(){
+      this.props.history.push('/admin/dashboard/UmpireDisplay')
+     } 
+
      
+     handleRefereeClick(){
+      this.props.history.push('/admin/dashboard/RefereeDisplay')
+     } 
+ 
+  render(){
+    const { classes } = this.props;
+   return ( 
   <Container>
     <Grid container spacing ={10}>
         <Grid item >
             <Card className={classes.card}>
-             <CardActionArea onClick={handleTeamClick}>
+             <CardActionArea onClick={this.handleTeamClick}>
               <CardMedia
               component="img"
               alt="Teams"
@@ -55,7 +84,8 @@ function AdminDashboard(props) {
                />
                <CardContent>
                <Typography gutterBottom variant="h5" component="h2">
-                Teams
+                 Total Teams - 15         
+                  <ArrowForwardIosIcon style={{ bottom: 3, right: 3 }}/>
                </Typography>
                </CardContent>
              </CardActionArea>
@@ -64,7 +94,7 @@ function AdminDashboard(props) {
 
          <Grid item>
           <Card className={classes.card}>
-            <CardActionArea>
+            <CardActionArea onClick={this.handlePlayerClick}>
             <CardMedia
               component="img"
               alt="Players"
@@ -82,12 +112,32 @@ function AdminDashboard(props) {
            </Card>
          </Grid>
 
+         <Grid item>
+         <Card className={classes.card}>
+           <CardActionArea onClick={this.handleUmpireClick}>
+           <CardMedia
+             component="img"
+             alt="Umpire"
+             className={classes.media}
+             height="200"
+             image={umpire}
+             title="Umpire"
+             />
+             <CardContent>
+             <Typography gutterBottom variant="h5" component="h2">
+              Umpires
+             </Typography>
+            </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+
         </Grid>
 
         <Grid container spacing ={10}>
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea>
+          <CardActionArea onClick = {this.handleFixtureClick}>
             <CardMedia
               component="img"
               alt="Fixtures"
@@ -108,7 +158,7 @@ function AdminDashboard(props) {
 
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea>
+          <CardActionArea onClick = {this.handleSeriesClick}>
           <CardMedia
           component="img"
           alt="Series"
@@ -125,14 +175,38 @@ function AdminDashboard(props) {
           </CardActionArea>
         </Card>
         </Grid>
+
+        <Grid item>
+        <Card className={classes.card}>
+          <CardActionArea onClick={this.handleRefereeClick}>
+          <CardMedia
+            component="img"
+            alt="Referee"
+            className={classes.media}
+            height="200"
+            image={umpire}
+            title="Referee"
+            />
+            <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+            Referee
+            </Typography>
+           </CardContent>
+           </CardActionArea>
+         </Card>
+       </Grid>
+
     </Grid>
     </Container>
     
   );
 }
+}
 AdminDashboard.propTypes = {
   classes: PropTypes.object.isRequired,
 };
+
+//export default withRouter(connect()(withStyles(styles)(AdminDashboard)))
 
 export default withStyles(styles)(AdminDashboard);
  
