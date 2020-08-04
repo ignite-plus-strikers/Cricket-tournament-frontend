@@ -66,10 +66,7 @@ class TeamComponent extends Component {
             tname:"",
             tstate:"",
             tcountry:"",
-            update_id:"",
-            delete_id:"",
-            open1:false,
-            desc:""
+            update_id:""
         }
         this.deleteTeamClicked = this.deleteTeamClicked.bind(this)
         this.refreshTeams = this.refreshTeams.bind(this)
@@ -186,14 +183,6 @@ class TeamComponent extends Component {
     )  
     
      }
-
-     openAlertBox =(e,d) => {
-      this.setState({
-        open1: true,
-        delete_id:e,
-        desc:d
-      });
-    };
      
     
 
@@ -306,7 +295,7 @@ class TeamComponent extends Component {
                 Header: 'Delete',  
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.openAlertBox(props.original.team_id,props.original.tname)}>Delete</button>
+                        <button onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</button>
                 )
         
                 } ,
@@ -332,15 +321,7 @@ class TeamComponent extends Component {
         ]  
         return (
             <div>
-                <div class="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+                
                 <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
@@ -381,7 +362,6 @@ class TeamComponent extends Component {
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Team Name"
-                
                 onChange={this.handleChange("tname")}
                 InputProps={{
                   startAdornment: (
@@ -555,50 +535,6 @@ class TeamComponent extends Component {
            
           </DialogActions>
         </Dialog>
-
-        <Dialog
-          open={this.state.open1}
-          TransitionComponent={Transition}
-          onClose={this.handleClose}
-          aria-labelledby="alert-dialog-slide-title"
-          aria-describedby="alert-dialog-slide-description"
-        >
-          <DialogTitle id="alert-dialog-slide-title">
-            <span
-              style={{
-                fontFamily: "HelveticaforTargetBold,Arial",
-                color: "#646566",
-                fontWeight: "bolder"
-              }}
-            >
-            Delete the team {this.state.desc}?
-            </span>
-          </DialogTitle>
-
-          <DialogContent>
-          You won’t be able to undo the action.
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                this.setState({ open1:false });
-                this.deleteTeamClicked(this.state.delete_id,this.state.desc);
-              }}
-              variant="outlined"
-            >
-            Yes
-            </Button>
-            <Button
-             onClick={() => {
-                this.setState({ open1: false});
-              }}
-              variant="outlined"
-            >
-            No
-            </Button>
-          </DialogActions>
-        </Dialog>
-
 
    
            

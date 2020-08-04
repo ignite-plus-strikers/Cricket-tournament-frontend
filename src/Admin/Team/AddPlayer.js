@@ -5,10 +5,6 @@ import '../../App.css';
 import PlayerDataService from '../../Admin/Player/Service/PlayerDataService';
 import TeamDataService from './Service/TeamDataService';
 
-import ReactTable from "react-table-6"; 
-import 'react-table-6/react-table.css';
-
-
 
 class AddPlayer extends Component {
 
@@ -29,7 +25,8 @@ class AddPlayer extends Component {
         this.refreshPlayers = this.refreshPlayers.bind(this)
         this.getTeamName=this.getTeamName.bind(this)
         this.getTeamPlayers=this.getTeamPlayers.bind(this)
-        
+        this.validate = this.validate.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
     }
     componentDidMount() {
         this.refreshPlayers();
@@ -69,17 +66,13 @@ class AddPlayer extends Component {
             )
             
     }
-    handleSelect = e => {
-        this.setState({
-            player_id:e
-             
-           });
+    onSubmit(values){
         let player_first_name
         let player_last_name
         let player_initials
-       
+        this.setState({player_id:values.selected})
         this.state.players.map(p =>{
-            if(p.player_id=== e){
+            if(p.player_id===this.state.player_id){
                 player_first_name=p.first_name;
                 player_last_name=p.last_name;
                 player_initials=p.player_initials;
@@ -91,7 +84,7 @@ class AddPlayer extends Component {
         
         var teamplayer = {
             team_id:this.state.team_id,
-            player_id: e,
+            player_id:values.selected,
             player_first_name: player_first_name,
             player_last_name:player_last_name,
             player_initials: player_initials
@@ -100,11 +93,11 @@ class AddPlayer extends Component {
         let teamid=this.state.team_id
             TeamDataService.createPlayer(teamid,teamplayer)
                 .then(() => this.props.history.push(`/admin/dashboard/TeamShowPlayer/${teamid}`))
-        console.log(teamplayer);
+        console.log(values);
     }
-   
+
     
-   /* validate(values) {
+    validate(values) {
         let count=this.state.teamplayers.length
         let errors = {};
         if (!values.selected) {
@@ -121,7 +114,7 @@ class AddPlayer extends Component {
 
         return errors
 
-    }*/
+    }
 
 
 
@@ -129,107 +122,9 @@ class AddPlayer extends Component {
         let selected=this.state.selected
         let teamID=this.state.team_id
         let teamname=this.state.tname
-
-
-        const columns = [{  
-            Header: 'First name',
-            accessor: 'first_name',
-            filterMethod: (filter, row) => {
-                var v = row[filter.id]
-                  .toString()
-                  .toUpperCase()
-                  .search(filter.value.toUpperCase());
-                // row[filter.id].toString().startsWith(filter.value)
-                if (v >= 0) {
-                  return true;
-                } else return false;
-              },Filter: ({filter, onChange}) => (
-                <input
-                placeholder="Search"
-                  onChange={event => onChange(event.target.value)}
-                  value={filter ? filter.value : ''}
-                  style={{
-                    width: '100%',
-                    backgroundColor: '#DCDCDC',
-                    color: 'black',
-                  }}
-                />
-              )  
-            },{  
-            Header: 'Last name',  
-            accessor: 'last_name',
-            filterMethod: (filter, row) => {
-                var v = row[filter.id]
-                  .toString()
-                  .toUpperCase()
-                  .search(filter.value.toUpperCase());
-                // row[filter.id].toString().startsWith(filter.value)
-                if (v >= 0) {
-                  return true;
-                } else return false;
-              } , Filter: ({filter, onChange}) => (
-                <input
-                placeholder="Search"
-                  onChange={event => onChange(event.target.value)}
-                  value={filter ? filter.value : ''}
-                  style={{
-                    width: '100%',
-                    backgroundColor: '#DCDCDC',
-                    color: 'black',
-                  }}
-                />
-              )  
-            },{  
-            Header: 'Player initials',  
-            accessor: 'player_initials',
-            filterMethod: (filter, row) => {
-                var v = row[filter.id]
-                  .toString()
-                  .toUpperCase()
-                  .search(filter.value.toUpperCase());
-                // row[filter.id].toString().startsWith(filter.value)
-                if (v >= 0) {
-                  return true;
-                } else return false;
-              }, Filter: ({filter, onChange}) => (
-                <input
-                placeholder="Search"
-                  onChange={event => onChange(event.target.value)}
-                  value={filter ? filter.value : ''}
-                  style={{
-                    width: '100%',
-                    backgroundColor: '#DCDCDC',
-                    color: 'black',
-                  }}
-                />
-              )    
-            },{  
-            Header: 'Select',  
-            Cell:props=>{
-                return(
-                    <button  onClick={() => this.handleSelect(props.original.player_id)} >Select</button>
-            )
-    
-            } ,
-            sortable:false,
-            filterable:false,
-            width:100,
-            minWidth:100,
-            maxWidth:100
-            }
-        ]  
        
         return (
             <div>
-                <div className="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
                 
                 {this.state.teams.map(team =>{
                     if(team.team_id===teamID){
@@ -242,16 +137,40 @@ class AddPlayer extends Component {
                 <center>
                     <h2>{teamname}</h2>
                 </center>
-                <div className="details">
-                <ReactTable
-                    className="MyReactTableClass"
-                     columns={columns}
-                     data={this.state.players}
-                     filterable
-                     defaultPageSize={10}
-                     ></ReactTable>
- 
-                </div>
+               <div className="addPlayerForm">
+                   <Formik
+                   initialValues={{selected}}
+                   onSubmit={this.onSubmit}
+                   validateOnChange={false}
+                   validateOnBlur={false}
+                   validate={this.validate}
+                  
+                    >
+                       <Form>
+                           <br/>
+                                <ErrorMessage name="selected" component="div"
+                                        className=" errormsg alert warning" /> 
+                                <br/><br/>
+                                <label>Select Player : </label>
+                                <Field as="select" name="selected">
+                                <option value="">-----Select Player-----</option>
+                                {
+                                this.state.players.map(
+                                    player =>
+                                    <option value={player.player_id}>{player.first_name} {player.last_name} {player.player_initials}</option>
+                                            
+                                )
+                            }
+                                    
+                                </Field><br/><br/><br/>  
+                                <button className="btn warning marginsave" type="submit">Add</button>
+                               
+                                
+                            
+                       </Form>
+                   </Formik>
+               </div>
+   
            
             </div>
         )

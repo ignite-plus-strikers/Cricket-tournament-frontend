@@ -5,18 +5,6 @@ import TeamDataService from './Service/TeamDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Slide from "@material-ui/core/Slide";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
-
 class ShowPlayer extends Component {
 
     constructor(props) {
@@ -26,10 +14,7 @@ class ShowPlayer extends Component {
             teamplayers: [],
             teams:[],
             message: null,
-            tname:"",
-            t_id:"",
-            p_id:"",
-            desc:""
+            tname:""
         }
         this.deletePlayerClicked = this.deletePlayerClicked.bind(this)
         this.refreshTeamPlayers = this.refreshTeamPlayers.bind(this)
@@ -74,15 +59,6 @@ class ShowPlayer extends Component {
             )
     
     }
-    openAlertBox =(e,p,d) => {
-      this.setState({
-        open1: true,
-        t_id:e,
-        p_id:p,
-        desc:d
-      });
-    };
-     
 
 
 
@@ -168,7 +144,7 @@ class ShowPlayer extends Component {
                 Header: 'Delete',  
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.openAlertBox(props.original.team_id,props.original.player_id,props.original.player_first_name)}>Delete</button>
+                        <button onClick={() => this.deletePlayerClicked(props.original.team_id,props.original.player_id,props.original.player_first_name)}>Delete</button>
                 )
         
                 } ,
@@ -181,15 +157,7 @@ class ShowPlayer extends Component {
         ]  
         return (
             <div>
-                <div className="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+                
                 {this.state.teams.map(team =>{
                     if(team.team_id==teamID){
                         teamname=team.tname
@@ -215,48 +183,7 @@ class ShowPlayer extends Component {
                      ></ReactTable>
 
                 </div>
-                <Dialog
-          open={this.state.open1}
-          TransitionComponent={Transition}
-          onClose={this.handleClose}
-          aria-labelledby="alert-dialog-slide-title"
-          aria-describedby="alert-dialog-slide-description"
-        >
-          <DialogTitle id="alert-dialog-slide-title">
-            <span
-              style={{
-                fontFamily: "HelveticaforTargetBold,Arial",
-                color: "#646566",
-                fontWeight: "bolder"
-              }}
-            >
-            Delete the player {this.state.desc}?
-            </span>
-          </DialogTitle>
-
-          <DialogContent>
-          You won’t be able to undo the action.
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                this.setState({ open1:false });
-                this.deletePlayerClicked(this.state.t_id,this.state.p_id,this.state.desc);
-              }}
-              variant="outlined"
-            >
-            Yes
-            </Button>
-            <Button
-             onClick={() => {
-                this.setState({ open1: false});
-              }}
-              variant="outlined"
-            >
-            No
-            </Button>
-          </DialogActions>
-        </Dialog>
+   
            
             </div>
         )

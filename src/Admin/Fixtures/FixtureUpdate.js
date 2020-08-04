@@ -151,15 +151,7 @@ class FixtureUpdate extends Component {
 
         return (
             <div>
-                <div className="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay"><div className="Selected_color">Fixtures</div></a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+                
                 <div className="playerform">
             <Formik
                     initialValues={{team1,team2,home_team, match_type,venue,series_id,description,fixture_date_time,gmt_offset,scorer_id,live_coverage}}

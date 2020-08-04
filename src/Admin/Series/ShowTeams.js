@@ -4,17 +4,6 @@ import './Series.css';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
 
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import Slide from "@material-ui/core/Slide";
-import Button from "@material-ui/core/Button";
-import Paper from "@material-ui/core/Paper";
-
-function Transition(props) {
-  return <Slide direction="up" {...props} />;
-}
 class ShowTeams extends Component {
  
     constructor(props) {
@@ -24,11 +13,7 @@ class ShowTeams extends Component {
             series_teams: [],
             series:[],
             message: null,
-            series_name:"",
-            s_id:"",
-            t_id:"",
-            desc:"",
-            open1:false
+            series_name:""
         }
         this.deleteTeamClicked = this.deleteTeamClicked.bind(this)
         this.refreshSeriesTeams = this.refreshSeriesTeams.bind(this)
@@ -72,14 +57,7 @@ class ShowTeams extends Component {
             )
     
     }
-    openAlertBox =(e,p,d) => {
-        this.setState({
-          open1: true,
-          s_id:e,
-          t_id:p,
-          desc:d
-        });
-      };
+
 
     render() {
         let seriesID=this.state.series_id
@@ -114,7 +92,7 @@ class ShowTeams extends Component {
                 Header: 'Delete',  
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.openAlertBox(props.original.series_id,props.original.team_id,props.original.team_name)}>Delete</button>
+                        <button onClick={() => this.deletePlayerClicked(props.original.series_id,props.original.team_id,props.original.team_name)}>Delete</button>
                 )
         
                 } ,
@@ -125,15 +103,7 @@ class ShowTeams extends Component {
         ]  
         return (
             <div>
-                <div class="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay"><div className="Selected_color">Series Master</div></a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+                
                 {this.state.series.map(s =>{
                     if(s.series_id==seriesID){
                         seriesname=s.series_name
@@ -161,48 +131,7 @@ class ShowTeams extends Component {
  
                 </div>
    
-                <Dialog
-          open={this.state.open1}
-          TransitionComponent={Transition}
-          onClose={this.handleClose}
-          aria-labelledby="alert-dialog-slide-title"
-          aria-describedby="alert-dialog-slide-description"
-        >
-          <DialogTitle id="alert-dialog-slide-title">
-            <span
-              style={{
-                fontFamily: "HelveticaforTargetBold,Arial",
-                color: "#646566",
-                fontWeight: "bolder"
-              }}
-            >
-            Delete the team {this.state.desc}?
-            </span>
-          </DialogTitle>
-
-          <DialogContent>
-          You won’t be able to undo the action.
-          </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() => {
-                this.setState({ open1:false });
-                this.deleteTeamClicked(this.state.s_id,this.state.t_id,this.state.desc);
-              }}
-              variant="outlined"
-            >
-            Yes
-            </Button>
-            <Button
-             onClick={() => {
-                this.setState({ open1: false});
-              }}
-              variant="outlined"
-            >
-            No
-            </Button>
-          </DialogActions>
-        </Dialog>
+           
             </div>
         )
     }

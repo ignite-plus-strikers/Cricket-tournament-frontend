@@ -370,16 +370,7 @@ class RefereeComponent extends Component {
             }
         ]  
         return (
-            <div>
-                <div className="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay"><div className="Selected_color">Match Referee</div></a><hr></hr>
-                </div>
+            <div style={{marginTop:40}}>
                 <div className = "p_details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>

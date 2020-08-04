@@ -49,7 +49,7 @@ class LoginPage extends React.Component {
           else
             if(role === 'scorer'){
                 //return ReactDOM.render(<PreMatch/>,document.getElementById('root'))
-                this.props.history.push(`/scorer/matchSelection`)
+                this.props.history.push(`/scorer/MatchSelection`)
             }
       })
    }
@@ -61,7 +61,7 @@ class LoginPage extends React.Component {
     // }
   return (
 
-    <div className="App">
+    <div className="App" style={{marginLeft:220}}>
      <p>Login</p>
      <GoogleLogin
       clientId = "402744950664-cefekape7t5m71d9ok33fun1pg5hgdb7.apps.googleusercontent.com"
@@ -71,6 +71,7 @@ class LoginPage extends React.Component {
       isSignedIn={true}
       cookiePolicy={'single_host_origin'}
       />
+   
     </div>
   );
 }

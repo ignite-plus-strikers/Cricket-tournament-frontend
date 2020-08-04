@@ -5,9 +5,6 @@ import '../../App.css';
 import TeamDataService from '../Team/Service/TeamDataService';
 import SeriesDataService from './Service/SeriesDataService';
 
-import ReactTable from "react-table-6"; 
-import 'react-table-6/react-table.css';
-
 
 class AddTeams extends Component {
 
@@ -25,7 +22,8 @@ class AddTeams extends Component {
         }
         this.refreshTeams = this.refreshTeams.bind(this)
         this.getSeriesName=this.getSeriesName.bind(this)
-        
+        this.validate = this.validate.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
        
     }
     componentDidMount() {
@@ -54,16 +52,11 @@ class AddTeams extends Component {
                 }
             )
     }
-    handleSelect = e => {
-
-        this.setState({
-            team_id:e
-             
-           });
+    onSubmit(values){
         let team_name
-        
+        this.setState({team_id:values.selected})
         this.state.teams.map(t =>{
-            if(t.team_id=== e){
+            if(t.team_id===this.state.team_id){
                 team_name=t.tname;
                
                 }
@@ -74,18 +67,18 @@ class AddTeams extends Component {
         
         var series_teams = {
             series_id:this.state.series_id,
-            team_id: e,
+            team_id:values.selected,
             team_name:team_name
         }
        
         let seriesid=this.state.series_id
             SeriesDataService.createTeam(seriesid,series_teams)
                 .then(() => this.props.history.push(`/admin/dashboard/SeriesShowTeam/${seriesid}`))
-        console.log(series_teams);
+        console.log(values);
     }
 
     
-  /*  validate(values) {
+    validate(values) {
         let errors = {};
         if (!values.selected) {
             errors.selected = 'Select Team'
@@ -93,7 +86,7 @@ class AddTeams extends Component {
 
         return errors
 
-    }*/
+    }
 
 
 
@@ -102,59 +95,9 @@ class AddTeams extends Component {
         let selected=this.state.selected
         let seriesID=this.state.series_id
         let seriesname=this.state.series_name
-
-        const columns = [{  
-            Header: 'Team name',
-            accessor: 'tname',
-            filterMethod: (filter, row) => {
-                var v = row[filter.id]
-                  .toString()
-                  .toUpperCase()
-                  .search(filter.value.toUpperCase());
-                // row[filter.id].toString().startsWith(filter.value)
-                if (v >= 0) {
-                  return true;
-                } else return false;
-              },
-              Filter: ({filter, onChange}) => (
-                <input
-                placeholder="Search"
-                  onChange={event => onChange(event.target.value)}
-                  value={filter ? filter.value : ''}
-                  style={{
-                    width: '100%',
-                    backgroundColor: '#DCDCDC',
-                    color: 'black',
-                  }}
-                />
-              )
-            },{  
-                Header: 'Select',  
-                Cell:props=>{
-                    return(
-                        <button  onClick={() => this.handleSelect(props.original.team_id)} >Select</button>
-                )
-        
-                } ,
-                sortable:false,
-                filterable:false,
-                width:100,
-                minWidth:100,
-                maxWidth:100
-                }
-        ]  
-
         return (
             <div>
-                <div className="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay"><div className="Selected_color">Series Master</div></a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+                
                 {this.state.series.map(s =>{
                     if(s.series_id===seriesID){
                         seriesname=s.series_name
@@ -166,16 +109,34 @@ class AddTeams extends Component {
                 <center>
                     <h2>{seriesname}</h2>
                 </center>
-                <div className="details">
-                <ReactTable
-                    className="MyReactTableClass"
-                     columns={columns}
-                     data={this.state.teams}
-                     filterable
-                     defaultPageSize={10}
-                     ></ReactTable>
- 
-                </div>
+               <div className="addTeamsForm">
+                   <Formik
+                    initialValues={{selected}}
+                    onSubmit={this.onSubmit}
+                    validateOnChange={false}
+                    validateOnBlur={false}
+                    validate={this.validate}>
+                       <Form>
+                           <br/>
+                                <ErrorMessage name="selected" component="div"
+                                        className=" errormsg alert warning" /> 
+                                <br/><br/>
+                                <label>Select Team : </label>
+                                <Field as="select" name="selected">
+                                <option value="">-----Select Team-----</option>
+                                {
+                                this.state.teams.map(
+                                    team =>
+                                    <option value={team.team_id}>{team.tname}</option>
+                                            
+                                )
+                            }
+                                    
+                                </Field><br/><br/><br/>  
+                                <button className="btn warning marginsave" type="submit">Add</button>
+                       </Form>
+                   </Formik>
+               </div>
    
            
             </div>
