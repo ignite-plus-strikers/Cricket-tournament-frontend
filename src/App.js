@@ -38,8 +38,8 @@ function App() {
     <div>
         <Header/>
         <Router>
-        <Route exact path="/login" component={LoginPage} />
-
+        <Route exact path="/" component={LoginPage} />
+        
         <Route exact path="/scorer/matchSelection" component={MatchSelection} />
         <Route exact path="/scorer/matchSelection/prematch" component={PreMatch} />
         <Route exact path="/admin/dashboard" component={AdminDashboard} />

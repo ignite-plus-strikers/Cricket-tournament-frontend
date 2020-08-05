@@ -27,10 +27,15 @@ class LoginPage extends React.Component {
     userEmail : res.profileObj.email
     }
 
-     //console.log(userdetails)
+     console.log(userdetails)
 
 
      axios.post(`http://localhost:8081/user`,userdetails)
+      .then((result) => {
+        let responseJson = result;
+        sessionStorage.setItem("userData",JSON.stringify(result));
+      });
+     
      
      console.log(userdetails)
 
@@ -38,18 +43,19 @@ class LoginPage extends React.Component {
      axios.get(`http://localhost:8081/user/${userdetails.userId}`)
       .then(res => {
           const role = res.data;
-          console.log(role)
+          //console.log(role)
           if(role === 'admin')
           {
             //this.setState({login : true})
-          //return ReactDOM.render(<AdminDashboard/>,document.getElementById('root'))
           this.props.history.push(`/admin/dashboard`)
-          //return this.handleAdminLogin;
         }
           else
             if(role === 'scorer'){
-                //return ReactDOM.render(<PreMatch/>,document.getElementById('root'))
                 this.props.history.push(`/scorer/matchSelection`)
+            }
+            else{
+              this.props.history.push(`/`)
+              console.log("No access")
             }
       })
    }
