@@ -370,15 +370,7 @@ class UmpireComponent extends Component {
     ]  
         return (
             <div>
-                <div className="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay"><div className="Selected_color">Umpire Master</div></a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+               
                 <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>

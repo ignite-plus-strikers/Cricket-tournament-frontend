@@ -54,6 +54,10 @@
   background-color: rgb(2, 2, 92);
   text-align: center;
 }
+footer {
+  margin-top:calc(5% + 60px);
+  bottom: 0;
+}
 .headerButton{
   background-color: black;
   color: white;
@@ -86,7 +90,7 @@
     border: 1px solid black;
     width:35%;
     margin-bottom: 40px;
-    margin-left: 50px;
+    margin-left: 210px;
     padding: 0px;
   }
   .box_button{
@@ -211,9 +215,9 @@ label {
 }
 
 .playerdetails{
-  margin-top:70px;
-  margin-left:180px;
+  margin-top:20px;
   margin-bottom:100px ;
+  margin-left: 210px;
   
 }
 
@@ -244,6 +248,10 @@ label {
   background-color: #00A5FF;
 }
 
+.header-class{
+  background-color: #00bcd4;
+  color: #000000;
+}
 .container2{
   width: 90%;
   margin: 50px auto;
@@ -256,7 +264,7 @@ label {
   margin-top: 67px;
 }
 .row{
-  margin-left: 200px;
+  margin-left: 210px;
 }
  
 .card{
@@ -319,7 +327,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 #lefttable{
-  margin-left: 200px;
+  margin-left: 210px;
   width: 45%;
   float: left;
 }
@@ -327,30 +335,7 @@ tr:nth-child(even) {
   width: 40%;
   float: right;
 }
-.sidenav {
-  height: 85.3%;
-  width: 160px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: rgb(113, 113, 153);
-  overflow-x: hidden;
-  padding-top: 20px;
-  margin-top: 45px;
-  margin-bottom: 50px;
-}
-.sidenav a {
-  padding: 6px 8px 6px 16px;
-  text-decoration: none;
-  font-size: 25px;
-  color: black;
-  display: block;
-}
- 
-.sidenav a:hover {
-  color: white;
-}
+
 
 .Selected_color{
   color:white;
@@ -407,13 +392,11 @@ a{
   }
 
   .details{
-    margin-top:70px;
-    margin-left:180px;
-    margin-bottom: 150px;   
+    margin-top:20px;
+    margin-left: 210px;
+        
   }
   .p_details{
-    margin-top:60px;
-    margin-left:180px;
-    
-        
+    margin-top:20px;
+    margin-left: 210px;   
   }

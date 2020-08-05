@@ -21,8 +21,6 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -42,19 +40,7 @@ function Transition(props) {
       width: "100%",
       maxWidth: "300px",
       position: "fixed"
-    },
-    button: {
-      margin: theme.spacing.unit,
-    },
-    leftIcon: {
-      marginRight: theme.spacing.unit,
-    },
-    rightIcon: {
-      marginLeft: theme.spacing.unit,
-    },
-    iconSmall: {
-      fontSize: 20,
-    },
+    }
   });
    
   
@@ -683,7 +669,7 @@ class FixtureComponent extends Component {
                 Cell:props=>{
                     return(
                         <div>
-                       <Button variant="contained" color="secondary" size="small" className={classes.button} onClick={() => this.openAlertBox(props.original.fixture_id,props.original.description)}>Delete<DeleteIcon className={classes.rightIcon} /></Button>
+                       <button onClick={() => this.openAlertBox(props.original.fixture_id,props.original.description)}>Delete</button>
                         </div>
                 )
         
@@ -697,7 +683,7 @@ class FixtureComponent extends Component {
             Header: 'Update',  
             Cell:props=>{
                 return(
-                    <Button variant="contained" color="primary" size="small" className={classes.button} onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update<EditIcon className={classes.rightIcon} /> </Button>
+                    <button  onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update</button>
             )
     
             } ,
@@ -710,15 +696,6 @@ class FixtureComponent extends Component {
         ]  
         return (
             <div>
-                <div class="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay"><div className="Selected_color">Fixtures</div></a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
                 <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>

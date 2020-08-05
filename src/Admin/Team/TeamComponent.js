@@ -321,15 +321,7 @@ class TeamComponent extends Component {
         ]  
         return (
             <div>
-                <div class="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay">Series Master</a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay"><div className="Selected_color">Team Master</div></a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+                
                 <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
@@ -370,7 +362,6 @@ class TeamComponent extends Component {
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Team Name"
-                
                 onChange={this.handleChange("tname")}
                 InputProps={{
                   startAdornment: (

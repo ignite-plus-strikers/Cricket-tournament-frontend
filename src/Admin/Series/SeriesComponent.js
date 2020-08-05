@@ -593,15 +593,7 @@ class SeriesComponent extends Component {
         ]  
         return (
             <div>
-                <div class="sidenav">
-                <a href="/admin/dashboard">Dashboard</a><hr></hr>
-                <a href="/admin/dashboard/FixtureDisplay">Fixtures</a><hr></hr>
-                <a href="/admin/dashboard/SeriesDisplay"><div className="Selected_color">Series Master</div></a><hr></hr>
-                <a href="/admin/dashboard/TeamDisplay">Team Master</a><hr></hr>
-                <a href="/admin/dashboard/PlayerDisplay">Player Master</a><hr></hr>
-                <a href="/admin/dashboard/UmpireDisplay">Umpire Master</a><hr></hr>
-                <a href="/admin/dashboard/RefereeDisplay">Match Referee</a><hr></hr>
-                </div>
+                
                 <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>

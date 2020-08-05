@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
-import Header from './Header/HeaderComponent';
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
 import Footer from './Footer/FooterComponent';
 import MatchSelection from './Scorer/MatchSelection';
 import PreMatch from './Scorer/PreMatch';
@@ -31,17 +30,41 @@ import RefereeForm from './Admin/Referee/RefereeForm';
 import FixtureUpdate from './Admin/Fixtures/FixtureUpdate';
 import FixturesFormNew from './Admin/Fixtures/FixturesFormNew';
 import LoginPage from './Login/LoginPage'
+import {createMuiTheme , MuiThemeProvider} from '@material-ui/core/styles'
+import SideNav from './SideNav/SideNav';
+import { AutoComplete } from 'rsuite';
+
+const theme = createMuiTheme({
+  palette: {
+      primary: {
+          main: '#00bcd4',
+      },
+      secondary: {
+          main: '#a5d1e1',
+      },
+      text:{
+        primary:'#00bcd4'
+      },
+      spacing:1,
+  },
+});
+
+
 
 
 function App() {
   return (
     <div>
-        <Header/>
+        <MuiThemeProvider theme={theme}>
         <Router>
         <Route exact path="/" component={LoginPage} />
-        
-        <Route exact path="/scorer/matchSelection" component={MatchSelection} />
-        <Route exact path="/scorer/matchSelection/prematch" component={PreMatch} />
+<<<<<<< HEAD
+      
+=======
+        <SideNav>
+        <Route exact path="/scorer/MatchSelection" component={MatchSelection} />
+        <Route exact path="/scorer/MatchSelection/prematch" component={PreMatch} />
+>>>>>>> c3c86b8db974e2737e02867a4f2859f75797e073
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/admin/dashboard/PlayerDisplay" component={ListPlayersComponent} />
         <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />
@@ -59,7 +82,6 @@ function App() {
         <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
         <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
         <Route path="/admin/dashboard/Series/:id" component={SeriesUpdate} />
-        
         <Route exact path="/admin/dashboard/UmpireDisplay" component={UmpireComponent} />
         <Route path="/admin/dashboard/Umpire/:id" component={UmpireUpdate} /> 
         <Route path="/admin/dashboard/UmpireAddForm" component={UmpireForm} />
@@ -68,12 +90,13 @@ function App() {
         <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
         <Route exact path="/test" component={FixturesFormNew} />
-       
+       </SideNav>
        
         </Router>
-        <Footer/>
-
+        </MuiThemeProvider>
+        
     </div>
+    
   );
 }
 

@@ -13,7 +13,7 @@ class BackgroundImage extends Component {
   
     render() {
         return (
-            <div className="bi">
+            <div className="bi" style={{marginLeft:220}}>
                 <img className="bi" src={background} alt="background_image"></img>
             </div>
         )

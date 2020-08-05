@@ -23,7 +23,7 @@ class PreMatch extends Component {
    
        render () {
            return (
-               <div>
+               <div style={{marginLeft:220}}>
                         <div className="matchDetails">
                             <p>South Africa Vs New Zealand</p><p>National Stadium, Brazil</p><p>12 July 2020 @ 13:30</p>
 
