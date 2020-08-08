@@ -32,7 +32,6 @@ import FixturesFormNew from './Admin/Fixtures/FixturesFormNew';
 import LoginPage from './Login/LoginPage'
 import {createMuiTheme , MuiThemeProvider} from '@material-ui/core/styles'
 import SideNav from './SideNav/SideNav';
-import { AutoComplete } from 'rsuite';
 
 const theme = createMuiTheme({
   palette: {
@@ -58,13 +57,9 @@ function App() {
         <MuiThemeProvider theme={theme}>
         <Router>
         <Route exact path="/" component={LoginPage} />
-<<<<<<< HEAD
-      
-=======
         <SideNav>
         <Route exact path="/scorer/MatchSelection" component={MatchSelection} />
         <Route exact path="/scorer/MatchSelection/prematch" component={PreMatch} />
->>>>>>> c3c86b8db974e2737e02867a4f2859f75797e073
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/admin/dashboard/PlayerDisplay" component={ListPlayersComponent} />
         <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />

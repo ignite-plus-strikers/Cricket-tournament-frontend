@@ -51,12 +51,8 @@ class LoginPage extends React.Component {
         }
           else
             if(role === 'scorer'){
-<<<<<<< HEAD
-                this.props.history.push(`/scorer/matchSelection`)
-=======
                 //return ReactDOM.render(<PreMatch/>,document.getElementById('root'))
                 this.props.history.push(`/scorer/MatchSelection`)
->>>>>>> c3c86b8db974e2737e02867a4f2859f75797e073
             }
             else{
               this.props.history.push(`/`)
