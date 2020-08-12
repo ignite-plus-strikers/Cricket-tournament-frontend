@@ -21,12 +21,29 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import { Sidenav } from 'rsuite';
 import AdminDashboard from '../Admin/AdminDashboard';
-import ListPlayersComponent from '../Admin/Player/ListPlayersComponent';
-import TeamComponent from '../Admin/Team/TeamComponent';
-import FixtureComponent from '../Admin/Fixtures/FixtureComponent';
-import UmpireComponent from '../Admin/Umpire/UmpireComponent';
-import RefereeComponent from '../Admin/Referee/RefereeComponent';
+import ListPlayersComponent from '../Admin/Player/ListPlayersComponent'; 
+import PlayerAddnUpdate from '../Admin/Player/PlayerAddnUpdate';
+import AddForm from '../Admin/Player/AddForm';
+import FixturesForm from '../Admin/Fixtures/FixturesForm';
+import TeamForm from '../Admin/Team/TeamForm';
+import SeriesForm from '../Admin/Series/SeriesForm';
+import ShowPlayer from '../Admin/Team/ShowPlayer';
+import AddPlayer from '../Admin/Team/AddPlayer';
+import AddTeams from '../Admin/Series/AddTeams';
 import SeriesComponent from '../Admin/Series/SeriesComponent';
+import ShowTeams from '../Admin/Series/ShowTeams';
+import FixtureComponent from '../Admin/Fixtures/FixtureComponent';
+import TeamComponent from '../Admin/Team/TeamComponent';
+import TeamUpdate from '../Admin/Team/TeamUpdate';
+import SeriesUpdate from '../Admin/Series/SeriesUpdate';
+import UmpireComponent from '../Admin/Umpire/UmpireComponent';
+import UmpireForm from '../Admin/Umpire/UmpireForm';
+import UmpireUpdate from '../Admin/Umpire/UmpireUpdate';
+import RefereeComponent from '../Admin/Referee/RefereeComponent';
+import RefereeUpdate from '../Admin/Referee/RefereeUpdate';
+import RefereeForm from '../Admin/Referee/RefereeForm';
+import FixtureUpdate from '../Admin/Fixtures/FixtureUpdate';
+import FixturesFormNew from '../Admin/Fixtures/FixturesFormNew';
 import appbar from '../Admin/cards_images/appbar.png';
 
 
@@ -83,7 +100,7 @@ function SideNav(props) {
   };
 
   const drawer = (
-    <div>
+    <div id="side-nav">
       <div className={classes.toolbar} />
       <List>
         <Link to ="/admin/dashboard" className = {classes.link}>
@@ -139,9 +156,8 @@ function SideNav(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} image={appbar}>
-        <Toolbar className={classes.toolbar} image={appbar}>
-          <img src="src/Admin/cards_images/appbar.png"></img>
+      <AppBar position="fixed" className={classes.appBar} color="primary">
+        <Toolbar className={classes.toolbar} >
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -188,12 +204,29 @@ function SideNav(props) {
         <div className={classes.toolbar} />
         <Switch>
           <Route exact path = "/admin/dashboard" component={AdminDashboard}></Route>
-          <Route path = "/admin/dashboard/PlayerDisplay" component={ListPlayersComponent}></Route>
-          <Route path = "/admin/dashboard/TeamDisplay" component={TeamComponent}></Route>
-          <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent}></Route>
-          <Route path = "/admin/dashboard/FixtureDisplay" component={FixtureComponent}></Route>
-          <Route path = "/admin/dashboard/UmpireDisplay" component={UmpireComponent}></Route>
-          <Route path = "/admin/dashboard/RefereeDisplay" component={RefereeComponent}></Route>
+          <Route exact path="/admin/dashboard" component={AdminDashboard} />
+        <Route exact path="/admin/dashboard/PlayerDisplay" component={ListPlayersComponent} />
+        <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />
+        <Route path="/admin/dashboard/PlayerAddForm" component={AddForm} />
+        <Route path="/admin/dashboard/FixtureAddForm" component={FixturesForm} />
+        <Route path="/admin/dashboard/FixtureDisplay" component={FixtureComponent} />
+        <Route path="/admin/dashboard/Fixture/:id" component={FixtureUpdate} />
+        <Route path="/admin/dashboard/Team/:id" component={TeamUpdate} />
+        <Route path="/admin/dashboard/TeamAddForm" component={TeamForm} />
+        <Route path="/admin/dashboard/TeamDisplay" component={TeamComponent} />
+        <Route path="/admin/dashboard/TeamShowPlayer/:id" component={ShowPlayer} />
+        <Route path="/admin/dashboard/TeamAddPlayer/:id" component={AddPlayer} />
+        <Route path="/admin/dashboard/SeriesAddTeam/:id" component={AddTeams} />
+        <Route path="/admin/dashboard/SeriesShowTeam/:id" component={ShowTeams} />
+        <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
+        <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
+        <Route path="/admin/dashboard/Series/:id" component={SeriesUpdate} />
+        <Route path="/admin/dashboard/UmpireDisplay" component={UmpireComponent} />
+        <Route path="/admin/dashboard/Umpire/:id" component={UmpireUpdate} /> 
+        <Route path="/admin/dashboard/UmpireAddForm" component={UmpireForm} />
+        <Route path="/admin/dashboard/RefereeDisplay" component={RefereeComponent} />
+        <Route path="/admin/dashboard/Referee/:id" component={RefereeUpdate} /> 
+        <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
        </Switch>    
       </main>
     </div>
