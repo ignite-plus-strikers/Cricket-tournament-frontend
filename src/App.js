@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom';
+import { Route, Link, BrowserRouter as Router, Switch,useLocation } from 'react-router-dom';
 import Footer from './Footer/FooterComponent';
 import MatchSelection from './Scorer/MatchSelection';
 import PreMatch from './Scorer/PreMatch';
@@ -32,6 +32,7 @@ import FixturesFormNew from './Admin/Fixtures/FixturesFormNew';
 import LoginPage from './Login/LoginPage'
 import {createMuiTheme , MuiThemeProvider} from '@material-ui/core/styles'
 import SideNav from './SideNav/SideNav';
+import { AutoComplete } from 'rsuite';
 
 const theme = createMuiTheme({
   palette: {
@@ -52,12 +53,19 @@ const theme = createMuiTheme({
 
 
 function App() {
+
+    const location = useLocation();
+    
   return (
     <div>
-        <MuiThemeProvider theme={theme}>
-        <Router>
+          {
+            location.pathname != "/" && <SideNav />
+
+          }
+          <MuiThemeProvider theme={theme}>
+          <Router>
+        
         <Route exact path="/" component={LoginPage} />
-        <SideNav>
         <Route exact path="/scorer/MatchSelection" component={MatchSelection} />
         <Route exact path="/scorer/MatchSelection/prematch" component={PreMatch} />
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
@@ -85,8 +93,6 @@ function App() {
         <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
         <Route exact path="/test" component={FixturesFormNew} />
-       </SideNav>
-       
         </Router>
         </MuiThemeProvider>
         
@@ -94,5 +100,6 @@ function App() {
     
   );
 }
+
 
 export default App;
