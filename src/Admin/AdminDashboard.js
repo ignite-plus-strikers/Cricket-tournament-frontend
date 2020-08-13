@@ -15,6 +15,7 @@ import series from "./cards_images/series.jpg"
 import umpire from "./cards_images/umpire.jpg"
 import Container from "@material-ui/core/Container"
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import SideNav from '../SideNav/SideNav';
 
 
 const styles = {
@@ -69,6 +70,7 @@ class AdminDashboard extends React.Component {
   render(){
     const { classes } = this.props;
    return ( 
+   
   <Container>
     <Grid container spacing ={10}>
         <Grid item >
@@ -196,6 +198,7 @@ class AdminDashboard extends React.Component {
        </Grid>
 
     </Grid>
+    
     </Container>
     
   );
