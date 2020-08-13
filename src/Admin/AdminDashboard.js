@@ -14,7 +14,6 @@ import team from "./cards_images/team.jpg"
 import series from "./cards_images/series.jpg"
 import umpire from "./cards_images/umpire.jpg"
 import Container from "@material-ui/core/Container"
-import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 
 const styles = {
