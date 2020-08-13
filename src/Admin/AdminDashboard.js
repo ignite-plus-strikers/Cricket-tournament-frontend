@@ -22,6 +22,7 @@ import UmpireDataService from '../Admin/Umpire/Service/UmpireDataService';
 import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService';
 import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
+import SideNav from '../SideNav/SideNav';
 
 
 const styles = {
@@ -154,6 +155,11 @@ refreshUmpires() {
     const { classes } = this.props;
    return ( 
   <Container>
+  <center>
+      <br />
+    <h1>Welcome {this.props.user_name}!</h1>
+    </center>
+    <SideNav />
     <Grid container spacing ={10}>
         <Grid item >
             <Card className={classes.card}>

@@ -23,11 +23,14 @@ const useStyles = makeStyles({
 
 });
 
-function MatchSelection() {
+function MatchSelection (props)  {
     const classes = useStyles();
     return (
        
-       //<div></div>
+       <center>
+      <br /><br />
+    <h1>Welcome {props.user_name}!</h1>
+  
         <Card className={classes.root} variant="outlined">
           <CardContent>
             <Typography variant="h5" align="center">India vs England</Typography>
@@ -40,6 +43,7 @@ function MatchSelection() {
             <Button variant="outlined" color="primary">Scoring Screen</Button>
           </CardActions>
         </Card>
+         </center>
     );
 }
  export default MatchSelection;
