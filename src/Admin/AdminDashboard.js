@@ -13,9 +13,15 @@ import fixture from "./cards_images/fixture.jpg"
 import team from "./cards_images/team.jpg"
 import series from "./cards_images/series.jpg"
 import umpire from "./cards_images/umpire.jpg"
+import referee from './cards_images/referee.jpg'
 import Container from "@material-ui/core/Container"
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import SideNav from '../SideNav/SideNav';
+import PlayerDataService from '../Admin/Player/Service/PlayerDataService';
+import TeamDataService from '../Admin/Team/Service/TeamDataService';
+import UmpireDataService from '../Admin/Umpire/Service/UmpireDataService';
+import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService';
+import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
+import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 
 
 const styles = {
@@ -33,18 +39,95 @@ const styles = {
 class AdminDashboard extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      players:[],
+      Series:[],
+      teams:[],
+      fixtures:[],
+      umpires:[],
+      referees:[]
+    }
     this.handleTeamClick = this.handleTeamClick.bind(this)
     this.handlePlayerClick = this.handlePlayerClick.bind(this)
     this.handleSeriesClick = this.handleSeriesClick.bind(this)
     this.handleFixtureClick = this.handleFixtureClick.bind(this)
     this.handleUmpireClick = this.handleUmpireClick.bind(this)
     this.handleRefereeClick = this.handleRefereeClick.bind(this)
+    this.refreshPlayers=this.refreshPlayers.bind(this)
+    this.refreshTeams = this.refreshTeams.bind(this)
+    this.refreshSeries = this.refreshSeries.bind(this)
+    this.refreshFixtures = this.refreshFixtures.bind(this)
+    this.refreshReferees = this.refreshReferees.bind(this)
+    this.refreshUmpires = this.refreshUmpires.bind(this)
 
-
+  }
+  componentDidMount(){
+    this.refreshPlayers();
+    this.refreshTeams();
+    this.refreshUmpires();
+    this.refreshSeries();
+    this.refreshFixtures();
+    this.refreshReferees();
   }
     handleTeamClick(){
       this.props.history.push('/admin/dashboard/TeamDisplay')
      } 
+     refreshPlayers() {
+      PlayerDataService.retrieveAllPlayers()
+          .then(
+              response => {
+                  console.log(response);
+                  this.setState({ players: response.data })
+              }
+          )
+          
+  }
+  refreshTeams() {
+    TeamDataService.retrieveAllTeams()
+        .then(
+            response => {
+                console.log(response);
+                this.setState({ teams: response.data })
+            }
+        )
+}
+refreshSeries() {
+  SeriesDataService.retrieveAllSeries()
+      .then(
+          response => {
+              console.log(response);
+              this.setState({ Series: response.data })
+          }
+      )
+}
+refreshFixtures() {
+  FixtureDataService.retrieveAllFixtures()
+      .then(
+          response => {
+              console.log(response);
+              this.setState({ fixtures: response.data })
+          }
+      )
+}
+refreshReferees() {
+  RefereeDataService.retrieveAllReferees()
+      .then(
+          response => {
+              console.log(response);
+              this.setState({ referees: response.data })
+          }
+      )
+}
+refreshUmpires() {
+  UmpireDataService.retrieveAllUmpires()
+      .then(
+          response => {
+              console.log(response);
+              this.setState({ umpires: response.data })
+          }
+      )
+}
+
 
      handlePlayerClick(){
       this.props.history.push('/admin/dashboard/PlayerDisplay')
@@ -70,7 +153,6 @@ class AdminDashboard extends React.Component {
   render(){
     const { classes } = this.props;
    return ( 
-   
   <Container>
     <Grid container spacing ={10}>
         <Grid item >
@@ -85,8 +167,8 @@ class AdminDashboard extends React.Component {
               title="Teams"
                />
                <CardContent>
-               <Typography gutterBottom variant="h5" component="h2">
-                 Teams         
+               <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
+                 {this.state.teams.length}<br/> Total Teams         
                </Typography>
                </CardContent>
              </CardActionArea>
@@ -105,8 +187,8 @@ class AdminDashboard extends React.Component {
               title="Players"
               />
               <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Players
+              <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
+              {this.state.players.length}<br/> Total Players
               </Typography>
              </CardContent>
              </CardActionArea>
@@ -125,8 +207,8 @@ class AdminDashboard extends React.Component {
              title="Umpire"
              />
              <CardContent>
-             <Typography gutterBottom variant="h5" component="h2">
-              Umpires
+             <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
+             {this.state.umpires.length}<br/> Total Umpires   
              </Typography>
             </CardContent>
             </CardActionArea>
@@ -148,8 +230,8 @@ class AdminDashboard extends React.Component {
               title="Fixtures"
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                  Fixtures
+              <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
+              {this.state.fixtures.length}<br/> Total Fixtures  
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -169,8 +251,8 @@ class AdminDashboard extends React.Component {
           title="Series"
         />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                  Series
+              <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
+              {this.state.Series.length}<br/> Total Series  
               </Typography>
             </CardContent>
           </CardActionArea>
@@ -185,12 +267,12 @@ class AdminDashboard extends React.Component {
             alt="Referee"
             className={classes.media}
             height="200"
-            image={umpire}
+            image={referee}
             title="Referee"
             />
             <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-            Referee
+            <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
+            {this.state.referees.length}<br/> Total Referees   
             </Typography>
            </CardContent>
            </CardActionArea>
@@ -198,7 +280,6 @@ class AdminDashboard extends React.Component {
        </Grid>
 
     </Grid>
-    
     </Container>
     
   );
@@ -211,5 +292,4 @@ AdminDashboard.propTypes = {
 //export default withRouter(connect()(withStyles(styles)(AdminDashboard)))
 
 export default withStyles(styles)(AdminDashboard);
- 
 
