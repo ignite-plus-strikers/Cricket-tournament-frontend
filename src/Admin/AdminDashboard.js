@@ -160,6 +160,7 @@ refreshUmpires() {
     <h1>Welcome {this.props.user_name}!</h1>
     </center>
     <SideNav />
+    <div style={{marginLeft:160}}>
     <Grid container spacing ={10}>
         <Grid item >
             <Card className={classes.card}>
@@ -286,6 +287,7 @@ refreshUmpires() {
        </Grid>
 
     </Grid>
+    </div>
     </Container>
     
   );
