@@ -45,6 +45,8 @@ import RefereeForm from '../Admin/Referee/RefereeForm';
 import FixtureUpdate from '../Admin/Fixtures/FixtureUpdate';
 import FixturesFormNew from '../Admin/Fixtures/FixturesFormNew';
 import appbar from '../Admin/cards_images/appbar.png';
+import Cookies from 'js-cookie'
+import LoginPage from '../Login/LoginPage'
 
 
 const drawerWidth = 200;
@@ -152,7 +154,10 @@ function SideNav(props) {
   );
 
   const container = window !== undefined ? () => window().document.body : undefined;
-
+     const handleLogout = () =>{
+       Cookies.remove("name")
+         Cookies.remove("role")
+     }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -171,7 +176,7 @@ function SideNav(props) {
             Strikers
           </Typography>
           <div className={classes.toolbarButtons}>
-          <Button variant="contained" color="primary" position="absolute" startIcon={<AccountCircleIcon />}> Logout</Button>
+          <Button onClick={handleLogout} variant="contained" color="primary" position="absolute" startIcon={<AccountCircleIcon />}> Logout</Button>
           </div>
         </Toolbar>
       </AppBar>
