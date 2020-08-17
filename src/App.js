@@ -95,8 +95,12 @@ function App() {
         <Route path="/admin/dashboard/Referee/:id" component={RefereeUpdate} /> 
         <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
+<<<<<<< HEAD
         <Route exact path="/test" component={FixturesFormNew} /> 
         </SideNav>
+=======
+        <Route exact path="/test" component={FixturesFormNew} />
+>>>>>>> 587f0c6077633f998e842950d6a81907db6d8193
         </Router>
         {/*</MuiThemeProvider> */}
         
