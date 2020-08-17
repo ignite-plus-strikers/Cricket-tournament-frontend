@@ -67,6 +67,7 @@ function App() {
           <Router>
         
         <Route exact path="/" component={LoginPage} />
+        <SideNav>
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/scorer/MatchSelection" component={MatchSelection} />
         <Route exact path="/scorer/MatchSelection/prematch" component={PreMatch} />
@@ -95,6 +96,7 @@ function App() {
         <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
         <Route exact path="/test" component={FixturesFormNew} /> 
+        </SideNav>
         </Router>
         {/*</MuiThemeProvider> */}
         

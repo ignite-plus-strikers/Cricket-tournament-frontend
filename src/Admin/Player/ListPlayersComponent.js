@@ -18,6 +18,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import SideNav from '../../SideNav/SideNav';
 
 const styles = theme => ({
   root: {
@@ -272,7 +273,7 @@ class ListPlayersComponent extends Component {
 
     render() {
       const { classes } = this.props;
-
+     
         const columns = [{  
             Header: 'First name',
             accessor: 'first_name',
@@ -572,7 +573,7 @@ class ListPlayersComponent extends Component {
         ]  
         return (
             <div>
-                
+              
                 <div className = "p_details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
