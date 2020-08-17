@@ -68,7 +68,7 @@ function App() {
         
         <Route exact path="/" component={LoginPage} />
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
-        {/*<Route exact path="/scorer/MatchSelection" component={MatchSelection} />
+        <Route exact path="/scorer/MatchSelection" component={MatchSelection} />
         <Route exact path="/scorer/MatchSelection/prematch" component={PreMatch} />
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/admin/dashboard/PlayerDisplay" component={ListPlayersComponent} />
@@ -94,7 +94,7 @@ function App() {
         <Route path="/admin/dashboard/Referee/:id" component={RefereeUpdate} /> 
         <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
-        <Route exact path="/test" component={FixturesFormNew} /> */}
+        <Route exact path="/test" component={FixturesFormNew} />
         </Router>
         {/*</MuiThemeProvider> */}
         
