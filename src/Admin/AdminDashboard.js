@@ -27,7 +27,7 @@ import SideNav from '../SideNav/SideNav';
 
 const styles = {
   card: {
-    backgroundColor : "#199FB1",
+    backgroundColor : "#1976d2",
     color : "white",
     width : 300
   },
@@ -155,12 +155,12 @@ refreshUmpires() {
     const { classes } = this.props;
    return ( 
   <Container>
+  <SideNav/>
   <center>
-      <br />
-    <h1>Welcome {this.props.user_name}!</h1>
+    <h1 style={{marginTop : 0}}>Welcome {this.props.user_name}!</h1>
     </center>
-    <SideNav />
-    <div style = {{marginLeft : 80}}>
+    
+    <div style = {{marginLeft : 100}}>
     <Grid container spacing ={10}>
         <Grid item >
             <Card className={classes.card}>

@@ -1,0 +1,78 @@
+.current_score{
+    background-color:#D3D3D3;
+   
+    text-align: center;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin:0px 0px;
+}
+.team_name{
+    margin-left: 80px;
+    margin-right: 80px;
+    width: 1300px;
+}
+.table_div1{
+    
+    float:left;
+   
+}
+.table_div2{
+    
+    float:left;
+  margin-left: 45px;
+
+}
+.header_img{
+    width:100%;
+    height:100px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid black;
+    
+}
+.match_header{
+    width:100%;
+    height:60px;
+    margin-top: 0px;
+   
+}
+.stadium{
+    float: left;
+    width:33%;
+   
+}
+.match_time{
+ float: left;
+ width:32%;
+ text-align: right;
+ margin-right: 15px;
+}
+.match_n_series{
+  width:33%;
+   float: left;
+   text-align: center;
+   
+}
+.class-for-desc{
+    color:rgb(196, 61, 61)
+}
+h3{
+    margin: 0px 0px;
+}
+h2{
+    margin: 0px 0px;
+}
+.back{
+ left: 0;
+  bottom: 0;
+  float : right;
+  clear: left;
+}
+.cont{
+    position: relative;
+
+}
+.b{
+    position: absolute;
+    float:right;
+   
+}

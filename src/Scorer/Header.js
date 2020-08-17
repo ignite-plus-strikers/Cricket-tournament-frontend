@@ -24,7 +24,7 @@ class Header extends React.Component{
  render(){  
     return(
               <div>
-                  <img className="header_img" src={appbar} alt="header" style={{width:1300, marginTop:0}} ></img>
+                  <img className="header_img" src={appbar} alt="header"  ></img>
                  
               </div>
       );

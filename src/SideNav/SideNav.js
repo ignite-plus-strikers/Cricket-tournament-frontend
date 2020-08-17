@@ -160,26 +160,7 @@ function SideNav(props) {
      }
   return (
     <div className={classes.root}>
-      <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} color="primary">
-        <Toolbar className={classes.toolbar} >
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            className={classes.menuButton}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            Strikers
-          </Typography>
-          <div className={classes.toolbarButtons}>
-          <Button onClick={handleLogout} variant="contained" color="primary" position="absolute" startIcon={<AccountCircleIcon />}> Logout</Button>
-          </div>
-        </Toolbar>
-      </AppBar>
+     
       <nav className={classes.drawer} aria-label="mailbox folders">
        
           <Drawer

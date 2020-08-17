@@ -336,6 +336,9 @@ tr:nth-child(even) {
   float: right;
 }
 
+#root{
+  margin-top: 0px;
+}
 
 .Selected_color{
   color:white;

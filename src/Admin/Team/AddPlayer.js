@@ -69,7 +69,7 @@ class AddPlayer extends Component {
             )
             
     }
-    handleSelect = e => {
+    handleSelect = (e,category) => {
         this.setState({
             player_id:e
              
@@ -94,7 +94,8 @@ class AddPlayer extends Component {
             player_id: e,
             player_first_name: player_first_name,
             player_last_name:player_last_name,
-            player_initials: player_initials
+            player_initials: player_initials,
+            category : category
         }
        
         let teamid=this.state.team_id
@@ -207,7 +208,7 @@ class AddPlayer extends Component {
             Header: 'Select',  
             Cell:props=>{
                 return(
-                    <button  onClick={() => this.handleSelect(props.original.player_id)} >Select</button>
+                    <button  onClick={() => this.handleSelect(props.original.player_id,props.original.category)} >Select</button>
             )
     
             } ,

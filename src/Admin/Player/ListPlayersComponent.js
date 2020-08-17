@@ -319,7 +319,7 @@ class ListPlayersComponent extends Component {
                   value={filter ? filter.value : ''}
                   style={{
                     width: '100%',
-                    backgroundColor: '#DCDCDC',
+                 backgroundColor: '#DCDCDC',
                     color: 'black',
                   }}
                 />

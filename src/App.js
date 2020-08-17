@@ -30,21 +30,25 @@ import RefereeForm from './Admin/Referee/RefereeForm';
 import FixtureUpdate from './Admin/Fixtures/FixtureUpdate';
 import FixturesFormNew from './Admin/Fixtures/FixturesFormNew';
 import LoginPage from './Login/LoginPage'
+import ScoringScreen from './Scorer/ScoringScreen'
 import {createMuiTheme , MuiThemeProvider} from '@material-ui/core/styles'
 import SideNav from './SideNav/SideNav';
 import { AutoComplete } from 'rsuite';
+import './App.css'
+import Header from './Scorer/Header'
+import ScoreCard from './Scorer/ScoreCard'
 
 const theme = createMuiTheme({
   palette: {
-      primary: {
-          main: '#00bcd4',
-      },
-      secondary: {
-          main: '#a5d1e1',
-      },
-      text:{
-        primary:'#00bcd4'
-      },
+      // primary: {
+      //     main: '#00bcd4',
+      // },
+      // secondary: {
+      //     main: '#a5d1e1',
+      // },
+      // text:{
+      //   primary:'#00bcd4'
+      // },
       spacing:1,
   },
 });
@@ -57,7 +61,7 @@ function App() {
     const location = useLocation();
     
   return (
-    <div>
+    <div className = "header-styling">
           {/*{
             location.pathname != "/" && <SideNav />
 
@@ -65,12 +69,14 @@ function App() {
 
           {/*<MuiThemeProvider theme={theme}>*/}
           <Router>
-        
+          <Header style={{marginTop : 0}}/>
         <Route exact path="/" component={LoginPage} />
-        
+       
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/scorer/MatchSelection" component={MatchSelection} />
-        <Route exact path="/scorer/MatchSelection/prematch" component={PreMatch} />
+        <Route path="/scorer/PreMatch/:id" component={PreMatch} />
+        <Route path = "/scorer/ScoringScreen/:id" component={ScoringScreen}/>
+        <Route path = "/scorer/ScoreCard/:id" component={ScoreCard}/>
         <Route exact path="/admin/dashboard" component={AdminDashboard} />
         <Route exact path="/admin/dashboard/PlayerDisplay" component={ListPlayersComponent} />
         <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />
