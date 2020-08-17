@@ -160,11 +160,7 @@ refreshUmpires() {
     <h1>Welcome {this.props.user_name}!</h1>
     </center>
     <SideNav />
-<<<<<<< HEAD
     <div style = {{marginLeft : 80}}>
-=======
-    <div style={{marginLeft:160}}>
->>>>>>> 587f0c6077633f998e842950d6a81907db6d8193
     <Grid container spacing ={10}>
         <Grid item >
             <Card className={classes.card}>
