@@ -243,6 +243,7 @@ class SeriesComponent extends Component {
         const columns = [{  
             Header: 'Series name',
             accessor: 'series_name',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -267,6 +268,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Series short name',  
             accessor: 'series_short_name',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -291,6 +293,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Series type',  
             accessor: 'series_type',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -315,6 +318,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Start date',  
             accessor: 'series_start_date',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -339,6 +343,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'End date',  
             accessor: 'series_end_date',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -363,6 +368,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Tournament',  
             accessor: 'tournament',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -388,6 +394,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 1',  
             accessor: 'host_country[0]',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -413,6 +420,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 2 ',  
             accessor: 'host_country[1]',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -438,6 +446,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 3',  
             accessor: 'host_country[2]',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -463,6 +472,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 4',  
             accessor: 'host_country[3]',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -487,7 +497,8 @@ class SeriesComponent extends Component {
                     
             },{  
             id:'points_table_active',    
-            Header: 'Points table',  
+            Header: 'Points table', 
+            headerClassName :'header-class', 
             accessor: value=>{return value.points_table_active?'Yes':'No'},
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -515,6 +526,7 @@ class SeriesComponent extends Component {
             {  
             Header: 'Series points',  
             accessor: 'series_points',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -538,7 +550,8 @@ class SeriesComponent extends Component {
               )    
                             
             },{  
-                Header: 'Add team',  
+                Header: 'Add team',
+                headerClassName :'header-class',  
                 Cell:props=>{
                     return(
                         <button onClick={() =>  this.addTeamClicked(props.original.series_id)}>Add</button>
@@ -551,7 +564,8 @@ class SeriesComponent extends Component {
                 minWidth:100,
                 maxWidth:100
             },{  
-            Header: 'Show team',  
+            Header: 'Show team',
+            headerClassName :'header-class',  
             Cell:props=>{
                 return(
                     <button  onClick={() =>  this.showTeamClicked(props.original.series_id)} >Show</button>
@@ -565,6 +579,7 @@ class SeriesComponent extends Component {
             maxWidth:100
             },{  
                 Header: 'Delete',  
+                headerClassName :'header-class',
                 Cell:props=>{
                     return(
                         <button onClick={() => this.deleteSeriesClicked(props.original.series_id,props.original.series_short_name)}>Delete</button>
@@ -577,7 +592,8 @@ class SeriesComponent extends Component {
                 minWidth:100,
                 maxWidth:100
             },{  
-                Header: 'Update',  
+                Header: 'Update', 
+                headerClassName :'header-class', 
                 Cell:props=>{
                     return(
                         <button  onClick={() => this.openUpdateForm(props.original.series_id)} >Update</button>

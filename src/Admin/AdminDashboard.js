@@ -23,6 +23,8 @@ import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService';
 import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 import SideNav from '../SideNav/SideNav';
+import { Link } from 'react-router-dom';
+
 
 
 const styles = {
@@ -34,6 +36,10 @@ const styles = {
   media: {
         objectFit: 'cover',
   },
+  link:{
+    color:"#ffffff"
+  }
+
 };
 
 
@@ -48,12 +54,12 @@ class AdminDashboard extends React.Component {
       umpires:[],
       referees:[]
     }
-    this.handleTeamClick = this.handleTeamClick.bind(this)
-    this.handlePlayerClick = this.handlePlayerClick.bind(this)
-    this.handleSeriesClick = this.handleSeriesClick.bind(this)
-    this.handleFixtureClick = this.handleFixtureClick.bind(this)
-    this.handleUmpireClick = this.handleUmpireClick.bind(this)
-    this.handleRefereeClick = this.handleRefereeClick.bind(this)
+    //this.handleTeamClick = this.handleTeamClick.bind(this)
+    //this.handlePlayerClick = this.handlePlayerClick.bind(this)
+    //this.handleSeriesClick = this.handleSeriesClick.bind(this)
+    //this.handleFixtureClick = this.handleFixtureClick.bind(this)
+    //this.handleUmpireClick = this.handleUmpireClick.bind(this)
+    //this.handleRefereeClick = this.handleRefereeClick.bind(this)
     this.refreshPlayers=this.refreshPlayers.bind(this)
     this.refreshTeams = this.refreshTeams.bind(this)
     this.refreshSeries = this.refreshSeries.bind(this)
@@ -70,9 +76,7 @@ class AdminDashboard extends React.Component {
     this.refreshFixtures();
     this.refreshReferees();
   }
-    handleTeamClick(){
-      this.props.history.push('/admin/dashboard/TeamDisplay')
-     } 
+  
      refreshPlayers() {
       PlayerDataService.retrieveAllPlayers()
           .then(
@@ -130,7 +134,11 @@ refreshUmpires() {
 }
 
 
-     handlePlayerClick(){
+handleTeamClick(){
+  this.props.history.push('/admin/dashboard/TeamDisplay')
+ } 
+ 
+    handlePlayerClick(){
       this.props.history.push('/admin/dashboard/PlayerDisplay')
      } 
 
@@ -157,14 +165,15 @@ refreshUmpires() {
   <Container>
   <SideNav/>
   <center>
-    <h1 style={{marginTop : 0}}>Welcome {this.props.user_name}!</h1>
+    <h1 style={{marginTop : 50, marginLeft:170 }}>Welcome {this.props.user_name}!</h1>
     </center>
     
-    <div style = {{marginLeft : 100}}>
-    <Grid container spacing ={10}>
+    <div style = {{marginLeft : 200}}>
+    <Grid container spacing ={6}>
         <Grid item >
             <Card className={classes.card}>
-             <CardActionArea onClick={this.handleTeamClick}>
+              <Link to = "/admin/dashboard/TeamDisplay" className={classes.link}>
+             <CardActionArea>
               <CardMedia
               component="img"
               alt="Teams"
@@ -178,13 +187,13 @@ refreshUmpires() {
                  {this.state.teams.length}<br/> Total Teams         
                </Typography>
                </CardContent>
-             </CardActionArea>
+             </CardActionArea></Link>
           </Card>
          </Grid>
 
          <Grid item>
-          <Card className={classes.card}>
-            <CardActionArea onClick={this.handlePlayerClick}>
+          <Card className={classes.card} >
+          <Link to = "/admin/dashboard/PlayerDisplay" className={classes.link}>
             <CardMedia
               component="img"
               alt="Players"
@@ -198,13 +207,13 @@ refreshUmpires() {
               {this.state.players.length}<br/> Total Players
               </Typography>
              </CardContent>
-             </CardActionArea>
+             </Link>
            </Card>
          </Grid>
 
          <Grid item>
          <Card className={classes.card}>
-           <CardActionArea onClick={this.handleUmpireClick}>
+         <Link to = "/admin/dashboard/UmpireDisplay" className={classes.link}>
            <CardMedia
              component="img"
              alt="Umpire"
@@ -218,16 +227,16 @@ refreshUmpires() {
              {this.state.umpires.length}<br/> Total Umpires   
              </Typography>
             </CardContent>
-            </CardActionArea>
+            </Link>
           </Card>
         </Grid>
 
         </Grid>
 
-        <Grid container spacing ={10}>
+        <Grid container spacing ={6}>
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea onClick = {this.handleFixtureClick}>
+        <Link to = "/admin/dashboard/FixtureDisplay" className={classes.link}>
             <CardMedia
               component="img"
               alt="Fixtures"
@@ -241,14 +250,14 @@ refreshUmpires() {
               {this.state.fixtures.length}<br/> Total Fixtures  
               </Typography>
             </CardContent>
-          </CardActionArea>
+         </Link>
         </Card>
         </Grid>
 
 
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea onClick = {this.handleSeriesClick}>
+        <Link to = "/admin/dashboard/SeriesDisplay" className={classes.link}>
           <CardMedia
           component="img"
           alt="Series"
@@ -262,13 +271,13 @@ refreshUmpires() {
               {this.state.Series.length}<br/> Total Series  
               </Typography>
             </CardContent>
-          </CardActionArea>
+          </Link>
         </Card>
         </Grid>
 
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea onClick={this.handleRefereeClick}>
+        <Link to = "/admin/dashboard/RefereeDisplay" className={classes.link}>
           <CardMedia
             component="img"
             alt="Referee"
@@ -282,7 +291,7 @@ refreshUmpires() {
             {this.state.referees.length}<br/> Total Referees   
             </Typography>
            </CardContent>
-           </CardActionArea>
+           </Link>
          </Card>
        </Grid>
 

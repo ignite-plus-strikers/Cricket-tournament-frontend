@@ -420,3 +420,9 @@ a{
     background-repeat: no-repeat;
     background-size: cover;
   }
+
+  .SideNav {
+    width:100%;
+    height: 4.5rem;
+    margin: auto;
+  }
