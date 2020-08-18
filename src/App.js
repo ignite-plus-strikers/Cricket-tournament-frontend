@@ -66,15 +66,8 @@ function App() {
     
   return (
     <div className = "header-styling">
-          {/*{
-            location.pathname != "/" && <SideNav />
-
-          }*/}
-
-          {/*<MuiThemeProvider theme={theme}>*/}
-       
           <Router>
-        {/*<Header style={{marginTop : 0}}/>  */}
+       
         <Route exact path="/" component={LoginPage} />
         <Route path = "/siteadmin/admin" component={AdminList}/>
         <Route path = "/siteadmin/home" component={Home}/>

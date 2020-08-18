@@ -15,6 +15,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
+import SideNav from "../../SideNav/SideNav"
 
 
 
@@ -328,7 +329,7 @@ class TeamComponent extends Component {
         ]  
         return (
             <div>
-                
+                <SideNav/>
                 <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>

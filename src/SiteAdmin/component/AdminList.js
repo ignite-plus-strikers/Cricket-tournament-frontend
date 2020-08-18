@@ -15,7 +15,9 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import Paper from "@material-ui/core/Paper";
 import { Container } from "@material-ui/core"
+import Header from "../../Scorer/Header"
 const formStyle = { width: "100%" };
+
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -186,6 +188,7 @@ class AdminList extends Component {
     ];
     return (
       <div>
+      <Header/>
       <Navbar/>
        
         <h1 style={{ fontWeight: 80, textAlign: "center" }}>Existing Admins</h1>
