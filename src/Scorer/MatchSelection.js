@@ -76,8 +76,9 @@ class MatchSelection extends React.Component{
     return (
       <Container>
         <Typography variant="h5" color="primary" align="center" style={{marginTop:20}}>Welcome Scorer! Happy Scoring! </Typography>
-    <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:80}} >Live Match</Typography> 
-        {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
+        
+            <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:80}} >Live Match</Typography> 
+            {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
         {
         return(
          

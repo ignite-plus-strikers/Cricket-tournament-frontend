@@ -371,6 +371,7 @@ class FixtureComponent extends Component {
         const columns = [{  
             Header: 'Team 1',
             accessor: 'team1',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -395,6 +396,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Team 2',  
             accessor: 'team2',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -419,6 +421,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Home town',  
             accessor: 'home_team',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -443,6 +446,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Series',  
             accessor: 'series_name',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -467,6 +471,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Match type',  
             accessor: 'match_type',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -491,6 +496,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Description',  
             accessor: 'description',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -516,6 +522,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Match date',  
             accessor: 'fixture_date',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -541,6 +548,7 @@ class FixtureComponent extends Component {
             },{  
               Header: 'Match time',  
               accessor: 'fixture_time',
+              headerClassName :'header-class',
               filterMethod: (filter, row) => {
                   var v = row[filter.id]
                     .toString()
@@ -567,6 +575,7 @@ class FixtureComponent extends Component {
             {  
             Header: 'GMT offset',  
             accessor: 'gmt_offset',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -592,6 +601,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Venue',  
             accessor: 'venue',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -617,6 +627,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Live coverage',  
             accessor: 'live_coverage',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -642,6 +653,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Scorer',  
             accessor: 'scorer_name',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -666,6 +678,7 @@ class FixtureComponent extends Component {
                         
             },{  
                 Header: 'Delete',  
+                headerClassName :'header-class',
                 Cell:props=>{
                     return(
                         <div>
@@ -681,6 +694,7 @@ class FixtureComponent extends Component {
                 maxWidth:100
             },{  
             Header: 'Update',  
+            headerClassName :'header-class',
             Cell:props=>{
                 return(
                     <button  onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update</button>

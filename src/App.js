@@ -74,7 +74,7 @@ function App() {
           {/*<MuiThemeProvider theme={theme}>*/}
        
           <Router>
-          <Header/>
+        {/*<Header style={{marginTop : 0}}/>  */}
         <Route exact path="/" component={LoginPage} />
         <Route path = "/siteadmin/admin" component={AdminList}/>
         <Route path = "/siteadmin/home" component={Home}/>

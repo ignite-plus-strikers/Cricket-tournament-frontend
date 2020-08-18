@@ -189,6 +189,7 @@ class UmpireComponent extends Component {
     const columns = [{  
         Header: 'First Name',
         accessor: 'first_name',
+        headerClassName :'header-class',
         filterMethod: (filter, row) => {
             var v = row[filter.id]
               .toString()
@@ -213,6 +214,7 @@ class UmpireComponent extends Component {
         },{  
         Header: 'Middle Name',  
         accessor: 'middle_name',
+        headerClassName :'header-class',
         filterMethod: (filter, row) => {
             var v = row[filter.id]
               .toString()
@@ -237,6 +239,7 @@ class UmpireComponent extends Component {
         },{  
         Header: 'Last Name',  
         accessor: 'last_name',
+        headerClassName :'header-class',
         filterMethod: (filter, row) => {
             var v = row[filter.id]
               .toString()
@@ -261,6 +264,7 @@ class UmpireComponent extends Component {
         },{  
         Header: 'City',  
         accessor: 'city',
+        headerClassName :'header-class',
         filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
@@ -284,7 +288,9 @@ class UmpireComponent extends Component {
         )      
         },{  
         Header: 'Nationality',  
-        accessor: 'nationality',filterMethod: (filter, row) => {
+        accessor: 'nationality',
+        headerClassName :'header-class',
+        filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
             .toUpperCase()
@@ -307,7 +313,9 @@ class UmpireComponent extends Component {
         )      
         },{  
         Header: 'Matches Umpired',  
-        accessor: 'matches_umpired',filterMethod: (filter, row) => {
+        accessor: 'matches_umpired',
+        headerClassName :'header-class',
+        filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
             .toUpperCase()
@@ -331,7 +339,9 @@ class UmpireComponent extends Component {
      
         },{  
         Header: 'Accuracy %',  
-        accessor: 'accuracy_percentage',filterMethod: (filter, row) => {
+        accessor: 'accuracy_percentage',
+        headerClassName :'header-class',
+        filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
             .toUpperCase()
@@ -355,6 +365,7 @@ class UmpireComponent extends Component {
     
         },{  
         Header: 'Update',  
+        headerClassName :'header-class',
         Cell:props=>{
             return(
                 <button  onClick={() => this.openUpdateForm(props.original.umpire_id)} >Update</button>

@@ -193,6 +193,7 @@ class TeamComponent extends Component {
         const columns = [{  
             Header: 'Team name',
             accessor: 'tname',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -218,6 +219,7 @@ class TeamComponent extends Component {
             },{  
             Header: 'State',  
             accessor: 'tstate',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -242,6 +244,7 @@ class TeamComponent extends Component {
             },{  
             Header: 'Country',  
             accessor: 'tcountry',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -267,6 +270,7 @@ class TeamComponent extends Component {
                 
            {  
                 Header: 'Add player',  
+                headerClassName :'header-class',
                 Cell:props=>{
                     return(
                         <button onClick={() =>  this.addPlayerClicked(props.original.team_id)}>Add</button>
@@ -279,7 +283,8 @@ class TeamComponent extends Component {
                 minWidth:100,
                 maxWidth:100
             },{  
-            Header: 'Show player',  
+            Header: 'Show player', 
+            headerClassName :'header-class', 
             Cell:props=>{
                 return(
                     <button  onClick={() =>  this.showPlayerClicked(props.original.team_id)} >Show</button>
@@ -293,6 +298,7 @@ class TeamComponent extends Component {
             maxWidth:100
             },{  
                 Header: 'Delete',  
+                headerClassName :'header-class',
                 Cell:props=>{
                     return(
                         <button onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</button>
@@ -306,6 +312,7 @@ class TeamComponent extends Component {
                 maxWidth:100
             },{  
                 Header: 'Update',  
+                headerClassName :'header-class',
                 Cell:props=>{
                     return(
                         <button  onClick={() => this.openUpdateForm(props.original.team_id)} >Update</button>
