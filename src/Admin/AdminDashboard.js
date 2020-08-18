@@ -23,6 +23,8 @@ import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService';
 import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 import SideNav from '../SideNav/SideNav';
+ import { withRouter} from "react-router-dom";
+import { connect} from "react-redux"
 
 
 const styles = {
@@ -71,7 +73,7 @@ class AdminDashboard extends React.Component {
     this.refreshReferees();
   }
     handleTeamClick(){
-      this.props.history.push('/admin/dashboard/TeamDisplay')
+     this.props.history.push('/admin/dashboard/TeamDisplay')
      } 
      refreshPlayers() {
       PlayerDataService.retrieveAllPlayers()
@@ -153,6 +155,7 @@ refreshUmpires() {
  
   render(){
     const { classes } = this.props;
+    
    return ( 
   <Container>
   <SideNav/>
@@ -299,5 +302,13 @@ AdminDashboard.propTypes = {
 
 //export default withRouter(connect()(withStyles(styles)(AdminDashboard)))
 
-export default withStyles(styles)(AdminDashboard);
+// export default withStyles(styles)(
+//   connect(mapStateToProps)(withRouter(AdminDashboard))
+// )
+export default withStyles(styles)(AdminDashboard)
+//export default withRouter(connect()AdminDashboard);
 
+
+// export default (
+//     (withRouter(AdminDashboard))
+//)

@@ -1,0 +1,32 @@
+.btn {
+    border: none;
+    color: white;
+    padding: 12px 28px;
+    font-size: larger;
+    cursor: pointer;
+    margin-top: 20px;
+
+
+  }
+  .newBtn{
+    background-color:#0D5C75 ;
+    margin-bottom: 30px;
+    margin-left: -200;
+  }
+  .newBtn:hover{
+    background:#1d81a0;
+    color: white;
+  }
+
+  .hdrCls {
+    background-color: #0D5C75;
+    color: #ffffff;
+    font-size: large;
+    font-weight: 400;
+  }
+
+  .cellCls {
+    font-size: larger;
+    font-weight: 300;
+    text-align: center;
+  }

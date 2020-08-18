@@ -24,6 +24,7 @@ class Header extends React.Component{
  render(){  
     return(
               <div>
+              <Button variant="contained" color="primary" style={{marginTop:"2%", backgroundColor: '#0D5C75', position:"absolute",marginLeft:"90%"}}> Logout</Button>
                   <img className="header_img" src={appbar} alt="header"  ></img>
                  
               </div>
