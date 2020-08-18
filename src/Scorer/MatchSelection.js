@@ -77,10 +77,12 @@ class MatchSelection extends React.Component{
     return (
       <Container>
         <Typography variant="h5" color="primary" align="center" style={{marginTop:20}}>Welcome {this.props.user_name}! Happy Scoring! </Typography>
-    <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:80}} >Live Match</Typography> 
         {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
         {
         return(
+          <div>
+    <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:100}} >Live Match</Typography> 
+       
          
               <Card className = {classes.root} variant="outlined">
               <CardContent>
@@ -90,10 +92,10 @@ class MatchSelection extends React.Component{
               </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
-              <Button variant="contained" color="primary" href="/scorer/ScoringScreen">Scoring Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
+              
             </CardActions>
-            </Card>
+            </Card></div>
           );
         }
         {/*else{
@@ -103,12 +105,13 @@ class MatchSelection extends React.Component{
         }*/}
   })}
       
-  
-        <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:80}} >Upcoming Matches</Typography> 
-        {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time<fixture.fixture_start_time) 
+     
+         
+            <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:100}} >Upcoming Matches</Typography> 
+      {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time<fixture.fixture_start_time) 
         {
         return(
-          <div className={classes.node}>
+            <div className={classes.node}>
             <Card className={classes.root} variant="outlined">
               <CardContent>
               <Typography variant="h5" align="center" color="primary">{fixture.team1} vs {fixture.team2}</Typography>
@@ -117,8 +120,9 @@ class MatchSelection extends React.Component{
               </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" href="/scorer/MatchSelection/prematch" disabled>Pre-match Screen</Button>
-              <Button variant="contained" color="primary" href="/scorer/MatchSelection/ScoringScreen"disabled>Scoring Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} disabled>Pre-match Screen</Button>
+              
+              
             </CardActions>
             </Card></div>
         );
@@ -145,8 +149,8 @@ class MatchSelection extends React.Component{
               </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" disabled>Pre-match Screen</Button>
-              <Button variant="contained" color="primary" href="/scorer/MatchSelection/ScoringScreen"disabled>Scoring Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}}disabled>Pre-match Screen</Button>
+              
             </CardActions>
             </Card></div>
          
