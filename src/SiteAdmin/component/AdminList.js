@@ -188,7 +188,7 @@ class AdminList extends Component {
     ];
     return (
       <div>
-      <Header/>
+     
       <Navbar/>
        
         <h1 style={{ fontWeight: 80, textAlign: "center" }}>Existing Admins</h1>

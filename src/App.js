@@ -67,7 +67,7 @@ function App() {
   return (
     <div className = "header-styling">
           <Router>
-       
+       <Header/>
         <Route exact path="/" component={LoginPage} />
         <Route path = "/siteadmin/admin" component={AdminList}/>
         <Route path = "/siteadmin/home" component={Home}/>
