@@ -4,6 +4,7 @@ import './Team.css';
 import TeamDataService from './Service/TeamDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
+import AdminSidenav from '../AdminSidenav';
 
 class ShowPlayer extends Component {
 
@@ -69,6 +70,7 @@ class ShowPlayer extends Component {
         const columns = [{  
             Header: 'Player first name',
             accessor: 'player_first_name',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -93,6 +95,7 @@ class ShowPlayer extends Component {
             },{  
             Header: 'Last name',  
             accessor: 'player_last_name',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -117,6 +120,7 @@ class ShowPlayer extends Component {
             },{  
             Header: 'Initials',  
             accessor: 'player_initials',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -141,7 +145,8 @@ class ShowPlayer extends Component {
             },
                 
            {  
-                Header: 'Delete',  
+                Header: 'Delete',
+                headerClassName :'header-class',  
                 Cell:props=>{
                     return(
                         <button onClick={() => this.deletePlayerClicked(props.original.team_id,props.original.player_id,props.original.player_first_name)}>Delete</button>
@@ -156,8 +161,8 @@ class ShowPlayer extends Component {
             }
         ]  
         return (
-            <div>
-                
+          <div className = "alignment" style={{marginLeft:"400px",marginTop:"100px",width:"54%",marginBottom:"20px"}}>
+                <AdminSidenav style={{position:"fixed"}} /><br/>
                 {this.state.teams.map(team =>{
                     if(team.team_id==teamID){
                         teamname=team.tname
@@ -168,10 +173,10 @@ class ShowPlayer extends Component {
                 }
                 <center>
                     <h2>{teamname}</h2>
-                    <br/><br/>
+                    <br/>
                     {this.state.message && <div class="alert success">{this.state.message}</div>}
                 </center>
-                <div className = "teamdetails">
+                <div >
                     
                 
                 <ReactTable

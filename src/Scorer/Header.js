@@ -1,4 +1,6 @@
 import React from 'react';
+import { GoogleLogout } from "react-google-login";
+import Cookies from 'js-cookie'
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -6,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import appbar from '../assests/appbar.png'
+import LoginPage from '../Login/LoginPage'
 import { Container } from '@material-ui/core';
 
 const useStyles = theme => ({
@@ -20,13 +23,29 @@ const useStyles = theme => ({
   },
 });
 
+
+
 class Header extends React.Component{
+
+  userlogout = () => {
+    Cookies.remove("name");
+    Cookies.remove("role");
+    return <LoginPage />
+  }
  render(){  
     return(
               <div>
-              {/*<Button variant="contained" color="primary" style={{marginTop:"2%", backgroundColor: '#0D5C75', position:"absolute",marginLeft:"90%"}}> Logout</Button>*/}
-                  <img className="header_img" src={appbar} alt="header" style={{height : 110}}  ></img>
-                 
+                <GoogleLogout 
+          className="google-logout-button"
+          clientId="402744950664-cefekape7t5m71d9ok33fun1pg5hgdb7.apps.googleusercontent.com"
+          buttonText="Logout"
+          onLogoutSuccess={this.userlogout}
+          onFailure={this.responseGoogle}
+          isSignedIn={false}
+          cookiePolicy={"single_host_origin"} />
+                  <img className="header_img" src={appbar} alt="header"  ></img>
+                  
+        
               </div>
       );
   }

@@ -977,7 +977,7 @@ increaseScoreBy5(){
     handleEndMatchClicked = (id) => {
       this.handleFinalMatchResult();
       this.setState({ open_end_match_form: false });
-      this.props.history.push("/scorer/ScoreCard/${id}");
+      window.location.href="/scorer/ScoreCard/"+id
     };
 
     handleCreateAfterOver = () => {
@@ -1232,8 +1232,9 @@ increaseScoreBy5(){
       console.log(response);
     });
   }
-  handleSelect = e => {     
-    this.props.history.push(`/scorer/ScoreCard/${e}`)
+  handleSelect = e => {
+       
+    window.location.href="/scorer/ScoreCard/"+e
     
 }
 

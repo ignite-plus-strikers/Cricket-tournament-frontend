@@ -66,8 +66,10 @@ function App() {
     
   return (
     <div className = "header-styling">
+
+          {/*<MuiThemeProvider theme={theme}>*/}
           <Router>
-       <Header/>
+          <Header style={{marginTop : 0,zIndex:1400}}/>
         <Route exact path="/" component={LoginPage} />
         <Route path = "/siteadmin/admin" component={AdminList}/>
         <Route path = "/siteadmin/home" component={Home}/>
@@ -77,7 +79,7 @@ function App() {
         <Route path="/scorer/PreMatch/:id" component={PreMatch} />
         <Route path = "/scorer/ScoringScreen/:id" component={ScoringScreen}/>
         <Route path = "/scorer/ScoreCard/:id" component={ScoreCard}/>
-        <Route exact path="/admin/dashboard" component={AdminDashboard} />
+
         <Route path="/admin/dashboard/PlayerDisplay" component={ListPlayersComponent} />
         <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />
         <Route path="/admin/dashboard/PlayerAddForm" component={AddForm} />
