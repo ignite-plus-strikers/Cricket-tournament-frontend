@@ -78,7 +78,8 @@ class MatchSelection extends React.Component{
   render(){
     const {classes} = this.props;
     return (
-      <div className = "header-styling"><Header />
+      <div className = "header-styling">
+      <Header />
       <Container>
      
       
