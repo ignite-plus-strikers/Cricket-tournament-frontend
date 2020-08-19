@@ -25,6 +25,7 @@ import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 import SideNav from '../SideNav/SideNav';
 import Dashboard_appbar from './Dashboard_appbar';
 import AdminSidenav from './AdminSidenav';
+import { Link } from 'react-router-dom';
 
 
 const styles = {
@@ -34,8 +35,13 @@ const styles = {
     width : 300
   },
   media: {
-        objectFit: 'cover',
+        height:'70',
+        objectFit: 'fill',
   },
+  link:{
+    color:"#ffffff"
+  }
+
 };
 
 
@@ -50,12 +56,12 @@ class AdminDashboard extends React.Component {
       umpires:[],
       referees:[]
     }
-    this.handleTeamClick = this.handleTeamClick.bind(this)
-    this.handlePlayerClick = this.handlePlayerClick.bind(this)
-    this.handleSeriesClick = this.handleSeriesClick.bind(this)
-    this.handleFixtureClick = this.handleFixtureClick.bind(this)
-    this.handleUmpireClick = this.handleUmpireClick.bind(this)
-    this.handleRefereeClick = this.handleRefereeClick.bind(this)
+    //this.handleTeamClick = this.handleTeamClick.bind(this)
+    //this.handlePlayerClick = this.handlePlayerClick.bind(this)
+    //this.handleSeriesClick = this.handleSeriesClick.bind(this)
+    //this.handleFixtureClick = this.handleFixtureClick.bind(this)
+    //this.handleUmpireClick = this.handleUmpireClick.bind(this)
+    //this.handleRefereeClick = this.handleRefereeClick.bind(this)
     this.refreshPlayers=this.refreshPlayers.bind(this)
     this.refreshTeams = this.refreshTeams.bind(this)
     this.refreshSeries = this.refreshSeries.bind(this)
@@ -72,9 +78,7 @@ class AdminDashboard extends React.Component {
     this.refreshFixtures();
     this.refreshReferees();
   }
-    handleTeamClick(){
-      this.props.history.push('/admin/dashboard/TeamDisplay')
-     } 
+  
      refreshPlayers() {
       PlayerDataService.retrieveAllPlayers()
           .then(
@@ -132,7 +136,11 @@ refreshUmpires() {
 }
 
 
-     handlePlayerClick(){
+handleTeamClick(){
+  this.props.history.push('/admin/dashboard/TeamDisplay')
+ } 
+ 
+    handlePlayerClick(){
       this.props.history.push('/admin/dashboard/PlayerDisplay')
      } 
 
@@ -155,139 +163,141 @@ refreshUmpires() {
  
   render(){
     const { classes } = this.props;
+    
    return ( 
-<div>
+<div style={{marginTop:"100px"}}>
  
     <AdminSidenav style={{position:"sticky",position:"-webkit-sticky"}} />
   <Container>
   
   <center>
-    <h1 style={{marginTop : 0}}>Welcome {this.props.user_name}!</h1>
+    <h1 style={{marginLeft:170 , marginTop:'3%'}}>Welcome {this.props.user_name}!</h1>
     </center>
     
-    <div style = {{marginLeft : 100}}>
-    <Grid container spacing ={10}>
+    <div style = {{marginLeft : 200}}>
+    <Grid container spacing ={6}>
         <Grid item >
             <Card className={classes.card}>
-             <CardActionArea onClick={this.handleTeamClick}>
+              <Link to = "/admin/dashboard/TeamDisplay" className={classes.link}>
+             <CardActionArea>
               <CardMedia
               component="img"
               alt="Teams"
               className={classes.media}
-              height="200"
+              height="120"
               image={team}
               title="Teams"
                />
-               <CardContent>
+               <CardContent style={{height:'50%'}}>
                <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
                  {this.state.teams.length}<br/> Total Teams         
                </Typography>
                </CardContent>
-             </CardActionArea>
+             </CardActionArea></Link>
           </Card>
          </Grid>
 
          <Grid item>
-          <Card className={classes.card}>
-            <CardActionArea onClick={this.handlePlayerClick}>
+          <Card className={classes.card} >
+          <Link to = "/admin/dashboard/PlayerDisplay" className={classes.link}>
             <CardMedia
               component="img"
               alt="Players"
               className={classes.media}
-              height="200"
+              height="120"
               image={player}
               title="Players"
               />
-              <CardContent>
+              <CardContent style={{height:'50%'}}>
               <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
               {this.state.players.length}<br/> Total Players
               </Typography>
              </CardContent>
-             </CardActionArea>
+             </Link>
            </Card>
          </Grid>
 
          <Grid item>
          <Card className={classes.card}>
-           <CardActionArea onClick={this.handleUmpireClick}>
+         <Link to = "/admin/dashboard/UmpireDisplay" className={classes.link}>
            <CardMedia
              component="img"
              alt="Umpire"
              className={classes.media}
-             height="200"
+             height="120"
              image={umpire}
              title="Umpire"
              />
-             <CardContent>
+             <CardContent style={{height:'50%'}}>
              <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
              {this.state.umpires.length}<br/> Total Umpires   
              </Typography>
             </CardContent>
-            </CardActionArea>
+            </Link>
           </Card>
         </Grid>
 
         </Grid>
 
-        <Grid container spacing ={10}>
+        <Grid container spacing ={6}>
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea onClick = {this.handleFixtureClick}>
+        <Link to = "/admin/dashboard/FixtureDisplay" className={classes.link}>
             <CardMedia
               component="img"
               alt="Fixtures"
               className={classes.media}
-              height="200"
+              height="120"
               image={fixture}
               title="Fixtures"
             />
-            <CardContent>
+            <CardContent style={{height:'50%'}}>
               <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
               {this.state.fixtures.length}<br/> Total Fixtures  
               </Typography>
             </CardContent>
-          </CardActionArea>
+         </Link>
         </Card>
         </Grid>
 
 
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea onClick = {this.handleSeriesClick}>
+        <Link to = "/admin/dashboard/SeriesDisplay" className={classes.link}>
           <CardMedia
           component="img"
           alt="Series"
           className={classes.media}
-          height="200"
+          height="120"
           image={series}
           title="Series"
         />
-            <CardContent>
+            <CardContent style={{height:'50%'}}>
               <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
               {this.state.Series.length}<br/> Total Series  
               </Typography>
             </CardContent>
-          </CardActionArea>
+          </Link>
         </Card>
         </Grid>
 
         <Grid item>
         <Card className={classes.card}>
-          <CardActionArea onClick={this.handleRefereeClick}>
+        <Link to = "/admin/dashboard/RefereeDisplay" className={classes.link}>
           <CardMedia
             component="img"
             alt="Referee"
             className={classes.media}
-            height="200"
+            height="120"
             image={referee}
             title="Referee"
             />
-            <CardContent>
+            <CardContent style={{height:'50%'}}>
             <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
             {this.state.referees.length}<br/> Total Referees   
             </Typography>
            </CardContent>
-           </CardActionArea>
+           </Link>
          </Card>
        </Grid>
 
@@ -305,5 +315,13 @@ AdminDashboard.propTypes = {
 
 //export default withRouter(connect()(withStyles(styles)(AdminDashboard)))
 
-export default withStyles(styles)(AdminDashboard);
+// export default withStyles(styles)(
+//   connect(mapStateToProps)(withRouter(AdminDashboard))
+// )
+export default withStyles(styles)(AdminDashboard)
+//export default withRouter(connect()AdminDashboard);
 
+
+// export default (
+//     (withRouter(AdminDashboard))
+//)

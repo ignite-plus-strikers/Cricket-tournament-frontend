@@ -7,11 +7,13 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Divider, Container } from '@material-ui/core';
+import Header from './Header'
 //import MatchSelectionService from "../service/MatchSelectionService"
 import Clock from './Clock';
 import axios from 'axios'
 import moment from 'moment';
 import Pagination from '@material-ui/lab/Pagination';
+
 
 
 const useStyles = theme => ({
@@ -67,21 +69,26 @@ class MatchSelection extends React.Component{
             this.setState({fixtures:data});
           });
     }
+
+
     PrematchScreenClicked(id) {
-      //this.props.history.push(`/scorer/PreMatch/${id}`)
-      window.location.href="/scorer/PreMatch/"+id
+     window.location.href=`/scorer/PreMatch/`+id
   }
 
   render(){
     const {classes} = this.props;
     return (
+      <div className = "header-styling"><Header />
       <Container>
-       
-        <Typography variant="h5" color="primary" align="center" style={{marginTop:20}}>Welcome Scorer! Happy Scoring! </Typography>
-    <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:80}} >Live Match</Typography> 
+     
+      
+        <Typography variant="h4" color="primary" align="center" style={{marginTop:'2em'}}>Welcome {this.props.user_name}! Happy Scoring! </Typography>
         {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
         {
         return(
+          <div>
+    <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:100}} >Live Match</Typography> 
+       
          
               <Card className = {classes.root} variant="outlined">
               <CardContent>
@@ -91,10 +98,10 @@ class MatchSelection extends React.Component{
               </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary"  onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
-              <Button variant="contained" color="primary" href="/scorer/ScoringScreen">Scoring Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
+              
             </CardActions>
-            </Card>
+            </Card></div>
           );
         }
         {/*else{
@@ -104,12 +111,13 @@ class MatchSelection extends React.Component{
         }*/}
   })}
       
-  
-        <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:80}} >Upcoming Matches</Typography> 
-        {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time<fixture.fixture_start_time) 
+     
+         
+            <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:100}} >Upcoming Matches</Typography> 
+      {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time<fixture.fixture_start_time) 
         {
         return(
-         
+            <div className={classes.node}>
             <Card className={classes.root} variant="outlined">
               <CardContent>
               <Typography variant="h5" align="center" color="primary">{fixture.team1} vs {fixture.team2}</Typography>
@@ -118,10 +126,11 @@ class MatchSelection extends React.Component{
               </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" href="/scorer/MatchSelection/prematch" disabled>Pre-match Screen</Button>
-              <Button variant="contained" color="primary" href="/scorer/MatchSelection/ScoringScreen"disabled>Scoring Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} disabled>Pre-match Screen</Button>
+              
+              
             </CardActions>
-            </Card>
+            </Card></div>
         );
       }
       {/*else{
@@ -146,8 +155,8 @@ class MatchSelection extends React.Component{
               </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" disabled>Pre-match Screen</Button>
-              <Button variant="contained" color="primary" href="/scorer/MatchSelection/ScoringScreen"disabled>Scoring Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}}disabled>Pre-match Screen</Button>
+              
             </CardActions>
             </Card></div>
          
@@ -158,7 +167,7 @@ class MatchSelection extends React.Component{
     )
   }
     
-    </Container> 
+    </Container> </div>
   );
 }
 }

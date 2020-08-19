@@ -15,6 +15,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
+import SideNav from "../../SideNav/SideNav"
 
 
 
@@ -327,7 +328,7 @@ class TeamComponent extends Component {
                 }
         ]  
         return (
-            <div>
+            <div style={{marginTop:"100px"}}>
                  <AdminSidenav style={{position:"fixed"}}  />
                  <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}

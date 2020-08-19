@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 .newBtn{
-  background-color:#00A5FF ;
+  background-color:#1854af ;
   margin-bottom: 10px;
 }
 .newBtn:hover{
@@ -426,4 +426,13 @@ a{
 
   .alignment{
     margin-left: 150px;
+  }
+  .google-logout-button {
+    margin-top: 10px;
+
+    position:absolute;
+    margin-left: 90%;
+    z-index: 1500;
+    
+
   }

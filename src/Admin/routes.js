@@ -4,7 +4,7 @@ import AdminDashboard from './AdminDashboard';
 
 const Routes = [
     {
-        path: '/',
+        path: '/admin/dashboard',
         sidebarName: 'Dashboard',
         navbarName: 'Dashboard',
         icon: Dashboard,

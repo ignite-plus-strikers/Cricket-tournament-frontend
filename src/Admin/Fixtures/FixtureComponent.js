@@ -41,7 +41,10 @@ function Transition(props) {
       width: "100%",
       maxWidth: "300px",
       position: "fixed"
-    }
+    },
+    button: {
+      margin: theme.spacing.unit,
+    },
   });
    
   
@@ -471,7 +474,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Home town',  
             accessor: 'home_team',
-            width:150,
+            width:168,
             headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -523,7 +526,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Match type',  
             accessor: 'match_type',
-            width:180,
+            width:160,
             headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -797,12 +800,12 @@ class FixtureComponent extends Component {
             }
         ]  
         return (
-            <div>
+            <div style={{marginTop:"100px"}}>
               <AdminSidenav style={{position:"fixed"}} />
               <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
-                     <div>
-                        <button class="btn newBtn" onClick={this.openAddForm}>New</button>
+                <div>
+                        <button className="btn newBtn" onClick={this.openAddForm}>New</button>
                      </div>
                     
                      <ReactTable
