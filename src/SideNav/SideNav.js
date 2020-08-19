@@ -1,6 +1,7 @@
 import React from 'react';
-import {Link,Route,Switch,Router} from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
+import {Link,Route,Switch} from 'react-router-dom'
+import { withStyles , makeStyles } from '@material-ui/core/styles';
+import { spacing } from '@material-ui/system'
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -41,7 +42,7 @@ import appbar from '../Admin/cards_images/appbar.png';
 
 const drawerWidth = 180;
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = theme => ({
   root: {
     display: 'flex',
   },
@@ -67,11 +68,16 @@ const useStyles = makeStyles((theme) => ({
     color:theme.palette.text.primary
   },   
   
-}));
+});
 
-export default function SideNav() {
-  const classes = useStyles();
+class SideNav extends React.Component {
 
+  constructor(props){
+    super(props);
+  }
+
+render(){
+  const {classes} = this.props;
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -166,4 +172,7 @@ export default function SideNav() {
       </main>
     </div>
   );
+  }
 }
+
+export default withStyles(useStyles)(SideNav);

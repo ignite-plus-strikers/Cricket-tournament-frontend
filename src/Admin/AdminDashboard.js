@@ -24,7 +24,7 @@ import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 import SideNav from '../SideNav/SideNav';
  import { withRouter} from "react-router-dom";
-import { connect} from "react-redux"
+//import { connect} from "react-redux"
 import { Link } from 'react-router-dom';
 
 
@@ -168,7 +168,7 @@ handleTeamClick(){
   <Container>
   <SideNav/>
   <center>
-    <h1 style={{marginTop : 50, marginLeft:170 }}>Welcome {this.props.user_name}!</h1>
+    <h1 style={{marginLeft:170 }}>Welcome {this.props.user_name}!</h1>
     </center>
     
     <div style = {{marginLeft : 200}}>
