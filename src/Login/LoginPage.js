@@ -8,13 +8,15 @@ import AdminDashboard from "../Admin/AdminDashboard";
 import Cookies from 'js-cookie'
 import MatchSelection from "../Scorer/MatchSelection";
 import PageNotFound from "../PageNotFound"
-import {Card, CardContent} from "@material-ui/core"
+import {Card, CardContent, TextareaAutosize} from "@material-ui/core"
 import { Typography, Divider,Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import {Alert,AlertTitle} from "@material-ui/lab"
+import {Snackbar} from "@material-ui/core"
 import AdminList from "../SiteAdmin/component/AdminList";
 import Home from "../SiteAdmin/component/Home";
-import {Alert,AlertTitle} from "@material-ui/core"
+
 //import Header from "../Scorer/Header"
 
 const styles = {
@@ -36,14 +38,9 @@ class LoginPage extends React.Component {
       accessToken: "",
       user_name: "",
       user_role: "",
-      message : null
+      open1 : false
     };
-    {
-      /*this.userlogin = this.userlogin.bind(this);
-            this.handleLoginFailure = this.handleLoginFailure.bind(this);
-            this.logout = this.logout.bind(this);
-            this.handleLogoutFailure = this.handleLogoutFailure.bind(this); */
-    }
+    this.handleInvalid = this.handleInvalid.bind(this);
   }
 
   /*  logout(res) {
@@ -53,6 +50,12 @@ class LoginPage extends React.Component {
       }));
     } 
      */
+
+     handleInvalid(){
+       this.setState({open1 : true})
+     }
+
+   
 
   userlogin = (res) => {
     const accessToken = res.tokenId;
@@ -76,7 +79,11 @@ class LoginPage extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
-      });
+        this.handleInvalid();
+      }.bind(this));
+
+
+      
 
 
     
@@ -88,20 +95,22 @@ class LoginPage extends React.Component {
 
   render() {
     if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_ADMIN") {
-      Cookies.set("name", this.state.user_name)
+      Cookies.set("name", this.state.user_name )
       Cookies.set("role", this.state.user_role)
-      return <AdminDashboard user_name={this.state.user_name}/>;
-      //return <Link href ="/admin/dashboard" component ={AdminDashboard} />
+      //return <AdminDashboard user_name={this.state.user_name}/>;
+      return <Redirect to ="/admin/dashboard" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_SCORER") {
       Cookies.set("name", this.state.user_name)
-      Cookies.set("role", this.state.user_role)
-      return <MatchSelection user_name={this.state.user_name} />;
+      Cookies.set("role", this.state.user_role , {expires:0.5})
+      //return <MatchSelection user_name={this.state.user_name} />;
+      return <Redirect to ="/scorer/MatchSelection" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_SITE_ADMIN") {
       Cookies.set("name", this.state.user_name)
       Cookies.set("role", this.state.user_role)
-      return <Home user_name={this.state.user_name} />;
+      //return <Home user_name={this.state.user_name} />;
+      return <Redirect to = "/siteadmin/home" />
     }
    
     const { classes } = this.props;
@@ -110,10 +119,14 @@ class LoginPage extends React.Component {
     } */
     return (
       <div className="Login-Component">
-      
+      <Snackbar open={this.state.open1} autoHideDuration={6000} onClose={() => {}} style={{marginTop : "50%", marginRight : "15%"}}>
+      <Alert severity="error">
+      <AlertTitle>Oops! Error</AlertTitle>
+      Looks like the credentials entered are invalid! 
+      </Alert>
+      </Snackbar>
         <br />
-        
-        <Card className={classes.card} align = "center" style = {{marginLeft : "35%", marginTop : "15%"}}>
+        <Card className={classes.card} align = "center" style = {{marginLeft : "37%", marginTop : "15%"}}>
         <CardContent align = "center">
         <Typography>Please Login with your assigned Google Account</Typography>
         <Divider/>

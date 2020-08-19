@@ -3,7 +3,7 @@ import TeamDataService from './Service/TeamDataService';
 
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
-
+import Header from '../../Scorer/Header'
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -23,6 +23,7 @@ import SideNav from "../../SideNav/SideNav"
 
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import AdminSidenav from '../AdminSidenav';
 
 
 
@@ -270,8 +271,8 @@ class TeamComponent extends Component {
             },
                 
            {  
-                Header: 'Add player',  
-                headerClassName :'header-class',
+                Header: 'Add player', 
+                headerClassName :'header-class', 
                 Cell:props=>{
                     return(
                         <button onClick={() =>  this.addPlayerClicked(props.original.team_id)}>Add</button>
@@ -284,8 +285,9 @@ class TeamComponent extends Component {
                 minWidth:100,
                 maxWidth:100
             },{  
-            Header: 'Show player', 
-            headerClassName :'header-class', 
+            Header: 'Show player',  
+            width:130,
+            headerClassName :'header-class',
             Cell:props=>{
                 return(
                     <button  onClick={() =>  this.showPlayerClicked(props.original.team_id)} >Show</button>
@@ -293,13 +295,11 @@ class TeamComponent extends Component {
     
             } ,
             sortable:false,
-            filterable:false,
-            width:100,
-            minWidth:100,
-            maxWidth:100
+            filterable:false
+           
             },{  
-                Header: 'Delete',  
-                headerClassName :'header-class',
+                Header: 'Delete', 
+                headerClassName :'header-class', 
                 Cell:props=>{
                     return(
                         <button onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</button>
@@ -328,9 +328,10 @@ class TeamComponent extends Component {
                 }
         ]  
         return (
-            <div>
-                <SideNav/>
-                <div className = "details">
+            <div style={{marginTop:100}}>
+              <Header />
+                 <AdminSidenav style={{position:"fixed"}}  />
+                 <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button className="btn newBtn" onClick={this.openAddForm}>New</button>

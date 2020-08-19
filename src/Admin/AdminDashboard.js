@@ -24,10 +24,12 @@ import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 import SideNav from '../SideNav/SideNav';
  import { withRouter} from "react-router-dom";
+ import Cookies from 'js-cookie'
 //import { connect} from "react-redux"
+import Dashboard_appbar from './Dashboard_appbar';
+import AdminSidenav from './AdminSidenav';
 import { Link } from 'react-router-dom';
-
-
+import Header from './../Scorer/Header';
 
 const styles = {
   card: {
@@ -164,12 +166,15 @@ handleTeamClick(){
  
   render(){
     const { classes } = this.props;
-    
+    const user_name = Cookies.get("name");
    return ( 
+<div style={{marginTop:100}}>
+ <Header />
+    <AdminSidenav style={{position:"sticky",position:"-webkit-sticky"}} />
   <Container>
-  <SideNav/>
+  
   <center>
-    <h1 style={{marginLeft:170 , marginTop:'3%'}}>Welcome {this.props.user_name}!</h1>
+    <h1 style={{marginLeft:170 , marginTop:'3%'}}>Welcome {user_name}!</h1>
     </center>
     
     <div style = {{marginLeft : 200}}>
@@ -302,6 +307,7 @@ handleTeamClick(){
     </Grid>
     </div>
     </Container>
+    </div>
     
   );
 }

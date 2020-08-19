@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import GoogleLogin from "react-google-login";
+import { GoogleButton } from "react-google-button"
 import "../../App.css";
 import Navbar from "./Navbar";
+import {Card, CardContent, TextareaAutosize} from "@material-ui/core"
 import {Container} from "@material-ui/core"
+import { Typography, Divider,Grid } from "@material-ui/core";
+import Header from '../../Scorer/Header'
 
 class Home extends Component {
   responseGoogle = (response) => {
@@ -12,19 +16,29 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-       <Navbar/>
+    
+      <div style = {{marginTop:80}}>
+        <Header />
+       <Navbar />
         <br />
-       <Container align="center">
+        <Container align="center">
+      <Card align = "center" style = {{width: '40%' , height : '40%'}}>
+        <CardContent align = "center">
+        <Typography>
+          Click here to create a new Google Account
+        </Typography>
+        <Divider/>
+       
         <GoogleLogin
-          className="google-btn"
-          clientId="573292673851-j44aqq6nae92a10ogpcu26ealqhr4hf3.apps.googleusercontent.com"
-          buttonText="Create New Account"
-          onSuccess={this.responseGoogle}
+          className="google-create-account"
+          clientId="402744950664-cefekape7t5m71d9ok33fun1pg5hgdb7.apps.googleusercontent.com"
+          buttonText="Create Account"
+          onSuccess={this.userlogin}
           onFailure={this.responseGoogle}
+          isSignedIn={true}
           cookiePolicy={"single_host_origin"}
-        />
-        </Container>
+        /></CardContent></Card></Container>
+       
         <h1
           style={{
             marginTop: 100,
@@ -35,6 +49,7 @@ class Home extends Component {
         >
           Disabling inhibitions to excel in sports...
         </h1>
+        
       </div>
     );
   }

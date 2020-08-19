@@ -22,7 +22,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import classNames from "classnames";
 import ScorecardDataService from './service/ScorecardDataService';
-import Clock from './Clock'
+import Clock from './Clock';
+import Header from './Header'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -977,7 +978,7 @@ increaseScoreBy5(){
     handleEndMatchClicked = (id) => {
       this.handleFinalMatchResult();
       this.setState({ open_end_match_form: false });
-      this.props.history.push("/scorer/ScoreCard/${id}");
+      window.location.href="/scorer/ScoreCard/"+id
     };
 
     handleCreateAfterOver = () => {
@@ -1232,15 +1233,19 @@ increaseScoreBy5(){
       console.log(response);
     });
   }
-  handleSelect = e => {     
-    this.props.history.push(`/scorer/ScoreCard/${e}`)
+  handleSelect = e => {
+       
+    window.location.href="/scorer/ScoreCard/"+e
     
 }
 
    render(){
     const { classes } = this.props;
     return (
+
       <Container>
+         <div style = {{marginTop:100}}>
+           <Header />
         <Grid align = "center">
         <div style={{marginLeft:"85%",marginTop:"0%"}}><Clock /></div>
         <Typography align = "center" style={{fontSize : "25px"}}>
@@ -1729,7 +1734,7 @@ increaseScoreBy5(){
               No
             </Button>
           </DialogActions>
-        </Dialog>
+        </Dialog></div>
             </Container>
   );
           }

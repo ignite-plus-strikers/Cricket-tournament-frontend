@@ -14,7 +14,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
-
+import Header from './Header'
 import PreMatchDataService from './service/PreMatchDataService';
 import ScorecardDataService from './service/ScorecardDataService';
 
@@ -289,7 +289,8 @@ this.refreshBatsmen=this.refreshBatsmen.bind(this)
     ]  
     return(
    
-                  <div>
+      <div style = {{marginTop:100}}>
+      <Header />
                     <div>
                  
                     <div className="match_header">

@@ -15,10 +15,11 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
 import MenuItem from "@material-ui/core/MenuItem";
-
+import Header from '../../Scorer/Header'
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import SideNav from '../../SideNav/SideNav';
+import AdminSidenav from '../AdminSidenav';
 
 const styles = theme => ({
   root: {
@@ -277,6 +278,7 @@ class ListPlayersComponent extends Component {
         const columns = [{  
             Header: 'First name',
             accessor: 'first_name',
+            width:150,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -302,6 +304,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Last name',  
             accessor: 'last_name',
+            width:150,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -327,6 +330,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Player initials',  
             accessor: 'player_initials',
+            width:130,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -352,6 +356,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Gender',  
             accessor: 'gender',
+            width:130,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -377,6 +382,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Date of birth',  
             accessor: 'player_dob',
+            width:130,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -428,6 +434,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Nationality',  
             accessor: 'nationality',
+            width:150,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -454,6 +461,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Batting style',  
             accessor: 'player_batting_style',
+            width:180,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -480,6 +488,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Bowling style',  
             accessor: 'player_bowling_style',
+            width:180,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -532,6 +541,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Player status',  
             accessor: 'player_status',
+            width:130,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -572,9 +582,10 @@ class ListPlayersComponent extends Component {
             }
         ]  
         return (
-            <div>
-                <SideNav />
-                <div className = "p_details">
+            <div style={{marginTop:100}}>
+              <Header />
+              <AdminSidenav style={{position:"fixed"}}  />
+              <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button className="btn newBtn" onClick={this.openAddForm}>New</button>

@@ -440,14 +440,10 @@ let fixtureid=this.state.fixture_id
     var team1_id
     var team2_id
     return (
-         <div>
+         <div style = {{marginTop:100}}>
+           <Header />
       <Container>
       <div> 
-
-                     
-                   
-                      
-
                        <div className="match_n_series">
                          <h2>{this.state.team1} Vs {this.state.team2}</h2>
                         {this.state.series_name}<br/>
@@ -456,10 +452,7 @@ let fixtureid=this.state.fixture_id
                        </div>
                                   
                       
-                      <hr/>
-                     
-                     
-                     
+                      <hr/>               
       <Grid container spacing={2} >
       <Grid item xs={4}
             
@@ -537,7 +530,7 @@ let fixtureid=this.state.fixture_id
               
               <br />
               <br />
-              <label>On Field Umpire 1:</label>
+              <label>On Field Umpire 1:</label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -548,7 +541,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Search Umpire 1--"
+                    label="Search Umpire 1"
                     variant="outlined"
                   />
                 )}
@@ -557,7 +550,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>On Field Umpire 2:</label>
+              <label>On Field Umpire 2:</label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -568,7 +561,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Search Umpire 2--"
+                    label="Search Umpire 2"
                     variant="outlined"
                   />
                 )}
@@ -577,7 +570,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>Third Umpire:</label>
+              <label>Third Umpire:</label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -588,7 +581,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Search Umpire 3--"
+                    label="Search Third Umpire"
                     variant="outlined"
                   />
                 )}
@@ -597,7 +590,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>Match Refree:</label>
+              <label>Match Refree:</label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.referee_names}
@@ -608,7 +601,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Search Referee--"
+                    label="Search Referee"
                     variant="outlined"
                   />
                 )}
@@ -963,7 +956,7 @@ let fixtureid=this.state.fixture_id
                 variant="contained"
                 style={{ width: "150px" }}
                 className={classes.button}
-                href=" /scorer/MatchSelection"
+                href="/"
                 color="primary"
               >
                 Back

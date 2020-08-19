@@ -3,6 +3,8 @@ import SeriesDataService from './Service/SeriesDataService';
 import './Series.css';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
+import AdminSidenav from '../AdminSidenav';
+import Header from '../../Scorer/Header'
 
 class ShowTeams extends Component {
  
@@ -66,6 +68,7 @@ class ShowTeams extends Component {
         const columns = [{  
             Header: 'Team name',
             accessor: 'team_name',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -89,7 +92,8 @@ class ShowTeams extends Component {
               )    
             },
            {  
-                Header: 'Delete',  
+                Header: 'Delete',
+                headerClassName :'header-class',  
                 Cell:props=>{
                     return(
                         <button onClick={() => this.deletePlayerClicked(props.original.series_id,props.original.team_id,props.original.team_name)}>Delete</button>
@@ -102,8 +106,9 @@ class ShowTeams extends Component {
             }
         ]  
         return (
-            <div>
-                
+            <div className = "alignment" style={{marginLeft:"400px",marginTop:"100px",width:"54%",marginBottom:"20px"}}>
+                <Header />
+                <AdminSidenav style={{position:"fixed"}} /><br/>
                 {this.state.series.map(s =>{
                     if(s.series_id==seriesID){
                         seriesname=s.series_name
@@ -114,10 +119,10 @@ class ShowTeams extends Component {
                 }
                 <center>
                     <h2>{seriesname}</h2>
-                    <br/><br/>
+                    <br/>
                     {this.state.message && <div class="alert success delTeam">{this.state.message}</div>}
                 </center>
-                <div className = "seriesdetails">
+                <div>
                
                 <ReactTable
                 className="MyReactTableClass"

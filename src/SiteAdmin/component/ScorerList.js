@@ -16,6 +16,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Paper from "@material-ui/core/Paper";
 import { Container } from "@material-ui/core"
 import Navbar from "./Navbar"
+import Header from '../../Scorer/Header'
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -184,7 +185,8 @@ class ScorerList extends Component {
       },
     ];
     return (
-      <div>
+      <div style = {{marginTop:80}}>
+        <Header />
         <Navbar/>
         <h1 style={{ fontWeight: 80, textAlign: "center" }}>
           Existing Scorers
@@ -201,9 +203,9 @@ class ScorerList extends Component {
                 padding: "08px 20px",
                 fontSize: "medium",
                 cursor: "pointer",
-                marginTop: "20px",
-                backgroundColor: "#0D5C75",
-                marginBottom: "30px",
+                marginTop: "10px",
+                backgroundColor: "#3f51b5",
+                marginBottom: "10px",
                 marginLeft: 30,
               }}
               onClick={this.openAddForm}

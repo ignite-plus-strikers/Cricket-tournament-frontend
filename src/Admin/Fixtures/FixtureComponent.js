@@ -20,7 +20,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
-
+import AdminSidenav from '../AdminSidenav';
+import Header from '../../Scorer/Header'
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -113,14 +114,17 @@ class FixtureComponent extends Component {
             series_id:"",
             description:"",
             fixture_date:"",
-            fixture_time:"",
+            fixture_start_time:"",
+            fixture_end_time:"",
             gmt_offset:"",
             live_coverage:"Yes",
-            scorer_id:"",
+            scorerEmail:"",
             scorer_name:"",
             teams:[],
             series:[],
-            scorers:[]
+            scorers:[],
+            team1_id:"",
+            team2_id:""
 
         }
         this.deleteFixtureClicked = this.deleteFixtureClicked.bind(this)
@@ -233,15 +237,18 @@ class FixtureComponent extends Component {
         .then(response => this.setState({
         team1:response.data.team1,
         team2:response.data.team2,
+        team1_id:response.data.team1_id,
+        team2_id:response.data.team2_id,
         home_team:response.data.home_team,
         match_type:response.data.match_type,
         venue:response.data.venue,
         series_id:response.data.series_id,
         description:response.data.description,
         fixture_date:response.data.fixture_date,
-        fixture_time:response.data.fixture_time,
+        fixture_start_time:response.data.fixture_start_time,
+        fixture_end_time:response.data.fixture_end_time,
         gmt_offset:response.data.gmt_offset,
-        scorer_id:response.data.scorer_id,
+        scorerEmail:response.data.scorer_id,
         live_coverage:response.data.live_coverage
 
 
@@ -264,8 +271,25 @@ class FixtureComponent extends Component {
        
         let seriesName
         let scorer_name
+        let team1
+        let team2
         
+        this.state.teams.map(t =>{
+          if(t.team_id===this.state.team1_id){
+             team1=t.tname
+              }
+      }
+         
+      )
 
+
+      this.state.teams.map(t =>{
+        if(t.team_id===this.state.team2_id){
+           team2=t.tname
+            }
+    }
+       
+    )
        
         this.state.series.map(s =>{
             if(s.series_id===this.state.series_id){
@@ -278,26 +302,29 @@ class FixtureComponent extends Component {
 
         
         this.state.scorers.map(s =>{
-            if(s.scorer_id===this.state.scorer_id){
-               scorer_name=s.firstname+" "+s.middlename+" "+s.lastname
+            if(s.scorerEmail===this.state.scorerEmail){
+               scorer_name=s.scorerFirstname+" "+s.scorerLastname
                 }
         }
            
         )
       
        var fixture={
-        team1:this.state.team1,
-        team2:this.state.team2,
+        team1:team1,
+        team2:team2,
+        team1_id:this.state.team1_id,
+        team2_id:this.state.team2_id,
         home_team:this.state.home_team ,
         series_id:this.state.series_id ,
         series_name:seriesName ,
         fixture_date:this.state.fixture_date ,
-        fixture_time:this.state.fixture_time, 
+        fixture_start_time:this.state.fixture_start_time, 
+        fixture_end_time:this.state.fixture_end_time, 
         match_type:this.state.match_type,
         description: this.state.description,
         live_coverage:this.state.live_coverage ,
         venue:this.state.venue ,
-        scorer_id:this.state.scorer_id ,
+        scorer_id:this.state.scorerEmail ,
         scorer_name:scorer_name ,
         gmt_offset:this.state.gmt_offset
     }
@@ -316,7 +343,25 @@ class FixtureComponent extends Component {
 
         let seriesName
         let scorer_name
+        let team1
+        let team2
         
+        this.state.teams.map(t =>{
+          if(t.team_id===this.state.team1_id){
+             team1=t.tname
+              }
+      }
+         
+      )
+
+
+      this.state.teams.map(t =>{
+        if(t.team_id===this.state.team2_id){
+           team2=t.tname
+            }
+    }
+       
+    )
 
        
         this.state.series.map(s =>{
@@ -330,27 +375,30 @@ class FixtureComponent extends Component {
 
         
         this.state.scorers.map(s =>{
-            if(s.scorer_id===this.state.scorer_id){
-               scorer_name=s.firstname+" "+s.middlename+" "+s.lastname
-                }
-        }
-           
-        )
+          if(s.scorerEmail===this.state.scorerEmail){
+             scorer_name=s.scorerFirstname+" "+s.scorerLastname
+              }
+      }
+         
+      )
         
         var fixture={
           fixture_id:this.state.fixture_id,
-          team1:this.state.team1,
-          team2:this.state.team2,
+          team1:team1,
+          team2:team2,
+          team1_id:this.state.team1_id,
+          team2_id:this.state.team2_id,
           home_team:this.state.home_team ,
           series_id:this.state.series_id ,
           series_name:seriesName ,
           fixture_date:this.state.fixture_date ,
-          fixture_time:this.state.fixture_time, 
+          fixture_start_time:this.state.fixture_start_time, 
+          fixture_end_time:this.state.fixture_end_time, 
           match_type:this.state.match_type,
           description: this.state.description,
           live_coverage:this.state.live_coverage ,
           venue:this.state.venue ,
-          scorer_id:this.state.scorer_id ,
+          scorer_id:this.state.scorerEmail ,
           scorer_name:scorer_name ,
           gmt_offset:this.state.gmt_offset
       }
@@ -374,7 +422,8 @@ class FixtureComponent extends Component {
         const columns = [{  
             Header: 'Team 1',
             accessor: 'team1',
-            headerClassName :'header-class',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -399,7 +448,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Team 2',  
             accessor: 'team2',
-            headerClassName :'header-class',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -424,7 +474,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Home town',  
             accessor: 'home_team',
-            headerClassName :'header-class',
+            width:168,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -449,7 +500,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Series',  
             accessor: 'series_name',
-            headerClassName :'header-class',
+            width:180,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -474,7 +526,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Match type',  
             accessor: 'match_type',
-            headerClassName :'header-class',
+            width:160,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -499,7 +552,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Description',  
             accessor: 'description',
-            headerClassName :'header-class',
+            width:310,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -525,7 +579,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Match date',  
             accessor: 'fixture_date',
-            headerClassName :'header-class',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -549,9 +604,10 @@ class FixtureComponent extends Component {
               )    
         
             },{  
-              Header: 'Match time',  
-              accessor: 'fixture_time',
-              headerClassName :'header-class',
+              Header: 'Match start time',  
+              accessor: 'fixture_start_time',
+              width:150,
+              headerClassName :'header-class', 
               filterMethod: (filter, row) => {
                   var v = row[filter.id]
                     .toString()
@@ -575,10 +631,39 @@ class FixtureComponent extends Component {
                 )    
           
               },
+              {  
+                Header: 'Match end time',  
+                accessor: 'fixture_end_time',
+                width:150,
+                headerClassName :'header-class', 
+                filterMethod: (filter, row) => {
+                    var v = row[filter.id]
+                      .toString()
+                      .toUpperCase()
+                      .search(filter.value.toUpperCase());
+                    // row[filter.id].toString().startsWith(filter.value)
+                    if (v >= 0) {
+                      return true;
+                    } else return false;
+                  }, Filter: ({filter, onChange}) => (
+                    <input
+                    placeholder="Search"
+                      onChange={event => onChange(event.target.value)}
+                      value={filter ? filter.value : ''}
+                      style={{
+                        width: '100%',
+                        backgroundColor: '#DCDCDC',
+                        color: 'black',
+                      }}
+                    />
+                  )    
+            
+                },
             {  
             Header: 'GMT offset',  
             accessor: 'gmt_offset',
-            headerClassName :'header-class',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -604,7 +689,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Venue',  
             accessor: 'venue',
-            headerClassName :'header-class',
+            width:280,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -630,7 +716,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Live coverage',  
             accessor: 'live_coverage',
-            headerClassName :'header-class',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -656,7 +743,8 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Scorer',  
             accessor: 'scorer_name',
-            headerClassName :'header-class',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -680,8 +768,8 @@ class FixtureComponent extends Component {
               )    
                         
             },{  
-                Header: 'Delete',  
-                headerClassName :'header-class',
+                Header: 'Delete',
+                headerClassName :'header-class',   
                 Cell:props=>{
                     return(
                         <div>
@@ -696,8 +784,8 @@ class FixtureComponent extends Component {
                 minWidth:100,
                 maxWidth:100
             },{  
-            Header: 'Update',  
-            headerClassName :'header-class',
+            Header: 'Update', 
+            headerClassName :'header-class',  
             Cell:props=>{
                 return(
                     <button  onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update</button>
@@ -712,13 +800,13 @@ class FixtureComponent extends Component {
             }
         ]  
         return (
-            <div>
-                <div className = "details">
+            <div style={{marginTop:100}}>
+              <Header />
+              <AdminSidenav style={{position:"fixed"}} />
+              <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
-                     <div>
-                     <Button variant="contained" color="primary" className={classes.button} onClick = {this.openAddForm}>
-                     New
-                   </Button>
+                <div>
+                        <button className="btn newBtn" onClick={this.openAddForm}>New</button>
                      </div>
                     
                      <ReactTable
@@ -809,7 +897,7 @@ class FixtureComponent extends Component {
                 
                 variant="outlined"
                 label="Team-1"
-                onChange={this.handleChange("team1")}
+                onChange={this.handleChange("team1_id")}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">Team-1</InputAdornment>
@@ -817,7 +905,7 @@ class FixtureComponent extends Component {
                 }}
               >
                 {this.state.teams.map(option => (
-                  <MenuItem key={option.tname} value={option.tname}>
+                  <MenuItem key={option.team_id} value={option.team_id}>
                     {option.tname}
                   </MenuItem>
                 ))}
@@ -828,7 +916,7 @@ class FixtureComponent extends Component {
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Team-2"
-                onChange={this.handleChange("team2")}
+                onChange={this.handleChange("team2_id")}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">Team-2</InputAdornment>
@@ -836,7 +924,7 @@ class FixtureComponent extends Component {
                 }}
               >
                 {this.state.teams.map(option => (
-                  <MenuItem key={option.tname} value={option.tname}>
+                  <MenuItem key={option.team_id} value={option.team_id}>
                     {option.tname}
                   </MenuItem>
                 ))}
@@ -949,9 +1037,25 @@ class FixtureComponent extends Component {
             style={{ width: "45%" }}
             id="outlined-simple-start-adornment"
             className={classNames(classes.margin, classes.textField)}
-            label="Match time"
+            label="Match start time"
             type="time"
-            onChange={this.handleChange("fixture_time")}
+            onChange={this.handleChange("fixture_start_time")}
+            defaultValue="00:00"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            inputProps={{
+              step: 300 // 5 min
+            }}
+          />
+          <TextField
+            style={{ width: "45%" }}
+            id="outlined-simple-start-adornment"
+            className={classNames(classes.margin, classes.textField)}
+            label="Match end time"
+            type="time"
+            onChange={this.handleChange("fixture_end_time")}
             defaultValue="00:00"
             variant="outlined"
             InputLabelProps={{
@@ -982,7 +1086,7 @@ class FixtureComponent extends Component {
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Scorer"
-                onChange={this.handleChange("scorer_id")}
+                onChange={this.handleChange("scorerEmail")}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">Scorer</InputAdornment>
@@ -990,13 +1094,13 @@ class FixtureComponent extends Component {
                 }}
               >
                 {this.state.scorers.map(option => (
-                  <MenuItem key={option.scorer_id} value={option.scorer_id}>
-                    {option.firstname} {option.middlename} {option.lastname}
+                  <MenuItem key={option.scorerEmail} value={option.scorerEmail}>
+                    {option.scorerFirstname} {option.scorerLastname}
                   </MenuItem>
                 ))}
               </TextField>
               <TextField
-                style={{ width: "45%" }}
+                style={{ width: "93%" }}
                 select
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
@@ -1076,10 +1180,10 @@ class FixtureComponent extends Component {
                 style={{ width: "45%" }}
                 select
                 className={classNames(classes.margin, classes.textField)}
-                value={this.state.team1}
+                value={this.state.team1_id}
                 variant="outlined"
                 label="Team-1"
-                onChange={this.handleChange("team1")}
+                onChange={this.handleChange("team1_id")}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">Team-1</InputAdornment>
@@ -1087,7 +1191,7 @@ class FixtureComponent extends Component {
                 }}
               >
                 {this.state.teams.map(option => (
-                  <MenuItem key={option.tname} value={option.tname}>
+                  <MenuItem key={option.team_id} value={option.team_id}>
                     {option.tname}
                   </MenuItem>
                 ))}
@@ -1098,8 +1202,8 @@ class FixtureComponent extends Component {
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Team-2"
-                value={this.state.team2}
-                onChange={this.handleChange("team2")}
+                value={this.state.team2_id}
+                onChange={this.handleChange("team2_id")}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">Team-2</InputAdornment>
@@ -1107,7 +1211,7 @@ class FixtureComponent extends Component {
                 }}
               >
                 {this.state.teams.map(option => (
-                  <MenuItem key={option.tname} value={option.tname}>
+                  <MenuItem key={option.team_id} value={option.team_id}>
                     {option.tname}
                   </MenuItem>
                 ))}
@@ -1225,8 +1329,25 @@ class FixtureComponent extends Component {
             className={classNames(classes.margin, classes.textField)}
             label="Match time"
             type="time"
-            value={this.state.fixture_time}
-            onChange={this.handleChange("fixture_time")}
+            value={this.state.fixture_start_time}
+            onChange={this.handleChange("fixture_start_time")}
+            defaultValue="00:00"
+            variant="outlined"
+            InputLabelProps={{
+              shrink: true
+            }}
+            inputProps={{
+              step: 300 // 5 min
+            }}
+          />
+           <TextField
+            style={{ width: "45%" }}
+            id="outlined-simple-start-adornment"
+            className={classNames(classes.margin, classes.textField)}
+            label="Match time"
+            type="time"
+            value={this.state.fixture_end_time}
+            onChange={this.handleChange("fixture_end_time")}
             defaultValue="00:00"
             variant="outlined"
             InputLabelProps={{
@@ -1256,9 +1377,9 @@ class FixtureComponent extends Component {
                 select
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
-                value={this.state.scorer_id}
+                value={this.state.scorerEmail}
                 label="Scorer"
-                onChange={this.handleChange("scorer_id")}
+                onChange={this.handleChange("scorerEmail")}
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">Scorer</InputAdornment>
@@ -1266,13 +1387,13 @@ class FixtureComponent extends Component {
                 }}
               >
                 {this.state.scorers.map(option => (
-                  <MenuItem key={option.scorer_id} value={option.scorer_id}>
-                    {option.firstname} {option.middlename} {option.lastname}
-                  </MenuItem>
+                   <MenuItem key={option.scorerEmail} value={option.scorerEmail}>
+                   {option.scorerFirstname} {option.scorerLastname}
+                 </MenuItem>
                 ))}
               </TextField>
               <TextField
-                style={{ width: "45%" }}
+                style={{ width: "93%" }}
                 select
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
