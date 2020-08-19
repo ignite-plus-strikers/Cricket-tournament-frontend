@@ -11,6 +11,7 @@ import {Card, CardContent} from "@material-ui/core"
 import { Typography, Divider,Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
+import {Alert,AlertTitle} from "@material-ui/core"
 //import Header from "../Scorer/Header"
 
 const styles = {
@@ -23,6 +24,7 @@ const styles = {
   },
 };
 
+
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
@@ -30,7 +32,8 @@ class LoginPage extends React.Component {
       isLoggedIn: false,
       accessToken: "",
       user_name: "",
-      user_role: ""
+      user_role: "",
+      message : null
     };
     {
       /*this.userlogin = this.userlogin.bind(this);
@@ -126,6 +129,8 @@ class LoginPage extends React.Component {
   handleLogoutFailure(res) {
     alert("Failed to Log Out");
   } */
+ 
+ 
 
   render() {
     if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_ADMIN") {
@@ -138,6 +143,7 @@ class LoginPage extends React.Component {
       Cookies.set("role", this.state.user_role)
       return <MatchSelection user_name={this.state.user_name} />;
     }
+   
     const { classes } = this.props;
     /* else{
       return <PageNotFound />;
@@ -147,11 +153,12 @@ class LoginPage extends React.Component {
       
         <br />
         
-        <Card className={classes.card} align = "center" style = {{marginLeft : "35%", marginTop : "10%"}}>
+        <Card className={classes.card} align = "center" style = {{marginLeft : "35%", marginTop : "15%"}}>
         <CardContent align = "center">
         <Typography>Please Login with your assigned Google Account</Typography>
         <Divider/>
-        <div style={{marginRight : 100}}>
+        <Typography>{this.state.message}</Typography>
+        <div style={{marginRight : 120}}>
         <GoogleLogin
           className="google-login-button"
           clientId="402744950664-cefekape7t5m71d9ok33fun1pg5hgdb7.apps.googleusercontent.com"
@@ -161,8 +168,11 @@ class LoginPage extends React.Component {
           isSignedIn={true}
           cookiePolicy={"single_host_origin"}
         /></div>
+        
         </CardContent>
         </Card>
+
+      
        
         {/* {this.state.accessToken ? <h5>Your Access Token: <br/><br/> { this.state.accessToken }</h5> : null } */}
       </div>
