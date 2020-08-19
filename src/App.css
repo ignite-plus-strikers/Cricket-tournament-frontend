@@ -426,3 +426,9 @@ a{
     height: 4.5rem;
     margin: auto;
   }
+
+  .google-logout-button {
+    margin-top: 1.5em;
+    position: relative;
+    margin-left: 90%;
+  }

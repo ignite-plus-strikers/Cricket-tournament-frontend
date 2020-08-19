@@ -7,6 +7,7 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Divider, Container } from '@material-ui/core';
+import Header from './Header'
 //import MatchSelectionService from "../service/MatchSelectionService"
 import Clock from './Clock';
 import axios from 'axios'
@@ -75,8 +76,11 @@ class MatchSelection extends React.Component{
   render(){
     const {classes} = this.props;
     return (
+      <div className = "header-styling"><Header />
       <Container>
-        <Typography variant="h5" color="primary" align="center" style={{marginTop:20}}>Welcome {this.props.user_name}! Happy Scoring! </Typography>
+     
+      
+        <Typography variant="h4" color="primary" align="center" style={{marginTop:'2em'}}>Welcome {this.props.user_name}! Happy Scoring! </Typography>
         {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
         {
         return(
@@ -161,7 +165,7 @@ class MatchSelection extends React.Component{
     )
   }
     
-    </Container> 
+    </Container> </div>
   );
 }
 }

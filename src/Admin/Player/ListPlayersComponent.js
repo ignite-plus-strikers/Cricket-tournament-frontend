@@ -573,7 +573,7 @@ class ListPlayersComponent extends Component {
         ]  
         return (
             <div>
-              
+                <SideNav />
                 <div className = "p_details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
