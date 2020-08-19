@@ -21,6 +21,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
  
 import Slide from "@material-ui/core/Slide";
+import AdminSidenav from '../AdminSidenav';
 
 const styles = theme => ({
   root: {
@@ -243,6 +244,8 @@ class SeriesComponent extends Component {
         const columns = [{  
             Header: 'Series name',
             accessor: 'series_name',
+            width:200,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -267,6 +270,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Series short name',  
             accessor: 'series_short_name',
+            width:200,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -291,6 +296,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Series type',  
             accessor: 'series_type',
+            width:180,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -315,6 +322,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Start date',  
             accessor: 'series_start_date',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -339,6 +348,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'End date',  
             accessor: 'series_end_date',
+            width:150,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -363,6 +374,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Tournament',  
             accessor: 'tournament',
+            width:240,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -388,6 +401,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 1',  
             accessor: 'host_country[0]',
+            width:180,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -413,6 +428,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 2 ',  
             accessor: 'host_country[1]',
+            width:180,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -438,6 +455,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 3',  
             accessor: 'host_country[2]',
+            width:180,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -463,6 +482,8 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Host 4',  
             accessor: 'host_country[3]',
+            width:180,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -488,6 +509,8 @@ class SeriesComponent extends Component {
             },{  
             id:'points_table_active',    
             Header: 'Points table',  
+            width:130,
+            headerClassName :'header-class', 
             accessor: value=>{return value.points_table_active?'Yes':'No'},
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
@@ -515,6 +538,8 @@ class SeriesComponent extends Component {
             {  
             Header: 'Series points',  
             accessor: 'series_points',
+            width:130,
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -538,7 +563,8 @@ class SeriesComponent extends Component {
               )    
                             
             },{  
-                Header: 'Add team',  
+                Header: 'Add team', 
+                headerClassName :'header-class',  
                 Cell:props=>{
                     return(
                         <button onClick={() =>  this.addTeamClicked(props.original.series_id)}>Add</button>
@@ -552,6 +578,8 @@ class SeriesComponent extends Component {
                 maxWidth:100
             },{  
             Header: 'Show team',  
+            headerClassName :'header-class', 
+            width:150,
             Cell:props=>{
                 return(
                     <button  onClick={() =>  this.showTeamClicked(props.original.series_id)} >Show</button>
@@ -560,11 +588,10 @@ class SeriesComponent extends Component {
             } ,
             sortable:false,
             filterable:false,
-            width:100,
-            minWidth:100,
-            maxWidth:100
+          
             },{  
                 Header: 'Delete',  
+                headerClassName :'header-class', 
                 Cell:props=>{
                     return(
                         <button onClick={() => this.deleteSeriesClicked(props.original.series_id,props.original.series_short_name)}>Delete</button>
@@ -577,7 +604,8 @@ class SeriesComponent extends Component {
                 minWidth:100,
                 maxWidth:100
             },{  
-                Header: 'Update',  
+                Header: 'Update', 
+                headerClassName :'header-class',  
                 Cell:props=>{
                     return(
                         <button  onClick={() => this.openUpdateForm(props.original.series_id)} >Update</button>
@@ -593,8 +621,8 @@ class SeriesComponent extends Component {
         ]  
         return (
             <div>
-                
-                <div className = "details">
+                <AdminSidenav style={{position:"fixed"}} />
+                <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button class="btn newBtn" onClick={this.openAddForm}>New</button>

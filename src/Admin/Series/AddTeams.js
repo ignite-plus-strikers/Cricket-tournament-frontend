@@ -7,6 +7,7 @@ import SeriesDataService from './Service/SeriesDataService';
 
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
+import AdminSidenav from '../AdminSidenav';
 
 
 class AddTeams extends Component {
@@ -145,8 +146,8 @@ class AddTeams extends Component {
         ]  
 
         return (
-            <div>
-                
+            <div >
+                <AdminSidenav style={{position:"fixed"}} />
                 {this.state.series.map(s =>{
                     if(s.series_id===seriesID){
                         seriesname=s.series_name
@@ -158,7 +159,7 @@ class AddTeams extends Component {
                 <center>
                     <h2>{seriesname}</h2>
                 </center>
-                <div className="details">
+                <div className="seriesdetails">
                 <ReactTable
                     className="MyReactTableClass"
                      columns={columns}

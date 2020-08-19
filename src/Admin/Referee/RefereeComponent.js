@@ -17,6 +17,7 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Slide from "@material-ui/core/Slide";
+import AdminSidenav from '../AdminSidenav';
  
 const styles = theme => ({
   root: {
@@ -189,6 +190,7 @@ class RefereeComponent extends Component {
         const columns = [{  
             Header: 'First Name',
             accessor: 'first_name',
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -213,6 +215,7 @@ class RefereeComponent extends Component {
             },{  
             Header: 'Middle Name',  
             accessor: 'middle_name',
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -237,6 +240,7 @@ class RefereeComponent extends Component {
             },{  
             Header: 'Last Name',  
             accessor: 'last_name',
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -261,6 +265,7 @@ class RefereeComponent extends Component {
             },{  
             Header: 'City',  
             accessor: 'city',
+            headerClassName :'header-class', 
             filterMethod: (filter, row) => {
               var v = row[filter.id]
                 .toString()
@@ -284,6 +289,7 @@ class RefereeComponent extends Component {
             )        
             },{  
             Header: 'Nationality',  
+            headerClassName :'header-class', 
             accessor: 'nationality', filterMethod: (filter, row) => {
               var v = row[filter.id]
                 .toString()
@@ -307,6 +313,8 @@ class RefereeComponent extends Component {
             )        
             },{  
             Header: 'Matches Refereed',  
+            width:170,
+            headerClassName :'header-class', 
             accessor: 'matches_refereed', filterMethod: (filter, row) => {
               var v = row[filter.id]
                 .toString()
@@ -331,6 +339,7 @@ class RefereeComponent extends Component {
          
             },{  
             Header: 'Experience',  
+            headerClassName :'header-class', 
             accessor: 'experience',
             filterMethod: (filter, row) => {
               var v = row[filter.id]
@@ -356,6 +365,7 @@ class RefereeComponent extends Component {
         
             },{  
             Header: 'Update',  
+            headerClassName :'header-class', 
             Cell:props=>{
                 return(
                     <button  onClick={() => this.openUpdateForm(props.original.referee_id)} >Update</button>
@@ -370,8 +380,9 @@ class RefereeComponent extends Component {
             }
         ]  
         return (
-            <div style={{marginTop:40}}>
-                <div className = "p_details">
+            <div>
+              <AdminSidenav style={{position:"fixed"}} />
+              <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button className="btn newBtn" onClick={this.openAddForm}>New</button>

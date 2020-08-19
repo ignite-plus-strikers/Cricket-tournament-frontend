@@ -4,6 +4,7 @@ import './Team.css';
 import TeamDataService from './Service/TeamDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
+import AdminSidenav from '../AdminSidenav';
 
 class ShowPlayer extends Component {
 
@@ -156,8 +157,8 @@ class ShowPlayer extends Component {
             }
         ]  
         return (
-            <div>
-                
+            <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px"}}>
+                <AdminSidenav style={{position:"fixed"}} />
                 {this.state.teams.map(team =>{
                     if(team.team_id==teamID){
                         teamname=team.tname

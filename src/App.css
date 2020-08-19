@@ -249,8 +249,11 @@ label {
 }
 
 .header-class{
-  background-color: #00bcd4;
-  color: #000000;
+  background-color: #1854af;
+  color:white;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+ 
 }
 .container2{
   width: 90%;
@@ -419,4 +422,8 @@ a{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  .alignment{
+    margin-left: 150px;
   }

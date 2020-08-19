@@ -22,6 +22,7 @@ import PropTypes from "prop-types";
 
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import AdminSidenav from '../AdminSidenav';
 
 
 
@@ -193,6 +194,7 @@ class TeamComponent extends Component {
         const columns = [{  
             Header: 'Team name',
             accessor: 'tname',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -218,6 +220,7 @@ class TeamComponent extends Component {
             },{  
             Header: 'State',  
             accessor: 'tstate',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -242,6 +245,7 @@ class TeamComponent extends Component {
             },{  
             Header: 'Country',  
             accessor: 'tcountry',
+            headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]
                   .toString()
@@ -266,7 +270,8 @@ class TeamComponent extends Component {
             },
                 
            {  
-                Header: 'Add player',  
+                Header: 'Add player', 
+                headerClassName :'header-class', 
                 Cell:props=>{
                     return(
                         <button onClick={() =>  this.addPlayerClicked(props.original.team_id)}>Add</button>
@@ -280,6 +285,8 @@ class TeamComponent extends Component {
                 maxWidth:100
             },{  
             Header: 'Show player',  
+            width:130,
+            headerClassName :'header-class',
             Cell:props=>{
                 return(
                     <button  onClick={() =>  this.showPlayerClicked(props.original.team_id)} >Show</button>
@@ -287,12 +294,11 @@ class TeamComponent extends Component {
     
             } ,
             sortable:false,
-            filterable:false,
-            width:100,
-            minWidth:100,
-            maxWidth:100
+            filterable:false
+           
             },{  
-                Header: 'Delete',  
+                Header: 'Delete', 
+                headerClassName :'header-class', 
                 Cell:props=>{
                     return(
                         <button onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</button>
@@ -306,6 +312,7 @@ class TeamComponent extends Component {
                 maxWidth:100
             },{  
                 Header: 'Update',  
+                headerClassName :'header-class',
                 Cell:props=>{
                     return(
                         <button  onClick={() => this.openUpdateForm(props.original.team_id)} >Update</button>
@@ -321,8 +328,8 @@ class TeamComponent extends Component {
         ]  
         return (
             <div>
-                
-                <div className = "details">
+                 <AdminSidenav style={{position:"fixed"}}  />
+                 <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button className="btn newBtn" onClick={this.openAddForm}>New</button>

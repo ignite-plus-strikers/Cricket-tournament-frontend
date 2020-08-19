@@ -23,6 +23,8 @@ import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService';
 import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 import SideNav from '../SideNav/SideNav';
+import Dashboard_appbar from './Dashboard_appbar';
+import AdminSidenav from './AdminSidenav';
 
 
 const styles = {
@@ -154,8 +156,11 @@ refreshUmpires() {
   render(){
     const { classes } = this.props;
    return ( 
+<div>
+ 
+    <AdminSidenav style={{position:"sticky",position:"-webkit-sticky"}} />
   <Container>
-  <SideNav/>
+  
   <center>
     <h1 style={{marginTop : 0}}>Welcome {this.props.user_name}!</h1>
     </center>
@@ -289,6 +294,7 @@ refreshUmpires() {
     </Grid>
     </div>
     </Container>
+    </div>
     
   );
 }

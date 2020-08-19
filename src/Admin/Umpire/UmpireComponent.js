@@ -16,6 +16,9 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Slide from "@material-ui/core/Slide";
+import AdminSidenav from '../AdminSidenav';
+
+import '../../App.css';
  
 const styles = theme => ({
   root: {
@@ -189,6 +192,7 @@ class UmpireComponent extends Component {
     const columns = [{  
         Header: 'First Name',
         accessor: 'first_name',
+        headerClassName :'header-class', 
         filterMethod: (filter, row) => {
             var v = row[filter.id]
               .toString()
@@ -213,6 +217,7 @@ class UmpireComponent extends Component {
         },{  
         Header: 'Middle Name',  
         accessor: 'middle_name',
+        headerClassName :'header-class', 
         filterMethod: (filter, row) => {
             var v = row[filter.id]
               .toString()
@@ -237,6 +242,7 @@ class UmpireComponent extends Component {
         },{  
         Header: 'Last Name',  
         accessor: 'last_name',
+        headerClassName :'header-class', 
         filterMethod: (filter, row) => {
             var v = row[filter.id]
               .toString()
@@ -261,6 +267,7 @@ class UmpireComponent extends Component {
         },{  
         Header: 'City',  
         accessor: 'city',
+        headerClassName :'header-class', 
         filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
@@ -284,6 +291,7 @@ class UmpireComponent extends Component {
         )      
         },{  
         Header: 'Nationality',  
+        headerClassName :'header-class', 
         accessor: 'nationality',filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
@@ -306,7 +314,9 @@ class UmpireComponent extends Component {
           />
         )      
         },{  
-        Header: 'Matches Umpired',  
+        Header: 'Matches Umpired', 
+        width:170, 
+        headerClassName :'header-class', 
         accessor: 'matches_umpired',filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
@@ -331,6 +341,7 @@ class UmpireComponent extends Component {
      
         },{  
         Header: 'Accuracy %',  
+        headerClassName :'header-class', 
         accessor: 'accuracy_percentage',filterMethod: (filter, row) => {
           var v = row[filter.id]
             .toString()
@@ -355,6 +366,7 @@ class UmpireComponent extends Component {
     
         },{  
         Header: 'Update',  
+        headerClassName :'header-class', 
         Cell:props=>{
             return(
                 <button  onClick={() => this.openUpdateForm(props.original.umpire_id)} >Update</button>
@@ -370,8 +382,8 @@ class UmpireComponent extends Component {
     ]  
         return (
             <div>
-               
-                <div className = "details">
+               <AdminSidenav style={{position:"fixed"}} />
+                <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
                         <button className="btn newBtn" onClick={this.openAddForm}>New</button>
