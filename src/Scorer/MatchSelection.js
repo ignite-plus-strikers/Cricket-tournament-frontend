@@ -69,8 +69,10 @@ class MatchSelection extends React.Component{
             this.setState({fixtures:data});
           });
     }
+
+
     PrematchScreenClicked(id) {
-      this.props.history.push(`/scorer/PreMatch/${id}`)
+     window.location.href=`/scorer/PreMatch/`+id
   }
 
   render(){

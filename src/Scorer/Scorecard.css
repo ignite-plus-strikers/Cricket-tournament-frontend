@@ -51,10 +51,9 @@
  margin-right: 15px;
 }
 .match_n_series{
-  width:33%;
-   float: left;
+   width:33%;
+  margin-left:33%;
    text-align: center;
-   
 }
 .class-for-desc{
     color:rgb(196, 61, 61)
@@ -79,4 +78,17 @@ h2{
     position: absolute;
     float:right;
    
+}
+.change_font{
+    color:#3f51b5;
+    font-size: 25px;
+}
+
+.change_bowl_bat_font{
+    color:#f32068;
+    font-size: 25px;
+}
+
+.team_name_prematch{
+    font-size: 25px;
 }

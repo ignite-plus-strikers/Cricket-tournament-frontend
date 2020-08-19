@@ -40,7 +40,10 @@ function Transition(props) {
       width: "100%",
       maxWidth: "300px",
       position: "fixed"
-    }
+    },
+    button: {
+      margin: theme.spacing.unit,
+    },
   });
    
   
@@ -713,7 +716,9 @@ class FixtureComponent extends Component {
                 <div className = "details">
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
                      <div>
-                        <button class="btn newBtn" onClick={this.openAddForm}>New</button>
+                     <Button variant="contained" color="primary" className={classes.button} onClick = {this.openAddForm}>
+                     New
+                   </Button>
                      </div>
                     
                      <ReactTable

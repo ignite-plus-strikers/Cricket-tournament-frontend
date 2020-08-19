@@ -22,6 +22,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import classNames from "classnames";
 import ScorecardDataService from './service/ScorecardDataService';
+import Clock from './Clock'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -899,6 +900,7 @@ increaseScoreBy5(){
       this.setState({
         open_end_match_form: true,
       });
+      window.localStorage.removeItem("data")
     };
   
     openEndInnings = () => {
@@ -1230,8 +1232,7 @@ increaseScoreBy5(){
       console.log(response);
     });
   }
-  handleSelect = e => {
-       
+  handleSelect = e => {     
     this.props.history.push(`/scorer/ScoreCard/${e}`)
     
 }
@@ -1240,23 +1241,21 @@ increaseScoreBy5(){
     const { classes } = this.props;
     return (
       <Container>
-        <br></br>
         <Grid align = "center">
-        <Typography align = "center">
-        {this.state.batting_team} {this.state.batting_team_score}/
+        <div style={{marginLeft:"85%",marginTop:"0%"}}><Clock /></div>
+        <Typography align = "center" style={{fontSize : "25px"}}>
+        <b>{this.state.batting_team}</b> {this.state.batting_team_score}/
             {this.state.batting_team_wickets} ({this.state.total_overs}.{this.state.balls_per_over} Overs) //{" "}
-            {this.state.bowling_team} {this.state.bowling_team_score}/
+           <b>{this.state.bowling_team}</b>  {this.state.bowling_team_score}/
             {this.state.bowling_team_wickets}</Typography>
-        <Button variant="contained" color="primary" className={classes.button}  onClick={() => this.handleSelect(this.state.match_id)}>Scorecard</Button>
+        <Button variant="contained" color="primary" className={classes.button}  onClick={() => this.handleSelect(this.state.match_id)}>Live Scorecard</Button>
         </Grid>
-        <br></br> 
-        <br></br>
-        <br></br>
-       
+        
+        
         <Grid container spacing = {10}>
         <Grid item>
-        <Typography align = "center">{this.state.batting_team} -{" "}
-              <i>
+        <Typography align = "center"><b className="change_font">{this.state.batting_team}</b> -{" "}
+              <i className="change_bowl_bat_font">
                 <b>Batting</b>
               </i></Typography>
             <Paper className={classes.root}>
@@ -1296,8 +1295,8 @@ increaseScoreBy5(){
             </Grid>
 
             <Grid item>
-            <Typography align = "center">{this.state.bowling_team} -{" "}
-              <i>
+            <Typography align = "center"><b className="change_font">{this.state.bowling_team}</b> -{" "}
+              <i className="change_bowl_bat_font">
                 <b>Bowling</b>
               </i></Typography>
             <Paper className={classes.root}>
@@ -1324,15 +1323,13 @@ increaseScoreBy5(){
             </Table>
             </Paper>
             <br></br>
-            <Typography align = "left">This Over : </Typography>
+          
             </Grid>
             </Grid>
            
             <br></br>
             <br></br> 
-            <br></br>
-            <br></br>
-            <br></br>
+           
             
 
             <Grid container spacing = {10}>
@@ -1347,7 +1344,7 @@ increaseScoreBy5(){
                 <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy6}>6</Button>   
             <br></br>
 
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.handleExtra}>WIDE</Button>
+                <Button variant="contained" color="primary" className={classes.button} onClick={this.handleExtra}>WIDE *</Button>
                 <Button variant="contained" color="primary" className={classes.button}>NO BALL</Button>
                 <Button variant="contained" color="primary" className={classes.button}>LEG BYES</Button>
                 <Button variant="contained" color="primary" className={classes.button}>BYES</Button>
@@ -1356,7 +1353,7 @@ increaseScoreBy5(){
 
             <br></br>
                 <Button variant="contained" color="secondary" className={classes.button}>CAUGHT</Button>
-                <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleWicket}>BOWLED</Button>
+                <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleWicket}>BOWLED *</Button>
                 <Button variant="contained" color="secondary" className={classes.button}>LBW</Button>
                 <Button variant="contained" color="secondary" className={classes.button}>RUN OUT</Button>
                 <Button variant="contained" color="secondary" className={classes.button}>STUMPED</Button>

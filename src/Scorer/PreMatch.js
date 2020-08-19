@@ -441,31 +441,24 @@ let fixtureid=this.state.fixture_id
     var team2_id
     return (
          <div>
-       
-      <div style={{marginLeft:"78%",marginTop:10}}><Clock /></div>
       <Container>
       <div> 
 
                      
-                     <div className="match_header">
-                       <div className="stadium">
-                        {this.state.venue} 
-                       </div>
+                   
+                      
 
                        <div className="match_n_series">
                          <h2>{this.state.team1} Vs {this.state.team2}</h2>
-                        {this.state.series_name}
+                        {this.state.series_name}<br/>
+                        {this.state.venue} <br/>
+                        {this.state.fixture_date} {this.state.fixture_time}
                        </div>
-
-                       <div  style={{marginLeft : 1050}}>
-                         {this.state.fixture_date} {this.state.fixture_time}
-                        
-                       </div>
-                       
+                                  
                       
-                       
-                     </div>
-                     <hr></hr>
+                      <hr/>
+                     
+                     
                      
       <Grid container spacing={2} >
       <Grid item xs={4}
@@ -478,7 +471,7 @@ let fixtureid=this.state.fixture_id
               elevation={3}
               style={{
                 width: "400px",
-                height: "1300px",
+                height: "1150px",
                 paddingLeft: "2%",
                 paddingRight: "0%",
                 paddingTop: "4%"
@@ -505,8 +498,7 @@ let fixtureid=this.state.fixture_id
           />
           </RadioGroup>
           
-               <br />
-              <br />
+               
               <br />
               <br />
               <br />
@@ -536,9 +528,7 @@ let fixtureid=this.state.fixture_id
                   </MenuItem>
                 ))}
               </TextField>
-              <br />
-              <br />
-              <br />
+             
               <br />
               <br />
               <br />
@@ -558,13 +548,12 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Type to Search Umpire 1--"
+                    label="--Search Umpire 1--"
                     variant="outlined"
                   />
                 )}
               />
-              <br />
-              <br />
+             
               <br />
               <br />
               <br />
@@ -579,13 +568,12 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Type to Search Umpire 2--"
+                    label="--Search Umpire 2--"
                     variant="outlined"
                   />
                 )}
               />
-              <br />
-              <br />
+             
               <br />
               <br />
               <br />
@@ -600,13 +588,12 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Type to Search Third Umpire--"
+                    label="--Search Umpire 3--"
                     variant="outlined"
                   />
                 )}
               />
-              <br />
-              <br />
+             
               <br />
               <br />
               <br />
@@ -621,7 +608,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="--Type to Search Referee--"
+                    label="--Search Referee--"
                     variant="outlined"
                   />
                 )}
@@ -638,14 +625,14 @@ let fixtureid=this.state.fixture_id
              elevation={3}
               style={{
                 width: "400px",
-                height: "1300px",
+                height: "1150px",
                 paddingLeft: "2%",
                 paddingRight: "1%",
                 paddingTop: "4%"
               }}
             >
               <center>
-                <h3>{this.state.team1}</h3>
+                <h3 className="team_name_prematch">{this.state.team1}</h3>
               </center>
               <br />
 
@@ -655,7 +642,7 @@ let fixtureid=this.state.fixture_id
               <Grid container spacing={1}>
 
               <Grid item xs={7}>
-              <h3>SQUAD</h3>
+              <h3 style={{marginLeft : "50px"}}>SQUAD</h3>
               <br />
               <FormControl required error={error} component="fieldset" className={classes.formControl}>
         
@@ -738,7 +725,7 @@ let fixtureid=this.state.fixture_id
               </Grid>
               
               <Grid item xs={4}>
-              <h3>Playing 11</h3>
+              <h3 style={{marginLeft : "20px"}}>Playing 11</h3>
               <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"   value={this.state.player} />
             
               </Grid>
@@ -814,20 +801,20 @@ let fixtureid=this.state.fixture_id
              elevation={3}
               style={{
                 width: "400px",
-                height: "1300px",
+                height: "1150px",
                 paddingLeft: "2%",
                 paddingRight: "1%",
                 paddingTop: "4%"
               }}
             >
               <center>
-                <h3>{this.state.team2}</h3>
+                <h3 className="team_name_prematch">{this.state.team2}</h3>
               </center>
               <br />
               
               <Grid container spacing={1}>
                 <Grid item xs={7}>
-                <h3>SQUAD</h3>
+                <h3 style={{marginLeft : "50px"}}>SQUAD</h3>
                 <br />
                 <FormControl required error={error} component="fieldset" className={classes.formControl}>
                 <FormGroup column>
@@ -909,7 +896,7 @@ let fixtureid=this.state.fixture_id
               </Grid>
               
               <Grid item xs={4}>
-              <h3>Playing 11</h3>
+              <h3 style={{marginLeft : "20px"}}>Playing 11</h3>
               <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"  value={this.state.team}/>
               </Grid>
               </Grid>
@@ -977,6 +964,7 @@ let fixtureid=this.state.fixture_id
                 style={{ width: "150px" }}
                 className={classes.button}
                 href=" /scorer/MatchSelection"
+                color="primary"
               >
                 Back
               </Button>
@@ -986,6 +974,7 @@ let fixtureid=this.state.fixture_id
                 className={classes.button}
                 type="submit"
                 onClick={this.onSubmit}
+                color="primary"
               >
                 Submit
               </Button>
