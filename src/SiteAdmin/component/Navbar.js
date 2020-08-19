@@ -22,8 +22,7 @@ class Navbar extends React.Component {
   return (
     <div className={classes.root}>
       <AppBar position="static" style={{ marginTop: 0 }}>
-        <Toolbar  style={{ marginTop: 0 ,backgroundColor: '#0D5C75' }}>
-        <Typography style={{ marginRight: 50 }} color="inherit">Strikers</Typography>
+        <Toolbar  style={{ marginTop: 0}}>
           <Button style={{ marginRight: 50 }} color="inherit" aria-labelledby="Home" href = '/siteadmin/home'>Home</Button>
           <Button style={{ marginRight: 50 }} color="inherit" aria-labelledby="admins" href = '/siteadmin/admin'>Admins</Button>
           <Button style={{ marginRight: 50 }} color="inherit" aria-labelledby="Scorers" href = '/siteadmin/scorer'>Scorers</Button>

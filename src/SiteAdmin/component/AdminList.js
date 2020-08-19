@@ -187,7 +187,8 @@ class AdminList extends Component {
       },
     ];
     return (
-      <div>
+      <div style = {{marginTop:80}}>
+      <Header />
      
       <Navbar/>
        
@@ -198,16 +199,18 @@ class AdminList extends Component {
           <div>
           
             <Button
+            className = "btn newBtn"
               variant="contained"
               style={{
+                
                 border: "none",
                 color: "white",
                 padding: "08px 20px",
                 fontSize: "medium",
                 cursor: "pointer",
-                marginTop: "20px",
-                backgroundColor: "#0D5C75",
-                marginBottom: "30px",
+                marginTop: "10px",
+                backgroundColor: "#3f51b5",
+                marginBottom: "10px",
                 marginLeft: 30,
               }}
               onClick={this.openAddForm}

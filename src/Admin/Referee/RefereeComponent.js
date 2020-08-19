@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import RefereeDataService from './Service/RefereeDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
-
+import Header from '../../Scorer/Header'
 
 
 import Dialog from "@material-ui/core/Dialog";
@@ -381,7 +381,8 @@ class RefereeComponent extends Component {
             }
         ]  
         return (
-            <div style={{marginTop:"100px"}}>
+            <div style={{marginTop:100}}>
+              <Header />
               <AdminSidenav style={{position:"fixed"}} />
               <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}

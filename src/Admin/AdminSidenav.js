@@ -51,8 +51,8 @@ const styles =theme=>( {
       },
       toolbar: theme.mixins.toolbar,
       link:{
-        textDecoration:'none',
-        color:theme.palette.text.primary
+        color:'#3f51b5',
+       
       }
     });
     
@@ -85,7 +85,7 @@ class AdminSidenav extends React.Component{
                     <MenuList>
             {routes.map((prop, key) => {
               return (
-                <Link to={prop.path} style={{ textDecoration: 'none' }} key={key}>
+                <Link to={prop.path} className={classes.link} key={key}>
                   <MenuItem selected={this.activeRoute(prop.path)}>
                     <ListItemIcon>
                       <prop.icon />

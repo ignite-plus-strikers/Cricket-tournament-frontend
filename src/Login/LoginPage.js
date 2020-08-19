@@ -8,7 +8,7 @@ import AdminDashboard from "../Admin/AdminDashboard";
 import Cookies from 'js-cookie'
 import MatchSelection from "../Scorer/MatchSelection";
 import PageNotFound from "../PageNotFound"
-import {Card, CardContent} from "@material-ui/core"
+import {Card, CardContent, TextareaAutosize} from "@material-ui/core"
 import { Typography, Divider,Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -95,20 +95,22 @@ class LoginPage extends React.Component {
 
   render() {
     if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_ADMIN") {
-      Cookies.set("name", this.state.user_name)
+      Cookies.set("name", this.state.user_name )
       Cookies.set("role", this.state.user_role)
       //return <AdminDashboard user_name={this.state.user_name}/>;
       return <Redirect to ="/admin/dashboard" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_SCORER") {
       Cookies.set("name", this.state.user_name)
-      Cookies.set("role", this.state.user_role)
-      return <MatchSelection user_name={this.state.user_name} />;
+      Cookies.set("role", this.state.user_role , {expires:0.5})
+      //return <MatchSelection user_name={this.state.user_name} />;
+      return <Redirect to ="/scorer/MatchSelection" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_SITE_ADMIN") {
       Cookies.set("name", this.state.user_name)
       Cookies.set("role", this.state.user_role)
-      return <Home user_name={this.state.user_name} />;
+      //return <Home user_name={this.state.user_name} />;
+      return <Redirect to = "/siteadmin/home" />
     }
    
     const { classes } = this.props;

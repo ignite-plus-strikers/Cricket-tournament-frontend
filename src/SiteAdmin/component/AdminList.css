@@ -8,18 +8,14 @@
 
 
   }
-  .newBtn{
-    background-color:#0D5C75 ;
-    margin-bottom: 30px;
-    margin-left: -200;
-  }
+  
   .newBtn:hover{
     background:#1d81a0;
     color: white;
   }
 
   .hdrCls {
-    background-color: #0D5C75;
+    background-color: #3f51b5;
     color: #ffffff;
     font-size: large;
     font-weight: 400;

@@ -21,7 +21,7 @@ import TextField from "@material-ui/core/TextField";
 import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import AdminSidenav from '../AdminSidenav';
-
+import Header from '../../Scorer/Header'
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -800,7 +800,8 @@ class FixtureComponent extends Component {
             }
         ]  
         return (
-            <div style={{marginTop:"100px"}}>
+            <div style={{marginTop:100}}>
+              <Header />
               <AdminSidenav style={{position:"fixed"}} />
               <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}

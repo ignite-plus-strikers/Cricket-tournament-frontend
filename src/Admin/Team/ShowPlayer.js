@@ -5,6 +5,7 @@ import TeamDataService from './Service/TeamDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
 import AdminSidenav from '../AdminSidenav';
+import Header from '../../Scorer/Header'
 
 class ShowPlayer extends Component {
 
@@ -162,6 +163,7 @@ class ShowPlayer extends Component {
         ]  
         return (
           <div className = "alignment" style={{marginLeft:"400px",marginTop:"100px",width:"54%",marginBottom:"20px"}}>
+            <Header />
                 <AdminSidenav style={{position:"fixed"}} /><br/>
                 {this.state.teams.map(team =>{
                     if(team.team_id==teamID){

@@ -8,7 +8,7 @@ import TeamDataService from './Service/TeamDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
 import AdminSidenav from '../AdminSidenav';
-
+import Header from '../../Scorer/Header'
 
 
 class AddPlayer extends Component {
@@ -227,6 +227,7 @@ class AddPlayer extends Component {
        
         return (
             <div className = "alignment" style={{marginLeft:"400px",marginTop:"100px",width:"54%",marginBottom:"20px"}}>
+              <Header />
                <AdminSidenav style={{position:"fixed"}} />
                <br/>
                 

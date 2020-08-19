@@ -424,15 +424,12 @@ a{
     background-size: cover;
   }
 
-  .alignment{
-    margin-left: 150px;
-  }
   .google-logout-button {
-    margin-top: 10px;
+   margin-top: 1em;
+    position: absolute;
+    margin-left: 90%; 
+  }
 
-    position:absolute;
-    margin-left: 90%;
-    z-index: 1500;
-    
-
+  .google-create-account{
+    margin-top: 5em;
   }

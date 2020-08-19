@@ -8,7 +8,7 @@ import SeriesDataService from './Service/SeriesDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
 import AdminSidenav from '../AdminSidenav';
-
+import Header from '../../Scorer/Header'
 
 class AddTeams extends Component {
 
@@ -147,6 +147,7 @@ class AddTeams extends Component {
 
         return (
             <div className = "alignment" style={{marginLeft:"400px",marginTop:"100px",width:"54%",marginBottom:"20px"}}>
+                <Header />
                 <AdminSidenav style={{position:"fixed"}} /><br/>
                 {this.state.series.map(s =>{
                     if(s.series_id===seriesID){

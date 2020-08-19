@@ -13,14 +13,15 @@ import Clock from './Clock';
 import axios from 'axios'
 import moment from 'moment';
 import Pagination from '@material-ui/lab/Pagination';
+import { AutoComplete } from 'rsuite';
 
 
 
 const useStyles = theme => ({
   root: {
-    width: 400,
-    height:'auto',
-    marginLeft:100,
+    width: 300,
+    height: 'auto',
+    marginLeft:70,
     marginTop:20,
     '& > *': {
       marginTop: theme.spacing(2),
@@ -78,24 +79,24 @@ class MatchSelection extends React.Component{
   render(){
     const {classes} = this.props;
     return (
-      <div className = "header-styling">
+     <div style = {{marginTop:110}}>
       <Header />
       <Container>
      
       
-        <Typography variant="h4" color="primary" align="center" style={{marginTop:'2em'}}>Welcome {this.props.user_name}! Happy Scoring! </Typography>
+        <Typography variant="h5" color="primary" align="center" style={{marginTop:90}}>Welcome {this.props.user_name}! Happy Scoring! </Typography>
         {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
         {
         return(
           <div>
-    <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:100}} >Live Match</Typography> 
+    <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:70}} >Live Match</Typography> 
        
          
               <Card className = {classes.root} variant="outlined">
               <CardContent>
-              <Typography variant="h5" color="primary" align="center">{fixture.team1} vs {fixture.team2}</Typography>
+              <Typography variant="h6" color="primary" align="center">{fixture.team1} vs {fixture.team2}</Typography>
               <Divider />
-        <Typography variant="body1" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time}</Typography>
+        <Typography variant="body2" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time}</Typography>
               </CardContent>
             <Divider />
             <CardActions>
@@ -114,16 +115,16 @@ class MatchSelection extends React.Component{
       
      
          
-            <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:100}} >Upcoming Matches</Typography> 
+            <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:70}} >Upcoming Matches</Typography> 
       {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time<fixture.fixture_start_time) 
         {
         return(
             <div className={classes.node}>
             <Card className={classes.root} variant="outlined">
               <CardContent>
-              <Typography variant="h5" align="center" color="primary">{fixture.team1} vs {fixture.team2}</Typography>
+              <Typography variant="h6" align="center" color="primary">{fixture.team1} vs {fixture.team2}</Typography>
               <Divider />
-              <Typography variant="body1" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time}</Typography>
+              <Typography variant="body2" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time}</Typography>
               </CardContent>
             <Divider />
             <CardActions>
@@ -150,9 +151,9 @@ class MatchSelection extends React.Component{
           <div className={classes.node}>
             <Card className={classes.root} variant="outlined">
               <CardContent>
-              <Typography variant="h5" align="center" color="primary">{fixture.team1} vs {fixture.team2}</Typography>
+              <Typography variant="h6" align="center" color="primary">{fixture.team1} vs {fixture.team2}</Typography>
               <Divider />
-              <Typography variant="body1" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time}</Typography>
+              <Typography variant="body2" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time}</Typography>
               </CardContent>
             <Divider />
             <CardActions>

@@ -440,14 +440,10 @@ let fixtureid=this.state.fixture_id
     var team1_id
     var team2_id
     return (
-         <div>
+         <div style = {{marginTop:100}}>
+           <Header />
       <Container>
       <div> 
-
-                     
-                   
-                      
-
                        <div className="match_n_series">
                          <h2>{this.state.team1} Vs {this.state.team2}</h2>
                         {this.state.series_name}<br/>
@@ -456,10 +452,7 @@ let fixtureid=this.state.fixture_id
                        </div>
                                   
                       
-                      <hr/>
-                     
-                     
-                     
+                      <hr/>               
       <Grid container spacing={2} >
       <Grid item xs={4}
             
@@ -963,7 +956,7 @@ let fixtureid=this.state.fixture_id
                 variant="contained"
                 style={{ width: "150px" }}
                 className={classes.button}
-                href=" /scorer/MatchSelection"
+                href="/"
                 color="primary"
               >
                 Back

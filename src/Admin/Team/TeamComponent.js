@@ -3,7 +3,7 @@ import TeamDataService from './Service/TeamDataService';
 
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
-
+import Header from '../../Scorer/Header'
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -328,7 +328,8 @@ class TeamComponent extends Component {
                 }
         ]  
         return (
-            <div style={{marginTop:"100px"}}>
+            <div style={{marginTop:100}}>
+              <Header />
                  <AdminSidenav style={{position:"fixed"}}  />
                  <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
