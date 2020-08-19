@@ -11,7 +11,8 @@ import {Card, CardContent} from "@material-ui/core"
 import { Typography, Divider,Grid } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
-import {Alert,AlertTitle} from "@material-ui/core"
+import {Alert,AlertTitle} from "@material-ui/lab"
+import {Snackbar} from "@material-ui/core"
 //import Header from "../Scorer/Header"
 
 const styles = {
@@ -33,14 +34,9 @@ class LoginPage extends React.Component {
       accessToken: "",
       user_name: "",
       user_role: "",
-      message : null
+      open1 : false
     };
-    {
-      /*this.userlogin = this.userlogin.bind(this);
-            this.handleLoginFailure = this.handleLoginFailure.bind(this);
-            this.logout = this.logout.bind(this);
-            this.handleLogoutFailure = this.handleLogoutFailure.bind(this); */
-    }
+    this.handleInvalid = this.handleInvalid.bind(this);
   }
 
   /*  logout(res) {
@@ -50,6 +46,12 @@ class LoginPage extends React.Component {
       }));
     } 
      */
+
+     handleInvalid(){
+       this.setState({open1 : true})
+     }
+
+   
 
   userlogin = (res) => {
     const accessToken = res.tokenId;
@@ -73,7 +75,11 @@ class LoginPage extends React.Component {
       })
       .catch(function (error) {
         console.log(error);
-      });
+        this.handleInvalid();
+      }.bind(this));
+
+
+      
 
 
     /* const headers = {
@@ -150,10 +156,14 @@ class LoginPage extends React.Component {
     } */
     return (
       <div className="Login-Component">
-      
+      <Snackbar open={this.state.open1} autoHideDuration={6000} onClose={() => {}} style={{marginTop : "50%", marginRight : "15%"}}>
+      <Alert severity="error">
+      <AlertTitle>Oops! Error</AlertTitle>
+      Looks like the credentials entered are invalid! 
+      </Alert>
+      </Snackbar>
         <br />
-        
-        <Card className={classes.card} align = "center" style = {{marginLeft : "35%", marginTop : "15%"}}>
+        <Card className={classes.card} align = "center" style = {{marginLeft : "37%", marginTop : "15%"}}>
         <CardContent align = "center">
         <Typography>Please Login with your assigned Google Account</Typography>
         <Divider/>
