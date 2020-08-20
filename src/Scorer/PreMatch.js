@@ -442,6 +442,7 @@ let fixtureid=this.state.fixture_id
     return (
          <div style = {{marginTop:100}}>
            <Header />
+           <Clock />
       <Container>
       <div> 
                        <div className="match_n_series">
