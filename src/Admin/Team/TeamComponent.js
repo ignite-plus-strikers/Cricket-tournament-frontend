@@ -16,16 +16,9 @@ import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
 import SideNav from "../../SideNav/SideNav"
-
-
-
-
-
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AdminSidenav from '../AdminSidenav';
-
-
 
 
 const styles = theme => ({
@@ -43,7 +36,17 @@ const styles = theme => ({
     width: "100%",
     maxWidth: "300px",
     position: "fixed"
-  }
+  },
+  button: {
+    margin: theme.spacing.unit,
+  },
+  newRoot:{
+    backgroundColor: "#1854af",
+    color : "white",
+    "&:hover": {
+        backgroundColor: "#6200ea"
+      }
+ },
 });
  
 const formStyle = { width: "100%" };
@@ -333,9 +336,11 @@ class TeamComponent extends Component {
                  <AdminSidenav style={{position:"fixed"}}  />
                  <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
+                <br/>
                      <div>
-                        <button className="btn newBtn" onClick={this.openAddForm}>New</button>
+                        <Button variant="contained" size="medium" color="primary" className={classes.margin, classes.newRoot}  onClick={this.openAddForm}>NEW</Button>
                      </div>
+                     <br/>
                      <ReactTable
                      className="MyReactTableClass"
                      columns={columns}

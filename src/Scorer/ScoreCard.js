@@ -293,28 +293,20 @@ this.refreshBatsmen=this.refreshBatsmen.bind(this)
       <Header />
                     <div>
                  
-                    <div className="match_header">
-                       <div className="stadium">
-                        {this.state.venue} 
-                       </div>
-
-                       <div className="match_n_series">
-                         <h2>{this.state.team1} Vs {this.state.team2}</h2>
-                        {this.state.series_name}
-                       </div>
-
-                       <div className="match_time">
-                         {this.state.fixture_date} {this.state.fixture_time}
-                        
-                       </div>
-                       
-                      
-                       
-                     </div>
+                    
+                    <div className="match_n_series">
+                    <h2>{this.state.team1} Vs {this.state.team2}</h2>
+                   {this.state.series_name}<br/>
+                   {this.state.venue} <br/>
+                   {this.state.fixture_date} {this.state.fixture_time}
+                  </div>
                      <hr></hr>
                 <div>
                     <center>
                      <h3>SCORE CARD</h3>
+                     <Button variant="contained" color="primary" className={classes.button} onClick={() => this.handleSelect(this.state.fixture_id)}>
+                      LIVE SCORING SCREEN
+                    </Button>
                       </center>
                   
                       <br/><br/>
@@ -395,11 +387,7 @@ this.refreshBatsmen=this.refreshBatsmen.bind(this)
                                     </TabContainer>}
                       </div>
                     </div>
-                    <div className="back">
-                    <Button variant="contained" color="primary" className={classes.button} onClick={() => this.handleSelect(this.state.fixture_id)}>
-                      BACK
-                    </Button>
-                    </div>
+                   
 
                   </div>
     );

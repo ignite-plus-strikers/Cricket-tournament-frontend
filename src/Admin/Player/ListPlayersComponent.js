@@ -43,6 +43,16 @@ const styles = theme => ({
     width: "50%",
     drawerWidth: "50%"
     },
+    button: {
+      margin: theme.spacing.unit,
+    },
+    newRoot:{
+      backgroundColor: "#1854af",
+      color : "white",
+      "&:hover": {
+          backgroundColor: "#6200ea"
+        }
+   },
 });
  
 const Gender = [
@@ -587,10 +597,11 @@ class ListPlayersComponent extends Component {
               <AdminSidenav style={{position:"fixed"}}  />
               <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
-                     <div>
-                        <button className="btn newBtn" onClick={this.openAddForm}>New</button>
-                     </div>
-                    
+                <br/>
+                <div>
+                   <Button variant="contained" size="medium" color="primary" className={classes.margin, classes.newRoot}  onClick={this.openAddForm}>NEW</Button>
+                </div>
+                <br/>
                     <ReactTable
                     className="MyReactTableClass"
                      columns={columns}

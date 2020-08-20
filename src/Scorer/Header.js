@@ -22,6 +22,7 @@ const useStyles = theme => ({
   },
   appBar:{
     zIndex : -1,
+    
   }
 });
 
@@ -48,6 +49,7 @@ class Header extends React.Component{
  render(){  
    const classes = this.props;
    if(this.state.loggedOut){
+     console.log(this.state.loggedOut)
      return(
      <Redirect to = "/" />
      );
