@@ -33,7 +33,7 @@ import Header from './../Scorer/Header';
 
 const styles = {
   card: {
-    backgroundColor : "#1976d2",
+    backgroundColor : "#039be5",
     color : "white",
     width : 300
   },
@@ -43,6 +43,12 @@ const styles = {
   },
   link:{
     color:"#ffffff"
+  },
+  typo:{
+    color:"#039be5",
+    marginLeft: 170,
+    marginTop : 10,
+    align: "center"
   }
 
 };
@@ -173,11 +179,10 @@ handleTeamClick(){
     <AdminSidenav style={{position:"sticky",position:"-webkit-sticky"}} />
   <Container>
   
-  <center>
-    <h1 style={{marginLeft:170 , marginTop:'3%'}}>Welcome {user_name}!</h1>
-    </center>
+ 
+    <Typography variant = "h5" align="center" className = {classes.typo}>Welcome {user_name}!</Typography>
     
-    <div style = {{marginLeft : 200}}>
+    <div style = {{marginLeft : 200, marginTop: 10}}>
     <Grid container spacing ={6}>
         <Grid item >
             <Card className={classes.card}>
@@ -187,13 +192,13 @@ handleTeamClick(){
               component="img"
               alt="Teams"
               className={classes.media}
-              height="120"
+              height="150"
               image={team}
               title="Teams"
                />
                <CardContent style={{height:'50%'}}>
                <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
-                 {this.state.teams.length}<br/> Total Teams         
+               Total Teams : {this.state.teams.length}        
                </Typography>
                </CardContent>
              </CardActionArea></Link>
@@ -207,13 +212,13 @@ handleTeamClick(){
               component="img"
               alt="Players"
               className={classes.media}
-              height="120"
+              height="150"
               image={player}
               title="Players"
               />
               <CardContent style={{height:'50%'}}>
               <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
-              {this.state.players.length}<br/> Total Players
+              Total Players : {this.state.players.length}
               </Typography>
              </CardContent>
              </Link>
@@ -227,13 +232,13 @@ handleTeamClick(){
              component="img"
              alt="Umpire"
              className={classes.media}
-             height="120"
+             height="150"
              image={umpire}
              title="Umpire"
              />
              <CardContent style={{height:'50%'}}>
              <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
-             {this.state.umpires.length}<br/> Total Umpires   
+             Total Umpires : {this.state.umpires.length}
              </Typography>
             </CardContent>
             </Link>
@@ -250,13 +255,13 @@ handleTeamClick(){
               component="img"
               alt="Fixtures"
               className={classes.media}
-              height="120"
+              height="150"
               image={fixture}
               title="Fixtures"
             />
             <CardContent style={{height:'50%'}}>
               <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
-              {this.state.fixtures.length}<br/> Total Fixtures  
+              Total Fixtures : {this.state.fixtures.length}   
               </Typography>
             </CardContent>
          </Link>
@@ -271,13 +276,13 @@ handleTeamClick(){
           component="img"
           alt="Series"
           className={classes.media}
-          height="120"
+          height="150"
           image={series}
           title="Series"
         />
             <CardContent style={{height:'50%'}}>
               <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
-              {this.state.Series.length}<br/> Total Series  
+              Total Series : {this.state.Series.length}
               </Typography>
             </CardContent>
           </Link>
@@ -291,13 +296,13 @@ handleTeamClick(){
             component="img"
             alt="Referee"
             className={classes.media}
-            height="120"
+            height="150"
             image={referee}
             title="Referee"
             />
             <CardContent style={{height:'50%'}}>
             <Typography gutterBottom variant="h5" component="h2" style={{textAlign:"center"}}>
-            {this.state.referees.length}<br/> Total Referees   
+            Total Referees : {this.state.referees.length}   
             </Typography>
            </CardContent>
            </Link>

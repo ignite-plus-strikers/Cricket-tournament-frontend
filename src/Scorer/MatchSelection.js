@@ -11,6 +11,7 @@ import Header from './Header'
 //import MatchSelectionService from "../service/MatchSelectionService"
 import Clock from './Clock';
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import moment from 'moment';
 import Pagination from '@material-ui/lab/Pagination';
 import { AutoComplete } from 'rsuite';
@@ -21,11 +22,17 @@ const useStyles = theme => ({
   root: {
     width: 300,
     height: 'auto',
+    backgroundColor:'#f5f5f5',
     marginLeft:70,
     marginTop:20,
     '& > *': {
       marginTop: theme.spacing(2),
     },
+  },
+  palette:{
+    primary:{
+      main: '#039be5'
+    }
   },
   title: {
     fontSize: 14,
@@ -78,13 +85,14 @@ class MatchSelection extends React.Component{
 
   render(){
     const {classes} = this.props;
+    const user_name = Cookies.get("name");
     return (
      <div style = {{marginTop:110}}>
       <Header />
       <Container>
      
       
-        <Typography variant="h5" color="primary" align="center" style={{marginTop:90}}>Welcome {this.props.user_name}! Happy Scoring! </Typography>
+        <Typography variant="h5" color="primary" align="center" style={{marginTop:90}}>Welcome {user_name}! Happy Scoring! </Typography>
         {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
         {
         return(

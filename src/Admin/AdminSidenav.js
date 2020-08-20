@@ -51,7 +51,7 @@ const styles =theme=>( {
       },
       toolbar: theme.mixins.toolbar,
       link:{
-        color:'#3f51b5',
+        color:'#039be5',
        
       }
     });
