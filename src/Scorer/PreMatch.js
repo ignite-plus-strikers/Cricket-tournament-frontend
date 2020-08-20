@@ -419,6 +419,8 @@ var fixture = {
  toss_decision:this.state.toss_decision,
 umpires:umpires,
 referee:this.state.referee,
+team1_Playing11:this.state.tps1,
+team2_Playing11:this.state.tps2,
 team1_captain_wicket_keeper:team1_captain_wicket_keeper,
 team2_captain_wicket_keeper:team2_captain_wicket_keeper 
 }
