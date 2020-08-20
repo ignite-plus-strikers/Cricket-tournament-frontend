@@ -25,7 +25,7 @@ class Clock extends React.Component {
     }
     render() {
       return (
-        <Typography variant="subtitle1" color="textPrimary">{this.state.time}</Typography>
+        <Typography variant="subtitle1" color="textPrimary" style={{marginLeft:'85%', marginTop: 5}}>{this.state.time}</Typography>
       );
     }
 }
