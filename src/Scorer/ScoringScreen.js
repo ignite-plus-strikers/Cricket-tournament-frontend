@@ -64,6 +64,7 @@ const styles = theme => ({
     margin: theme.spacing.unit,
   },
  undoRoot:{
+   width : 150,
     backgroundColor: green[500],
     color : "white",
     "&:hover": {
@@ -71,12 +72,21 @@ const styles = theme => ({
       }
  },
  endRoot:{
+   width : 150,
     backgroundColor: yellow[700],
     color : "black",
     "&:hover": {
         backgroundColor: yellow[900]
       }
  },
+ blueRoot:{
+  margin: theme.spacing.unit,
+  backgroundColor: "#1668b4",
+  color : "white",
+  "&:hover": {
+      backgroundColor: "#6200ea"
+    }
+},
   input: {
     display: 'none',
   },
@@ -312,11 +322,12 @@ else{
 
   handleExtra(){
     this.setState({
-      balls_per_over : this.state.balls_per_over +1,
+      batting_team_score : this.state.batting_team_score +1,
+      balls_per_over : this.state.balls_per_over,
       bowler : {
         maiden_count : this.state.bowler.maiden_count,
         maidens : this.state.bowler.maidens,
-        runs : this.state.bowler.runs,
+        runs : this.state.bowler.runs +1,
         overs : this.state.bowler.overs,
         wickets : this.state.bowler.wickets,
         balls : this.state.bowler.balls +1,
@@ -1243,7 +1254,7 @@ increaseScoreBy5(){
     const { classes } = this.props;
     return (
 
-      <Container>
+      <Container style={{marginLeft : "10%"}}>
          <div style = {{marginTop:100}}>
            <Header />
         <Grid align = "center">
@@ -1340,21 +1351,21 @@ increaseScoreBy5(){
             <Grid container spacing = {10}>
             <Grid item align = "left">
             <Paper>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy0}>0</Button>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy1}>1</Button>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy2}>2</Button>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy3}>3</Button>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy4}>4</Button>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy5}>5</Button>
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.increaseScoreBy6}>6</Button>   
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.increaseScoreBy0}>0</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.increaseScoreBy1}>1</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.increaseScoreBy2}>2</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.increaseScoreBy3}>3</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.increaseScoreBy4}>4</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.increaseScoreBy5}>5</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.increaseScoreBy6}>6</Button>   
             <br></br>
 
-                <Button variant="contained" color="primary" className={classes.button} onClick={this.handleExtra}>WIDE *</Button>
-                <Button variant="contained" color="primary" className={classes.button}>NO BALL</Button>
-                <Button variant="contained" color="primary" className={classes.button}>LEG BYES</Button>
-                <Button variant="contained" color="primary" className={classes.button}>BYES</Button>
-                <Button variant="contained" color="primary" className={classes.button}>NO BALL+LEG BYES</Button>
-                <Button variant="contained" color="primary" className={classes.button}>NO BALL+BYES</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot} onClick={this.handleExtra}>WIDE *</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot}>NO BALL</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot}>LEG BYES</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot}>BYES</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot}>NO BALL+LEG BYES</Button>
+                <Button variant="contained" color="primary" className={classes.button,classes.blueRoot}>NO BALL+BYES</Button>
 
             <br></br>
                 <Button variant="contained" color="secondary" className={classes.button}>CAUGHT</Button>
@@ -1363,14 +1374,14 @@ increaseScoreBy5(){
                 <Button variant="contained" color="secondary" className={classes.button}>RUN OUT</Button>
                 <Button variant="contained" color="secondary" className={classes.button}>STUMPED</Button>
                 <Button variant="contained" color="secondary" className={classes.button}>HIT WICKET</Button>
-            <br></br>
+           
                 <Button variant="contained" color="secondary" className={classes.button}>RETIRED</Button>
                 </Paper>
                 </Grid> 
 
 
                 <Grid item align = "center">
-              
+               
                 <Button variant="contained" size="medium" color="primary" className={classes.margin, classes.undoRoot}>UNDO</Button>
                 <br></br>
                 <br></br>

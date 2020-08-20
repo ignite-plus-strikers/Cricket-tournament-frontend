@@ -474,7 +474,7 @@ let fixtureid=this.state.fixture_id
                 component="legend"
                 className={classes.margin}
               >
-                Toss:
+               <b> Toss: </b>
               </FormLabel>
               <RadioGroup aria-label="toss" name="toss" onChange={this.handleElement}>
               <FormControlLabel
@@ -495,7 +495,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>Toss Decision:</label>
+              <label><b>Toss Decision:</b></label>
               <br />
               <br />
               <TextField
@@ -526,11 +526,11 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>Match Officials</label>
+              <label><b>Match Officials</b></label>
               
               <br />
               <br />
-              <label>On Field Umpire 1:</label><br/>
+              <label><b>On Field Umpire 1:</b></label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -550,7 +550,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>On Field Umpire 2:</label><br/>
+              <label><b>On Field Umpire 2:</b></label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -570,7 +570,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>Third Umpire:</label><br/>
+              <label><b>Third Umpire:</b></label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -590,7 +590,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label>Match Refree:</label><br/>
+              <label><b>Match Refree:</b></label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.referee_names}
@@ -719,13 +719,14 @@ let fixtureid=this.state.fixture_id
               
               <Grid item xs={4}>
               <h3 style={{marginLeft : "20px"}}>Playing 11</h3>
-              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"   value={this.state.player} />
+              <br/><br/>
+              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"   value={this.state.player}  style={{height : 600}}/>
             
               </Grid>
               </Grid>
               <br />
              
-              <label>Captain:</label>
+              <label><b>Captain:</b></label>
               <br />
               <br />
               <TextField
@@ -754,7 +755,7 @@ let fixtureid=this.state.fixture_id
               </TextField>
               <br />
               <br />
-              <label>Wicket Keeper:</label>
+              <label><b>Wicket Keeper:</b></label>
               <br />
               <br />
               <TextField
@@ -820,12 +821,9 @@ let fixtureid=this.state.fixture_id
                  <FormControlLabel
                   control={
                     <Checkbox
-                      
                       onChange={this.handleChange1(tp.player_first_name+tp.player_last_name+tp.player_initials,tp.player_first_name+" "+tp.player_last_name+" "+tp.player_initials,tp.category)}
                       value={tp.player_first_name+tp.player_last_name+tp.player_initials}
                       color="primary"
-                      
-                   
                     />
                       
                   }
@@ -877,6 +875,7 @@ let fixtureid=this.state.fixture_id
                     />
                       
                   }
+                
                   label = {tp.player_first_name+" "+tp.player_last_name+" "+tp.player_initials}
                 />
                 </div>
@@ -890,11 +889,12 @@ let fixtureid=this.state.fixture_id
               
               <Grid item xs={4}>
               <h3 style={{marginLeft : "20px"}}>Playing 11</h3>
-              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"  value={this.state.team}/>
+              <br/><br/>
+              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"  value={this.state.team} style={{height : 600}}/>
               </Grid>
               </Grid>
               <br />
-              <label>Captain:</label>
+              <label><b>Captain:</b></label>
               <br />
               <br />
               <TextField
@@ -922,7 +922,7 @@ let fixtureid=this.state.fixture_id
               </TextField>
               <br />
               <br />
-              <label>Wicket Keeper:</label>
+              <label><b>Wicket Keeper:</b></label>
               <br />
               <br />
               <TextField
@@ -950,7 +950,7 @@ let fixtureid=this.state.fixture_id
               </TextField>
               <br />
               <br />
-              <br />
+              
               <center>
               <Button
                 variant="contained"

@@ -17,6 +17,7 @@ import Typography from '@material-ui/core/Typography';
 import Header from './Header'
 import PreMatchDataService from './service/PreMatchDataService';
 import ScorecardDataService from './service/ScorecardDataService';
+import { Container } from '@material-ui/core';
 
 
 function TabContainer(props) {
@@ -304,12 +305,10 @@ this.refreshBatsmen=this.refreshBatsmen.bind(this)
                 <div>
                     <center>
                      <h3>SCORE CARD</h3>
-                     <Button variant="contained" color="primary" className={classes.button} onClick={() => this.handleSelect(this.state.fixture_id)}>
-                      LIVE SCORING SCREEN
-                    </Button>
+                    
                       </center>
                   
-                      <br/><br/>
+                      <br/>
                       
                     {this.state.match_result!==null && this.state.winning_score['runs'] && <div>
                       <center>
@@ -327,6 +326,7 @@ this.refreshBatsmen=this.refreshBatsmen.bind(this)
                     }
                     
                 </div>
+               <Container style={{marginLeft : "1%"}}>
                       <div  className="team_name">
                               <AppBar position="static" style={{backgroundColor:"#3F51B5"}} >
                                 <Tabs  classes={{
@@ -386,6 +386,7 @@ this.refreshBatsmen=this.refreshBatsmen.bind(this)
                                     </div> 
                                     </TabContainer>}
                       </div>
+                      </Container>
                     </div>
                    
 

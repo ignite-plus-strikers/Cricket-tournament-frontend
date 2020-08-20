@@ -1,27 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-
-
 import { Link, withRouter } from 'react-router-dom';
-
-
-
 import Drawer from '@material-ui/core/Drawer';
-
 import Toolbar from '@material-ui/core/Toolbar';
-
-
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-
 import {  MenuList, MenuItem } from '@material-ui/core';
-
 import List from '@material-ui/core/List';
 import routes from './routes';
-
 const drawerWidth = 200;
 
 
@@ -34,12 +23,12 @@ const styles =theme=>( {
       },
       
       drawer: {
-        width: drawerWidth,
+        width: 250,
         color:"#083f91",
         position:"fixed"
       },
       drawerPaper: {
-        width: drawerWidth,
+        width: 250,
         marginTop:"100px",
         position:"fixed",
         paddingTop:"20px"
@@ -53,6 +42,9 @@ const styles =theme=>( {
       link:{
         color:'#3f51b5',
        
+      },
+      listItemText : {
+        fontSize : "20px"
       }
     });
     
@@ -90,7 +82,7 @@ class AdminSidenav extends React.Component{
                     <ListItemIcon>
                       <prop.icon />
                     </ListItemIcon>
-                    <ListItemText primary={prop.sidebarName} />
+                    <ListItemText primary={prop.sidebarName} classes={{primary:classes.listItemText}}/>
                   </MenuItem>
                 </Link>
               );
