@@ -45,6 +45,13 @@ function Transition(props) {
     button: {
       margin: theme.spacing.unit,
     },
+    newRoot:{
+      backgroundColor: "#1854af",
+      color : "white",
+      "&:hover": {
+          backgroundColor: "#6200ea"
+        }
+   },
   });
    
   
@@ -805,9 +812,11 @@ class FixtureComponent extends Component {
               <AdminSidenav style={{position:"fixed"}} />
               <div className = "alignment" style={{marginLeft:"300px",marginTop:"30px",width:"74%",marginBottom:"20px"}}>
                 {this.state.message && <div class="alert success">{this.state.message}</div>}
+                <br/>
                 <div>
-                        <button className="btn newBtn" onClick={this.openAddForm}>New</button>
-                     </div>
+                   <Button variant="contained" size="medium" color="primary" className={classes.margin, classes.newRoot}  onClick={this.openAddForm}>NEW</Button>
+                </div>
+                <br/>
                     
                      <ReactTable
                      className="MyReactTableClass"
