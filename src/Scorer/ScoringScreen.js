@@ -247,8 +247,8 @@ else{
                 this.setState({
                   batting_team : response.data.team1,
                   bowling_team : response.data.team2,
-                  team1_players : response.data.team1_playing11,
-                  team2_players : response.data.team2_playing11,
+                  team1_players : response.data.team1_Playing11,
+                  team2_players : response.data.team2_Playing11,
                  })
             }
         )

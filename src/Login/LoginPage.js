@@ -14,6 +14,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {Alert,AlertTitle} from "@material-ui/lab"
 import {Snackbar} from "@material-ui/core"
+import AppBar from '@material-ui/core/AppBar';
+import appbar from '../Admin/cards_images/appbar.png';
 import AdminList from "../SiteAdmin/component/AdminList";
 import Home from "../SiteAdmin/component/Home";
 
@@ -118,6 +120,10 @@ class LoginPage extends React.Component {
     } */
     return (
       <div className="Login-Component">
+
+        <AppBar position="fixed" className={classes.appBar}>  
+        <img src={appbar} style={{height:90}}></img>
+        </AppBar>  
       <Snackbar open={this.state.open1} autoHideDuration={6000} onClose={() => {}} style={{marginTop : "50%", marginRight : "15%"}}>
       <Alert severity="error">
       <AlertTitle>Oops! Error</AlertTitle>

@@ -81,36 +81,36 @@ const Visual = [
 ];
 const Batting = [
   {
-    value: "right-handed-batsman",
-    label: "right-handed-batsman"
+    value: "Right-handed-batsman",
+    label: "Right-handed-batsman"
   },
   {
-    value: "left-handed-batsman",
-    label: "left-handed-batsman"
+    value: "Left-handed-batsman",
+    label: "Left-handed-batsman"
   },
  
 ];
  
 const Bowling = [
   {
-    value: "right-handed-bowler",
-    label: "right-handed-bowler"
+    value: "Right-handed-bowler",
+    label: "Right-handed-bowler"
   },
   {
-    value: "left-handed-bowler",
-    label: "left-handed-bowler"
+    value: "Left-handed-bowler",
+    label: "Left-handed-bowler"
   },
   
 ];
  
 const State = [
   {
-    value: "retired",
-    label: "retired"
+    value: "Retired",
+    label: "Retired"
   },
   {
-    value: "playing",
-    label: "playing"
+    value: "Playing",
+    label: "Playing"
   }
 ];
 const formStyle={width:"100%"}

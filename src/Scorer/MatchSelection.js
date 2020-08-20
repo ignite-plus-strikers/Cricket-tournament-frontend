@@ -22,12 +22,9 @@ const useStyles = theme => ({
   root: {
     width: 300,
     height: 'auto',
-    backgroundColor:'#f5f5f5',
+    backgroundColor:'#e3f2fd',
     marginLeft:70,
-    marginTop:20,
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
+    marginTop:20
   },
   palette:{
     primary:{
@@ -91,7 +88,7 @@ class MatchSelection extends React.Component{
       <Header />
       <Clock />
       <Container>
-        <Typography variant="h5" color="primary" align="center" style={{marginTop:10}}>Welcome {user_name}! Happy Scoring! </Typography>
+        <Typography variant="h4" color="primary" align="center" style={{marginTop:0}}>Welcome {user_name}! Happy Scoring! </Typography>
         {this.state.fixtures.map((fixture) => {if (moment(todayDate).isSame(fixture.fixture_date) && time>fixture.fixture_start_time && time<fixture.fixture_end_time) 
         {
         return(
@@ -99,11 +96,11 @@ class MatchSelection extends React.Component{
     <Typography variant="h5" align="left" style={{marginTop:20,marginLeft:70}} >Live Match</Typography> 
        
          
-              <Card className = {classes.root} variant="outlined">
-              <CardContent>
-              <Typography variant="h6" color="primary" align="center">{fixture.team1} VS {fixture.team2}</Typography>
+              <Card className = {classes.root} variant="elevation" elevation = {5}>
+              <CardContent style={{padding:0}}>
+              <Typography variant="h5" color="primary" align="center" style={{marginTop:5}}>{fixture.team1}<br /> VS <br />{fixture.team2}</Typography>
               <Divider />
-        <Typography variant="body2" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time} </Typography>
+        <Typography variant="body1" align="center" color="textSecondary"><b>{fixture.description}</b> at <b>{fixture.venue}</b> <br />scheduled on <b>{fixture.fixture_date} {fixture.fixture_start_time}</b> </Typography>
         </CardContent>
             <Divider />
             <CardActions>
@@ -127,15 +124,15 @@ class MatchSelection extends React.Component{
         {
         return(
             <div className={classes.node}>
-            <Card className = {classes.root} variant="outlined">
-              <CardContent>
-              <Typography variant="h6" color="primary" align="center">{fixture.team1} VS {fixture.team2}</Typography>
+            <Card className = {classes.root} variant="elevation" elevation = {5}>
+              <CardContent style = {{padding:0}}>
+              <Typography variant="h5" color="primary" align="center">{fixture.team1} <br /> VS <br /> {fixture.team2}</Typography>
               <Divider />
-        <Typography variant="body2" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time} </Typography>
+        <Typography variant="body1" align="center" color="textSecondary"><b>{fixture.description}</b> at <b>{fixture.venue}</b> <br /> scheduled on <b>{fixture.fixture_date} {fixture.fixture_start_time}</b> </Typography>
         </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" style={{margin:'auto'}} onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} disabled>Pre-match Screen</Button>
               
             </CardActions>
             </Card></div>
@@ -155,15 +152,15 @@ class MatchSelection extends React.Component{
         return(
         
           <div className={classes.node}>
-            <Card className = {classes.root} variant="outlined">
-              <CardContent>
-              <Typography variant="h6" color="primary" align="center">{fixture.team1} VS {fixture.team2}</Typography>
+            <Card className = {classes.root} variant="elevation" elevation = {5} >
+              <CardContent style={{padding:0 , paddingBottom:10}}>
+              <Typography variant="h5" color="primary" align="center">{fixture.team1} <br /> VS  <br />{fixture.team2}</Typography>
               <Divider />
-        <Typography variant="body2" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time} </Typography>
+        <Typography variant="body1" align="center" color="textSecondary"><b>{fixture.description}</b> at <b>{fixture.venue}</b> <br /> scheduled on <b>{fixture.fixture_date} {fixture.fixture_start_time}</b> </Typography>
         </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" style={{margin:'auto'}} onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} disabled>Pre-match Screen</Button>
               
             </CardActions>
             </Card></div>
