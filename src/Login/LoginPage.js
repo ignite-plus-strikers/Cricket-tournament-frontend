@@ -21,7 +21,6 @@ import Home from "../SiteAdmin/component/Home";
 
 const styles = {
   card: {
-    
     width : 400
   },
   media: {
@@ -122,7 +121,7 @@ class LoginPage extends React.Component {
       <Snackbar open={this.state.open1} autoHideDuration={6000} onClose={() => {}} style={{marginTop : "50%", marginRight : "15%"}}>
       <Alert severity="error">
       <AlertTitle>Oops! Error</AlertTitle>
-      Looks like the credentials entered are invalid! 
+      The credentials entered are invalid! 
       </Alert>
       </Snackbar>
         <br />
