@@ -101,7 +101,7 @@ class MatchSelection extends React.Component{
          
               <Card className = {classes.root} variant="outlined">
               <CardContent>
-              <Typography variant="h6" color="primary" align="center">{fixture.team1} VS {fixture.team2}</Typography>
+              <Typography variant="h6" color="primary" align="center" style={{marginTop:5}}>{fixture.team1} VS {fixture.team2}</Typography>
               <Divider />
         <Typography variant="body2" align="center" color="textSecondary">{fixture.description} at {fixture.venue} scheduled on {fixture.fixture_date} {fixture.fixture_start_time} </Typography>
         </CardContent>
@@ -135,7 +135,7 @@ class MatchSelection extends React.Component{
         </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" style={{margin:'auto'}} onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} disabled>Pre-match Screen</Button>
               
             </CardActions>
             </Card></div>
@@ -163,7 +163,7 @@ class MatchSelection extends React.Component{
         </CardContent>
             <Divider />
             <CardActions>
-              <Button variant="contained" color="primary" style={{margin:'auto'}} onClick={() => this.PrematchScreenClicked(fixture.fixture_id)}>Pre-match Screen</Button>
+              <Button variant="contained" color="primary" style={{margin:'auto'}} disabled>Pre-match Screen</Button>
               
             </CardActions>
             </Card></div>

@@ -200,14 +200,14 @@ class PlayerAddnUpdate extends Component {
 
                                     <label>Batting style</label>
                                     <Field as="select" name="player_batting_style">
-                                        <option value="right-handed-batsman">right-handed-batsman</option>
-                                        <option value="left-handed-batsman">left-handed-batsman</option>
+                                        <option value="Right-handed-batsman">Right-handed-batsman</option>
+                                        <option value="Left-handed-batsman">Left-handed-batsman</option>
                                     </Field><br></br><br></br>
 
                                     <label>Bowling style</label>
                                     <Field as="select" name="player_bowling_style">
-                                        <option value="left-handed-bowler">left-handed-bowler</option>
-                                        <option value="right-handed-bowler">right-handed-bowler</option>
+                                        <option value="Left-handed-bowler">Left-handed-bowler</option>
+                                        <option value="Right-handed-bowler">Right-handed-bowler</option>
                                     </Field><br></br><br></br>
 
                                     <label>Player role</label>
@@ -215,8 +215,8 @@ class PlayerAddnUpdate extends Component {
 
                                     <label>Retired or Playing</label>
                                     <Field as="select" name="player_status">
-                                        <option value="retired">retired</option>
-                                        <option value="playing">playing</option>
+                                        <option value="Retired">Retired</option>
+                                        <option value="Playing">Playing</option>
                                     </Field><br></br><br></br>
                                 <button className="btn warning marginsave" type="submit">Save</button>
                             </Form>
