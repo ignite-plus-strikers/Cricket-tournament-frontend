@@ -16,7 +16,7 @@ class Home extends Component {
   };
 
   render() {
-    const user_name = Cookies.get("name");
+	const user_name = Cookies.get("name");
     return (
     
       <div style = {{marginTop:80}}>
@@ -24,7 +24,9 @@ class Home extends Component {
        <Navbar />
         <br />
         <Container align="center">
-        <h1>Welcome {user_name}!</h1><br/>
+	<br />
+	<h1>Welcome {user_name}!</h1>
+	<br />
       <Card align = "center" style = {{width: '40%' , height : '40%'}}>
         <CardContent align = "center">
         <Typography>
