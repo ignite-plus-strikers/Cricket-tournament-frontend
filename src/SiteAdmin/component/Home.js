@@ -7,6 +7,7 @@ import {Card, CardContent, TextareaAutosize} from "@material-ui/core"
 import {Container} from "@material-ui/core"
 import { Typography, Divider,Grid } from "@material-ui/core";
 import Header from '../../Scorer/Header'
+import Cookies from 'js-cookie'
 
 class Home extends Component {
   responseGoogle = (response) => {
@@ -15,6 +16,7 @@ class Home extends Component {
   };
 
   render() {
+    const user_name = Cookies.get("name");
     return (
     
       <div style = {{marginTop:80}}>
@@ -22,6 +24,7 @@ class Home extends Component {
        <Navbar />
         <br />
         <Container align="center">
+        <h1>Welcome {user_name}!</h1><br/>
       <Card align = "center" style = {{width: '40%' , height : '40%'}}>
         <CardContent align = "center">
         <Typography>

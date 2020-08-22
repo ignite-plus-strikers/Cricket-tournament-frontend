@@ -33,7 +33,7 @@ import Header from './../Scorer/Header';
 
 const styles = {
   card: {
-    backgroundColor : "#039be5",
+    backgroundColor : "#1854af",
     color : "white",
     width : 300
   },
@@ -45,7 +45,7 @@ const styles = {
     color:"#ffffff"
   },
   typo:{
-    color:"#039be5",
+    color:"#1854af",
     marginLeft: 170,
     marginTop : 10,
     align: "center"
@@ -177,11 +177,11 @@ handleTeamClick(){
 <div style={{marginTop:100}}>
  <Header />
     <AdminSidenav style={{position:"sticky",position:"-webkit-sticky"}} />
-  <Container>
+  <Container><br/>
   
  
     <Typography variant = "h5" align="center" className = {classes.typo}>Welcome {user_name}!</Typography>
-    
+    <br/>
     <div style = {{marginLeft : 200, marginTop: 10}}>
     <Grid container spacing ={6}>
         <Grid item >

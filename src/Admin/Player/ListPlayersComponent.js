@@ -471,7 +471,7 @@ class ListPlayersComponent extends Component {
             },{  
             Header: 'Batting style',  
             accessor: 'player_batting_style',
-            width:180,
+            width:190,
             headerClassName :'header-class',
             filterMethod: (filter, row) => {
                 var v = row[filter.id]

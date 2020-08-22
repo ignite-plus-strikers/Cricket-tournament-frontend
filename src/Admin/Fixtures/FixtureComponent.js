@@ -559,7 +559,7 @@ class FixtureComponent extends Component {
             },{  
             Header: 'Description',  
             accessor: 'description',
-            width:310,
+            width:330,
             headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]

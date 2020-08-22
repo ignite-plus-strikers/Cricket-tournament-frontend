@@ -419,8 +419,8 @@ var fixture = {
  toss_decision:this.state.toss_decision,
 umpires:umpires,
 referee:this.state.referee,
-team1_Playing11:this.state.tps1,
-team2_Playing11:this.state.tps2,
+team1_playing11:this.state.tps1,
+team2_playing11:this.state.tps2,
 team1_captain_wicket_keeper:team1_captain_wicket_keeper,
 team2_captain_wicket_keeper:team2_captain_wicket_keeper 
 }
@@ -475,7 +475,7 @@ let fixtureid=this.state.fixture_id
                 component="legend"
                 className={classes.margin}
               >
-               <b> Toss: </b>
+               <b>Toss:</b> 
               </FormLabel>
               <RadioGroup aria-label="toss" name="toss" onChange={this.handleElement}>
               <FormControlLabel
@@ -496,7 +496,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label><b>Toss Decision:</b></label>
+              <label><b> Toss Decision:</b> </label>
               <br />
               <br />
               <TextField
@@ -527,11 +527,11 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label><b>Match Officials</b></label>
+              <label><b> Match Officials</b> </label>
               
               <br />
               <br />
-              <label><b>On Field Umpire 1:</b></label><br/>
+              <label><b> On Field Umpire 1:</b> </label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -551,7 +551,7 @@ let fixtureid=this.state.fixture_id
               <br />
               <br />
               <br />
-              <label><b>On Field Umpire 2:</b></label><br/>
+              <label><b> On Field Umpire 2:</b></label><br/>
               <Autocomplete
                 className={classes.margin}
                 options={this.state.umpire_names}
@@ -719,9 +719,8 @@ let fixtureid=this.state.fixture_id
               </Grid>
               
               <Grid item xs={4}>
-              <h3 style={{marginLeft : "20px"}}>Playing 11</h3>
-              <br/><br/>
-              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"   value={this.state.player}  style={{height : 600}}/>
+              <h3 style={{marginLeft : "20px"}}>Playing 11</h3><br/><br/>
+              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"   value={this.state.player} />
             
               </Grid>
               </Grid>
@@ -822,9 +821,12 @@ let fixtureid=this.state.fixture_id
                  <FormControlLabel
                   control={
                     <Checkbox
+                      
                       onChange={this.handleChange1(tp.player_first_name+tp.player_last_name+tp.player_initials,tp.player_first_name+" "+tp.player_last_name+" "+tp.player_initials,tp.category)}
                       value={tp.player_first_name+tp.player_last_name+tp.player_initials}
                       color="primary"
+                      
+                   
                     />
                       
                   }
@@ -876,7 +878,6 @@ let fixtureid=this.state.fixture_id
                     />
                       
                   }
-                
                   label = {tp.player_first_name+" "+tp.player_last_name+" "+tp.player_initials}
                 />
                 </div>
@@ -889,9 +890,8 @@ let fixtureid=this.state.fixture_id
               </Grid>
               
               <Grid item xs={4}>
-              <h3 style={{marginLeft : "20px"}}>Playing 11</h3>
-              <br/><br/>
-              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"  value={this.state.team} style={{height : 600}}/>
+              <h3 style={{marginLeft : "20px"}}>Playing 11</h3><br/><br/>
+              <TextareaAutosize aria-label="minimum height" rowsMin={45} type="text" id="selectedtext"  value={this.state.team} style={{height : 700}}/>
               </Grid>
               </Grid>
               <br />
@@ -950,8 +950,7 @@ let fixtureid=this.state.fixture_id
                 ))}
               </TextField>
               <br />
-              <br />
-              
+            
               <center>
               <Button
                 variant="contained"

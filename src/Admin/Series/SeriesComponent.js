@@ -384,7 +384,7 @@ class SeriesComponent extends Component {
             },{  
             Header: 'Tournament',  
             accessor: 'tournament',
-            width:240,
+            width:250,
             headerClassName :'header-class', 
             filterMethod: (filter, row) => {
                 var v = row[filter.id]

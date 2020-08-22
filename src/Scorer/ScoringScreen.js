@@ -247,9 +247,10 @@ else{
                 this.setState({
                   batting_team : response.data.team1,
                   bowling_team : response.data.team2,
-                  team1_players : response.data.team1_Playing11,
-                  team2_players : response.data.team2_Playing11,
+                  team1_players : response.data.team1_playing11,
+                  team2_players : response.data.team2_playing11,
                  })
+                 console.log(response)
             }
         )
 
@@ -1254,11 +1255,11 @@ increaseScoreBy5(){
     const { classes } = this.props;
     return (
 
-      <Container style={{marginLeft : "10%"}}>
+      <Container style={{marginLeft : "12%"}}>
          <div style = {{marginTop:100}}>
            <Header />
         <Grid align = "center">
-        <div style={{marginLeft:"85%",marginTop:"0%"}}><Clock /></div>
+       
         <Typography align = "center" style={{fontSize : "25px"}}>
         <b>{this.state.batting_team}</b> {this.state.batting_team_score}/
             {this.state.batting_team_wickets} ({this.state.total_overs}.{this.state.balls_per_over} Overs) //{" "}

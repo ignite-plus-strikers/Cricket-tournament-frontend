@@ -96,20 +96,20 @@ class LoginPage extends React.Component {
 
   render() {
     if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_ADMIN") {
-      Cookies.set("name", this.state.user_name )
-      Cookies.set("role", this.state.user_role)
+      Cookies.set("name", this.state.user_name , {expires:0.5})
+      Cookies.set("role", this.state.user_role, {expires:0.5})
       //return <AdminDashboard user_name={this.state.user_name}/>;
       return <Redirect to ="/admin/dashboard" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_SCORER") {
-      Cookies.set("name", this.state.user_name)
+      Cookies.set("name", this.state.user_name, {expires:0.5})
       Cookies.set("role", this.state.user_role , {expires:0.5})
       //return <MatchSelection user_name={this.state.user_name} />;
       return <Redirect to ="/scorer/MatchSelection" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_SITE_ADMIN") {
-      Cookies.set("name", this.state.user_name)
-      Cookies.set("role", this.state.user_role)
+      Cookies.set("name", this.state.user_name, {expires:0.5})
+      Cookies.set("role", this.state.user_role, {expires:0.5})
       //return <Home user_name={this.state.user_name} />;
       return <Redirect to = "/siteadmin/home" />
     }
@@ -127,7 +127,7 @@ class LoginPage extends React.Component {
       <Snackbar open={this.state.open1} autoHideDuration={6000} onClose={() => {}} style={{marginTop : "50%", marginRight : "15%"}}>
       <Alert severity="error">
       <AlertTitle>Oops! Error</AlertTitle>
-      The credentials entered are invalid! 
+      The User is unauthorized
       </Alert>
       </Snackbar>
         <br />
