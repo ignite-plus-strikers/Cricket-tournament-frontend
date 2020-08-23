@@ -20,6 +20,7 @@ import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import AdminSidenav from '../AdminSidenav';
+import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
 
 const styles = theme => ({
   root: {
@@ -126,6 +127,7 @@ class ListPlayersComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
+          formData: {
             players: [],
             message: null,
             open:false,
@@ -142,6 +144,7 @@ class ListPlayersComponent extends Component {
             player_bowling_style:'',
             player_role:'',
             player_status:''
+          }
         }
         this.deletePlayerClicked = this.deletePlayerClicked.bind(this)
         this.refreshPlayers = this.refreshPlayers.bind(this)
@@ -225,6 +228,11 @@ class ListPlayersComponent extends Component {
         [name]: event.target.value
       });
     };
+    onChange = (event) => {
+      const { formData } = this.state;
+      formData[event.target.name] = event.target.value;
+      this.setState({ formData });
+    }
     handleSubmit=() => {
      
      var player={
@@ -284,7 +292,7 @@ class ListPlayersComponent extends Component {
 
     render() {
       const { classes } = this.props;
-     
+      const {formData} = this.state;
         const columns = [{  
             Header: 'First name',
             accessor: 'first_name',
@@ -623,44 +631,57 @@ class ListPlayersComponent extends Component {
 
           <DialogContent>
          
-          <Paper  style={{width:"500px",height:"570px",paddingLeft:"2%",paddingRight:"0%",paddingTop:"1%"}}>
+          <Paper  style={{width:"500px",height:"auto",paddingLeft:"2%",paddingRight:"0%",paddingTop:"1%"}}>
         <center><h3>Player</h3></center>  
-        <TextField
-        style={{width:"45%"}}
+        <ValidatorForm ref="form" onSubmit={this.handleSubmit}>
+        
+        <TextValidator
+        style={{width:"93%"}}
+         className={classNames(classes.margin,classes.textField)}
+        variant="outlined"
+          label="Player first name"
+          onChange={this.onChange}
+          name=" first_name"
+          value={formData.first_name}
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           id="outlined-simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
-          variant="outlined"
-          label="First Name"
-          onChange={this.handleChange("first_name")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Name</InputAdornment>
             )
           }}
         />
-      
-        <TextField
-           style={{width:"45%"}}
+        
+        <TextValidator
+        style={{width:"93%"}}
+         className={classNames(classes.margin,classes.textField)}
+        variant="outlined"
+          label="Player last name"
+          onChange={this.onChange}
+          name="last_name"
+          value={formData.last_name}
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           id="outlined-simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
-          variant="outlined"
-          label="Last Name"
-          onChange={this.handleChange("last_name")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Name</InputAdornment>
             )
           }}
         />
- 
- <br></br>
-        <TextField
-           style={{width:"45%"}}
+
+        <TextValidator
+        style={{width:"93%"}}
+        variant="outlined"
+        className={classNames(classes.margin, classes.textField)}
+          label="Player initials"
+          onChange={this.onChange}
+          name="player_initials"
+        value={formData.player_initials}
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           id="outlined-simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)}
-          variant="outlined"
-          label="Initials"
-          onChange={this.handleChange("player_initials")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Initials</InputAdornment>
@@ -668,14 +689,18 @@ class ListPlayersComponent extends Component {
           }}
         />
  
-        <TextField
-            style={{width:"45%"}}
+        <SelectValidator
+          style={{width:"93%"}}
           select
+          name="gender"
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Gender"
-          value={this.state.weightRange}
-          onChange={this.handleChange("gender")}
+        value={formData.gender}
+        selected 
+          onChange={this.onChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Gender</InputAdornment>
@@ -687,32 +712,36 @@ class ListPlayersComponent extends Component {
               {option.label}
             </MenuItem>
           ))}
-        </TextField>
+        </SelectValidator>
  
-        <br></br>
- 
-        <TextField 
-          style={{width:"45%"}}
+        <TextField
+          style={{width:"93%"}}
           id="outlined-simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Date of Birth"
-          onChange={this.handleChange("player_dob")}
-          type="date"
+          value={formData.player_dob}
+          validators={["required"]}
+          errorMessages={["date is required"]}
+          onChange={this.onChange}
+          type="date" 
           defaultValue="2009-01-01"
           InputLabelProps={{
             shrink: true
           }}
         />
  
-        <TextField 
-          style={{width:"45%"}} 
+        <SelectValidator
+          style={{width:"93%"}} 
           select
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Visual Classification"
-          value={this.state.weightRange}
-          onChange={this.handleChange("category")}
+          onChange={this.onChange}
+          name="category"
+          value={formData.category} 
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -726,15 +755,19 @@ class ListPlayersComponent extends Component {
               {option.label}
             </MenuItem>
           ))}
-        </TextField>
-        <br></br>
-        <TextField  
-          style={{width:"45%"}} 
+        </SelectValidator>
+       
+        <TextValidator 
+          style={{width:"93%"}}
           id="outlined-simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Nationality"
-          onChange={this.handleChange("nationality")}
+          name="nationality"
+          value={formData.nationality} 
+          validators={["required"]}
+          errorMessages={["this field is required"]}
+          onChange={this.onChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Nationality</InputAdornment>
@@ -742,14 +775,17 @@ class ListPlayersComponent extends Component {
           }}
         />
  
-        <TextField  
-          style={{width:"45%"}} 
+        <SelectValidator  
+        style={{width:"93%"}}
           select
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Batting style"
-          value={this.state.weightRange}
-          onChange={this.handleChange("player_batting_style")}
+          onChange={this.onChange}
+          name="player_batting_style"
+          value={formData.player_batting_style} 
+          validators={["required"]}
+          errorMessages={["this field is required"]}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Batting Style</InputAdornment>
@@ -761,16 +797,19 @@ class ListPlayersComponent extends Component {
               {option.label}
             </MenuItem>
           ))}
-        </TextField>
-        <br></br>
-        <TextField  
-           style={{width:"45%"}} 
+        </SelectValidator>
+        
+        <SelectValidator 
+          style={{width:"93%"}}
           select
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Bowling style"
-          value={this.state.weightRange}
-          onChange={this.handleChange("player_bowling_style")}
+          name="player_bowling_style"
+          value={formData.player_bowling_style} 
+          validators={["required"]}
+          errorMessages={["this field is required"]}
+          onChange={this.onChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Bowling Style</InputAdornment>
@@ -782,14 +821,18 @@ class ListPlayersComponent extends Component {
               {option.label}
             </MenuItem>
           ))}
-        </TextField>
+        </SelectValidator>
       
-        <TextField  
-           style={{width:"45%"}} 
+        <TextValidator 
+          style={{width:"93%"}} 
           id="outlined-simple-start-adornment"
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
-          onChange={this.handleChange("player_role")}
+          name="player_role"
+          value={formData.player_role} 
+          validators={["required"]}
+          errorMessages={["this field is required"]}
+          onChange={this.onChange}
           label="Player Role"
           InputProps={{
             startAdornment: (
@@ -797,15 +840,18 @@ class ListPlayersComponent extends Component {
             )
           }}
         />
- <br></br>
-        <TextField  
-           style={{width:"93%"}} 
+ 
+        <SelectValidator
+          style={{width:"93%"}} 
           select
           className={classNames(classes.margin, classes.textField)}
           variant="outlined"
           label="Player status"
-          value={this.state.weightRange}
-          onChange={this.handleChange("player_status")}
+          name="player_status"
+          value={formData.player_status} 
+          validators={["required"]}
+          errorMessages={["this field is required"]}
+          onChange={this.onChange}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">Player Status</InputAdornment>
@@ -817,11 +863,14 @@ class ListPlayersComponent extends Component {
               {option.label}
             </MenuItem>
           ))}
-        </TextField>
-        <br></br><br></br>
-      <center><Button variant="contained" style={{width:"150px"}} className={classes.button}  onClick={this.handleSubmit}>
+        </SelectValidator>
+        <br></br><br></br> 
+      <center><Button variant="contained" style={{width:"150px"}} className={classes.button}  onClick={this.handleSubmit}
+      type = "submit">
         Create
       </Button></center>  
+      <br />
+      </ValidatorForm>
         
        
         </Paper>
