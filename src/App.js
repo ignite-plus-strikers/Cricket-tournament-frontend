@@ -33,7 +33,7 @@ import FixturesFormNew from './Admin/Fixtures/FixturesFormNew';
 import LoginPage from './Login/LoginPage'
 import ScoringScreen from './Scorer/ScoringScreen'
 import {createMuiTheme , MuiThemeProvider} from '@material-ui/core/styles'
-import SideNav from './SideNav/SideNav';
+
 import { AutoComplete } from 'rsuite';
 import './App.css'
 import Header from './Scorer/Header'

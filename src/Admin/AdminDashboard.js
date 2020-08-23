@@ -22,7 +22,7 @@ import UmpireDataService from '../Admin/Umpire/Service/UmpireDataService';
 import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService';
 import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
-import SideNav from '../SideNav/SideNav';
+
  import { withRouter} from "react-router-dom";
  import Cookies from 'js-cookie'
 //import { connect} from "react-redux"

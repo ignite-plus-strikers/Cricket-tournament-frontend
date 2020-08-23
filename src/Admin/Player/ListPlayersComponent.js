@@ -18,7 +18,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Header from '../../Scorer/Header'
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import SideNav from '../../SideNav/SideNav';
+
 import AdminSidenav from '../AdminSidenav';
 
 const styles = theme => ({
