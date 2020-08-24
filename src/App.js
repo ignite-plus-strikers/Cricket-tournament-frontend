@@ -8,7 +8,6 @@ import PreMatch from './Scorer/PreMatch';
 import AdminDashboard from './Admin/AdminDashboard';
 import ListPlayersComponent from './Admin/Player/ListPlayersComponent'; 
 import PlayerAddnUpdate from './Admin/Player/PlayerAddnUpdate';
-import AddForm from './Admin/Player/AddForm';
 import FixturesForm from './Admin/Fixtures/FixturesForm';
 import TeamForm from './Admin/Team/TeamForm';
 import SeriesForm from './Admin/Series/SeriesForm';
@@ -81,26 +80,20 @@ function App() {
         <Route path = "/scorer/MatchSelection" component={MatchSelection} />
         <Route path="/admin/dashboard/PlayerDisplay" component={ListPlayersComponent} />
         <Route path="/admin/dashboard/Player/:id" component={PlayerAddnUpdate} />
-        <Route path="/admin/dashboard/PlayerAddForm" component={AddForm} />
-        <Route path="/admin/dashboard/FixtureAddForm" component={FixturesForm} />
         <Route path="/admin/dashboard/FixtureDisplay" component={FixtureComponent} />
         <Route path="/admin/dashboard/Fixture/:id" component={FixtureUpdate} />
         <Route path="/admin/dashboard/Team/:id" component={TeamUpdate} />
-        <Route path="/admin/dashboard/TeamAddForm" component={TeamForm} />
         <Route path="/admin/dashboard/TeamDisplay" component={TeamComponent} />
         <Route path="/admin/dashboard/TeamShowPlayer/:id" component={ShowPlayer} />
         <Route path="/admin/dashboard/TeamAddPlayer/:id" component={AddPlayer} />
         <Route path="/admin/dashboard/SeriesAddTeam/:id" component={AddTeams} />
         <Route path="/admin/dashboard/SeriesShowTeam/:id" component={ShowTeams} />
-        <Route path="/admin/dashboard/SeriesAddForm" component={SeriesForm} />
         <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
         <Route path="/admin/dashboard/Series/:id" component={SeriesUpdate} />
         <Route exact path="/admin/dashboard/UmpireDisplay" component={UmpireComponent} />
         <Route path="/admin/dashboard/Umpire/:id" component={UmpireUpdate} /> 
-        <Route path="/admin/dashboard/UmpireAddForm" component={UmpireForm} />
         <Route exact path="/admin/dashboard/RefereeDisplay" component={RefereeComponent} />
         <Route path="/admin/dashboard/Referee/:id" component={RefereeUpdate} /> 
-        <Route path="/admin/dashboard/RefereeAddForm" component={RefereeForm} />
         <Route exact path="/home" component={BackgroundImage} />
         <Route exact path="/test" component={FixturesFormNew} />
         </Router>
