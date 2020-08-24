@@ -5,7 +5,8 @@ import 'react-table-6/react-table.css'
 import './Scorecard.css';
 
 
-
+import Cookies from 'js-cookie'
+import {Redirect} from "react-router-dom"
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
@@ -288,6 +289,8 @@ this.refreshBatsmen=this.refreshBatsmen.bind(this)
       }
      
     ]  
+    
+    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
     return(
    
       <div style = {{marginTop:100}}>

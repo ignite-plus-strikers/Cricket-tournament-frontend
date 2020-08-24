@@ -26,7 +26,8 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import Header from "./Header";
 import Clock from "./Clock"
-
+import Cookies from 'js-cookie'
+import {Redirect} from "react-router-dom"
 
 
 const toss = [
@@ -439,6 +440,7 @@ let fixtureid=this.state.fixture_id
     const error = [checkedA, checkedB,checkedC,checkedD,checkedE,checkedF,checkedG,checkedH,checkedI,checkedJ,checkedK,checkedL,checkedM,checkedN,checkedO,checked1, checked2,checked3,checked4,checked5,checked6,checked7,checked8,checked9,checked10,checked11,checked12,checked13].filter(v => v).length !== 22;
     var team1_id
     var team2_id
+    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
     return (
          <div style = {{marginTop:100}}>
            <Header />

@@ -18,7 +18,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Header from '../../Scorer/Header'
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
-
+import Cookies from "js-cookie"
+import {Redirect} from "react-router-dom"
 import AdminSidenav from '../AdminSidenav';
 import { ValidatorForm, TextValidator, SelectValidator } from 'react-material-ui-form-validator';
 
@@ -599,6 +600,7 @@ class ListPlayersComponent extends Component {
             maxWidth:100
             }
         ]  
+        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

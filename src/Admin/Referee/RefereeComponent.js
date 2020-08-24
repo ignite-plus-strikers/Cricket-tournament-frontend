@@ -3,7 +3,8 @@ import RefereeDataService from './Service/RefereeDataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
 import Header from '../../Scorer/Header'
-
+import {Redirect} from "react-router-dom"
+import Cookies from "js-cookie"
 
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -390,6 +391,7 @@ class RefereeComponent extends Component {
             maxWidth:100
             }
         ]  
+        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

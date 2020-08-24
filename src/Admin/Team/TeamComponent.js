@@ -15,7 +15,8 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
-
+import {Redirect} from "react-router-dom"
+import Cookies from "js-cookie"
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AdminSidenav from '../AdminSidenav';
@@ -332,6 +333,7 @@ class TeamComponent extends Component {
                 maxWidth:100
                 }
         ]  
+        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

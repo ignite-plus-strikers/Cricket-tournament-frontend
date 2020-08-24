@@ -98,8 +98,8 @@ class LoginPage extends React.Component {
     if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_ADMIN") {
       Cookies.set("name", this.state.user_name )
       Cookies.set("role", this.state.user_role)
-      return <AdminDashboard user_name={this.state.user_name}/>;
-      //return <Redirect to ="/admin/dashboard" />
+      //return <AdminDashboard user_name={this.state.user_name}/>;
+      return <Redirect to ="/admin/dashboard" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_SCORER") {
       Cookies.set("name", this.state.user_name, {expires:0.5})

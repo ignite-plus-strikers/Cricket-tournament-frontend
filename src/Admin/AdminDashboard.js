@@ -174,15 +174,15 @@ handleTeamClick(){
     const { classes } = this.props;
     const user_name = Cookies.get("name");
    return ( 
-<div style={{marginTop:100}}>
+<div style={{marginTop:60}}>
  <Header />
     <AdminSidenav style={{position:"sticky",position:"-webkit-sticky"}} />
   <Container><br/>
   
  
-    <Typography variant = "h5" align="center" className = {classes.typo}>Welcome {user_name}!</Typography>
+    <Typography variant = "h4" align="center" className = {classes.typo}>Welcome {user_name}!</Typography>
     <br/>
-    <div style = {{marginLeft : 200, marginTop: 10}}>
+    <div style = {{marginLeft : 230}}>
     <Grid container spacing ={6}>
         <Grid item >
             <Card className={classes.card}>

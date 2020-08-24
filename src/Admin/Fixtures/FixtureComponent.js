@@ -22,6 +22,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Paper from "@material-ui/core/Paper";
 import AdminSidenav from '../AdminSidenav';
 import Header from '../../Scorer/Header'
+import Cookies from "js-cookie"
+import {Redirect} from "react-router-dom"
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -806,6 +808,7 @@ class FixtureComponent extends Component {
             maxWidth:100
             }
         ]  
+        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

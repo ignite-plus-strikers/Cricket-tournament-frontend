@@ -15,8 +15,7 @@ import Cookies from 'js-cookie'
 import moment from 'moment';
 import Pagination from '@material-ui/lab/Pagination';
 import { AutoComplete } from 'rsuite';
-
-
+import {Redirect} from "react-router-dom"
 
 const useStyles = theme => ({
   root: {
@@ -83,6 +82,7 @@ class MatchSelection extends React.Component{
   render(){
     const {classes} = this.props;
     const user_name = Cookies.get("name");
+    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
     return (
      <div style = {{marginTop:100}}>
       <Header />

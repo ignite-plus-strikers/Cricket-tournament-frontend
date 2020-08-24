@@ -7,7 +7,8 @@ import Header from '../../Scorer/Header'
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-
+import {Redirect} from "react-router-dom";
+import Cookies from "js-cookie"
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
@@ -390,6 +391,7 @@ class UmpireComponent extends Component {
         maxWidth:100
         }
     ]  
+    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

@@ -4,7 +4,8 @@ import SeriesDataService from './Service/SeriesDataService';
 import './Series.css';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
-
+import Cookies from "js-cookie"
+import {Redirect} from "react-router-dom"
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -629,6 +630,7 @@ class SeriesComponent extends Component {
                 maxWidth:100
                 }
         ]  
+        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

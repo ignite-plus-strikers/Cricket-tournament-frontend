@@ -8,6 +8,7 @@ import {Container} from "@material-ui/core"
 import { Typography, Divider,Grid } from "@material-ui/core";
 import Header from '../../Scorer/Header'
 import Cookies from 'js-cookie'
+import {Redirect} from "react-router-dom";
 
 class Home extends Component {
   responseGoogle = (response) => {
@@ -16,7 +17,8 @@ class Home extends Component {
   };
 
   render() {
-	const user_name = Cookies.get("name");
+  const user_name = Cookies.get("name");
+  if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_SITE_ADMIN") return <Redirect to  = "/" /> 
     return (
     
       <div style = {{marginTop:80}}>

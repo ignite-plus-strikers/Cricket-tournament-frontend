@@ -24,6 +24,8 @@ import classNames from "classnames";
 import ScorecardDataService from './service/ScorecardDataService';
 import Clock from './Clock';
 import Header from './Header'
+import Cookies from 'js-cookie'
+import {Redirect} from "react-router-dom"
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -1253,19 +1255,20 @@ increaseScoreBy5(){
 
    render(){
     const { classes } = this.props;
+    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
     return (
 
-      <Container style={{marginLeft : "12%"}}>
+      <Container style={{marginLeft : "6%"}}>
          <div style = {{marginTop:100}}>
            <Header />
         <Grid align = "center">
        
-        <Typography align = "center" style={{fontSize : "25px"}}>
+        <Typography align = "center" style={{marginRight: "8%" , fontSize : "25px"}}>
         <b>{this.state.batting_team}</b> {this.state.batting_team_score}/
             {this.state.batting_team_wickets} ({this.state.total_overs}.{this.state.balls_per_over} Overs) //{" "}
            <b>{this.state.bowling_team}</b>  {this.state.bowling_team_score}/
             {this.state.bowling_team_wickets}</Typography>
-        <Button variant="contained" color="primary" className={classes.button}  onClick={() => this.handleSelect(this.state.match_id)}>Live Scorecard</Button>
+        <Button variant="contained" color="primary" style={{marginRight: "8%"}} className={classes.button}  onClick={() => this.handleSelect(this.state.match_id)}>Live Scorecard</Button>
         </Grid>
         
         

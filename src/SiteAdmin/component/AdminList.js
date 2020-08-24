@@ -16,8 +16,10 @@ import FormControl from "@material-ui/core/FormControl";
 import Paper from "@material-ui/core/Paper";
 import { Container } from "@material-ui/core"
 import Header from "../../Scorer/Header"
-const formStyle = { width: "100%" };
+import Cookies from 'js-cookie'
+import {Redirect} from "react-router-dom"
 
+const formStyle = { width: "100%" };
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -186,6 +188,7 @@ class AdminList extends Component {
         ),
       },
     ];
+    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_SITE_ADMIN") return <Redirect to  = "/" /> 
     return (
       <div style = {{marginTop:80}}>
       <Header />
