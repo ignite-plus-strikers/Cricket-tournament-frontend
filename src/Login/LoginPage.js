@@ -1,7 +1,7 @@
 import React from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import {Redirect, Link} from 'react-router-dom'
-import SideNav from "../SideNav/SideNav";
+import {Redirect, Route , Switch} from 'react-router-dom'
+
 import axios from "axios";
 import { useLocation } from "react-router-dom";
 import AdminDashboard from "../Admin/AdminDashboard";
@@ -96,10 +96,10 @@ class LoginPage extends React.Component {
 
   render() {
     if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_ADMIN") {
-      Cookies.set("name", this.state.user_name , {expires:0.5})
-      Cookies.set("role", this.state.user_role, {expires:0.5})
-      //return <AdminDashboard user_name={this.state.user_name}/>;
-      return <Redirect to ="/admin/dashboard" />
+      Cookies.set("name", this.state.user_name )
+      Cookies.set("role", this.state.user_role)
+      return <AdminDashboard user_name={this.state.user_name}/>;
+      //return <Redirect to ="/admin/dashboard" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_SCORER") {
       Cookies.set("name", this.state.user_name, {expires:0.5})

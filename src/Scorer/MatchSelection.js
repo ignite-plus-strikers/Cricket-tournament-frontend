@@ -125,7 +125,7 @@ class MatchSelection extends React.Component{
         return(
             <div className={classes.node}>
             <Card className = {classes.root} variant="elevation" elevation = {5}>
-              <CardContent style={{padding:5}}>
+              <CardContent style = {{padding:5}}>
               <Typography variant="h5" color="primary" align="center">{fixture.team1} <br /> VS <br /> {fixture.team2}</Typography>
               <Divider />
         <Typography variant="body1" align="center" color="textSecondary"><b>{fixture.description}</b> at <b>{fixture.venue}</b> <br /> scheduled on <b>{fixture.fixture_date} {fixture.fixture_start_time}</b> </Typography>
