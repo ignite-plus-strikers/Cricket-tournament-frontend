@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
-import { Route, Link, BrowserRouter as Router, Switch,useLocation, BrowserRouter } from 'react-router-dom';
+import { Route,BrowserRouter as Router,useLocation} from 'react-router-dom';
 
-import Footer from './Footer/FooterComponent';
+
 import MatchSelection from './Scorer/MatchSelection';
 import PreMatch from './Scorer/PreMatch';
 import AdminDashboard from './Admin/AdminDashboard';
@@ -23,42 +23,24 @@ import RefereeComponent from './Admin/Referee/RefereeComponent';
 
 import LoginPage from './Login/LoginPage'
 import ScoringScreen from './Scorer/ScoringScreen'
-import {createMuiTheme , MuiThemeProvider} from '@material-ui/core/styles'
 
-import { AutoComplete } from 'rsuite';
+
+
 import './App.css'
-import Header from './Scorer/Header'
+
 import ScoreCard from './Scorer/ScoreCard'
 import AdminList from './SiteAdmin/component/AdminList';
 import ScorerList from './SiteAdmin/component/ScorerList';
 import Home from './SiteAdmin/component/Home';
 
-const theme = createMuiTheme({
-  palette: {
-      // primary: {
-      //     main: '#00bcd4',
-      // },
-      // secondary: {
-      //     main: '#a5d1e1',
-      // },
-      // text:{
-      //   primary:'#00bcd4'
-      // },
-      spacing:1,
-  },
-});
-
-
-
-
 function App() {
 
-    const location = useLocation();
+    
     
   return (
     <div className = "header-styling">
 
-          {/*<MuiThemeProvider theme={theme}>*/}
+          
           <Router>
         
         <Route exact path="/" component={LoginPage} />
@@ -83,7 +65,7 @@ function App() {
         <Route exact path="/home" component={BackgroundImage} />
       
         </Router>
-        {/*</MuiThemeProvider> */}
+       
        
     </div>
     

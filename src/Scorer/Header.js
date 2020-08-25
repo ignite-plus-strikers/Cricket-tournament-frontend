@@ -6,10 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 
 import appbar from '../assests/appbar.png'
-import LoginPage from '../Login/LoginPage'
-
-import { Container } from '@material-ui/core';
-
 const useStyles = theme => ({
   root: {
     flexGrow: 1,
@@ -66,7 +62,7 @@ class Header extends React.Component{
           isSignedIn={false}
                   cookiePolicy={"single_host_origin"} /> 
                  
-                    <img src={appbar} style={{height:90}}></img>
+                    <img src={appbar} style={{height:90}} alt="CABI"></img>
 
           
       </AppBar>

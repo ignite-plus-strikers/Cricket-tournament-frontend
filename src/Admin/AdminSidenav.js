@@ -1,17 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import { Link, withRouter } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import {  MenuList, MenuItem } from '@material-ui/core';
-import List from '@material-ui/core/List';
+
 import routes from './routes';
-const drawerWidth = 200;
 
 
 const styles =theme=>( {

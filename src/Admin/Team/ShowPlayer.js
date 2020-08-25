@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import PlayerDataService from '../Player/Service/PlayerDataService';
+
 import './Team.css';
 import TeamDataService from './Service/TeamDataService';
 import ReactTable from "react-table-6"; 
@@ -166,7 +166,7 @@ class ShowPlayer extends Component {
             <Header />
                 <AdminSidenav style={{position:"fixed"}} /><br/>
                 {this.state.teams.map(team =>{
-                    if(team.team_id==teamID){
+                    if(team.team_id===teamID){
                         teamname=team.tname
                         }
                 }

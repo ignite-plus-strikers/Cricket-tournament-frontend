@@ -41,18 +41,7 @@ const toss = [
   },
   
 ];
-const captain1 = [
-  
-];
-const captain2 = [
-  
-];
-const wicket1 = [
-  
-];
-const wicket2 = [
-  
-];
+
 const styles = theme => ({
   root: {
     display: "flex",
@@ -76,9 +65,6 @@ const styles = theme => ({
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
     width: "1000px"
-  },
-  formControl: {
-    margin: theme.spacing.unit * 2
   },
   button: {
     margin: theme.spacing.unit * 3
@@ -115,9 +101,6 @@ class PreMatch extends React.Component {
     middle_name: "",
     last_name: "",
     referees: [],
-    first_name:"",
-    middle_name:"",
-    last_name:"",
     teamplayers: [],
    
     player_first_name: "",
@@ -379,11 +362,11 @@ onSubmit(){
   
     }
   }
-  if(t1B1!=4)
+  if(t1B1!==4)
   this.setState({open1:true})
   else if((t1B2+t1B3)!==7 || (t1B2<3) ||(t1B2>4))
   this.setState({open2:true})
-  else if(t2B1!=4)
+  else if(t2B1!==4)
   this.setState({open3:true})
   else if((t2B2+t2B3)!==7 || (t2B2<3) ||(t2B2>4))
   this.setState({open4:true})
@@ -434,13 +417,12 @@ let fixtureid=this.state.fixture_id
 
   render() {
     const { classes } = this.props;
-    var player = this.state.player;
+   
     const { checkedA, checkedB,checkedC,checkedD,checkedE,checkedF,checkedG,checkedH,checkedI,checkedJ,checkedK,checkedL,checkedM,checkedN,checkedO} = this.state;
     const { checked1, checked2,checked3,checked4,checked5,checked6,checked7,checked8,checked9,checked10,checked11,checked12,checked13} = this.state;
     const error = [checkedA, checkedB,checkedC,checkedD,checkedE,checkedF,checkedG,checkedH,checkedI,checkedJ,checkedK,checkedL,checkedM,checkedN,checkedO,checked1, checked2,checked3,checked4,checked5,checked6,checked7,checked8,checked9,checked10,checked11,checked12,checked13].filter(v => v).length !== 22;
-    var team1_id
-    var team2_id
-    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
+    
+    if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
     return (
          <div style = {{marginTop:100}}>
            <Header />
@@ -647,7 +629,7 @@ let fixtureid=this.state.fixture_id
 
               
                  {this.state.teamplayers1.map((tp) =>{
-                    if(tp.category=="B1")
+                    if(tp.category==="B1")
                  return <div>
                  <FormControlLabel
                   control={
@@ -671,7 +653,7 @@ let fixtureid=this.state.fixture_id
 
               
                  {this.state.teamplayers1.map((tp) =>{
-                    if(tp.category=="B2")
+                    if(tp.category==="B2")
                  return <div>
                  <FormControlLabel
                   control={
@@ -695,7 +677,7 @@ let fixtureid=this.state.fixture_id
 
               
                  {this.state.teamplayers1.map((tp) =>{
-                    if(tp.category=="B3")
+                    if(tp.category==="B3")
                  return <div>
                  <FormControlLabel
                   control={
@@ -818,7 +800,7 @@ let fixtureid=this.state.fixture_id
 
               
                  {this.state.teamplayers2.map((tp) =>{
-                    if(tp.category=="B1")
+                    if(tp.category==="B1")
                  return <div>
                  <FormControlLabel
                   control={

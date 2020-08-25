@@ -7,11 +7,9 @@ import Header from '../../Scorer/Header'
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import classNames from "classnames";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import PropTypes from "prop-types";
@@ -52,10 +50,6 @@ const styles = theme => ({
  },
 });
  
-const formStyle = { width: "100%" };
-
-
-
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
@@ -333,7 +327,7 @@ class TeamComponent extends Component {
                 maxWidth:100
                 }
         ]  
-        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
+        if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

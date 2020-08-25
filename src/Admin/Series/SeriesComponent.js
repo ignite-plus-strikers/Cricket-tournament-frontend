@@ -52,7 +52,6 @@ const styles = theme => ({
  },
 });
  
-const formStyle = { width: "100%" };
 
 const Tournament = [
   {
@@ -630,7 +629,7 @@ class SeriesComponent extends Component {
                 maxWidth:100
                 }
         ]  
-        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
+        if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

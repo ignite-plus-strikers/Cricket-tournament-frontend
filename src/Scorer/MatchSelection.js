@@ -3,18 +3,14 @@ import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Divider, Container } from '@material-ui/core';
 import Header from './Header'
-//import MatchSelectionService from "../service/MatchSelectionService"
 import Clock from './Clock';
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import moment from 'moment';
-import Pagination from '@material-ui/lab/Pagination';
-import { AutoComplete } from 'rsuite';
 import {Redirect} from "react-router-dom"
 
 const useStyles = theme => ({
@@ -82,7 +78,7 @@ class MatchSelection extends React.Component{
   render(){
     const {classes} = this.props;
     const user_name = Cookies.get("name");
-    if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
+    if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_SCORER") return <Redirect to  = "/" /> 
     return (
      <div style = {{marginTop:100}}>
       <Header />
@@ -110,11 +106,7 @@ class MatchSelection extends React.Component{
             </Card></div>
           );
         }
-        {/*else{
-          return(
-            <Typography variant="h6">No live matches</Typography>
-          );
-        }*/}
+       
   })}
       
      
@@ -138,12 +130,7 @@ class MatchSelection extends React.Component{
             </Card></div>
         );
       }
-      {/*else{
-            return(
-              <Container>
-                <p>No upcoming matches</p></Container>
-            );
-          }*/} 
+    
         }
       )
     }

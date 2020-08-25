@@ -1,25 +1,16 @@
 import React from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import {Redirect, Route , Switch} from 'react-router-dom'
-
-import axios from "axios";
-import { useLocation } from "react-router-dom";
-import AdminDashboard from "../Admin/AdminDashboard";
+import { GoogleLogin} from "react-google-login";
+import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import MatchSelection from "../Scorer/MatchSelection";
-import PageNotFound from "../PageNotFound"
-import {Card, CardContent, TextareaAutosize} from "@material-ui/core"
-import { Typography, Divider,Grid } from "@material-ui/core";
+
+import {Card, CardContent} from "@material-ui/core"
+import { Typography, Divider} from "@material-ui/core";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import {Alert,AlertTitle} from "@material-ui/lab"
 import {Snackbar} from "@material-ui/core"
 import AppBar from '@material-ui/core/AppBar';
 import appbar from '../Admin/cards_images/appbar.png';
-import AdminList from "../SiteAdmin/component/AdminList";
-import Home from "../SiteAdmin/component/Home";
-
-//import Header from "../Scorer/Header"
 
 const styles = {
   card: {
@@ -122,7 +113,7 @@ class LoginPage extends React.Component {
       <div className="Login-Component">
 
         <AppBar position="fixed" className={classes.appBar}>  
-        <img src={appbar} style={{height:90}}></img>
+        <img src={appbar} style={{height:90}} alt="CABI"></img>
         </AppBar>  
       <Snackbar open={this.state.open1} autoHideDuration={6000} onClose={() => {}} style={{marginTop : "50%", marginRight : "15%"}}>
       <Alert severity="error">

@@ -5,7 +5,6 @@ import SeriesDataService from '../Series/Service/SeriesDataService';
 import ScorerDataService from './Service/ScorerdataService';
 import ReactTable from "react-table-6"; 
 import 'react-table-6/react-table.css';
-
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
@@ -95,7 +94,6 @@ function Transition(props) {
     }
   ];
    
-  const formStyle = { width: "100%" };
    
 
 class FixtureComponent extends Component {
@@ -808,7 +806,7 @@ class FixtureComponent extends Component {
             maxWidth:100
             }
         ]  
-        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
+        if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

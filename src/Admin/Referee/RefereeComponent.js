@@ -53,8 +53,6 @@ const styles = theme => ({
  },
 });
  
-const formStyle = { width: "100%" };
-
 function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
@@ -352,7 +350,6 @@ class RefereeComponent extends Component {
             Header: 'Experience',  
             headerClassName :'header-class', 
             accessor: 'experience',
-            headerClassName :'header-class',
             filterMethod: (filter, row) => {
               var v = row[filter.id]
                 .toString()
@@ -391,7 +388,7 @@ class RefereeComponent extends Component {
             maxWidth:100
             }
         ]  
-        if(Cookies.get("role") === undefined || Cookies.get("role") != "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
+        if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

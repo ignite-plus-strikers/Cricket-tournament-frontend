@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import './Series.css';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
 import '../../App.css';
 import TeamDataService from '../Team/Service/TeamDataService';
 import SeriesDataService from './Service/SeriesDataService';

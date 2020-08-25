@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './Team.css';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+
 import '../../App.css';
 import PlayerDataService from '../../Admin/Player/Service/PlayerDataService';
 import TeamDataService from './Service/TeamDataService';
@@ -105,27 +105,6 @@ class AddPlayer extends Component {
         console.log(teamplayer);
     }
    
-    
-   /* validate(values) {
-        let count=this.state.teamplayers.length
-        let errors = {};
-        if (!values.selected) {
-            errors.selected = 'Select Player'
-        } else if(count>=15){
-            errors.selected='There are already 15 players in the team !'
-        }
-        this.state.teamplayers.map(tp=>{
-            if(tp.player_id===values.selected){
-                errors.selected='The player '+tp.player_first_name+' already exists in the team !'
-            }
-
-        })
-
-        return errors
-
-    }*/
-
-
 
     render() {
         let selected=this.state.selected

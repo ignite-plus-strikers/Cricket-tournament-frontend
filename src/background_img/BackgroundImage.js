@@ -5,12 +5,6 @@ import './BGimage.css';
 
 class BackgroundImage extends Component {
  
-    constructor(props) {
-        super(props)
-       
-    }
- 
-  
     render() {
         return (
             <div className="bi" style={{marginLeft:220}}>
