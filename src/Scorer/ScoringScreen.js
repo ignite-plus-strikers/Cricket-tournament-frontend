@@ -1296,7 +1296,7 @@ increaseScoreBy5(){
                     </CustomTableCell>
                     <CustomTableCell align="right">{this.state.striker.runs}</CustomTableCell>
                     <CustomTableCell align="right">{this.state.striker.balls}</CustomTableCell>
-                    <CustomTableCell align="right">{this.state.striker.strike_rate}</CustomTableCell>
+                    <CustomTableCell align="right">{!isNaN(this.state.striker.strike_rate) && this.state.striker.strike_rate}</CustomTableCell>
                     <CustomTableCell align="right">{this.state.striker.fours}</CustomTableCell>
                     <CustomTableCell align="right">{this.state.striker.sixes}</CustomTableCell>
                     </TableRow>
@@ -1305,7 +1305,7 @@ increaseScoreBy5(){
                     </CustomTableCell>
                     <CustomTableCell align="right">{this.state.non_striker.runs}</CustomTableCell>
                     <CustomTableCell align="right">{this.state.non_striker.balls}</CustomTableCell>
-                    <CustomTableCell align="right">{this.state.non_striker.strike_rate}</CustomTableCell>
+                    <CustomTableCell align="right">{!isNaN(this.state.non_striker.strike_rate) && this.state.non_striker.strike_rate}</CustomTableCell>
                     <CustomTableCell align="right">{this.state.non_striker.fours}</CustomTableCell>
                     <CustomTableCell align="right">{this.state.non_striker.sixes}</CustomTableCell>
                     </TableRow>
