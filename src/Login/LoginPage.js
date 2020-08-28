@@ -117,8 +117,8 @@ class LoginPage extends React.Component {
         </AppBar>  
       <Snackbar open={this.state.open1} autoHideDuration={6000} onClose={() => {}} style={{marginTop : "50%", marginRight : "15%"}}>
       <Alert severity="error">
-      <AlertTitle>Oops! Error</AlertTitle>
-      The User is unauthorized
+      <AlertTitle>Oops!</AlertTitle>
+      We don't recognize this user. Please contact the site admin. 
       </Alert>
       </Snackbar>
         <br />
