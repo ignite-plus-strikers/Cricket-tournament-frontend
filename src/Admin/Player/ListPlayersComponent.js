@@ -20,6 +20,8 @@ import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 import AdminSidenav from '../AdminSidenav';
+import Cookies from 'js-cookie'
+import {Redirect} from 'react-router-dom'
 
 const styles = theme => ({
   root: {
@@ -591,6 +593,7 @@ class ListPlayersComponent extends Component {
             maxWidth:100
             }
         ]  
+	if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
         return (
             <div style={{marginTop:100}}>
               <Header />

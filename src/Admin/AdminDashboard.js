@@ -23,7 +23,7 @@ import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService';
 import SeriesDataService from '../Admin/Series/Service/SeriesDataService';
 import RefereeDataService from '../Admin/Referee/Service/RefereeDataService';
 
-
+import {Redirect} from 'react-router-dom'
  import Cookies from 'js-cookie'
 
 
@@ -173,6 +173,7 @@ handleTeamClick(){
   render(){
     const { classes } = this.props;
     const user_name = Cookies.get("name");
+	if(Cookies.get("role") === undefined || Cookies.get("role") !== "CABI_APPL_ADMIN") return <Redirect to  = "/" /> 
    return ( 
 <div style={{marginTop:60}}>
  <Header />

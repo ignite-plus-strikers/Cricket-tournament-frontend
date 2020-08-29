@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -155,6 +155,8 @@ class ScoringScreen extends React.Component {
       open_next_bowler_form: false,
       open_end_match_form: false,
       open_end_innings_form: false,
+	open_no_player_selected_form: false,
+        open_same_striker_non_striker_form: false,
       disabled: false
     }
   window.localStorage.setItem('data',JSON.stringify(this.state))
@@ -214,6 +216,8 @@ else{
         open_next_bowler_form: false,
         open_end_match_form: false,
         open_end_innings_form: false,
+	open_no_player_selected_form: false,
+        open_same_striker_non_striker_form: false,
         disabled: false,
         exchange: false
     }
@@ -358,7 +362,14 @@ else{
   }
 
   increaseScoreBy0(){
-   
+   if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
     this.setState({
         balls_per_over : this.state.balls_per_over +1,
         striker : {
@@ -401,8 +412,17 @@ else{
       window.localStorage.getItem('data')
       this.handleMaiden();
     }
+}
 
   increaseScoreBy1(){
+	if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
     this.setState({
        batting_team_score : this.state.batting_team_score +1,
        balls_per_over : this.state.balls_per_over +1,
@@ -485,8 +505,17 @@ else{
     }
     window.localStorage.setItem('data',JSON.stringify(this.state))
     }
+}
 
   increaseScoreBy2(){
+	if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
     this.setState({
       batting_team_score : this.state.batting_team_score +2,
       balls_per_over : this.state.balls_per_over +1,
@@ -533,8 +562,17 @@ else{
     window.localStorage.setItem('data',JSON.stringify(this.state))
      window.localStorage.getItem('data')
    }
+}
 
    increaseScoreBy3(){
+	if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
     this.setState({
        batting_team_score : this.state.batting_team_score +3,
        balls_per_over : this.state.balls_per_over +1,
@@ -622,9 +660,17 @@ else{
     } */
     window.localStorage.setItem('data',JSON.stringify(this.state))
     }
-
+}
 
 increaseScoreBy4(){
+if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
   this.setState({
     batting_team_score : this.state.batting_team_score +4,
     balls_per_over : this.state.balls_per_over +1,
@@ -672,8 +718,17 @@ increaseScoreBy4(){
   window.localStorage.setItem('data',JSON.stringify(this.state))
   window.localStorage.getItem('data')
  }
+}
 
 increaseScoreBy5(){
+if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
     this.setState({
        batting_team_score : this.state.batting_team_score +5,
        balls_per_over : this.state.balls_per_over +1,
@@ -757,8 +812,17 @@ increaseScoreBy5(){
     } */
     window.localStorage.setItem('data',JSON.stringify(this.state))
     }
+}
 
     increaseScoreBy6(){
+	if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
       this.setState({
         batting_team_score : this.state.batting_team_score +6,
         balls_per_over : this.state.balls_per_over +1,
@@ -804,6 +868,7 @@ increaseScoreBy5(){
       window.localStorage.setItem('data',JSON.stringify(this.state))
       window.localStorage.getItem('data')
      }
+}
     
      openAddInitialPlayerForm = (e) => {
       this.setState({
@@ -839,11 +904,18 @@ increaseScoreBy5(){
     };
   
     handleInitialPlayerSubmit = () => {
-      if(this.state.striker_batsman === null || this.state.non_striker_batsman === null || this.state.current_bowler === null){
-        alert("All fields are required!")
-      }
-      else{
-      if (this.state.striker_batsman !== this.state.non_striker_batsman) {
+     if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      // alert("All fields are required!")
+      this.openNoPlayerSelected();
+    } else {
+      if (this.state.striker_batsman === this.state.non_striker_batsman) {
+        this.openSameStrikerNonStriker();
+        //alert("Striker and Non-Striker cannot be same!");
+      } else {
         var player = {
           striker_batsman: this.state.striker_batsman,
           non_striker_batsman: this.state.non_striker_batsman,
@@ -851,12 +923,10 @@ increaseScoreBy5(){
         };
         console.log(player);
         this.setState({ open_initial_form: false });
-      } else {
-        alert("Striker and Non-Striker cannot be same!");
+        this.setState({ disabled: true });
+        this.handleInitialMatchDetails();
       }
     }
-    this.setState({disabled: true})
-    this.handleInitialMatchDetails();
     };
   
     handleNextBatsmanSubmit = () => {
@@ -910,7 +980,18 @@ increaseScoreBy5(){
             },
              open_next_bowler_form: false });
         }
-  
+	  openNoPlayerSelected = () => {
+    this.setState({
+      open_no_player_selected_form: true,
+    });
+  };
+
+  openSameStrikerNonStriker = () => {
+    this.setState({
+      open_same_striker_non_striker_form: true,
+    });
+  };  
+
     openEndMatch = () => {
       this.setState({
         open_end_match_form: true,
@@ -1432,13 +1513,7 @@ increaseScoreBy5(){
                 label="Striker Batsman"
                 value={this.state.weightRange}
                 onChange={this.handleChange("striker_batsman")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Striker Batsman
-                    </InputAdornment>
-                  ),
-                }}
+                
               >
                 {this.state.team1_players.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -1459,13 +1534,7 @@ increaseScoreBy5(){
                 label="Non Striker Batsman"
                 value={this.state.weightRange}
                 onChange={this.handleChange("non_striker_batsman")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Non Striker Batsman
-                    </InputAdornment>
-                  ),
-                }}
+                
               >
                 {this.state.team1_players.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -1485,11 +1554,7 @@ increaseScoreBy5(){
                 label="Bowler"
                 value={this.state.weightRange}
                 onChange={this.handleChange("current_bowler")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Bowler</InputAdornment>
-                  ),
-                }}
+                
               >
                 {this.state.team2_players.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -1554,13 +1619,7 @@ increaseScoreBy5(){
                 label="Striker Batsman"
                 value={this.state.weightRange}
                 onChange={this.handleChange("striker_batsman")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      Striker Batsman
-                    </InputAdornment>
-                  ),
-                }}
+                
               >
                 {this.state.team1_players.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -1627,11 +1686,7 @@ increaseScoreBy5(){
                 label="Next Bowler"
                 value={this.state.weightRange}
                 onChange={this.handleChange("current_bowler")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">Bowler</InputAdornment>
-                  ),
-                }}
+                
               >
                 {this.state.team2_players.map((option) => (
                   <MenuItem key={option} value={option}>
@@ -1749,7 +1804,72 @@ increaseScoreBy5(){
               No
             </Button>
           </DialogActions>
-        </Dialog></div>
+        </Dialog>
+	<Dialog
+          open={this.state.open_no_player_selected_form}
+          TransitionComponent={Transition}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            <span
+              style={{
+                fontFamily: "HelveticaforTargetBold,Arial",
+                color: "#646566",
+                fontWeight: "bolder",
+              }}
+            >
+              Player Not selected!
+            </span>
+          </DialogTitle>
+
+          <DialogContent>Please select all players first.</DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.setState({ open_no_player_selected_form: false });
+              }}
+              variant="outlined"
+            >
+              Okay
+            </Button>
+          </DialogActions>
+        </Dialog>
+        <Dialog
+          open={this.state.open_same_striker_non_striker_form}
+          TransitionComponent={Transition}
+          onClose={this.handleClose}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            <span
+              style={{
+                fontFamily: "HelveticaforTargetBold,Arial",
+                color: "#646566",
+                fontWeight: "bolder",
+              }}
+            >
+              Striker and Non Striker cannot be same!
+            </span>
+          </DialogTitle>
+
+          <DialogContent>
+            Please select different striker and non-striker batsman.
+          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={() => {
+                this.setState({ open_same_striker_non_striker_form: false });
+              }}
+              variant="outlined"
+            >
+              Okay
+            </Button>
+          </DialogActions>
+        </Dialog>
+	</div>
             </Container>
   );
           }
