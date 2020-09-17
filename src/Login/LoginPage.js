@@ -10,7 +10,7 @@ import { withStyles } from "@material-ui/core/styles";
 import {Alert,AlertTitle} from "@material-ui/lab"
 import {Snackbar} from "@material-ui/core"
 import AppBar from '@material-ui/core/AppBar';
-import appbar from '../Admin/cards_images/appbar.png';
+import appbar from '../assests/appbar.png';
 
 const styles = {
   card: {
@@ -34,14 +34,6 @@ class LoginPage extends React.Component {
     };
     this.handleInvalid = this.handleInvalid.bind(this);
   }
-
-  /*  logout(res) {
-      this.setState(state => ({
-        isLoggedIn: false,
-        accessToken: ''
-      }));
-    } 
-     */
 
      handleInvalid(){
        this.setState({open1 : true})
@@ -89,26 +81,20 @@ class LoginPage extends React.Component {
     if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_ADMIN") {
       Cookies.set("name", this.state.user_name )
       Cookies.set("role", this.state.user_role)
-      //return <AdminDashboard user_name={this.state.user_name}/>;
       return <Redirect to ="/admin/dashboard" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_APPL_SCORER") {
-      Cookies.set("name", this.state.user_name, {expires:0.5})
-      Cookies.set("role", this.state.user_role , {expires:0.5})
-      //return <MatchSelection user_name={this.state.user_name} />;
+      Cookies.set("name", this.state.user_name)
+      Cookies.set("role", this.state.user_role)
       return <Redirect to ="/scorer/MatchSelection" />
     }
     else if (this.state.isLoggedIn && this.state.user_role === "CABI_SITE_ADMIN") {
-      Cookies.set("name", this.state.user_name, {expires:0.5})
-      Cookies.set("role", this.state.user_role, {expires:0.5})
-      //return <Home user_name={this.state.user_name} />;
+      Cookies.set("name", this.state.user_name)
+      Cookies.set("role", this.state.user_role)
       return <Redirect to = "/siteadmin/home" />
     }
    
     const { classes } = this.props;
-    /* else{
-      return <PageNotFound />;
-    } */
     return (
       <div className="Login-Component">
 
@@ -140,10 +126,6 @@ class LoginPage extends React.Component {
         
         </CardContent>
         </Card>
-
-      
-       
-        {/* {this.state.accessToken ? <h5>Your Access Token: <br/><br/> { this.state.accessToken }</h5> : null } */}
       </div>
     );
   }

@@ -16,31 +16,19 @@ import SeriesComponent from './Admin/Series/SeriesComponent';
 import ShowTeams from './Admin/Series/ShowTeams';
 import FixtureComponent from './Admin/Fixtures/FixtureComponent';
 import TeamComponent from './Admin/Team/TeamComponent';
-import BackgroundImage from './background_img/BackgroundImage';
 import UmpireComponent from './Admin/Umpire/UmpireComponent';
-
 import RefereeComponent from './Admin/Referee/RefereeComponent';
-
 import LoginPage from './Login/LoginPage'
 import ScoringScreen from './Scorer/ScoringScreen'
-
-
-
 import './App.css'
-
 import ScoreCard from './Scorer/ScoreCard'
 import AdminList from './SiteAdmin/component/AdminList';
 import ScorerList from './SiteAdmin/component/ScorerList';
 import Home from './SiteAdmin/component/Home';
 
-function App() {
-
-    
-    
+function App() {  
   return (
-    <div className = "header-styling">
-
-          
+    <div className = "header-styling"> 
           <Router>
         
         <Route exact path="/" component={LoginPage} />
@@ -62,7 +50,6 @@ function App() {
         <Route path="/admin/dashboard/SeriesDisplay" component={SeriesComponent} />
         <Route exact path="/admin/dashboard/UmpireDisplay" component={UmpireComponent} />
         <Route exact path="/admin/dashboard/RefereeDisplay" component={RefereeComponent} />
-        <Route exact path="/home" component={BackgroundImage} />
       
         </Router>
        

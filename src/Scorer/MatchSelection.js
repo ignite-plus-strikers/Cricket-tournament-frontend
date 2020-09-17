@@ -57,8 +57,7 @@ class MatchSelection extends React.Component{
       this.state={
         fixtures:[]
       };
-      this.PrematchScreenClicked = this.PrematchScreenClicked.bind(this)
-
+     
     }
    
 
@@ -71,9 +70,9 @@ class MatchSelection extends React.Component{
     }
 
 
-    PrematchScreenClicked(id) {
+    PrematchScreenClicked = (id) => 
      window.location.href=`/scorer/PreMatch/`+id
-  }
+  
 
   render(){
     const {classes} = this.props;

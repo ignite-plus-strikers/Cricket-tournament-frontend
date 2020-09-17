@@ -8,12 +8,12 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid"
-import player from "./cards_images/player.jpg"
-import fixture from "./cards_images/fixture.jpg"
-import team from "./cards_images/team.jpg"
-import series from "./cards_images/series.jpg"
-import umpire from "./cards_images/umpire.jpg"
-import referee from './cards_images/referee.jpg'
+import player from '../assests/player.jpg'
+import fixture from "../assests/fixture.jpg"
+import team from "../assests/team.jpg"
+import series from "../assests/series.jpg"
+import umpire from "../assests/umpire.jpg"
+import referee from '../assests/referee.jpg'
 import Container from "@material-ui/core/Container"
 
 import PlayerDataService from '../Admin/Player/Service/PlayerDataService';
