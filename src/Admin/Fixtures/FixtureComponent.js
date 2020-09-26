@@ -23,11 +23,20 @@ import AdminSidenav from '../AdminSidenav';
 import Header from '../../Scorer/Header'
 import Cookies from "js-cookie"
 import {Redirect} from "react-router-dom"
+import {blue,pink} from "@material-ui/core/colors";
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
   }
   const styles = theme => ({
+    palette: {
+      primary: {
+          main: blue[500],
+      },
+      secondary: {
+          main: pink[500],
+      },
+  },
     root: {
       display: "flex",
       flexWrap: "wrap"
@@ -53,6 +62,13 @@ function Transition(props) {
           backgroundColor: "#6200ea"
         }
    },
+   updateRoot: {
+    backgroundColor: "#00A8CF",
+    color: "white",
+    "&:hover": {
+      backgroundColor: "#0487A6",
+    },
+  },
   });
    
   
@@ -780,7 +796,10 @@ class FixtureComponent extends Component {
                 Cell:props=>{
                     return(
                         <div>
-                       <button onClick={() => this.openAlertBox(props.original.fixture_id,props.original.description)}>Delete</button>
+                       <Button 
+                       variant="contained"
+                       color="secondary"
+                       onClick={() => this.openAlertBox(props.original.fixture_id,props.original.description)}>Delete</Button>
                         </div>
                 )
         
@@ -795,7 +814,11 @@ class FixtureComponent extends Component {
             headerClassName :'header-class',  
             Cell:props=>{
                 return(
-                    <button  onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update</button>
+                    <Button
+                    variant="contained"
+                    color='primary'
+                    className={this.props.classes.updateRoot}
+                    onClick={() => this.openUpdateForm(props.original.fixture_id)} >Update</Button>
             )
     
             } ,
@@ -1135,6 +1158,7 @@ class FixtureComponent extends Component {
               <center>
                 <Button
                   variant="contained"
+                  color="primary"
                   style={{ width: "150px" }}
                   className={classes.button}
                   type="submit"
@@ -1156,6 +1180,7 @@ class FixtureComponent extends Component {
                 this.setState({ open:false });
               }}
               variant="outlined"
+              color="secondary"
             >
               Cancel
             </Button>
@@ -1429,8 +1454,9 @@ class FixtureComponent extends Component {
               <center>
                 <Button
                   variant="contained"
+                  color="primary"
                   style={{ width: "150px" }}
-                  className={classes.button}
+                  className={classes.button, this.props.classes.updateRoot}
                   type="submit"
                   onClick={this.handleUpdate}
                 >
@@ -1449,6 +1475,7 @@ class FixtureComponent extends Component {
                 this.setState({ open_u:false });
               }}
               variant="outlined"
+              color="secondary"
             >
               Cancel
             </Button>

@@ -18,10 +18,19 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Slide from "@material-ui/core/Slide";
 import AdminSidenav from '../AdminSidenav';
+import {blue,pink} from "@material-ui/core/colors";
 
 import '../../App.css';
  
 const styles = theme => ({
+  palette: {
+    primary: {
+        main: blue[500],
+    },
+    secondary: {
+        main: pink[500],
+    },
+},
   root: {
     display: "flex",
     flexWrap: "wrap"
@@ -52,6 +61,13 @@ const styles = theme => ({
         backgroundColor: "#6200ea"
       }
  },
+ updateRoot: {
+  backgroundColor: "#00A8CF",
+  color: "white",
+  "&:hover": {
+    backgroundColor: "#0487A6",
+  },
+},
 });
 
 function Transition(props) {
@@ -378,7 +394,11 @@ class UmpireComponent extends Component {
         headerClassName :'header-class', 
         Cell:props=>{
             return(
-                <button  onClick={() => this.openUpdateForm(props.original.umpire_id)} >Update</button>
+                <Button 
+                variant="contained"
+                color="primary"
+                className={this.props.classes.updateRoot}
+                onClick={() => this.openUpdateForm(props.original.umpire_id)} >Update</Button>
         )
 
         } ,
@@ -540,6 +560,7 @@ class UmpireComponent extends Component {
             <center>
               <Button
                 variant="contained"
+                color="primary"
                 style={{ width: "150px" }}
                 className={classes.button}
                 onClick={this.handleSubmit}
@@ -558,6 +579,7 @@ class UmpireComponent extends Component {
                 this.setState({ open:false });
               }}
               variant="outlined"
+              color="secondary"
             >
               Cancel
             </Button>
@@ -698,8 +720,9 @@ class UmpireComponent extends Component {
             <center>
               <Button
                 variant="contained"
+                color="primary"
                 style={{ width: "150px" }}
-                className={classes.button}
+                className={classes.button, this.props.classes.updateRoot}
                 onClick={this.handleUpdate}
               >
                 Update
@@ -716,6 +739,7 @@ class UmpireComponent extends Component {
                 this.setState({ open_u:false });
               }}
               variant="outlined"
+              color="secondary"
             >
               Cancel
             </Button>

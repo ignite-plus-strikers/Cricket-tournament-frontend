@@ -6,6 +6,17 @@ import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
 import AdminSidenav from '../AdminSidenav';
 import Header from '../../Scorer/Header'
+import {green,yellow,blue,pink} from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+ secondary: {
+   main: 
+     pink[500]
+   
+ }
+});
 
 class ShowPlayer extends Component {
 
@@ -150,7 +161,11 @@ class ShowPlayer extends Component {
                 headerClassName :'header-class',  
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.deletePlayerClicked(props.original.team_id,props.original.player_id,props.original.player_first_name)}>Delete</button>
+                        <Button 
+                        variant="contained"
+                        color="secondary"
+                       
+                        onClick={() => this.deletePlayerClicked(props.original.team_id,props.original.player_id,props.original.player_first_name)}>Delete</Button>
                 )
         
                 } ,
@@ -198,4 +213,4 @@ class ShowPlayer extends Component {
     
 }
 
-export default ShowPlayer
+export default withStyles(styles)(ShowPlayer)

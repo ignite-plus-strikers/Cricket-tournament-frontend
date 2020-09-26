@@ -9,8 +9,19 @@ import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
 import AdminSidenav from '../AdminSidenav';
 import Header from '../../Scorer/Header'
+import {green} from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
 
-
+const styles = theme => ({
+  addRoot:{
+    backgroundColor: green[500],
+    color : "white",
+    "&:hover": {
+        backgroundColor: green[700]
+      }
+}
+});
 class AddPlayer extends Component {
 
     constructor(props) {
@@ -192,7 +203,11 @@ class AddPlayer extends Component {
             headerClassName :'header-class',
             Cell:props=>{
                 return(
-                    <button  onClick={() => this.handleSelect(props.original.player_id,props.original.category)} >Select</button>
+                    <Button  
+                    variant="contained"
+                        color="primary"
+                        className={this.props.classes.addRoot}
+                    onClick={() => this.handleSelect(props.original.player_id,props.original.category)} >Select</Button>
             )
     
             } ,
@@ -238,4 +253,4 @@ class AddPlayer extends Component {
     
 }
 
-export default AddPlayer
+export default  withStyles(styles)(AddPlayer)

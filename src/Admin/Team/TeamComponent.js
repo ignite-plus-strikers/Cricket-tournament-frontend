@@ -18,11 +18,20 @@ import Cookies from "js-cookie"
 import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AdminSidenav from '../AdminSidenav';
+import {green,yellow,blue,pink} from "@material-ui/core/colors";
 
 
 
 
 const styles = theme => ({
+  palette: {
+    primary: {
+        main: blue[500],
+    },
+    secondary: {
+        main: pink[500],
+    }
+},
   root: {
     display: "flex",
     flexWrap: "wrap"
@@ -48,6 +57,27 @@ const styles = theme => ({
         backgroundColor: "#6200ea"
       }
  },
+ addRoot:{
+   backgroundColor: green[500],
+   color : "white",
+   "&:hover": {
+       backgroundColor: green[700]
+     }
+},
+showRoot:{
+   backgroundColor: yellow[700],
+   color : "black",
+   "&:hover": {
+       backgroundColor: yellow[900]
+     }
+},
+updateRoot: {
+  backgroundColor: "#00A8CF",
+  color: "white",
+  "&:hover": {
+    backgroundColor: "#0487A6",
+  },
+},
 });
  
 function Transition(props) {
@@ -275,7 +305,11 @@ class TeamComponent extends Component {
                 headerClassName :'header-class', 
                 Cell:props=>{
                     return(
-                        <button onClick={() =>  this.addPlayerClicked(props.original.team_id)}>Add</button>
+                        <Button 
+                        variant="contained"
+                        color="primary"
+                        className={classes.margin,classes.addRoot}
+                        onClick={() =>  this.addPlayerClicked(props.original.team_id)}>Add</Button>
                 )
         
                 } ,
@@ -290,7 +324,11 @@ class TeamComponent extends Component {
             headerClassName :'header-class',
             Cell:props=>{
                 return(
-                    <button  onClick={() =>  this.showPlayerClicked(props.original.team_id)} >Show</button>
+                    <Button 
+                    variant="contained"
+                    color="primary" 
+                    className={classes.margin,classes.showRoot}
+                    onClick={() =>  this.showPlayerClicked(props.original.team_id)} >Show</Button>
             )
     
             } ,
@@ -302,7 +340,10 @@ class TeamComponent extends Component {
                 headerClassName :'header-class', 
                 Cell:props=>{
                     return(
-                        <button onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</button>
+                        <Button 
+                        variant="contained"
+                        color="secondary"
+                        onClick={() => this.deleteTeamClicked(props.original.team_id,props.original.tname)}>Delete</Button>
                 )
         
                 } ,
@@ -316,7 +357,11 @@ class TeamComponent extends Component {
                 headerClassName :'header-class',
                 Cell:props=>{
                     return(
-                        <button  onClick={() => this.openUpdateForm(props.original.team_id)} >Update</button>
+                        <Button 
+                        variant="contained"
+                        color="primary"
+                        className={this.props.classes.updateRoot}
+                         onClick={() => this.openUpdateForm(props.original.team_id)} >Update</Button>
                 )
         
                 } ,
@@ -420,6 +465,7 @@ class TeamComponent extends Component {
               <center>
                 <Button
                   variant="contained"
+                  color="primary"
                   style={{ width: "150px" }}
                   className={classes.button}
                   onClick={this.handleSubmit}
@@ -439,6 +485,7 @@ class TeamComponent extends Component {
                 this.setState({ open:false });
               }}
               variant="outlined"
+              color="secondary"
             >
               Cancel
             </Button>
@@ -522,8 +569,9 @@ class TeamComponent extends Component {
               <center>
                 <Button
                   variant="contained"
+                  color="primary"
                   style={{ width: "150px" }}
-                  className={classes.button}
+                  className={classes.button, this.props.classes.updateRoot}
                   onClick={this.handleUpdate}
                 >
                   Update
@@ -541,6 +589,7 @@ class TeamComponent extends Component {
                 this.setState({ open_u:false });
               }}
               variant="outlined"
+              color="secondary"
             >
               Cancel
             </Button>

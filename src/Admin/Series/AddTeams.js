@@ -8,6 +8,19 @@ import ReactTable from "react-table-6";
 import 'react-table-6/react-table.css';
 import AdminSidenav from '../AdminSidenav';
 import Header from '../../Scorer/Header'
+import {green,yellow,blue,pink} from "@material-ui/core/colors";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = theme => ({
+  addRoot:{
+    backgroundColor: green[500],
+    color : "white",
+    "&:hover": {
+        backgroundColor: green[700]
+      }
+}
+});
 
 class AddTeams extends Component {
 
@@ -134,7 +147,11 @@ class AddTeams extends Component {
                 headerClassName :'header-class',
                 Cell:props=>{
                     return(
-                        <button  onClick={() => this.handleSelect(props.original.team_id)} >Select</button>
+                        <Button  
+                        variant="contained"
+                            color="primary"
+                            className={this.props.classes.addRoot}
+                              onClick={() => this.handleSelect(props.original.team_id)} >Select</Button>
                 )
         
                 } ,
@@ -177,4 +194,4 @@ class AddTeams extends Component {
     
 }
 
-export default AddTeams
+export default withStyles(styles)(AddTeams)
