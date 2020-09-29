@@ -19,7 +19,7 @@ import { withStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import AdminSidenav from '../AdminSidenav';
 import {green,yellow,blue,pink} from "@material-ui/core/colors";
-
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 
 
@@ -413,7 +413,64 @@ class TeamComponent extends Component {
               <center>
                 <h3>Team</h3>
               </center>
-              <TextField
+              <ValidatorForm onSubmit={this.handleSubmit}
+              autoComplete="off">
+              <TextValidator
+                    style={{ width: "93%" }}
+                    id="outlined-simple-start-adornment"
+                    className={classNames(classes.margin, classes.textField)}
+                    variant="outlined"
+                    label="Team Name"
+                    onChange={this.handleChange("tname")}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          Team Name
+                        </InputAdornment>
+                      )
+                    }}
+                    validators={['required']}
+                    errorMessages={['This field is required']}
+                    value={this.state.tname}
+                />
+                <TextValidator
+                    style={{ width: "93%" }}
+                    id="outlined-simple-start-adornment"
+                    className={classNames(classes.margin, classes.textField)}
+                    variant="outlined"
+                    label="State"
+                    onChange={this.handleChange("tstate")}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          State
+                        </InputAdornment>
+                      )
+                    }}
+                    validators={['required']}
+                    errorMessages={['This field is required']}
+                    value={this.state.tstate}
+                />
+                <TextValidator
+                    style={{ width: "93%" }}
+                    id="outlined-simple-start-adornment"
+                    className={classNames(classes.margin, classes.textField)}
+                    variant="outlined"
+                    label="Country"
+                    onChange={this.handleChange("tcountry")}
+                    InputProps={{
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          Country
+                        </InputAdornment>
+                      )
+                    }}
+                    validators={['required']}
+                    errorMessages={['This field is required']}
+                    value={this.state.tcountry}
+                />
+                
+              {/*<TextField
                 style={{ width: "93%" }}
                 id="outlined-simple-start-adornment"
                 className={classNames(classes.margin, classes.textField)}
@@ -427,6 +484,7 @@ class TeamComponent extends Component {
                     </InputAdornment>
                   )
                 }}
+
               />
               <TextField
                 style={{ width: "93%" }}
@@ -459,20 +517,21 @@ class TeamComponent extends Component {
                     </InputAdornment>
                   )
                 }}
-              />
+              /> */}
               <br />
               <br />
               <center>
                 <Button
                   variant="contained"
-                  color="primary"
                   style={{ width: "150px" }}
                   className={classes.button}
-                  onClick={this.handleSubmit}
+                  type="submit"
+                  color="primary"
                 >
                   Create
                 </Button>
               </center>
+              </ValidatorForm>
               <br />
               <br /> <br />
               <br />

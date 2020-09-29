@@ -19,7 +19,7 @@ import Navbar from "./Navbar"
 import Header from '../../Scorer/Header'
 import Cookies from 'js-cookie'
 import {Redirect} from "react-router-dom"
-
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 function Transition(props) {
   return <Slide direction="up" {...props} />;
@@ -246,7 +246,45 @@ class ScorerList extends Component {
                 <center>
                   <h3>Add New Scorer</h3>
                 </center>
-                <TextField
+                <br />
+                <ValidatorForm onSubmit={this.handleSubmit} autoComplete="off">
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  variant="outlined"
+                  label="First Name"
+                  onChange={this.handleChange("scorer_firstname")}
+                  validators={['required']}
+                  errorMessages={['This field is required']}
+                  value={this.state.scorer_firstname}
+              />
+              <br />
+              <br />
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  variant="outlined"
+                  label="Lastt Name"
+                  onChange={this.handleChange("scorer_lastname")}
+                  validators={['required']}
+                  errorMessages={['This field is required']}
+                  value={this.state.scorer_lastname}
+              />
+              <br />
+              <br />
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  variant="outlined"
+                  onChange={this.handleChange("scorer_email")}
+                  label="Scorer Email"
+                  validators={['required']}
+                  errorMessages={['This field is required']}
+                  value={this.state.scorer_email}
+              />
+
+                {/*<TextField
                   style={{ width: "45%" }}
                   id="outlined-simple-start-adornment"
                   variant="outlined"
@@ -272,7 +310,8 @@ class ScorerList extends Component {
                   variant="outlined"
                   onChange={this.handleChange("scorer_email")}
                   label="Scorer Email"
-                />
+                /> */}
+
                 <br></br>
                 <br></br>
                 <center>
@@ -280,11 +319,12 @@ class ScorerList extends Component {
                     variant="contained"
                     color="primary"
                     style={{ width: "150px" }}
-                    onClick={this.handleSubmit}
+                    type="submit"
                   >
                     Submit
                   </Button>
                 </center>
+                </ValidatorForm>
               </Paper>
             </DialogContent>
             <DialogActions>

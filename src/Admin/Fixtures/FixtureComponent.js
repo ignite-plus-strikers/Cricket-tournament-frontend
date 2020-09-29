@@ -24,6 +24,8 @@ import Header from '../../Scorer/Header'
 import Cookies from "js-cookie"
 import {Redirect} from "react-router-dom"
 import {blue,pink} from "@material-ui/core/colors";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+
 
 function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -920,10 +922,267 @@ class FixtureComponent extends Component {
               <center>
                 <h3>Fixture</h3>
               </center>
-              
-               
-              
-              <TextField
+              <ValidatorForm onSubmit= {this.handleSubmit} autoComplete="off" >
+               <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Team-1"
+                  onChange={this.handleChange("team1_id")}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">Team-1</InputAdornment>
+                    )
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.team1_id}
+                >
+                  {this.state.teams.map(option => (
+                  <MenuItem key={option.team_id} value={option.team_id}>
+                    {option.tname}
+                  </MenuItem>
+                ))}</TextValidator>
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Team-2"
+                  onChange={this.handleChange("team2_id")}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">Team-2</InputAdornment>
+                    )
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.team2_id}
+                >
+                  {this.state.teams.map(option => (
+                  <MenuItem key={option.team_id} value={option.team_id}>
+                    {option.tname}
+                  </MenuItem>
+                ))}</TextValidator>
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Home Team"
+                  onChange={this.handleChange("home_team")}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">Home Team</InputAdornment>
+                    )
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.home_team}
+                >
+                  {this.state.teams.map(option => (
+                  <MenuItem key={option.tname} value={option.tname}>
+                    {option.tname}
+                  </MenuItem>
+                ))}</TextValidator>
+
+              <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Match Type"
+                  onChange={this.handleChange("match_type")}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start"> Match Type</InputAdornment>
+                    )
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.match_type}
+                >
+                  {GameType.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}</TextValidator>
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Venue"
+                  onChange={this.handleChange("venue")}
+                  InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Venue</InputAdornment>)
+                }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.venue}
+                ></TextValidator>
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Series"
+                  onChange={this.handleChange("series_id")}
+                  InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Series</InputAdornment> )
+                }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.series_id}
+                >
+                  {this.state.series.map(option => (
+                  <MenuItem key={option.series_id} value={option.series_id}>
+                    {option.series_short_name}
+                  </MenuItem>
+                ))}</TextValidator>
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Match Description"
+                  onChange={this.handleChange("description")}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                    Description
+                      </InputAdornment>
+                    )
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.description}
+                ></TextValidator>
+
+                <TextValidator
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  className={classNames(classes.margin, classes.textField)}
+                  onChange={this.handleChange("fixture_date")}
+                  variant="outlined"
+                  label="Match date"
+                  type="date"
+                  defaultValue="2001-01-01"
+                  InputLabelProps={{
+                  shrink: true
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.fixture_date}
+                />
+
+                <TextValidator
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  className={classNames(classes.margin, classes.textField)}
+                  label="Match start time"
+                  type="time"
+                  onChange={this.handleChange("fixture_start_time")}
+                  defaultValue="00:00"
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  inputProps={{
+                    step: 300 // 5 min
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.fixture_start_time}
+                />  
+
+                <TextValidator
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  className={classNames(classes.margin, classes.textField)}
+                  label="Match End time"
+                  type="time"
+                  onChange={this.handleChange("fixture_end_time")}
+                  defaultValue="00:00"
+                  variant="outlined"
+                  InputLabelProps={{
+                    shrink: true
+                  }}
+                  inputProps={{
+                    step: 300 // 5 min
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.fixture_end_time}
+                />
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="GMT Offset"
+                  onChange={this.handleChange("gmt_offset")}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">GMT Offset</InputAdornment>
+                    )
+                  }}
+                  validators={["required"]}
+                  errorMessages={["This field is required"]}
+                  value={this.state.gmt_offset}
+                ></TextValidator>
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Scorer"
+                  onChange={this.handleChange("scorerEmail")}
+                  InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Scorer</InputAdornment>)
+                }}
+                validators={["required"]}
+                errorMessages={["This field is required"]}
+                value={this.state.scorerEmail}
+                >
+                 {this.state.scorers.map(option => (
+                  <MenuItem key={option.scorerEmail} value={option.scorerEmail}>
+                    {option.scorerFirstname} {option.scorerLastname}
+                  </MenuItem>
+                ))}</TextValidator>
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  select
+                  className={classNames(classes.margin, classes.textField)}
+                  variant="outlined"
+                  label="Live coverage"
+                  onChange={this.handleChange("live_coverage")}
+                  InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">Live Coverage</InputAdornment>)
+                }}
+                validators={["required"]}
+                errorMessages={["This field is required"]}
+                value={this.state.scorerEmail}
+                >
+                 {Live.map(option => (
+                  <MenuItem key={option.value} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}</TextValidator>
+
+              {/*<TextField
                 style={{ width: "45%" }}
                 select
                 className={classNames(classes.margin, classes.textField)}
@@ -1021,7 +1280,6 @@ class FixtureComponent extends Component {
                 className={classNames(classes.margin, classes.textField)}
                 variant="outlined"
                 label="Series"
-                
                 onChange={this.handleChange("series_id")}
                 InputProps={{
                   startAdornment: (
@@ -1152,22 +1410,23 @@ class FixtureComponent extends Component {
                     {option.label}
                   </MenuItem>
                 ))}
-              </TextField>
+                </TextField> */}
+
               <br />
               
               <center>
                 <Button
                   variant="contained"
-                  color="primary"
                   style={{ width: "150px" }}
                   className={classes.button}
                   type="submit"
-                  onClick={this.handleSubmit}
+                  color="primary"
                 >
                   Create
                   
                 </Button>
               </center>
+              </ValidatorForm> 
               <br />
               
             </Paper>
