@@ -264,7 +264,7 @@ class ScorerList extends Component {
                   style={{ width: "93%" }}
                   id="outlined-simple-start-adornment"
                   variant="outlined"
-                  label="Lastt Name"
+                  label="Last Name"
                   onChange={this.handleChange("scorer_lastname")}
                   validators={['required']}
                   errorMessages={['This field is required']}

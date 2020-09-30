@@ -18,7 +18,7 @@ import { Container } from "@material-ui/core"
 import Header from "../../Scorer/Header"
 import Cookies from 'js-cookie'
 import {Redirect} from "react-router-dom"
-
+import {ValidatorForm , TextValidator} from "react-material-ui-form-validator"
 const formStyle = { width: "100%" };
 
 function Transition(props) {
@@ -249,7 +249,44 @@ class AdminList extends Component {
                 <center>
                   <h3>Add New Admin</h3>
                 </center>
-                <TextField
+                <br />
+                <ValidatorForm onSubmit={this.handleSubmit} autoComplete="off">
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  variant="outlined"
+                  label="First Name"
+                  onChange={this.handleChange("admin_firstname")}
+                  validators={['required']}
+                  errorMessages={['This field is required']}
+                  value={this.state.admin_firstname}
+              />
+              <br />
+              <br />
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  variant="outlined"
+                  label="Last Name"
+                  onChange={this.handleChange("admin_lastname")}
+                  validators={['required']}
+                  errorMessages={['This field is required']}
+                  value={this.state.admin_lastname}
+              />
+              <br />
+              <br />
+
+                <TextValidator 
+                  style={{ width: "93%" }}
+                  id="outlined-simple-start-adornment"
+                  variant="outlined"
+                  onChange={this.handleChange("admin_email")}
+                  label="Admin Email"
+                  validators={['required']}
+                  errorMessages={['This field is required']}
+                  value={this.state.admin_email}
+              />
+                {/*<TextField
                   style={{ width: "45%" }}
                   id="outlined-simple-start-adornment"
                   variant="outlined"
@@ -275,7 +312,7 @@ class AdminList extends Component {
                   variant="outlined"
                   onChange={this.handleChange("admin_email")}
                   label="Admin Email"
-                />
+                /> */}
                 <br></br>
                 <br></br>
                 <center>
@@ -283,11 +320,12 @@ class AdminList extends Component {
                     variant="contained"
                     color="primary"
                     style={{ width: "150px" }}
-                    onClick={this.handleSubmit}
+                    type="submit"
                   >
                     Submit
                   </Button>
                 </center>
+                </ValidatorForm>
               </Paper>
             </DialogContent>
             <DialogActions>
