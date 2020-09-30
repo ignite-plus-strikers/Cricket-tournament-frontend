@@ -182,7 +182,7 @@ class ListPlayersComponent extends Component {
     });
 
     ValidatorForm.addValidationRule("isValidDOB", (value) => {
-      if (value <= "2001-12-31" && value >= "1975-01-01") {
+      if (value <= "2009-12-31" && value >= "1960-01-01") {
         return true;
       }
       return false;

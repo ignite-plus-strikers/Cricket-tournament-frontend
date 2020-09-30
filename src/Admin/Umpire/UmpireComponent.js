@@ -21,6 +21,8 @@ import AdminSidenav from '../AdminSidenav';
 import {blue,pink} from "@material-ui/core/colors";
 
 import '../../App.css';
+
+import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
  
 const styles = theme => ({
   palette: {
@@ -101,6 +103,31 @@ class UmpireComponent extends Component {
 
     componentDidMount() {
         this.refreshUmpires();
+        ValidatorForm.addValidationRule("isMinLength", (value) => {
+          if (value.length >= 2) {
+            return true;
+          }
+          return false;
+        });
+    
+        ValidatorForm.addValidationRule("isMaxLength", (value) => {
+          if (value.length <= 15) {
+            return true;
+          }
+          return false;
+        });
+        ValidatorForm.addValidationRule("isValidAccuracy", (value) => {
+          if (value>50 && value<100) {
+            return true;
+          }
+          return false;
+        });
+
+    }
+    componentWillUnmount() {
+      // remove rule when it is not needed
+      ValidatorForm.removeValidationRule("isMinLength");
+      ValidatorForm.removeValidationRule("isMaxLength");
     }
 
     refreshUmpires() {
@@ -455,8 +482,10 @@ class UmpireComponent extends Component {
             <center>
               <h3>Umpire</h3>
             </center>
-            <TextField
-              style={{ width: "45%" }}
+            <ValidatorForm onSubmit={this.handleSubmit}
+              autoComplete="off">
+            <TextValidator
+              style={{ width: "93%" }}
               id="outlined-simple-start-adornment"
               className={classNames(classes.margin, classes.textField)}
               variant="outlined"
@@ -467,23 +496,15 @@ class UmpireComponent extends Component {
                   <InputAdornment position="start">First Name</InputAdornment>
                 )
               }}
+              validators={["isMinLength", "isMaxLength"]}
+              errorMessages={[
+                "Minimum 2 characters required!",
+                "Maximum 15 characters allowed!"
+              ]}
+              value={this.state.first_name}
             />
-            <TextField
-              style={{ width: "45%" }}
-              id="outlined-simple-start-adornment"
-              className={classNames(classes.margin, classes.textField)}
-              variant="outlined"
-              onChange={this.handleChange("last_name")}
-              label="Last Name"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">Last Name</InputAdornment>
-                )
-              }}
-            />
-            <br />
-            <TextField
-              style={{ width: "45%" }}
+             <TextValidator
+              style={{ width: "93%" }}
               id="outlined-simple-start-adornment"
               className={classNames(classes.margin, classes.textField)}
               variant="outlined"
@@ -494,9 +515,36 @@ class UmpireComponent extends Component {
                   <InputAdornment position="start">Middle Name</InputAdornment>
                 )
               }}
+              validators={["isMinLength", "isMaxLength"]}
+              errorMessages={[
+                "Minimum 2 characters required!",
+                "Maximum 15 characters allowed!"
+              ]}
+              value={this.state.middle_name}
             />
-            <TextField
-              style={{ width: "45%" }}
+            <TextValidator
+              style={{ width: "93%" }}
+              id="outlined-simple-start-adornment"
+              className={classNames(classes.margin, classes.textField)}
+              variant="outlined"
+              onChange={this.handleChange("last_name")}
+              label="Last Name"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">Last Name</InputAdornment>
+                )
+              }}
+              validators={["isMinLength", "isMaxLength"]}
+              errorMessages={[
+                "Minimum 2 characters required!",
+                "Maximum 15 characters allowed!"
+              ]}
+              value={this.state.last_name}
+            />
+            
+           
+            <TextValidator
+              style={{ width: "93%" }}
               id="outlined-simple-start-adornment"
               className={classNames(classes.margin, classes.textField)}
               variant="outlined"
@@ -507,10 +555,13 @@ class UmpireComponent extends Component {
                   <InputAdornment position="start">City</InputAdornment>
                 )
               }}
+              validators={["required"]}
+              errorMessages={["This field is required"]}
+              value={this.state.city}
             />
-            <br />
-            <TextField
-              style={{ width: "45%" }}
+            
+            <TextValidator
+              style={{ width: "93%" }}
               id="outlined-simple-start-adornment"
               className={classNames(classes.margin, classes.textField)}
               variant="outlined"
@@ -521,11 +572,14 @@ class UmpireComponent extends Component {
                   <InputAdornment position="start">Nationality</InputAdornment>
                 )
               }}
+              validators={["required"]}
+              errorMessages={["This field is required"]}
+              value={this.state.nationality}
             />
-            <TextField
+            <TextValidator
               label="No of Matches Umpired"
               type="number"
-              style={{ width: "45%" }}
+              style={{ width: "93%" }}
               variant="outlined"
               id="outlined-simple-start-adornment"
               onChange={this.handleChange("matches_umpired")}
@@ -537,9 +591,12 @@ class UmpireComponent extends Component {
                   </InputAdornment>
                 )
               }}
+              validators={["required"]}
+              errorMessages={["This field is required"]}
+              value={this.state.matches_umpired}
             />
-            <br />
-            <TextField
+            
+            <TextValidator
               style={{ width: "93%" }}
               label="Accuracy Percentage"
               type="number"
@@ -554,23 +611,22 @@ class UmpireComponent extends Component {
                   </InputAdornment>
                 )
               }}
+              validators={["required","isValidAccuracy"]}
+              errorMessages={["This field is required","Enter valid accuracy %"]}
+              value={this.state.accuracy_percentage}
             />
-            <br />
-            <br />
             <center>
               <Button
                 variant="contained"
                 color="primary"
                 style={{ width: "150px" }}
                 className={classes.button}
-                onClick={this.handleSubmit}
+                type="submit"
               >
                 Create
               </Button>
             </center>
-            <br />
-            <br /> <br />
-            <br />
+            </ValidatorForm>
           </Paper>
           </DialogContent>
           <DialogActions>
