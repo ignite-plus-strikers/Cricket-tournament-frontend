@@ -173,7 +173,10 @@ class TeamComponent extends Component {
       });
     };
   handleClose = () => {
-      this.setState({ open: false,open_u:false });
+      this.setState({ open: false,open_u:false,
+        tname:"",
+        tstate:"",
+        tcountry:"" });
     };
     handleChange = name => event => {
       this.setState({
@@ -644,9 +647,7 @@ class TeamComponent extends Component {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={() => {
-                this.setState({ open_u:false });
-              }}
+              onClick={this.handleClose}
               variant="outlined"
               color="secondary"
             >
