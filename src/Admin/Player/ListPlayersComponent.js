@@ -250,7 +250,19 @@ class ListPlayersComponent extends Component {
     });
   };
   handleClose = () => {
-    this.setState({ open: false, open_u: false });
+    this.setState({ open: false, open_u: false,
+        first_name: "",
+        last_name: "",
+        player_initials: "",
+        gender: "",
+        player_dob: "",
+        category: "",
+        nationality: "",
+        player_batting_style: "",
+        player_bowling_style: "",
+        player_role: "",
+        player_status: "",
+ });
   };
   handleChange = (name) => (event) => {
     this.setState({
@@ -698,6 +710,7 @@ class ListPlayersComponent extends Component {
               </center>
 
               <ValidatorForm onSubmit={this.handleSubmit}
+              onClose={this.handleClose}
               autoComplete="off">
                 <TextValidator
                   style={{ width: "93%" }}
@@ -1153,7 +1166,7 @@ class ListPlayersComponent extends Component {
           <DialogActions>
             <Button
               onClick={() => {
-                this.setState({ open: false });
+                this.setState({open: false});
               }}
               variant="outlined"
               color="secondary"
@@ -1409,9 +1422,7 @@ class ListPlayersComponent extends Component {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={() => {
-                this.setState({ open_u: false });
-              }}
+                        onClick={this.handleClose}
               variant="outlined"
               color="secondary"
             >

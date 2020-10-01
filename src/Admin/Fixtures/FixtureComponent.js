@@ -1730,9 +1730,7 @@ class FixtureComponent extends Component {
           </DialogContent>
           <DialogActions>
             <Button
-              onClick={() => {
-                this.setState({ open_u:false });
-              }}
+              onClick={this.handleClose}
               variant="outlined"
               color="secondary"
             >
