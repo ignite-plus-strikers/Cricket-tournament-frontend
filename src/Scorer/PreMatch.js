@@ -28,21 +28,30 @@ import Header from "./Header";
 import Clock from "./Clock"
 import Cookies from 'js-cookie'
 import {Redirect} from "react-router-dom"
+import {blue,pink} from "@material-ui/core/colors";
 
 
 const toss = [
   {
     value: "batting",
-    label: "batting"
+    label: "Batting"
   },
   {
     value: "fielding",
-    label: "fielding"
+    label: "Fielding"
   },
   
 ];
 
 const styles = theme => ({
+  palette: {
+    primary: {
+        main: blue[500],
+    },
+    secondary: {
+        main: pink[500],
+    },
+},
   root: {
     display: "flex",
     flexWrap: "wrap"
@@ -489,16 +498,16 @@ let fixtureid=this.state.fixture_id
                 id="outlined-simple-start-adornment"
                 className={classes.margin, classes.textField}
                 variant="outlined"
-                label="With Select"
+                label="--Select Toss Decision--"
                 name="toss_decision"
                 onChange={this.handleElement}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      --Select toss decision--
-                    </InputAdornment>
-                  )
-                }}
+                // InputProps={{
+                //   startAdornment: (
+                //     <InputAdornment position="start">
+                //       --Select toss decision--
+                //     </InputAdornment>
+                //   )
+                // }}
               >
                 {toss.map(option => (
                   <MenuItem key={option.value} value={option.value}>
@@ -526,7 +535,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="Search Umpire 1"
+                    label="--Search Umpire 1--"
                     variant="outlined"
                   />
                 )}
@@ -546,7 +555,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="Search Umpire 2"
+                    label="--Search Umpire 2--"
                     variant="outlined"
                   />
                 )}
@@ -566,7 +575,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="Search Third Umpire"
+                    label="--Search Third Umpire--"
                     variant="outlined"
                   />
                 )}
@@ -586,7 +595,7 @@ let fixtureid=this.state.fixture_id
                 renderInput={params => (
                   <TextField
                     {...params}
-                    label="Search Referee"
+                    label="--Search Referee--"
                     variant="outlined"
                   />
                 )}
@@ -719,15 +728,15 @@ let fixtureid=this.state.fixture_id
                 id="outlined-simple-start-adornment"
                 className={classes.margin, classes.textField}
                 variant="outlined"
-                label="With Select"
+                label="--Select Captain--"
                 onChange={this.handleCaptainWicket("captain1")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      --Select Captain--
-                    </InputAdornment>
-                  )
-                }}
+                // InputProps={{
+                //   startAdornment: (
+                //     <InputAdornment position="start">
+                //       --Select Captain--
+                //     </InputAdornment>
+                //   )
+                // }}
               >
                 { 
                 this.state.teamplayers1.map(option => (
@@ -748,16 +757,16 @@ let fixtureid=this.state.fixture_id
                 id="outlined-simple-start-adornment"
                 className={classes.margin, classes.textField}
                 variant="outlined"
-                label="With Select"
+                label="--Select Wicket Keeper--"
                 
                 onChange={this.handleCaptainWicket("wicket1")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      --Select Wicket Keeper--
-                    </InputAdornment>
-                  )
-                }}
+                // InputProps={{
+                //   startAdornment: (
+                //     <InputAdornment position="start">
+                //       --Select Wicket Keeper--
+                //     </InputAdornment>
+                //   )
+                // }}
               >
                {  this.state.teamplayers1.map(option => (
                   <MenuItem key={option.player_first_name + " "+option.player_last_name +" "+option.player_initials
@@ -888,15 +897,15 @@ let fixtureid=this.state.fixture_id
                 id="outlined-simple-start-adornment"
                 className={classes.margin, classes.textField}
                 variant="outlined"
-                label="With Select"
+                label="--Select Captain--"
                 onChange={this.handleCaptainWicket("captain2")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      --Select Captain--
-                    </InputAdornment>
-                  )
-                }}
+                // InputProps={{
+                //   startAdornment: (
+                //     <InputAdornment position="start">
+                //       --Select Captain--
+                //     </InputAdornment>
+                //   )
+                // }}
               >
                 {this.state.teamplayers2.map(option => (
                   <MenuItem key={option.player_first_name + " "+option.player_last_name +" "+option.player_initials
@@ -916,15 +925,15 @@ let fixtureid=this.state.fixture_id
                 id="outlined-simple-start-adornment"
                 className={classes.margin, classes.textField}
                 variant="outlined"
-                label="With Select"
+                label="--Select Wicket Keeper--"
                 onChange={this.handleCaptainWicket("wicket2")}
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      --Select Wicket Keeper--
-                    </InputAdornment>
-                  )
-                }}
+                // InputProps={{
+                //   startAdornment: (
+                //     <InputAdornment position="start">
+                //       --Select Wicket Keeper--
+                //     </InputAdornment>
+                //   )
+                // }}
               >
                 {this.state.teamplayers2.map(option => (
                   <MenuItem key={option.player_first_name + " "+option.player_last_name +" "+option.player_initials
@@ -993,7 +1002,10 @@ let fixtureid=this.state.fixture_id
              onClick={() => {
                 this.setState({ open1: false});
               }}
-              variant="outlined"
+              // variant="outlined"
+
+              variant="contained"
+              color="primary"
             >
             OK
             </Button>
@@ -1030,7 +1042,10 @@ let fixtureid=this.state.fixture_id
              onClick={() => {
                 this.setState({ open2: false});
               }}
-              variant="outlined"
+
+              // variant="outlined"
+              variant="contained"
+              color="primary"
             >
             OK
             </Button>
@@ -1065,7 +1080,10 @@ let fixtureid=this.state.fixture_id
              onClick={() => {
                 this.setState({ open3: false});
               }}
-              variant="outlined"
+              // variant="outlined"
+
+              variant="contained"
+              color="primary"
             >
             OK
             </Button>
@@ -1100,7 +1118,9 @@ let fixtureid=this.state.fixture_id
              onClick={() => {
                 this.setState({ open4: false});
               }}
-              variant="outlined"
+              // variant="outlined"
+              variant="contained"
+              color="primary"
             >
             OK
             </Button>
@@ -1134,7 +1154,9 @@ let fixtureid=this.state.fixture_id
             <Button
              onClick={this.finalSubmit}
               
-              variant="outlined"
+              // variant="outlined"
+              variant="contained"
+              color="primary"
             >
             Yes
             </Button>
@@ -1142,7 +1164,9 @@ let fixtureid=this.state.fixture_id
              onClick={() => {
                 this.setState({ open5: false});
               }}
-              variant="outlined"
+              // variant="outlined"
+              variant="contained"
+              color="secondary"
             >
             No
             </Button>
