@@ -1146,12 +1146,13 @@ class ScoringScreen extends React.Component {
                   className={(classes.button, classes.blueRoot)}
                   onClick={this.handleExtra}
                 >
-                  WIDE *
+                  WIDE
                 </Button>
                 <Button
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
+                  disabled
                 >
                   NO BALL
                 </Button>
@@ -1159,6 +1160,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
+                  disabled
                 >
                   LEG BYES
                 </Button>
@@ -1166,6 +1168,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
+                  disabled
                 >
                   BYES
                 </Button>
@@ -1173,6 +1176,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
+                  disabled
                 >
                   NO BALL + LEG BYES
                 </Button>
@@ -1180,6 +1184,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
+                  disabled
                 >
                   NO BALL + BYES
                 </Button>
@@ -1190,6 +1195,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="secondary"
                   className={classes.button}
+                  onClick={this.handleWicket}
                 >
                   CAUGHT
                 </Button>
@@ -1199,12 +1205,13 @@ class ScoringScreen extends React.Component {
                   className={classes.button}
                   onClick={this.handleWicket}
                 >
-                  BOWLED *
+                  BOWLED
                 </Button>
                 <Button
                   variant="contained"
                   color="secondary"
                   className={classes.button}
+                  onClick={this.handleWicket}
                 >
                   LBW
                 </Button>
@@ -1212,6 +1219,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="secondary"
                   className={classes.button}
+                  disabled
                 >
                   RUN OUT
                 </Button>
@@ -1219,6 +1227,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="secondary"
                   className={classes.button}
+                  onClick={this.handleWicket}
                 >
                   STUMPED
                 </Button>
@@ -1226,6 +1235,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="secondary"
                   className={classes.button}
+                  onClick={this.handleWicket}
                 >
                   HIT WICKET
                 </Button>
@@ -1233,6 +1243,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="secondary"
                   className={classes.button}
+                  disabled
                 >
                   RETIRED
                 </Button>
