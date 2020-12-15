@@ -213,6 +213,8 @@ class ScoringScreen extends React.Component {
         open_end_innings_form: false,
         open_no_player_selected_form: false,
         open_same_striker_non_striker_form: false,
+        open_byes_form: false,
+        open_no_ball_leg_byes_form: false,
         disabled: false,
         exchange: false,
       };
@@ -306,6 +308,13 @@ class ScoringScreen extends React.Component {
   }
 
   handleExtra = () => {
+    if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      this.openForm("NO_PLAYER");
+    } else {
     this.setState({
       batting_team_score: this.state.batting_team_score + 1,
       balls_per_over: this.state.balls_per_over + 1,
@@ -336,6 +345,7 @@ class ScoringScreen extends React.Component {
       this.handleCreateAfterOver();
     localStorage.setItem("data", JSON.stringify(this.state));
   }
+}
 
   increaseScore = (val) => {
     if (
@@ -477,6 +487,65 @@ class ScoringScreen extends React.Component {
     }
   }
   
+  handleByes = (val) => {
+    if (
+      this.state.striker_batsman === null ||
+      this.state.non_striker_batsman === null ||
+      this.state.current_bowler === null
+    ) {
+      this.openForm("NO_PLAYER");
+    } else {
+    this.setState({
+      batting_team_score: this.state.batting_team_score + val,
+      balls_per_over: this.state.balls_per_over + 1,
+      bowler: {
+        maiden_count: this.state.bowler.maiden_count,
+        maidens: this.state.bowler.maidens,
+        runs: this.state.bowler.runs,
+        overs: this.state.bowler.overs,
+        wickets: this.state.bowler.wickets,
+        balls: this.state.bowler.balls + 1,
+      },
+      open_byes_form: false
+    });
+    if (this.state.balls_per_over === 5) {
+      this.setState({
+        balls_per_over: 0,
+        total_overs: this.state.total_overs + 1,
+        bowler: {
+          overs: this.state.bowler.overs + 1,
+          runs: this.state.bowler.runs,
+          balls: 0,
+          wickets: this.state.bowler.wickets,
+          maidens: this.state.bowler.maidens,
+          maiden_count: 0,
+        },
+        open_byes_form: false
+      });
+      this.openForm("NEXT_BOWLER");
+    }
+      this.handleCreateAfterOver();
+    localStorage.setItem("data", JSON.stringify(this.state));
+  }
+}
+
+handleNoBallAndLegByes = (val) => {
+  if (
+    this.state.striker_batsman === null ||
+    this.state.non_striker_batsman === null ||
+    this.state.current_bowler === null
+  ) {
+    this.openForm("NO_PLAYER");
+  } else {
+  this.setState({
+    batting_team_score: this.state.batting_team_score + val,
+    open_no_ball_leg_byes_form: false
+  });
+    this.handleCreateAfterOver();
+  localStorage.setItem("data", JSON.stringify(this.state));
+}
+}
+
   openForm = (val) => {
     if(val === "NO_PLAYER") {
       this.setState({
@@ -513,6 +582,16 @@ class ScoringScreen extends React.Component {
         open_end_match_form: true,
       });
       window.localStorage.removeItem("data");
+    }
+    if(val === "BYES") {
+      this.setState({
+        open_byes_form: true,
+      });
+    }
+    if(val === "NO_BALL_LEG_BYES") {
+      this.setState({
+        open_no_ball_leg_byes_form: true,
+      });
     }
   }
 
@@ -1168,7 +1247,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
-                  disabled
+                  onClick={() => this.openForm("BYES")}
                 >
                   BYES
                 </Button>
@@ -1176,7 +1255,7 @@ class ScoringScreen extends React.Component {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
-                  disabled
+                  onClick={() => this.openForm("NO_BALL_LEG_BYES")}
                 >
                   NO BALL + LEG BYES
                 </Button>
@@ -1662,6 +1741,187 @@ class ScoringScreen extends React.Component {
                 color="secondary"
               >
                 Okay
+              </Button>
+            </DialogActions>
+          </Dialog>
+
+          <Dialog
+            open={this.state.open_byes_form}
+            TransitionComponent={Transition}
+            onClose={this.handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle id="alert-dialog-slide-title">
+              <span
+                style={{
+                  fontFamily: "HelveticaforTargetBold,Arial",
+                  color: "#646566",
+                  fontWeight: "bolder",
+                }}
+              >
+                Byes
+              </span>
+            </DialogTitle>
+            <DialogContent>
+            <Paper
+                style={{
+                  width: '380px',
+                  height: "15%",
+                  padding: '2% 2% 2% 2%'
+                }}
+              >
+            <Button
+                onClick={() => {
+                  this. handleByes(1)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                1
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleByes(2)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                2
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleByes(3)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                3
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleByes(4)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                4
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleByes(5)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                5
+              </Button>
+              </Paper>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => {
+                  this.setState({ open_byes_form: false });
+                }}
+                variant="outlined"
+                color="secondary"
+              >
+                Cancel
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <Dialog
+            open={this.state.open_no_ball_leg_byes_form}
+            TransitionComponent={Transition}
+            onClose={this.handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description"
+          >
+            <DialogTitle id="alert-dialog-slide-title">
+              <span
+                style={{
+                  fontFamily: "HelveticaforTargetBold,Arial",
+                  color: "#646566",
+                  fontWeight: "bolder",
+                }}
+              >
+                No Ball + Leg Byes
+              </span>
+            </DialogTitle>
+            <DialogContent>
+            <Paper
+                style={{
+                  width: '380px',
+                  height: "15%",
+                  padding: '2% 2% 2% 2%'
+                }}
+              >
+            <Button
+                onClick={() => {
+                  this. handleNoBallAndLegByes(1)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                1
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleNoBallAndLegByes(2)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                2
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleNoBallAndLegByes(3)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                3
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleNoBallAndLegByes(4)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                4
+              </Button>
+              <Button
+                onClick={() => {
+                  this. handleNoBallAndLegByes(5)
+                }}
+                variant="contained"
+                color="primary"
+                style={{marginRight: '3%'}}
+              >
+                5
+              </Button>
+              </Paper>
+            </DialogContent>
+            <DialogActions>
+              <Button
+                onClick={() => {
+                  this.setState({ open_no_ball_leg_byes_form: false });
+                }}
+                variant="outlined"
+                color="secondary"
+              >
+                Cancel
               </Button>
             </DialogActions>
           </Dialog>
