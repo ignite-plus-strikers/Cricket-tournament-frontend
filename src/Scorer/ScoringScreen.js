@@ -215,6 +215,9 @@ class ScoringScreen extends React.Component {
         open_same_striker_non_striker_form: false,
         open_byes_form: false,
         open_no_ball_leg_byes_form: false,
+        open_no_ball_form:false,
+        open_leg_byes_form:false,
+        open_run_out_form:false,
         disabled: false,
         exchange: false,
       };
@@ -285,6 +288,7 @@ class ScoringScreen extends React.Component {
     this.openForm("NEXT_BATSMAN");
     window.localStorage.setItem("data", JSON.stringify(this.state));
   }
+
 
   handleMaiden = () => {
     if (this.state.balls_per_over === 5) {
@@ -546,6 +550,147 @@ handleNoBallAndLegByes = (val) => {
 }
 }
 
+handleNoBall = (val) => {
+  if(this.state.striker_batsman === null ||
+    this.state.non_striker_batsman === null || 
+    this.state.current_bowler ===null)
+    {
+      this.openForm("NO_PLAYER")
+    }
+  else{
+    this.setState({
+      batting_team_score:this.state.batting_team_score + val,
+      balls_per_over : this.state.balls_per_over,
+      bowler: {
+        maiden_count: this.state.bowler.maiden_count,
+        maidens: this.state.bowler.maidens,
+        runs: this.state.bowler.runs+val,
+        overs: this.state.bowler.overs,
+        wickets: this.state.bowler.wickets,
+        balls: this.state.bowler.balls,
+      },
+      open_no_ball_form :false
+    });
+    if (this.state.balls_per_over === 5) {
+      this.setState({
+        balls_per_over: 0,
+        total_overs: this.state.total_overs + 1,
+        bowler: {
+          overs: this.state.bowler.overs + 1,
+          runs: this.state.bowler.runs,
+          balls: 0,
+          wickets: this.state.bowler.wickets,
+          maidens: this.state.bowler.maidens,
+          maiden_count: 0,
+        },
+        open_no_ball_form: false
+      });
+      this.openForm("NEXT_BOWLER");
+    }
+      this.handleCreateAfterOver();
+    localStorage.setItem("data", JSON.stringify(this.state));
+  }
+}
+
+handleLegByes = (val) => {
+  if(this.state.striker_batsman === null ||
+    this.state.non_striker_batsman === null || 
+    this.state.current_bowler ===null)
+    {
+      this.openForm("NO_PLAYER")
+    }
+  else{
+    this.setState({
+      batting_team_score:this.state.batting_team_score + val,
+      balls_per_over : this.state.balls_per_over +1,
+      bowler: {
+        maiden_count: this.state.bowler.maiden_count,
+        maidens: this.state.bowler.maidens,
+        runs: this.state.bowler.runs,
+        overs: this.state.bowler.overs,
+        wickets: this.state.bowler.wickets,
+        balls: this.state.bowler.balls+1,
+      },
+      open_leg_byes_form :false
+    });
+    if (this.state.balls_per_over === 5) {
+      this.setState({
+        balls_per_over: 0,
+        total_overs: this.state.total_overs + 1,
+        bowler: {
+          overs: this.state.bowler.overs + 1,
+          runs: this.state.bowler.runs,
+          balls: 0,
+          wickets: this.state.bowler.wickets,
+          maidens: this.state.bowler.maidens,
+          maiden_count: 0,
+        },
+        open_leg_byes_form: false
+      });
+      this.openForm("NEXT_BOWLER");
+    }
+      this.handleCreateAfterOver();
+    localStorage.setItem("data", JSON.stringify(this.state));
+  }
+}
+
+handleRunOut = (val) => {
+  if(this.state.striker_batsman === null ||
+    this.state.non_striker_batsman === null || 
+    this.state.current_bowler ===null)
+    {
+      this.openForm("NO_PLAYER")
+    }
+  else{
+    this.setState({
+    batting_team_score:this.state.batting_team_score + val,
+    batting_team_wickets: this.state.batting_team_wickets + 1,
+    balls_per_over:this.state.balls_per_over,
+    striker: {
+      runs: this.state.striker.runs+val,
+      fours: this.state.striker.fours,
+      sixes: this.state.striker.sixes,
+      balls: this.state.striker.balls + 1,
+      strike_rate: (
+        (this.state.striker.runs * 100) /
+        this.state.striker.balls
+      ).toFixed(2),
+      out_by: this.state.current_bowler,
+    },
+    bowler: {
+      maiden_count: this.state.bowler.maiden_count,
+      maidens: this.state.bowler.maidens,
+      runs: this.state.bowler.runs + val,
+      overs: this.state.bowler.overs,
+      wickets: this.state.bowler.wickets+1,
+      balls: this.state.bowler.balls+1,
+    },
+    open_run_out_form :false
+  });
+  if (this.state.balls_per_over === 5) {
+    this.setState({
+      balls_per_over: 0,
+      total_overs: this.state.total_overs + 1,
+      bowler: {
+        overs: this.state.bowler.overs + 1,
+        runs: this.state.bowler.runs,
+        balls: 0,
+        wickets: this.state.bowler.wickets,
+        maidens: this.state.bowler.maidens,
+        maiden_count: 0,
+      },
+      open_run_out_form: false
+    });
+    this.openForm("NEXT_BOWLER");
+  }
+    this.handleCreateAfterOver();
+    this.handleCreateBatsmanAfterBowled();
+    this.openForm("NEXT_BATSMAN");
+  localStorage.setItem("data", JSON.stringify(this.state));
+  }
+  
+}
+
   openForm = (val) => {
     if(val === "NO_PLAYER") {
       this.setState({
@@ -593,6 +738,22 @@ handleNoBallAndLegByes = (val) => {
         open_no_ball_leg_byes_form: true,
       });
     }
+    if(val==="NOBALL"){
+      this.setState({
+        open_no_ball_form:true,
+      })
+    }
+    if(val==="RUN_OUT"){
+      this.setState({
+        open_run_out_form:true,
+      })
+    }
+    if(val==="LEGBYES"){
+      this.setState({
+        open_leg_byes_form:true,
+      })
+    }
+
   }
 
   handleClose = () => {
@@ -1231,7 +1392,7 @@ handleNoBallAndLegByes = (val) => {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
-                  disabled
+                  onClick ={() => this.openForm("NOBALL")}
                 >
                   NO BALL
                 </Button>
@@ -1239,7 +1400,7 @@ handleNoBallAndLegByes = (val) => {
                   variant="contained"
                   color="primary"
                   className={(classes.button, classes.blueRoot)}
-                  disabled
+                  onClick={() => this.openForm("LEGBYES")}
                 >
                   LEG BYES
                 </Button>
@@ -1298,7 +1459,7 @@ handleNoBallAndLegByes = (val) => {
                   variant="contained"
                   color="secondary"
                   className={classes.button}
-                  disabled
+                  onClick={() => this.openForm("RUN_OUT")}
                 >
                   RUN OUT
                 </Button>
@@ -1924,6 +2085,108 @@ handleNoBallAndLegByes = (val) => {
                 Cancel
               </Button>
             </DialogActions>
+          </Dialog>
+
+          <Dialog open={this.state.open_run_out_form}
+            TransitionComponent={Transition}
+            onClose={this.handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description">
+          <DialogTitle id="alert-dialog-slide-title">
+              <span
+                style={{
+                  fontFamily: "HelveticaforTargetBold,Arial",
+                  color: "#646566",
+                  fontWeight: "bolder",
+                }}
+              >
+                RUN OUT
+              </span>
+            </DialogTitle>
+            <DialogContent>
+            <Paper style={{
+                  width: '500px',
+                  height: "15%",
+                  padding: '2% 2% 2% 2%'
+                }}
+              >
+            <Button onClick ={() => this.handleRunOut(1)} variant="contained" color="primary" style={{marginRight: '3%'}}>1</Button>
+            <Button onClick ={() => this.handleRunOut(2)} variant="contained" color="primary" style={{marginRight: '3%'}}>2</Button>
+            <Button onClick ={() => this.handleRunOut(3)} variant="contained" color="primary" style={{marginRight: '3%'}}>3</Button>
+            <Button onClick ={() => this.handleRunOut(4)} variant="contained" color="primary" style={{marginRight: '3%'}}>4</Button>
+            <Button onClick ={() => this.handleRunOut(5)} variant="contained" color="primary" style={{marginRight: '3%'}}>5</Button>
+            <Button onClick ={() => this.handleRunOut(6)} variant="contained" color="primary" style={{marginRight: '3%'}}>6</Button>
+
+            </Paper></DialogContent>
+            <DialogActions><Button onClick={() => {this.setState({ open_run_out_form: false }); }} variant="outlined" color="secondary">Cancel</Button></DialogActions>
+            </Dialog>
+
+            <Dialog open={this.state.open_no_ball_form}
+            TransitionComponent={Transition}
+            onClose={this.handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description">
+          <DialogTitle id="alert-dialog-slide-title">
+              <span
+                style={{
+                  fontFamily: "HelveticaforTargetBold,Arial",
+                  color: "#646566",
+                  fontWeight: "bolder",
+                }}
+              >
+                No Ball
+              </span>
+            </DialogTitle>
+            <DialogContent>
+              <Paper style={{
+                  width: '500px',
+                  height: "15%",
+                  padding: '2% 2% 2% 2%'
+                }}
+              >
+              <Button onClick={() => {this.handleNoBall(1)}} variant="contained" color="primary" style={{marginRight: '3%'}}>1</Button>
+              <Button onClick={() => {this.handleNoBall(2)}} variant="contained" color="primary" style={{marginRight: '3%'}}>2</Button>
+              <Button onClick={() => {this.handleNoBall(3)}} variant="contained" color="primary" style={{marginRight: '3%'}}>3</Button>
+              <Button onClick={() => {this.handleNoBall(4)}} variant="contained" color="primary" style={{marginRight: '3%'}}>4</Button>
+              <Button onClick={() => {this.handleNoBall(5)}} variant="contained" color="primary" style={{marginRight: '3%'}}>5</Button>
+              <Button onClick={() => {this.handleNoBall(6)}} variant="contained" color="primary" style={{marginRight: '3%'}}>6</Button>
+            
+              </Paper> </DialogContent>
+              <DialogActions><Button onClick={() => {this.setState({ open_no_ball_form: false }); }} variant="outlined" color="secondary">Cancel</Button></DialogActions>
+          </Dialog>
+
+          <Dialog open={this.state.open_leg_byes_form}
+            TransitionComponent={Transition}
+            onClose={this.handleClose}
+            aria-labelledby="alert-dialog-slide-title"
+            aria-describedby="alert-dialog-slide-description">
+          <DialogTitle id="alert-dialog-slide-title">
+              <span
+                style={{
+                  fontFamily: "HelveticaforTargetBold,Arial",
+                  color: "#646566",
+                  fontWeight: "bolder",
+                }}
+              >
+                Leg Byes
+              </span>
+            </DialogTitle>
+            <DialogContent>
+              <Paper style={{
+                  width: '500px',
+                  height: "15%",
+                  padding: '2% 2% 2% 2%'
+                }}
+              >
+              <Button onClick={() => {this.handleLegByes(1)}} variant="contained" color="primary" style={{marginRight: '3%'}}>1</Button>
+              <Button onClick={() => {this.handleLegByes(2)}} variant="contained" color="primary" style={{marginRight: '3%'}}>2</Button>
+              <Button onClick={() => {this.handleLegByes(3)}} variant="contained" color="primary" style={{marginRight: '3%'}}>3</Button>
+              <Button onClick={() => {this.handleLegByes(4)}} variant="contained" color="primary" style={{marginRight: '3%'}}>4</Button>
+              <Button onClick={() => {this.handleLegByes(5)}} variant="contained" color="primary" style={{marginRight: '3%'}}>5</Button>
+              <Button onClick={() => {this.handleLegByes(6)}} variant="contained" color="primary" style={{marginRight: '3%'}}>6</Button>
+            
+              </Paper> </DialogContent>
+              <DialogActions><Button onClick={() => {this.setState({ open_leg_byes_form: false }); }} variant="outlined" color="secondary">Cancel</Button></DialogActions>
           </Dialog>
         </div>
       </Container>

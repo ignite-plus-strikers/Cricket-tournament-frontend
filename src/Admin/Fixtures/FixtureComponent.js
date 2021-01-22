@@ -1014,7 +1014,6 @@ class FixtureComponent extends Component {
 
                 <TextValidator
                   style={{ width: "93%" }}
-                  select
                   className={classNames(classes.margin, classes.textField)}
                   variant="outlined"
                   label="Venue"
@@ -1054,7 +1053,6 @@ class FixtureComponent extends Component {
 
                 <TextValidator
                   style={{ width: "93%" }}
-                  select
                   className={classNames(classes.margin, classes.textField)}
                   variant="outlined"
                   label="Match Description"
@@ -1129,7 +1127,6 @@ class FixtureComponent extends Component {
                 />
                 <TextValidator
                   style={{ width: "93%" }}
-                  select
                   className={classNames(classes.margin, classes.textField)}
                   variant="outlined"
                   label="GMT Offset"
@@ -1188,7 +1185,7 @@ class FixtureComponent extends Component {
                   }}
                   validators={["required"]}
                   errorMessages={["This field is required"]}
-                  value={this.state.scorerEmail}
+                  value={this.state.live_coverage}
                 >
                   {Live.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
