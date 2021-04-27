@@ -36,8 +36,7 @@ const styles =theme=>( {
       },
       toolbar: theme.mixins.toolbar,
       link:{
-        color:'#1854af',
-       
+        color:'#1854af', 
       },
       listItemText : {
         fontSize : "20px"

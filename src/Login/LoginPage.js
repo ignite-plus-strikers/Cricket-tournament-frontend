@@ -2,7 +2,6 @@ import React from "react";
 import { GoogleLogin} from "react-google-login";
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
-
 import {Card, CardContent} from "@material-ui/core"
 import { Typography, Divider} from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -11,6 +10,7 @@ import {Alert,AlertTitle} from "@material-ui/lab"
 import {Snackbar} from "@material-ui/core"
 import AppBar from '@material-ui/core/AppBar';
 import appbar from '../assests/appbar.png';
+import {base_url} from '../../src/UrlConstant'
 
 const styles = {
   card: {
@@ -47,7 +47,7 @@ class LoginPage extends React.Component {
 
     var config = {
       method: "post",
-      url: "http://localhost:8080/cricket-tournament/auth",
+      url: `${base_url}/auth`,
       headers: {
         Authorization: "Bearer " + accessToken,
       },
@@ -65,12 +65,6 @@ class LoginPage extends React.Component {
         console.log(error);
         this.handleInvalid();
       }.bind(this));
-
-
-      
-
-
-    
     }
 
 

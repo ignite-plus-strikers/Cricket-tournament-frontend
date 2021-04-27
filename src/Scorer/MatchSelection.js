@@ -12,6 +12,8 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import moment from "moment";
 import { Redirect } from "react-router-dom";
+import {base_url} from '../../src/UrlConstant'
+import FixtureDataService from '../Admin/Fixtures/Service/FixtureDataService'
 
 const useStyles = (theme) => ({
   root: {
@@ -57,8 +59,8 @@ class MatchSelection extends React.Component {
   }
 
   componentDidMount() {
-    axios
-      .get("http://localhost:8080/cricket-tournament/fixtures")
+    
+    FixtureDataService.retrieveAllFixtures()
       .then((response) => response.data)
       .then((data) => {
         this.setState({ fixtures: data });

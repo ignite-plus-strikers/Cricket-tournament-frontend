@@ -84,7 +84,6 @@ class AdminList extends Component {
         adminLastname: this.state.admin_lastname,
         adminEmail: this.state.admin_email,
       };
-      //console.log(admin);
       AdminCredDataService.createAdmin(admin).then((response) => {
         this.setState({ open_form: false });
         this.retrieveAllAdmin();
